@@ -15,7 +15,7 @@ namespace Project_BackendApi.Models
         public string Address { get; set; }
         public string ContatctNo { get; set; }
         public string Email { get; set; }
-        public string CustomerImage { get; set; }
+        public string ShopImage { get; set; }
         public string Password { get; set; }
         public string Cetogory { get; set; }
     }
