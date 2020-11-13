@@ -2,3 +2,5 @@ project-clientapp/node_modules/**/*
 project-clientapp/package-lock.json
 
 Project-BackendApi/.vs/
+Project-BackendApi/bin/
+Project-BackendApi/obj/
