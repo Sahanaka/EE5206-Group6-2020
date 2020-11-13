@@ -1,0 +1,4 @@
+project-clientapp/node_modules/**/*
+project-clientapp/package-lock.json
+
+Project-BackendApi/.vs/
