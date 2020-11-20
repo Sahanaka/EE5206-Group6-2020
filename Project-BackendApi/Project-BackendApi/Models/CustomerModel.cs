@@ -16,7 +16,7 @@ namespace Project_BackendApi.Models
         public string Name { get; set; }
 
         [Required]
-        [RegularExpression("+\\@.+\\..+", ErrorMessage = "Please Enter Valid Email Address")]
+        [EmailAddress(ErrorMessage ="Invalid Email")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Please Enter Address")]

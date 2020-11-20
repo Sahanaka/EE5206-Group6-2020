@@ -22,7 +22,7 @@ namespace Project_BackendApi.Models
         public string ContatctNo { get; set; }
 
         [Required]
-        [RegularExpression("+\\@.+\\..+", ErrorMessage = "Please Enter Valid Email Address")]
+        [EmailAddress(ErrorMessage = "Invalid Email")]
         public string Email { get; set; }
         public string ShopImage { get; set; }
 
