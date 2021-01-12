@@ -37,5 +37,7 @@ namespace Project_BackendApi.Models
 
         [Required(ErrorMessage = "Please Enter at least one Cetogory")]
         public string Cetogory { get; set; }
+
+        public string UserRole = "Seller";
     }
 }
