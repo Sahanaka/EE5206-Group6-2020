@@ -36,5 +36,7 @@ namespace Project_BackendApi.Models
         [DataType(DataType.Password)]
         public string ReTypePassword { get; set; }
 
+        public string UserRole = "Customer";
+
     }
 }
