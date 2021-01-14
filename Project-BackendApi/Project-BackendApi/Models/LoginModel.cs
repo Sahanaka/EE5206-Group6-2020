@@ -8,6 +8,8 @@ namespace Project_BackendApi.Models
 {
     public class LoginModel
     {
+        public int ID { get; set; }
+
         [Required(ErrorMessage = "Email is required")]
         public string Email { get; set; }
 

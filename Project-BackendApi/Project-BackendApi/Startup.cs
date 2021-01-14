@@ -16,6 +16,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Project_BackendApi.Models;
 using Project_BackendApi.Services.JWTService;
+using Project_BackendApi.DATA;
+using Microsoft.EntityFrameworkCore;
 
 namespace Project_BackendApi
 {
@@ -59,6 +61,11 @@ namespace Project_BackendApi
                 config.AddPolicy(Policies.Customer, Policies.CustomerPolicy());
                 config.AddPolicy(Policies.Seller, Policies.SellerPolicy());
             });
+
+
+            services.AddDbContext<MarketplaceDB>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("MarketPlaceDatabase"))
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
