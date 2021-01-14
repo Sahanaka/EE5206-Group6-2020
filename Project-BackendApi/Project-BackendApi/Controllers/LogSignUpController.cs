@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Project_BackendApi.DATA;
 using Project_BackendApi.Models;
 using Project_BackendApi.Services.JWTService;
 
@@ -16,48 +17,24 @@ namespace Project_BackendApi.Controllers
     public class LogSignUpController : ControllerBase
     {
 
+        public readonly MarketplaceDB _db;
+
         private readonly IConfiguration _config; // To read from the config file
         private IJWTService _jwtService;
 
-        static List<CustomerModel> CustomerModelDB = loadDB();
+        
 
-        public LogSignUpController(IConfiguration config, IJWTService jwtservice)
+        public LogSignUpController(IConfiguration config, IJWTService jwtservice, MarketplaceDB db)
         {
             _config = config;
             _jwtService = jwtservice;
+            _db = db;
         }
 
-        public static List<CustomerModel> loadDB()
+        [HttpGet]
+        public List<CustomerModel> getall()
         {
-            List<CustomerModel> temp = new List<CustomerModel>();
-            temp.Add(new CustomerModel
-            {
-                ID = 1,
-                Name = "Group6",
-                Email = "group6@gmail.com",
-                Address = "Galle",
-                ContatctNo = "712099943",
-                CustomerImage = "image.png",
-                Password = "Group6",
-                ReTypePassword = "Group6"
-            });
-
-            temp.Add(new CustomerModel
-            {
-                ID = 1,
-                Name = "Group61",
-                Email = "group61@gmail.com",
-                Address = "Galle1",
-                ContatctNo = "7120999431",
-                CustomerImage = "image1.png",
-                Password = "Group61",
-                ReTypePassword = "Group61"
-            });
-
-
-            return temp;
-
-
+            return _db.CustomerModels.ToList();
         }
 
 
@@ -66,12 +43,14 @@ namespace Project_BackendApi.Controllers
         public IActionResult CustomerPost(CustomerModel newcustomer)
         {
             // CustomerModelDB.Add(newcustomer);
-            var customerWithSameEmail = CustomerModelDB.FirstOrDefault(m => m.Email.ToLower() == newcustomer.Email.ToLower()); //check email already exit or not
+            var customerWithSameEmail = _db.CustomerModels.FirstOrDefault(m => m.Email.ToLower() == newcustomer.Email.ToLower()); //check email already exit or not
 
 
             if (customerWithSameEmail == null)
             {
-                CustomerModelDB.Add(newcustomer);
+                _db.CustomerModels.Add(newcustomer);
+                _db.SaveChanges();
+
 
 
                 return Ok(); //new page
@@ -87,23 +66,25 @@ namespace Project_BackendApi.Controllers
 
 
         [HttpPost("signup/seller")]
-        public string SellersPost(CustomerModel newseller)
+        public IActionResult SellersPost(SellerModel newseller)
         {
             // CustomerModelDB.Add(newcustomer);
-            var SellerWithSameEmail = CustomerModelDB.FirstOrDefault(m => m.Email.ToLower() == newseller.Email.ToLower()); //check email already exit or not
+            var SellerWithSameEmail = _db.SellerModels.FirstOrDefault(m => m.Email.ToLower() == newseller.Email.ToLower()); //check email already exit or not
 
 
             if (SellerWithSameEmail == null)
             {
-                CustomerModelDB.Add(newseller);
+                _db.SellerModels.Add(newseller);
+                _db.SaveChanges();
+               
 
 
-                return "Done registered "; //new page
+                return Ok(); //new page
             }
             else
             {
 
-                return "this Email Already Exist";
+                return BadRequest();
             }
 
 
@@ -117,13 +98,21 @@ namespace Project_BackendApi.Controllers
         {
             try
             {            // CustomerModelDB.Add(newcustomer);
-                var CheckEmail = CustomerModelDB.FirstOrDefault(m => m.Email.ToLower() == login.Email.ToLower()); //check email already exit or not
-                var CheckPasswerd = CustomerModelDB.FirstOrDefault(m => m.Password == login.Password);
+                var CheckEmailSeller = _db.SellerModels.FirstOrDefault(m => m.Email.ToLower() == login.Email.ToLower()); //check email already exit or not
+                var CheckPasswerdSeller = _db.SellerModels.FirstOrDefault(m => m.Password == login.Password);
 
-                if (CheckEmail == null | CheckPasswerd == null)
+                var CheckEmailCustomer  = _db.CustomerModels.FirstOrDefault(m => m.Email.ToLower() == login.Email.ToLower()); //check email already exit or not
+                var CheckPasswerdCustomer = _db.CustomerModels.FirstOrDefault(m => m.Password == login.Password);
+
+
+                
+                if ((CheckEmailSeller == null || CheckPasswerdSeller == null)&& (CheckEmailCustomer == null || CheckPasswerdCustomer == null))
                 {
                     return BadRequest(); //New page
                 }
+
+
+
                 else
                 {
 
@@ -134,6 +123,9 @@ namespace Project_BackendApi.Controllers
                         token = tokenString
                     });
                 }
+
+
+
             }
             catch (Exception ex)
             {
