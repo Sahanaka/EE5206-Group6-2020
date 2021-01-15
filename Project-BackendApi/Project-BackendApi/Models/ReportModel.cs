@@ -10,11 +10,15 @@ namespace Project_BackendApi.Models
     {
         [Key]
         public int ID { get; set; }
-        public string Description { get; set; }
-        
-        public string Category { get; set; }
-        public ICollection<CustomerModel> CustomerModels { get; set; }
 
+        [Required(ErrorMessage = "Please Enter Description")]
+        public string Description { get; set; }
+
+        [Required(ErrorMessage = "Please Enter Category")]
+        public string Category { get; set; }
+
+
+        public ICollection<CustomerModel> CustomerModels { get; set; }
         public AdminModel adminModel { get; set; }
 
 

@@ -10,10 +10,14 @@ namespace Project_BackendApi.Models
     {
         [Key]
         public int ID { get; set; }
+
+        [Required(ErrorMessage = "Please Enter Title")]
         public string Title { get; set; }
-       
+
+        [Required(ErrorMessage = "Please Enter SubCategory")]
         public string SubCategory { get; set; }
 
+        
         public ProductModel ProductModel { get; set; }
 
     }
