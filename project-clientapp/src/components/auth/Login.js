@@ -1,8 +1,9 @@
 import React, { Fragment, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 
+import { login } from '../../Actions/auth';
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = () => {
   const [formData, setFromData] = useState(
       {
           email: '',
