@@ -1,14 +1,12 @@
+/* Global Styles */
 :root {
-  --primary-color: #17a2b8;
+  --primary-color: #c4d107;
   --dark-color: #343a40;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
   --success-color: #28a745;
 }
-.Logo {
-  height: 10px;
-  width: 10px;
-}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -19,7 +17,7 @@ body {
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: rgb(255, 255, 255);
+  background-color: #fff;
   color: #333;
 }
 
@@ -69,7 +67,7 @@ img {
 }
 
 .text-primary {
-  color: var(--primary-color);
+  color: var(#263238);
 }
 
 .text-dark {
@@ -162,7 +160,7 @@ img {
 .bg-primary,
 .badge-primary,
 .alert-primary {
-  background: var(--primary-color);
+  background: #317539;
   color: #fff;
 }
 
@@ -302,15 +300,16 @@ button {
 
 /* Navbar */
 .navbar {
+  background-color: #263238;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.7rem 2rem;
-  position: fixed;
+  /* position: fixed; */
   z-index: 1;
   width: 100%;
   top: 0;
-  border-bottom: solid 1px var(--primary-color);
+  border-bottom: solid 1px #ffffff;
   opacity: 0.9;
 }
 
@@ -319,13 +318,14 @@ button {
 }
 
 .navbar a {
-  color: #fff;
+  color: rgb(255, 255, 255);
   padding: 0.45rem;
   margin: 0 0.25rem;
 }
 
 .navbar a:hover {
-  color: var(--primary-color);
+  /* color: var(--primary-color); */
+  color: rgb(221, 221, 221);
 }
 
 .navbar .welcome span {

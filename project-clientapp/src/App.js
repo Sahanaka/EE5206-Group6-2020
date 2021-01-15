@@ -7,6 +7,8 @@ import Background from "./img/mainimg.JPG";
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Login from "./components/auth/Login";
+import Footer from "./components/layout/Footer";
+import Store from "./components/auth/Store";
 
 function App() {
   return (
@@ -17,8 +19,10 @@ function App() {
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/store" component={Store} />
           {/* <Route exact path="/Register" component={Register} /> */}
         </Switch>
+        <Footer />
       </Fragment>
     </Router>
   );
