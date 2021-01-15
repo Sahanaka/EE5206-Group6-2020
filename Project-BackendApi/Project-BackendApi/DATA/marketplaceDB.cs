@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Project_BackendApi.Models;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project_BackendApi.DATA
 {
-    public class MarketplaceDB:DbContext
+    public class MarketplaceDB : IdentityDbContext
     {
         public MarketplaceDB(DbContextOptions<MarketplaceDB> options) : base(options)
         {

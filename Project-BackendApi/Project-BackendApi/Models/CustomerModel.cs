@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Project_BackendApi.Models
 {
-    public class CustomerModel
+    public class CustomerModel 
     {
         [Key]
         public int ID { get; set; }

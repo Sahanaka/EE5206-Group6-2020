@@ -18,6 +18,7 @@ using Project_BackendApi.Models;
 using Project_BackendApi.Services.JWTService;
 using Project_BackendApi.DATA;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Project_BackendApi
 {
@@ -66,6 +67,14 @@ namespace Project_BackendApi
             services.AddDbContext<MarketplaceDB>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("MarketPlaceDatabase"))
             );
+
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequiredLength = 5;
+            }).AddEntityFrameworkStores<MarketplaceDB>();
+                
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
