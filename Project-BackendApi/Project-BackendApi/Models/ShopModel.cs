@@ -4,10 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-
 namespace Project_BackendApi.Models
 {
-    public class CustomerModel 
+    public class ShopModel
     {
         [Key]
         public int ID { get; set; }
@@ -16,16 +15,24 @@ namespace Project_BackendApi.Models
         public string Name { get; set; }
 
         [Required]
-        [EmailAddress(ErrorMessage ="Invalid Email")]
+        [EmailAddress(ErrorMessage = "Invalid Email")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Please Enter Address")]
         public string Address { get; set; }
 
         [Required(ErrorMessage = "Please Enter Contact Number")]
-        public string Contatct_No { get; set; }
+        public string ContactNo { get; set; }
 
-        public string CustomerImage { get; set; }
+        [Required(ErrorMessage = "Please Enter District")]
+        public string District { get; set; }
+
+
+        [Required(ErrorMessage = "Please Enter Category")]
+        public string Category { get; set; }
+
+        public string Image { get; set; }
+
 
         [Required(ErrorMessage = "Please Enter password")]
         [DataType(DataType.Password)]
@@ -36,14 +43,10 @@ namespace Project_BackendApi.Models
         [DataType(DataType.Password)]
         public string ReTypePassword { get; set; }
 
-        public string UserRole = "Customer";
 
+        public ProductModel ProductModel { get; set; }
+        public ICollection<CustomerModel> CustomerModels { get; set; }
 
-
-        public ICollection<ShopModel> ShopModel { get; set; }
-        public ICollection<ProductModel> ProductModels { get; set; }
-        public ICollection<OrderDetailsModel> OrderDetailsModels { get; set; }
-        public ICollection<ReportModel> ReportModels { get; set; }
 
     }
 }
