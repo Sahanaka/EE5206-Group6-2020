@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Project_BackendApi.DATA;
 using Project_BackendApi.Models;
 using Project_BackendApi.Services.JWTService;
+using Project_BackendApi.Services.MailService;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,14 +22,15 @@ namespace Project_BackendApi.Controllers
 
         private readonly IConfiguration _config; // To read from the config file
         private IJWTService _jwtService;
-
+        private IMailService _mailService;
         
 
-        public LogSignUpController(IConfiguration config, IJWTService jwtservice, MarketplaceDB db)
+        public LogSignUpController(IConfiguration config, IJWTService jwtservice, MarketplaceDB db, IMailService mailService)
         {
             _config = config;
             _jwtService = jwtservice;
             _db = db;
+            _mailService = mailService;
         }
 
         [HttpGet]
@@ -40,7 +42,7 @@ namespace Project_BackendApi.Controllers
 
         // POST api/<LogSignUpController>
         [HttpPost("signup/customer")]
-        public IActionResult CustomerPost(CustomerModel newcustomer)
+        public async Task<IActionResult> CustomerPost(CustomerModel newcustomer)
         {
             // CustomerModelDB.Add(newcustomer);
             var customerWithSameEmail = _db.CustomerModels.FirstOrDefault(m => m.Email.ToLower() == newcustomer.Email.ToLower()); //check email already exit or not
@@ -51,9 +53,22 @@ namespace Project_BackendApi.Controllers
                 _db.CustomerModels.Add(newcustomer);
                 _db.SaveChanges();
 
+                LoginModel user = new LoginModel();
+                user.Email = newcustomer.Email;
+                user.Password = newcustomer.Password;
 
+                var tokenString = _jwtService.GenerateJWTtoken(user);
 
-                return Ok(); //new page
+                string url = $"{_config["AppUrl"]}/api/auth/confirmemail?useremail={newcustomer.Email}&token={tokenString}";
+
+                await _mailService.SendEmailAsync(newcustomer.Email, "Confirm your email", $"<h1>Thank You for registering in S&D com</h1>" +
+                    $"<p>Please confirm your email by <a href='{url}'>Clicking here</a></p>");
+
+                return Ok(new
+                {
+                    token = tokenString,
+                    message = "Success"
+                });
             }
             else
             {
@@ -66,7 +81,7 @@ namespace Project_BackendApi.Controllers
 
 
         [HttpPost("signup/seller")]
-        public IActionResult SellersPost(SellerModel newseller)
+        public async Task<IActionResult> SellersPost(SellerModel newseller)
         {
             // CustomerModelDB.Add(newcustomer);
             var SellerWithSameEmail = _db.SellerModels.FirstOrDefault(m => m.Email.ToLower() == newseller.Email.ToLower()); //check email already exit or not
@@ -76,14 +91,25 @@ namespace Project_BackendApi.Controllers
             {
                 _db.SellerModels.Add(newseller);
                 _db.SaveChanges();
-               
 
+                LoginModel user = new LoginModel();
+                user.Email = newseller.Email;
+                user.Password = newseller.Password;
 
-                return Ok(); //new page
+                var tokenString = _jwtService.GenerateJWTtoken(user);
+
+                string url = $"{_config["AppUrl"]}/api/auth/confirmemail?useremail={newseller.Email}&token={tokenString}";
+
+                await _mailService.SendEmailAsync(newseller.Email, "Confirm your email", $"<h1>Welcome to Auth Demo</h1>" +
+                    $"<p>Please confirm your email by <a href='{url}'>Clicking here</a></p>");
+
+                return Ok(new
+                {
+                    token = tokenString,
+                });
             }
             else
             {
-
                 return BadRequest();
             }
 
@@ -94,7 +120,7 @@ namespace Project_BackendApi.Controllers
         // POST api/<LogSignUpController>
         [HttpPost]
         [Route("login")]
-        public IActionResult Login(LoginModel login)
+        public async Task<IActionResult> Login(LoginModel login)
         {
             try
             {            // CustomerModelDB.Add(newcustomer);
@@ -115,7 +141,8 @@ namespace Project_BackendApi.Controllers
 
                 else
                 {
-
+                    await _mailService.SendEmailAsync(login.Email, "New login", "<h1>Hey!, Did you login to your account</h1><p>New login to your account at " + DateTime.Now + "</p>");
+                    
                     // Return token
                     var tokenString = _jwtService.GenerateJWTtoken(login);
                     return Ok(new
@@ -133,6 +160,8 @@ namespace Project_BackendApi.Controllers
             }
 
         }
+
+
     }
 
 

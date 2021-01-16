@@ -16,6 +16,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Project_BackendApi.Models;
 using Project_BackendApi.Services.JWTService;
+using Project_BackendApi.Services.MailService;
 using Project_BackendApi.DATA;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
@@ -74,6 +75,8 @@ namespace Project_BackendApi
                 options.Password.RequireLowercase = true;
                 options.Password.RequiredLength = 5;
             }).AddEntityFrameworkStores<MarketplaceDB>();
+
+            services.AddTransient<IMailService, MailService>();
                 
         }
 
@@ -84,6 +87,11 @@ namespace Project_BackendApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(Options =>
+            Options.WithOrigins("http://localhost:3000")
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 
             app.UseHttpsRedirection();
 

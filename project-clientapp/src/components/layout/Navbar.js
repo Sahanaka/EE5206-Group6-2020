@@ -7,33 +7,20 @@ import Logo from "../../img/Logo.png";
 
 const Navbar = () => {
   const authLinks = (
-    <ul>
-      <li>
-        <Link to="/profiles">Developers</Link>
-      </li>
-      <li>
-        <Link to="/posts">Posts</Link>
-      </li>
-      <li>
-        <Link to="/dashboard">
-          <i className="fas fa-user" />{" "}
-          <span className="hide-sm">Dashboard</span>
-        </Link>
-      </li>
-      <li>
-        <a onClick={{}} href="#!">
-          <i className="fas fa-sign-out-alt" />{" "}
-          <span className="hide-sm">Logout</span>
-        </a>
-      </li>
-    </ul>
+    <div className="stick">
+      <ul>
+        <li>
+          <a onClick={{}} href="#!">
+            <i className="fas fa-sign-out-alt" />{" "}
+            <span className="hide-sm">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </div>
   );
 
   const guestLinks = (
     <ul>
-      <li>
-        <Link to="/profiles">Developers</Link>
-      </li>
       <li>
         <Link to="/register">Register</Link>
       </li>
@@ -44,26 +31,23 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="navbar bg-dark">
+    <nav className="navbar">
       <h1>
         <Link to="/">
-          <img src={Logo} style={{ width: 70, height: 50 }} alt="Logo.png" />
+          <img src={Logo} style={{ width: 60, height: 50 }} alt="Logo.png" />
           <i className="" /> S&D.COM
         </Link>
       </h1>
       <Fragment>
         <ul>
           <li>
+            <Link to="/store">Store</Link>
+          </li>
+          <li>
             <Link to="/register">Register</Link>
           </li>
           <li>
             <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <a onClick={{}} href="#!">
-              <i className="fas fa-sign-out-alt" />{" "}
-              <span className="hide-sm">Logout</span>
-            </a>
           </li>
         </ul>
       </Fragment>
