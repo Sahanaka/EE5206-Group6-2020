@@ -9,6 +9,7 @@ import Landing from "./components/layout/Landing";
 import Login from "./components/auth/Login";
 import Footer from "./components/layout/Footer";
 import Store from "./components/auth/Store";
+import Register from "./components/auth/Register";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           <Route exact path="/" component={Landing} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/store" component={Store} />
-          {/* <Route exact path="/Register" component={Register} /> */}
+           <Route exact path="/Register" component={Register} /> 
         </Switch>
         <Footer />
       </Fragment>

@@ -2,7 +2,30 @@ import React, { Fragment, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import "./style/Button.css";
 
+import { login } from '../../Actions/auth';
+
 const Login = () => {
+  const [formData, setFromData] = useState(
+      {
+          email: '',
+          password: '',
+      }
+  );
+
+  const { email, password } = formData;
+
+  const onChange = e => setFromData({ ...formData, [e.target.name]: e.target.value })
+
+  const onSubmit = async e => {
+    e.preventDefault();
+    login(email, password);
+    
+
+
+};
+
+
+
   return (
     <Fragment>
       <section className="container">
@@ -10,16 +33,16 @@ const Login = () => {
         <p className="lead">
           <i className="fas fa-user" /> Sign Into Your Account
         </p>
-        <form className="form" onSubmit={{}}>
+        <form className="form"  onSubmit={e => onSubmit(e)}>
           <div className="form-group">
             <div className="form-group">
               <small className="form-text"> Name or Email</small>
               <input
                 type="text"
-                placeholder="Name"
-                name="name"
-                //   value={{}}
-                //   onChange={{}}
+                placeholder="Email"
+                name="email"
+                value={email}
+                onChange={e => onChange(e)}
               />
             </div>
           </div>
@@ -29,8 +52,8 @@ const Login = () => {
               type="password"
               placeholder="Password"
               name="password"
-              // value={{}}
-              // onChange={{}}
+              value={password}
+              onChange={e => onChange(e)}
               minLength="6"
             />
           </div>

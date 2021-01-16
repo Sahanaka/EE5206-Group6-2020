@@ -88,6 +88,11 @@ namespace Project_BackendApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(Options =>
+            Options.WithOrigins("http://localhost:3000")
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
