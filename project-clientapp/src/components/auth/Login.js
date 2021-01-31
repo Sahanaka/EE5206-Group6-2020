@@ -1,8 +1,10 @@
 import React, { Fragment, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./style/Button.css";
-
+import { Route,Router} from "react-router-dom";
 import { login } from '../../Actions/auth';
+import  Landing  from '../layout/Landing';
+import ReactDOM from 'react-dom'
 
 const Login = () => {
   const [formData, setFromData] = useState(
@@ -18,10 +20,21 @@ const Login = () => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    login(email, password);
+
+    if (login(email, password)){
+      console.log("Place")
+      
+      ReactDOM.render(
+        <Router>
+          <Landing/>
+        </Router>
+        
+        
+      )
+       
+    }
     
-
-
+    
 };
 
 

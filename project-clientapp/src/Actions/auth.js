@@ -1,5 +1,5 @@
 import axois from 'axios';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 
 
 export const login = async (email, password) => {
@@ -10,17 +10,38 @@ export const login = async (email, password) => {
     const body = JSON.stringify({ email, password });
 
     try {
-        await axois.post("https://localhost:5001/api/LogSignUp/login", body, config);
-        //console.log(res)
-        console.log("Success")
+         await axois.post("https://localhost:5001/api/LogSignUp/login", body, config)
+         .then(res => {return res.status});
+         
+         
+         
+    } catch (error) {
+        alert(" Please Check your Email and Password again");
+        console.log(error);
         
+    }
     
-        
-        //return res;
+
+};
+
+
+
+
+export const registerCustomer = async (name, email, address, Contatct_No, password, ReTypePassword) => {
+    const config = {
+        headers: { "Content-Type": "application/json" }
+    };
+
+    const body = JSON.stringify({ name, email, address, Contatct_No, password, ReTypePassword });
+
+    try {
+        await axois.post("https://localhost:5001/api/LogSignUp/signup/customer", body, config);
+        alert("Your are registerd ");
 
     } catch (error) {
+        alert("Please Check Your Information again ");
         console.log(error);
-        console.log("errrrrrrrrrrrrrrrrrrr")
+        
     }
 
 };

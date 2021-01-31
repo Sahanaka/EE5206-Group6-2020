@@ -1,7 +1,5 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
@@ -21,7 +19,7 @@ import Image2 from "./img/mkt2.jpg";
 import Image3 from "./img/mkt3.jpg";
 import Image4 from "./img/mkt4.jpg";
 
-import { ExposurePlus2Rounded } from "@material-ui/icons";
+
 
 const useStyles = makeStyles((theme) => ({
   appBar: {

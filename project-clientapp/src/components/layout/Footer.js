@@ -1,6 +1,6 @@
 import React from "react";
 import "./style/Footer.css";
-import { Link } from "react-router-dom";
+
 
 function Footer() {
   return (
@@ -10,46 +10,50 @@ function Footer() {
         <p className="footer-subscription-text">
           You can contact our admin panel at any time of your preference!
         </p>
-        <small class="website-rights">S&D.COM © 2021</small>
+        <small className="website-rights">S&D.COM © 2021</small>
       </section>
-      <section class="social-media">
-        <div class="social-media-wrap">
-          <div class="footer-logo"></div>
+      <section className="social-media">
+        <div className="social-media-wrap">
+          <div className="footer-logo"></div>
 
-          <div class="social-icons">
+          <div className="social-icons">
             <a
               href="https://www.facebook.com/"
               className="social-icon-link "
               target="_blank"
               aria-label="Facebook"
+              rel="noopener noreferrer"
             >
-              <i class="fab fa-facebook-f" />
+              <i className="fab fa-facebook-f" />
             </a>
             <a
               href=" https://www.instagram.com/accounts/login/"
-              class="social-icon-link instagram"
+              className="social-icon-link instagram"
               to="/"
               target="_blank"
               aria-label="Instagram"
+              rel="noopener noreferrer"
             >
-              <i class="fab fa-instagram" />
+              <i className="fab fa-instagram" />
             </a>
             <a
               href="https://www.youtube.com/"
               className="social-icon-link youtube"
               target="_blank"
               aria-label="Youtube"
+              rel="noopener noreferrer"
             >
-              <i class="fab fa-youtube" />
+              <i className="fab fa-youtube" />
             </a>
             <a
               href="https://twitter.com/login?lang=en/"
-              class="social-icon-link twitter"
+              className="social-icon-link twitter"
               to="/"
               target="_blank"
               aria-label="Twitter"
+              rel="noopener noreferrer"
             >
-              <i class="fab fa-twitter" />
+              <i className="fab fa-twitter" />
             </a>
           </div>
         </div>

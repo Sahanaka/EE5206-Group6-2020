@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Logo from "../../img/Logo.png";
 
 const Navbar = () => {
-  const authLinks = (
+const authLinks = (
     <div className="stick">
       <ul>
         <li>
@@ -18,7 +18,8 @@ const Navbar = () => {
       </ul>
     </div>
   );
-
+   
+  
   const guestLinks = (
     <ul>
       <li>
@@ -31,6 +32,7 @@ const Navbar = () => {
   );
 
   return (
+    
     <nav className="navbar">
       <h1>
         <Link to="/">
@@ -55,4 +57,6 @@ const Navbar = () => {
   );
 };
 
+
 export default Navbar;
+
