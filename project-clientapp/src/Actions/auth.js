@@ -12,7 +12,7 @@ export const login = async (email, password) => {
     try {
          await axois.post("https://localhost:5001/api/LogSignUp/login", body, config)
          .then(res => {return res.status});
-         
+         alert("Success");
          
          
     } catch (error) {

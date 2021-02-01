@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "./style/Button.css";
 import { Route,Router} from "react-router-dom";
 import { login } from '../../Actions/auth';
@@ -14,6 +14,8 @@ const Login = () => {
       }
   );
 
+  const [isAuthenticated, setIsAuthenticated] = useState('false');
+
   const { email, password } = formData;
 
   const onChange = e => setFromData({ ...formData, [e.target.name]: e.target.value })
@@ -24,20 +26,22 @@ const Login = () => {
     if (login(email, password)){
       console.log("Place")
       
-      ReactDOM.render(
-        <Router>
-          <Landing/>
-        </Router>
+      // ReactDOM.render(
+      //   <Router>
+      //     <Landing/>
+      //   </Router>
         
         
-      )
-       
+      //)
+      //setIsAuthenticated = 'true';
+      return <Redirect to='/store' />
     }
     
     
 };
 
-
+// if (isAuthenticated)
+//         return <Redirect to='/store' />
 
   return (
     <Fragment>
