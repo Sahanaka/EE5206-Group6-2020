@@ -19,7 +19,7 @@ namespace Project_BackendApi.Models
 
 
         public ICollection<CustomerModel> CustomerModels { get; set; }
-        public AdminModel adminModel { get; set; }
+        public AdminModel AdminModel { get; set; }
 
 
     }
