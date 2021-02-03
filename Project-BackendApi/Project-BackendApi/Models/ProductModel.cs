@@ -32,7 +32,7 @@ namespace Project_BackendApi.Models
         public int Quantity { get; set; }
 
 
-        public ICollection<ShopModel>ShopModels { get; set; }
+        public ICollection<SellerModel> SellerModels { get; set; }
         public ICollection<CategoryModel> CategoryModels { get; set; }
         public ICollection<CustomerModel> CustomerModels { get; set; }
         public OrderDetailsModel OrderDetailsModel { get; set; }
