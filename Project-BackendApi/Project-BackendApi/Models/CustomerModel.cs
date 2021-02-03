@@ -40,7 +40,7 @@ namespace Project_BackendApi.Models
 
 
 
-        public ICollection<ShopModel> ShopModel { get; set; }
+        public ICollection<SellerModel> SellerModels { get; set; }
         public ICollection<ProductModel> ProductModels { get; set; }
         public ICollection<OrderDetailsModel> OrderDetailsModels { get; set; }
         public ICollection<ReportModel> ReportModels { get; set; }
