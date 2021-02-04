@@ -20,6 +20,7 @@ using Project_BackendApi.Services.MailService;
 using Project_BackendApi.DATA;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Project_BackendApi.Services.SellerService;
 
 namespace Project_BackendApi
 {
@@ -77,6 +78,8 @@ namespace Project_BackendApi
             }).AddEntityFrameworkStores<MarketplaceDB>();
 
             services.AddTransient<IMailService, MailService>();
+
+            services.AddScoped<ISellerService, SellerService>();
                 
         }
 
