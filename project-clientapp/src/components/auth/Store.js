@@ -18,30 +18,56 @@ import Img2 from "./img/psn1.jpg";
 import Image2 from "./img/mkt2.jpg";
 import Image3 from "./img/mkt3.jpg";
 import Image4 from "./img/mkt4.jpg";
-
-
+import ava from "./img/psn1.jpg";
+// import { makeStyles } from "@material-ui/core/styles";
+import GridList from "@material-ui/core/GridList";
+import GridListTile from "@material-ui/core/GridListTile";
+import GridListTileBar from "@material-ui/core/GridListTileBar";
+import IconButton from "@material-ui/core/IconButton";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
     backgroundColor: "#fff",
   },
-  hero: {
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${Background})`,
-    height: "500px",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    position: "relative",
+  // hero: {
+  //   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${Background})`,
+  //   height: "500px",
+  //   backgroundPosition: "center",
+  //   backgroundRepeat: "no-repeat",
+  //   backgroundSize: "cover",
+  //   position: "relative",
+  //   display: "flex",
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   color: "#fff",
+  //   fontSize: "4rem",
+  //   [theme.breakpoints.down("sm")]: {
+  //     height: 300,
+  //     fontSize: "3em",
+  //   },
+  // },
+
+  root: {
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    color: "#fff",
-    fontSize: "4rem",
-    [theme.breakpoints.down("sm")]: {
-      height: 300,
-      fontSize: "3em",
-    },
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    overflow: "hidden",
+    backgroundColor: theme.palette.background.paper,
   },
+  gridList: {
+    flexWrap: "nowrap",
+    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+    transform: "translateZ(0)",
+  },
+  title: {
+    color: theme.palette.primary.light,
+  },
+  titleBar: {
+    background:
+      "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
+  },
+
   blogsContainer: {
     paddingTop: theme.spacing(3),
   },
@@ -67,6 +93,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
   },
+  cent: {
+    alignItems: "center",
+    justify: "center",
+  },
 }));
 
 function Store() {
@@ -74,8 +104,9 @@ function Store() {
 
   return (
     <div className="App">
-      <Box className={classes.hero}>
-        <Box>Online Market</Box>
+      <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
+        <Avatar className="cent" alt="Remy Sharp" src={ava} />
+        <Box>Hi User</Box>
       </Box>
       <Container maxWidth="lg" className={classes.blogsContainer}>
         <Typography variant="h4" className={classes.blogTitle}>
