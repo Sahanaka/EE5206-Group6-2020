@@ -26,14 +26,14 @@ namespace Project_BackendApi.Controllers
         }
 
         [HttpGet]
-        [Authorize(Policy = Policies.Seller)]
+       // [Authorize(Policy = Policies.Seller)] - Uncomment later (Very Important)
         public List<ProductModel> GetAllProducts()
         {
             return _sellerService.GetAllProducts();
         }
 
         [HttpPost]
-        [Authorize(Policy = Policies.Seller)]
+       // [Authorize(Policy = Policies.Seller)]
         public async Task<IActionResult> AddNewProduct(ProductModel newProduct)
         {
             if (newProduct == null)
