@@ -576,4 +576,14 @@ button {
   .post button {
     padding: 0.3rem 0.4rem;
   }
+  
+  /* sellermain Page */
+.sellermain {
+  position: relative;
+  background: url("./img/background.jpg") no-repeat center center/cover;
+  height: 100vh;
+}
+
+
+
 }
