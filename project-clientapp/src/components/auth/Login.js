@@ -1,12 +1,12 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
-import "./style/Button.css";
-import { Route,Router} from "react-router-dom";
-import { login } from '../../Actions/auth';
-import  Landing  from '../layout/Landing';
-import ReactDOM from 'react-dom'
+import { Link, Redirect } from "react-router-dom";
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-const Login = () => {
+import "./style/Button.css";
+import { login } from '../../Actions/auth';
+
+const Login = ({ login, isAuthenticated }) => {
   const [formData, setFromData] = useState(
       {
           email: '',
@@ -21,23 +21,12 @@ const Login = () => {
   const onSubmit = async e => {
     e.preventDefault();
 
-    if (login(email, password)){
-      console.log("Place")
-      
-      ReactDOM.render(
-        <Router>
-          <Landing/>
-        </Router>
-        
-        
-      )
-       
-    }
-    
+    login(email, password)
     
 };
 
-
+if (isAuthenticated)
+        return <Redirect to='/store' />
 
   return (
     <Fragment>
@@ -80,4 +69,13 @@ const Login = () => {
   );
 };
 
-export default Login;
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { login })(Login);
