@@ -34,6 +34,7 @@ export default function(state = initialState, action) {
                 ...state,
                 ...payload,
                 isAuthenticated: true,
+                user: JSON.parse(atob(payload.token.split('.')[1])),
                 loading: false
             };
         case REGISTER_FAIL:
