@@ -32,7 +32,6 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <button>&#9776;</button>
       <h1>
         <Link to="/">
           <img src={Logo} style={{ width: 60, height: 50 }} alt="Logo.png" />
