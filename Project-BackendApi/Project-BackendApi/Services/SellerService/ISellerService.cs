@@ -13,11 +13,11 @@ namespace Project_BackendApi.Services.SellerService
 
         public Task<ProductModel> AddProducts(ProductModel newProduct); // Add new products to store
 
-        public Task UpdateProduts(); // Update existing products : price changes, quantity changes etc
+        public Task<ProductModel> UpdateProduts(ProductModel updatedProduct); // Update existing products : price changes, quantity changes etc
 
-        public Task RemoveProducts(); 
+        public Task<ProductModel> RemoveProducts(int Id); 
 
-        public Task ProcessOrder(); // Accept or decline an order
+        public Task ProcessOrder(OrderDetailsModel order); // Accept or decline an order
 
         public Task PayService(); 
 

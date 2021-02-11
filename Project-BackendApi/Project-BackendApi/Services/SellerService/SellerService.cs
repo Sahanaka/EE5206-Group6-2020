@@ -33,24 +33,46 @@ namespace Project_BackendApi.Services.SellerService
             catch (Exception ex) { throw ex;  }
         }
 
-        public async Task UpdateProduts()
+        public async Task<ProductModel> UpdateProduts(ProductModel updatedproduct)
         {
+            try
+            {
+                var product = _db.ProductModels.FirstOrDefault(item => item.ID == updatedproduct.ID);
+                product = updatedproduct;
+                await _db.SaveChangesAsync();
 
+                return product;
+            }
+            catch (Exception ex) { throw ex; }
         }
 
-        public async Task RemoveProducts()
+        public async Task<ProductModel> RemoveProducts(int Id)
         {
+            try
+            {
+                var product = _db.ProductModels.FirstOrDefault(item => item.ID == Id);
+                _db.ProductModels.Remove(product);
+                await _db.SaveChangesAsync();
 
+                return product;
+            }
+            catch (Exception ex) { throw ex; }
         }
 
-        public async Task ProcessOrder()
+        public async Task ProcessOrder(OrderDetailsModel order)
         {
+            // This method process the order and accepts it or declines it. Also special discounts and other rates are processed here
+            // If a order is accepted then it is saved in the db
 
+            // Replace with correct logic later
+            _db.OrderDetailsModels.Add(order);
+            await _db.SaveChangesAsync();
         }
 
         public async Task PayService()
         {
-
+            // Method which is resposible for paying the service
+            // Has to be researched and then implement
         }
     }
 }
