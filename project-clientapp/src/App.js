@@ -29,6 +29,7 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/store" component={Store} />
             <Route exact path="/Register" component={Register} />
+            
           </Switch>
           <Footer />
         </Fragment>
