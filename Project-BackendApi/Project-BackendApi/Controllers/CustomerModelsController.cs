@@ -28,7 +28,21 @@ namespace Project_BackendApi.Controllers
             return await _context.CustomerModels.ToListAsync();
         }
 
+        //public async Task<ActionResult<IEnumerable<SellerModel>>> GetCustomerModels(string CateogoryName)
         
+        //{
+        //    var filterCetogory = _context.SellerModels.FirstOrDefault(m => m.Cetogory.ToString() == CateogoryName);
+
+        //    if (filterCetogory != null)
+        //    {
+        //        return  await _context.SellerModels.ToListAsync();
+        //    }
+        //    else
+        //    {
+        //        return await BadRequest();
+        //    }
+        //}
+
 
         // GET: api/CustomerModels/5
         [HttpGet("{id}")]
