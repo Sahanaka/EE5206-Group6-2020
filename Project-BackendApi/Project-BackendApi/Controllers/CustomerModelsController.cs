@@ -28,6 +28,8 @@ namespace Project_BackendApi.Controllers
             return await _context.CustomerModels.ToListAsync();
         }
 
+        
+
         // GET: api/CustomerModels/5
         [HttpGet("{id}")]
         public async Task<ActionResult<CustomerModel>> GetCustomerModel(int id)
@@ -48,7 +50,7 @@ namespace Project_BackendApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCustomerModel(int id, CustomerModel customerModel)
         {
-            if (id != customerModel.ID)
+            if (id != customerModel.CustomerId)
             {
                 return BadRequest();
             }
@@ -83,7 +85,7 @@ namespace Project_BackendApi.Controllers
             _context.CustomerModels.Add(customerModel);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCustomerModel", new { id = customerModel.ID }, customerModel);
+            return CreatedAtAction("GetCustomerModel", new { id = customerModel.CustomerId }, customerModel);
         }
 
         // DELETE: api/CustomerModels/5
@@ -104,7 +106,7 @@ namespace Project_BackendApi.Controllers
 
         private bool CustomerModelExists(int id)
         {
-            return _context.CustomerModels.Any(e => e.ID == id);
+            return _context.CustomerModels.Any(e => e.CustomerId == id);
         }
     }
 }

@@ -9,14 +9,17 @@ namespace Project_BackendApi.Models
     public class OrderDetailsModel
     {
         [Key]
-        public int ID { get; set; }
+        
+
+        public int OrderDetailsId { get; set; }
 
         [Required(ErrorMessage = "Please Enter Description")]
         public string Description { get; set; }
 
-       
-        public ICollection<ProductModel> ProductModels { get; set; }
-        public ICollection<CustomerModel> CustomerModels { get; set; }                                                                                                                   
+        public int ProductOrderId { get; set; }
+
+        public ProductModel ProductModel { get; set; }
+        public IList<CustomerOrderDetailsModel> CustomerOrderDetailsModels { get; set; }
 
     }
 }
