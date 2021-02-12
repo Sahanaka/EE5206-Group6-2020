@@ -37,7 +37,7 @@ namespace Project_BackendApi.Services.SellerService
         {
             try
             {
-                var product = _db.ProductModels.FirstOrDefault(item => item.ID == updatedproduct.ID);
+                var product = _db.ProductModels.FirstOrDefault(item => item.ProductId == updatedproduct.ProductId);
                 product = updatedproduct;
                 await _db.SaveChangesAsync();
 
@@ -50,7 +50,7 @@ namespace Project_BackendApi.Services.SellerService
         {
             try
             {
-                var product = _db.ProductModels.FirstOrDefault(item => item.ID == Id);
+                var product = _db.ProductModels.FirstOrDefault(item => item.ProductId == Id);
                 _db.ProductModels.Remove(product);
                 await _db.SaveChangesAsync();
 
@@ -58,7 +58,7 @@ namespace Project_BackendApi.Services.SellerService
             }
             catch (Exception ex) { throw ex; }
         }
-
+       
         public async Task ProcessOrder(OrderDetailsModel order)
         {
             // This method process the order and accepts it or declines it. Also special discounts and other rates are processed here
