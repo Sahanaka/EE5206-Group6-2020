@@ -3,63 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Project_BackendApi.Migrations
 {
-    public partial class allmodelclass : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Name",
-                table: "ProductModels");
-
-            migrationBuilder.RenameColumn(
-                name: "Quntity",
-                table: "ProductModels",
-                newName: "Quantity");
-
-            migrationBuilder.RenameColumn(
-                name: "Availabe_amount",
-                table: "ProductModels",
-                newName: "AvailabeAmount");
-
-            migrationBuilder.RenameColumn(
-                name: "ContatctNo",
-                table: "CustomerModels",
-                newName: "Contatct_No");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Title",
-                table: "ProductModels",
-                type: "nvarchar(max)",
-                nullable: false,
-                defaultValue: "",
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
-                oldNullable: true);
-
-            migrationBuilder.AddColumn<int>(
-                name: "OrderDetailsModelID",
-                table: "ProductModels",
-                type: "int",
-                nullable: true);
-
-            migrationBuilder.CreateTable(
-                name: "AdminModel",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ContactNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ReTypePassword = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AdminModel", x => x.ID);
-                });
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -100,110 +47,71 @@ namespace Project_BackendApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CategoryModel",
+                name: "CategoryModels",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SubCategory = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductModelID = table.Column<int>(type: "int", nullable: true)
+                    SubCategory = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CategoryModel", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_CategoryModel_ProductModels_ProductModelID",
-                        column: x => x.ProductModelID,
-                        principalTable: "ProductModels",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                    table.PrimaryKey("PK_CategoryModels", x => x.CategoryId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "CustomerModelProductModel",
+                name: "CustomerModels",
                 columns: table => new
                 {
-                    CustomerModelsID = table.Column<int>(type: "int", nullable: false),
-                    ProductModelsID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CustomerModelProductModel", x => new { x.CustomerModelsID, x.ProductModelsID });
-                    table.ForeignKey(
-                        name: "FK_CustomerModelProductModel_CustomerModels_CustomerModelsID",
-                        column: x => x.CustomerModelsID,
-                        principalTable: "CustomerModels",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CustomerModelProductModel_ProductModels_ProductModelsID",
-                        column: x => x.ProductModelsID,
-                        principalTable: "ProductModels",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "OrderDetailsModel",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OrderDetailsModel", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ShopModel",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    CustomerId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ContactNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    District = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Contatct_No = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CustomerImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ReTypePassword = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductModelID = table.Column<int>(type: "int", nullable: true)
+                    ReTypePassword = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ShopModel", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_ShopModel_ProductModels_ProductModelID",
-                        column: x => x.ProductModelID,
-                        principalTable: "ProductModels",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                    table.PrimaryKey("PK_CustomerModels", x => x.CustomerId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ReportModel",
+                name: "ReportModels",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    ReportId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    adminModelID = table.Column<int>(type: "int", nullable: true)
+                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ReportModel", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_ReportModel_AdminModel_adminModelID",
-                        column: x => x.adminModelID,
-                        principalTable: "AdminModel",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                    table.PrimaryKey("PK_ReportModels", x => x.ReportId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SellerModels",
+                columns: table => new
+                {
+                    SellerId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Distric = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ContatctNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ShopImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReTypePassword = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Cetogory = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SellerModels", x => x.SellerId);
                 });
 
             migrationBuilder.CreateTable(
@@ -313,81 +221,183 @@ namespace Project_BackendApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CustomerModelOrderDetailsModel",
+                name: "AdminModels",
                 columns: table => new
                 {
-                    CustomerModelsID = table.Column<int>(type: "int", nullable: false),
-                    OrderDetailsModelsID = table.Column<int>(type: "int", nullable: false)
+                    AdminId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ContactNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReTypePassword = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReportAdminId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CustomerModelOrderDetailsModel", x => new { x.CustomerModelsID, x.OrderDetailsModelsID });
+                    table.PrimaryKey("PK_AdminModels", x => x.AdminId);
                     table.ForeignKey(
-                        name: "FK_CustomerModelOrderDetailsModel_CustomerModels_CustomerModelsID",
-                        column: x => x.CustomerModelsID,
-                        principalTable: "CustomerModels",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CustomerModelOrderDetailsModel_OrderDetailsModel_OrderDetailsModelsID",
-                        column: x => x.OrderDetailsModelsID,
-                        principalTable: "OrderDetailsModel",
-                        principalColumn: "ID",
+                        name: "FK_AdminModels_ReportModels_ReportAdminId",
+                        column: x => x.ReportAdminId,
+                        principalTable: "ReportModels",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "CustomerModelShopModel",
+                name: "CuStomerReportModel",
                 columns: table => new
                 {
-                    CustomerModelsID = table.Column<int>(type: "int", nullable: false),
-                    ShopModelID = table.Column<int>(type: "int", nullable: false)
+                    ReportId = table.Column<int>(type: "int", nullable: false),
+                    CustomerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CustomerModelShopModel", x => new { x.CustomerModelsID, x.ShopModelID });
+                    table.PrimaryKey("PK_CuStomerReportModel", x => new { x.ReportId, x.CustomerId });
                     table.ForeignKey(
-                        name: "FK_CustomerModelShopModel_CustomerModels_CustomerModelsID",
-                        column: x => x.CustomerModelsID,
+                        name: "FK_CuStomerReportModel_CustomerModels_CustomerId",
+                        column: x => x.CustomerId,
                         principalTable: "CustomerModels",
-                        principalColumn: "ID",
+                        principalColumn: "CustomerId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CustomerModelShopModel_ShopModel_ShopModelID",
-                        column: x => x.ShopModelID,
-                        principalTable: "ShopModel",
-                        principalColumn: "ID",
+                        name: "FK_CuStomerReportModel_ReportModels_ReportId",
+                        column: x => x.ReportId,
+                        principalTable: "ReportModels",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "CustomerModelReportModel",
+                name: "ProductModels",
                 columns: table => new
                 {
-                    CustomerModelsID = table.Column<int>(type: "int", nullable: false),
-                    ReportModelsID = table.Column<int>(type: "int", nullable: false)
+                    ProductId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<float>(type: "real", nullable: false),
+                    AvailabeAmount = table.Column<int>(type: "int", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Discount = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Size = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    ShopProductId = table.Column<int>(type: "int", nullable: false),
+                    CategoryProductId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CustomerModelReportModel", x => new { x.CustomerModelsID, x.ReportModelsID });
+                    table.PrimaryKey("PK_ProductModels", x => x.ProductId);
                     table.ForeignKey(
-                        name: "FK_CustomerModelReportModel_CustomerModels_CustomerModelsID",
-                        column: x => x.CustomerModelsID,
-                        principalTable: "CustomerModels",
-                        principalColumn: "ID",
+                        name: "FK_ProductModels_CategoryModels_CategoryProductId",
+                        column: x => x.CategoryProductId,
+                        principalTable: "CategoryModels",
+                        principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CustomerModelReportModel_ReportModel_ReportModelsID",
-                        column: x => x.ReportModelsID,
-                        principalTable: "ReportModel",
-                        principalColumn: "ID",
+                        name: "FK_ProductModels_SellerModels_ShopProductId",
+                        column: x => x.ShopProductId,
+                        principalTable: "SellerModels",
+                        principalColumn: "SellerId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SellerCustomerModel",
+                columns: table => new
+                {
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    SellerId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SellerCustomerModel", x => new { x.CustomerId, x.SellerId });
+                    table.ForeignKey(
+                        name: "FK_SellerCustomerModel_CustomerModels_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "CustomerModels",
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SellerCustomerModel_SellerModels_SellerId",
+                        column: x => x.SellerId,
+                        principalTable: "SellerModels",
+                        principalColumn: "SellerId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderDetailsModels",
+                columns: table => new
+                {
+                    OrderDetailsId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductOrderId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderDetailsModels", x => x.OrderDetailsId);
+                    table.ForeignKey(
+                        name: "FK_OrderDetailsModels_ProductModels_ProductOrderId",
+                        column: x => x.ProductOrderId,
+                        principalTable: "ProductModels",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductCustomerModel",
+                columns: table => new
+                {
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductCustomerModel", x => new { x.CustomerId, x.ProductId });
+                    table.ForeignKey(
+                        name: "FK_ProductCustomerModel_CustomerModels_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "CustomerModels",
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductCustomerModel_ProductModels_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "ProductModels",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CustomerOrderDetailsModel",
+                columns: table => new
+                {
+                    OrderDetailsId = table.Column<int>(type: "int", nullable: false),
+                    CustomerId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CustomerOrderDetailsModel", x => new { x.OrderDetailsId, x.CustomerId });
+                    table.ForeignKey(
+                        name: "FK_CustomerOrderDetailsModel_CustomerModels_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "CustomerModels",
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CustomerOrderDetailsModel_OrderDetailsModels_OrderDetailsId",
+                        column: x => x.OrderDetailsId,
+                        principalTable: "OrderDetailsModels",
+                        principalColumn: "OrderDetailsId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductModels_OrderDetailsModelID",
-                table: "ProductModels",
-                column: "OrderDetailsModelID");
+                name: "IX_AdminModels_ReportAdminId",
+                table: "AdminModels",
+                column: "ReportAdminId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -429,54 +439,45 @@ namespace Project_BackendApi.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CategoryModel_ProductModelID",
-                table: "CategoryModel",
-                column: "ProductModelID");
+                name: "IX_CustomerOrderDetailsModel_CustomerId",
+                table: "CustomerOrderDetailsModel",
+                column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerModelOrderDetailsModel_OrderDetailsModelsID",
-                table: "CustomerModelOrderDetailsModel",
-                column: "OrderDetailsModelsID");
+                name: "IX_CuStomerReportModel_CustomerId",
+                table: "CuStomerReportModel",
+                column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerModelProductModel_ProductModelsID",
-                table: "CustomerModelProductModel",
-                column: "ProductModelsID");
+                name: "IX_OrderDetailsModels_ProductOrderId",
+                table: "OrderDetailsModels",
+                column: "ProductOrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerModelReportModel_ReportModelsID",
-                table: "CustomerModelReportModel",
-                column: "ReportModelsID");
+                name: "IX_ProductCustomerModel_ProductId",
+                table: "ProductCustomerModel",
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerModelShopModel_ShopModelID",
-                table: "CustomerModelShopModel",
-                column: "ShopModelID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ReportModel_adminModelID",
-                table: "ReportModel",
-                column: "adminModelID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ShopModel_ProductModelID",
-                table: "ShopModel",
-                column: "ProductModelID");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_ProductModels_OrderDetailsModel_OrderDetailsModelID",
+                name: "IX_ProductModels_CategoryProductId",
                 table: "ProductModels",
-                column: "OrderDetailsModelID",
-                principalTable: "OrderDetailsModel",
-                principalColumn: "ID",
-                onDelete: ReferentialAction.Restrict);
+                column: "CategoryProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductModels_ShopProductId",
+                table: "ProductModels",
+                column: "ShopProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SellerCustomerModel_SellerId",
+                table: "SellerCustomerModel",
+                column: "SellerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_ProductModels_OrderDetailsModel_OrderDetailsModelID",
-                table: "ProductModels");
+            migrationBuilder.DropTable(
+                name: "AdminModels");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -494,19 +495,16 @@ namespace Project_BackendApi.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "CategoryModel");
+                name: "CustomerOrderDetailsModel");
 
             migrationBuilder.DropTable(
-                name: "CustomerModelOrderDetailsModel");
+                name: "CuStomerReportModel");
 
             migrationBuilder.DropTable(
-                name: "CustomerModelProductModel");
+                name: "ProductCustomerModel");
 
             migrationBuilder.DropTable(
-                name: "CustomerModelReportModel");
-
-            migrationBuilder.DropTable(
-                name: "CustomerModelShopModel");
+                name: "SellerCustomerModel");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -515,53 +513,22 @@ namespace Project_BackendApi.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "OrderDetailsModel");
+                name: "OrderDetailsModels");
 
             migrationBuilder.DropTable(
-                name: "ReportModel");
+                name: "ReportModels");
 
             migrationBuilder.DropTable(
-                name: "ShopModel");
+                name: "CustomerModels");
 
             migrationBuilder.DropTable(
-                name: "AdminModel");
+                name: "ProductModels");
 
-            migrationBuilder.DropIndex(
-                name: "IX_ProductModels_OrderDetailsModelID",
-                table: "ProductModels");
+            migrationBuilder.DropTable(
+                name: "CategoryModels");
 
-            migrationBuilder.DropColumn(
-                name: "OrderDetailsModelID",
-                table: "ProductModels");
-
-            migrationBuilder.RenameColumn(
-                name: "Quantity",
-                table: "ProductModels",
-                newName: "Quntity");
-
-            migrationBuilder.RenameColumn(
-                name: "AvailabeAmount",
-                table: "ProductModels",
-                newName: "Availabe_amount");
-
-            migrationBuilder.RenameColumn(
-                name: "Contatct_No",
-                table: "CustomerModels",
-                newName: "ContatctNo");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Title",
-                table: "ProductModels",
-                type: "nvarchar(max)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
-
-            migrationBuilder.AddColumn<string>(
-                name: "Name",
-                table: "ProductModels",
-                type: "nvarchar(max)",
-                nullable: true);
+            migrationBuilder.DropTable(
+                name: "SellerModels");
         }
     }
 }
