@@ -39,74 +39,74 @@ namespace Project_BackendApi.DATA
 
             modelBuilder.Entity<ProductModel>()
             .HasOne<SellerModel>(s => s.SellerModel)
-            .WithMany(g => g.ProductModels)
+            .WithMany(p => p.ProductModels)
             .HasForeignKey(s => s.ShopProductId);
             
 
 
             modelBuilder.Entity<ProductModel>()
            .HasOne<CategoryModel>(s => s.CategoryModel)
-           .WithMany(g => g.ProductModels)
-           .HasForeignKey(s => s.CategoryProductId);
+           .WithMany(p => p.ProductModels)
+           .HasForeignKey(c => c.CategoryProductId);
 
 
             modelBuilder.Entity<OrderDetailsModel>()
-           .HasOne<ProductModel>(s => s.ProductModel)
-           .WithMany(g => g.OrderDetailsModels)
-           .HasForeignKey(s => s.ProductOrderId);
+           .HasOne<ProductModel>(p => p.ProductModel)
+           .WithMany(o => o.OrderDetailsModels)
+           .HasForeignKey(p => p.ProductOrderId);
 
 
             modelBuilder.Entity<AdminModel>()
-           .HasOne<ReportModel>(s => s.ReportModel)
-           .WithMany(g => g.AdminModels)
-           .HasForeignKey(s => s.ReportAdminId);
+           .HasOne<ReportModel>(r => r.ReportModel)
+           .WithMany(a => a.AdminModels)
+           .HasForeignKey(r => r.ReportAdminId);
 
 
 
 
-            modelBuilder.Entity<CustomerOrderDetailsModel>().HasKey(sc => new { sc.OrderDetailsId, sc.CustomerId });
-
-            modelBuilder.Entity<CustomerOrderDetailsModel>()
-                .HasOne<CustomerModel>(sc => sc.CustomerModel)
-                .WithMany(s => s.CustomerOrderDetailsModels)
-                .HasForeignKey(sc => sc.CustomerId);
-
+            modelBuilder.Entity<CustomerOrderDetailsModel>().HasKey(co => new { co.OrderDetailsId, co.CustomerId });
 
             modelBuilder.Entity<CustomerOrderDetailsModel>()
-                .HasOne<OrderDetailsModel>(sc => sc.OrderDetailsModel)
+                .HasOne<CustomerModel>(co => co.CustomerModel)
                 .WithMany(s => s.CustomerOrderDetailsModels)
-                .HasForeignKey(sc => sc.OrderDetailsId);
+                .HasForeignKey(co => co.CustomerId);
+
+
+            modelBuilder.Entity<CustomerOrderDetailsModel>()
+                .HasOne<OrderDetailsModel>(co => co.OrderDetailsModel)
+                .WithMany(s => s.CustomerOrderDetailsModels)
+                .HasForeignKey(co => co.OrderDetailsId);
 
 
 
-            modelBuilder.Entity<CuStomerReportModel>().HasKey(sc => new { sc.ReportId, sc.CustomerId });
+            modelBuilder.Entity<CuStomerReportModel>().HasKey(cr => new { cr.ReportId, cr.CustomerId });
 
             modelBuilder.Entity<CuStomerReportModel>()
-                .HasOne<CustomerModel>(sc => sc.CustomerModel)
+                .HasOne<CustomerModel>(cr => cr.CustomerModel)
                 .WithMany(s => s.CuStomerReportModels)
-                .HasForeignKey(sc => sc.CustomerId);
+                .HasForeignKey(cr => cr.CustomerId);
 
 
             modelBuilder.Entity<CuStomerReportModel>()
-                .HasOne<ReportModel>(sc => sc.ReportModel)
+                .HasOne<ReportModel>(cr => cr.ReportModel)
                 .WithMany(s => s.CuStomerReportModels)
-                .HasForeignKey(sc => sc.ReportId);
+                .HasForeignKey(cr => cr.ReportId);
 
 
 
 
-            modelBuilder.Entity<ProductCustomerModel>().HasKey(sc => new { sc.CustomerId, sc.ProductId });
-
-            modelBuilder.Entity<ProductCustomerModel>()
-                .HasOne<ProductModel>(sc => sc.ProductModel)
-                .WithMany(s => s.ProductCustomerModels)
-                .HasForeignKey(sc => sc.ProductId);
-
+            modelBuilder.Entity<ProductCustomerModel>().HasKey(pc => new { pc.CustomerId, pc.ProductId });
 
             modelBuilder.Entity<ProductCustomerModel>()
-                .HasOne<CustomerModel>(sc => sc.CustomerModel)
+                .HasOne<ProductModel>(pc => pc.ProductModel)
                 .WithMany(s => s.ProductCustomerModels)
-                .HasForeignKey(sc => sc.CustomerId);
+                .HasForeignKey(pc => pc.ProductId);
+
+
+            modelBuilder.Entity<ProductCustomerModel>()
+                .HasOne<CustomerModel>(pc => pc.CustomerModel)
+                .WithMany(s => s.ProductCustomerModels)
+                .HasForeignKey(pc => pc.CustomerId);
 
 
 
