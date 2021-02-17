@@ -73,6 +73,7 @@ namespace Project_BackendApi.Services.SellerService
         {
             // Method which is resposible for paying the service
             // Has to be researched and then implement
+
         }
     }
 }
