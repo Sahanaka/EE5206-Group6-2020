@@ -9,7 +9,9 @@ namespace Project_BackendApi.Models
     public class ReportModel
     {
         [Key]
-        public int ID { get; set; }
+       
+
+        public int ReportId { get; set; }
 
         [Required(ErrorMessage = "Please Enter Description")]
         public string Description { get; set; }
@@ -18,8 +20,10 @@ namespace Project_BackendApi.Models
         public string Category { get; set; }
 
 
-        public ICollection<CustomerModel> CustomerModels { get; set; }
-        public AdminModel AdminModel { get; set; }
+        public IList<CuStomerReportModel> CuStomerReportModels { get; set; }
+
+
+        public ICollection<AdminModel> AdminModels { get; set; }
 
 
     }

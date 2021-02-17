@@ -37,7 +37,7 @@ namespace Project_BackendApi.Services.SellerService
         {
             try
             {
-                var product = _db.ProductModels.FirstOrDefault(item => item.ID == updatedproduct.ID);
+                var product = _db.ProductModels.FirstOrDefault(item => item.ProductId == updatedproduct.ProductId);
                 product = updatedproduct;
                 await _db.SaveChangesAsync();
 
@@ -50,7 +50,7 @@ namespace Project_BackendApi.Services.SellerService
         {
             try
             {
-                var product = _db.ProductModels.FirstOrDefault(item => item.ID == Id);
+                var product = _db.ProductModels.FirstOrDefault(item => item.ProductId == Id);
                 _db.ProductModels.Remove(product);
                 await _db.SaveChangesAsync();
 
@@ -73,6 +73,7 @@ namespace Project_BackendApi.Services.SellerService
         {
             // Method which is resposible for paying the service
             // Has to be researched and then implement
+
         }
     }
 }

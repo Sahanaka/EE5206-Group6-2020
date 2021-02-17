@@ -19,66 +19,6 @@ namespace Project_BackendApi.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.2");
 
-            modelBuilder.Entity("CustomerModelOrderDetailsModel", b =>
-                {
-                    b.Property<int>("CustomerModelsID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderDetailsModelsID")
-                        .HasColumnType("int");
-
-                    b.HasKey("CustomerModelsID", "OrderDetailsModelsID");
-
-                    b.HasIndex("OrderDetailsModelsID");
-
-                    b.ToTable("CustomerModelOrderDetailsModel");
-                });
-
-            modelBuilder.Entity("CustomerModelProductModel", b =>
-                {
-                    b.Property<int>("CustomerModelsID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductModelsID")
-                        .HasColumnType("int");
-
-                    b.HasKey("CustomerModelsID", "ProductModelsID");
-
-                    b.HasIndex("ProductModelsID");
-
-                    b.ToTable("CustomerModelProductModel");
-                });
-
-            modelBuilder.Entity("CustomerModelReportModel", b =>
-                {
-                    b.Property<int>("CustomerModelsID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ReportModelsID")
-                        .HasColumnType("int");
-
-                    b.HasKey("CustomerModelsID", "ReportModelsID");
-
-                    b.HasIndex("ReportModelsID");
-
-                    b.ToTable("CustomerModelReportModel");
-                });
-
-            modelBuilder.Entity("CustomerModelSellerModel", b =>
-                {
-                    b.Property<int>("CustomerModelsID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SellerModelsID")
-                        .HasColumnType("int");
-
-                    b.HasKey("CustomerModelsID", "SellerModelsID");
-
-                    b.HasIndex("SellerModelsID");
-
-                    b.ToTable("CustomerModelSellerModel");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -277,7 +217,7 @@ namespace Project_BackendApi.Migrations
 
             modelBuilder.Entity("Project_BackendApi.Models.AdminModel", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("AdminId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -306,20 +246,22 @@ namespace Project_BackendApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.Property<int>("ReportAdminId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AdminId");
+
+                    b.HasIndex("ReportAdminId");
 
                     b.ToTable("AdminModels");
                 });
 
             modelBuilder.Entity("Project_BackendApi.Models.CategoryModel", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
-
-                    b.Property<int?>("ProductModelID")
-                        .HasColumnType("int");
 
                     b.Property<string>("SubCategory")
                         .IsRequired()
@@ -329,16 +271,29 @@ namespace Project_BackendApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
-
-                    b.HasIndex("ProductModelID");
+                    b.HasKey("CategoryId");
 
                     b.ToTable("CategoryModels");
                 });
 
+            modelBuilder.Entity("Project_BackendApi.Models.CuStomerReportModel", b =>
+                {
+                    b.Property<int>("ReportId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ReportId", "CustomerId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("CuStomerReportModel");
+                });
+
             modelBuilder.Entity("Project_BackendApi.Models.CustomerModel", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -370,14 +325,29 @@ namespace Project_BackendApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("CustomerId");
 
                     b.ToTable("CustomerModels");
                 });
 
+            modelBuilder.Entity("Project_BackendApi.Models.CustomerOrderDetailsModel", b =>
+                {
+                    b.Property<int>("OrderDetailsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderDetailsId", "CustomerId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("CustomerOrderDetailsModel");
+                });
+
             modelBuilder.Entity("Project_BackendApi.Models.OrderDetailsModel", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("OrderDetailsId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -386,19 +356,42 @@ namespace Project_BackendApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.Property<int>("ProductOrderId")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderDetailsId");
+
+                    b.HasIndex("ProductOrderId");
 
                     b.ToTable("OrderDetailsModels");
                 });
 
+            modelBuilder.Entity("Project_BackendApi.Models.ProductCustomerModel", b =>
+                {
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CustomerId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductCustomerModel");
+                });
+
             modelBuilder.Entity("Project_BackendApi.Models.ProductModel", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
                     b.Property<int>("AvailabeAmount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryProductId")
                         .HasColumnType("int");
 
                     b.Property<string>("Discount")
@@ -407,13 +400,13 @@ namespace Project_BackendApi.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OrderDetailsModelID")
-                        .HasColumnType("int");
-
                     b.Property<float>("Price")
                         .HasColumnType("real");
 
                     b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShopProductId")
                         .HasColumnType("int");
 
                     b.Property<string>("Size")
@@ -423,22 +416,21 @@ namespace Project_BackendApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("ProductId");
 
-                    b.HasIndex("OrderDetailsModelID");
+                    b.HasIndex("CategoryProductId");
+
+                    b.HasIndex("ShopProductId");
 
                     b.ToTable("ProductModels");
                 });
 
             modelBuilder.Entity("Project_BackendApi.Models.ReportModel", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("ReportId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
-
-                    b.Property<int?>("AdminModelID")
-                        .HasColumnType("int");
 
                     b.Property<string>("Category")
                         .IsRequired()
@@ -448,16 +440,29 @@ namespace Project_BackendApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
-
-                    b.HasIndex("AdminModelID");
+                    b.HasKey("ReportId");
 
                     b.ToTable("ReportModels");
                 });
 
+            modelBuilder.Entity("Project_BackendApi.Models.SellerCustomerModel", b =>
+                {
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SellerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CustomerId", "SellerId");
+
+                    b.HasIndex("SellerId");
+
+                    b.ToTable("SellerCustomerModel");
+                });
+
             modelBuilder.Entity("Project_BackendApi.Models.SellerModel", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("SellerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -489,9 +494,6 @@ namespace Project_BackendApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProductModelID")
-                        .HasColumnType("int");
-
                     b.Property<string>("ReTypePassword")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -499,71 +501,9 @@ namespace Project_BackendApi.Migrations
                     b.Property<string>("ShopImage")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
-
-                    b.HasIndex("ProductModelID");
+                    b.HasKey("SellerId");
 
                     b.ToTable("SellerModels");
-                });
-
-            modelBuilder.Entity("CustomerModelOrderDetailsModel", b =>
-                {
-                    b.HasOne("Project_BackendApi.Models.CustomerModel", null)
-                        .WithMany()
-                        .HasForeignKey("CustomerModelsID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Project_BackendApi.Models.OrderDetailsModel", null)
-                        .WithMany()
-                        .HasForeignKey("OrderDetailsModelsID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CustomerModelProductModel", b =>
-                {
-                    b.HasOne("Project_BackendApi.Models.CustomerModel", null)
-                        .WithMany()
-                        .HasForeignKey("CustomerModelsID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Project_BackendApi.Models.ProductModel", null)
-                        .WithMany()
-                        .HasForeignKey("ProductModelsID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CustomerModelReportModel", b =>
-                {
-                    b.HasOne("Project_BackendApi.Models.CustomerModel", null)
-                        .WithMany()
-                        .HasForeignKey("CustomerModelsID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Project_BackendApi.Models.ReportModel", null)
-                        .WithMany()
-                        .HasForeignKey("ReportModelsID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CustomerModelSellerModel", b =>
-                {
-                    b.HasOne("Project_BackendApi.Models.CustomerModel", null)
-                        .WithMany()
-                        .HasForeignKey("CustomerModelsID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Project_BackendApi.Models.SellerModel", null)
-                        .WithMany()
-                        .HasForeignKey("SellerModelsID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -617,57 +557,163 @@ namespace Project_BackendApi.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Project_BackendApi.Models.CategoryModel", b =>
+            modelBuilder.Entity("Project_BackendApi.Models.AdminModel", b =>
                 {
-                    b.HasOne("Project_BackendApi.Models.ProductModel", "ProductModel")
-                        .WithMany("CategoryModels")
-                        .HasForeignKey("ProductModelID");
+                    b.HasOne("Project_BackendApi.Models.ReportModel", "ReportModel")
+                        .WithMany("AdminModels")
+                        .HasForeignKey("ReportAdminId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("ProductModel");
+                    b.Navigation("ReportModel");
                 });
 
-            modelBuilder.Entity("Project_BackendApi.Models.ProductModel", b =>
+            modelBuilder.Entity("Project_BackendApi.Models.CuStomerReportModel", b =>
                 {
+                    b.HasOne("Project_BackendApi.Models.CustomerModel", "CustomerModel")
+                        .WithMany("CuStomerReportModels")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Project_BackendApi.Models.ReportModel", "ReportModel")
+                        .WithMany("CuStomerReportModels")
+                        .HasForeignKey("ReportId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CustomerModel");
+
+                    b.Navigation("ReportModel");
+                });
+
+            modelBuilder.Entity("Project_BackendApi.Models.CustomerOrderDetailsModel", b =>
+                {
+                    b.HasOne("Project_BackendApi.Models.CustomerModel", "CustomerModel")
+                        .WithMany("CustomerOrderDetailsModels")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Project_BackendApi.Models.OrderDetailsModel", "OrderDetailsModel")
-                        .WithMany("ProductModels")
-                        .HasForeignKey("OrderDetailsModelID");
+                        .WithMany("CustomerOrderDetailsModels")
+                        .HasForeignKey("OrderDetailsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CustomerModel");
 
                     b.Navigation("OrderDetailsModel");
                 });
 
-            modelBuilder.Entity("Project_BackendApi.Models.ReportModel", b =>
-                {
-                    b.HasOne("Project_BackendApi.Models.AdminModel", "AdminModel")
-                        .WithMany("ReportModels")
-                        .HasForeignKey("AdminModelID");
-
-                    b.Navigation("AdminModel");
-                });
-
-            modelBuilder.Entity("Project_BackendApi.Models.SellerModel", b =>
+            modelBuilder.Entity("Project_BackendApi.Models.OrderDetailsModel", b =>
                 {
                     b.HasOne("Project_BackendApi.Models.ProductModel", "ProductModel")
-                        .WithMany("SellerModels")
-                        .HasForeignKey("ProductModelID");
+                        .WithMany("OrderDetailsModels")
+                        .HasForeignKey("ProductOrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ProductModel");
                 });
 
-            modelBuilder.Entity("Project_BackendApi.Models.AdminModel", b =>
+            modelBuilder.Entity("Project_BackendApi.Models.ProductCustomerModel", b =>
                 {
-                    b.Navigation("ReportModels");
-                });
+                    b.HasOne("Project_BackendApi.Models.CustomerModel", "CustomerModel")
+                        .WithMany("ProductCustomerModels")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-            modelBuilder.Entity("Project_BackendApi.Models.OrderDetailsModel", b =>
-                {
-                    b.Navigation("ProductModels");
+                    b.HasOne("Project_BackendApi.Models.ProductModel", "ProductModel")
+                        .WithMany("ProductCustomerModels")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CustomerModel");
+
+                    b.Navigation("ProductModel");
                 });
 
             modelBuilder.Entity("Project_BackendApi.Models.ProductModel", b =>
                 {
-                    b.Navigation("CategoryModels");
+                    b.HasOne("Project_BackendApi.Models.CategoryModel", "CategoryModel")
+                        .WithMany("ProductModels")
+                        .HasForeignKey("CategoryProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("SellerModels");
+                    b.HasOne("Project_BackendApi.Models.SellerModel", "SellerModel")
+                        .WithMany("ProductModels")
+                        .HasForeignKey("ShopProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CategoryModel");
+
+                    b.Navigation("SellerModel");
+                });
+
+            modelBuilder.Entity("Project_BackendApi.Models.SellerCustomerModel", b =>
+                {
+                    b.HasOne("Project_BackendApi.Models.CustomerModel", "CustomerModel")
+                        .WithMany("SellerCustomerModels")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Project_BackendApi.Models.SellerModel", "SellerModel")
+                        .WithMany("SellerCustomerModels")
+                        .HasForeignKey("SellerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CustomerModel");
+
+                    b.Navigation("SellerModel");
+                });
+
+            modelBuilder.Entity("Project_BackendApi.Models.CategoryModel", b =>
+                {
+                    b.Navigation("ProductModels");
+                });
+
+            modelBuilder.Entity("Project_BackendApi.Models.CustomerModel", b =>
+                {
+                    b.Navigation("CustomerOrderDetailsModels");
+
+                    b.Navigation("CuStomerReportModels");
+
+                    b.Navigation("ProductCustomerModels");
+
+                    b.Navigation("SellerCustomerModels");
+                });
+
+            modelBuilder.Entity("Project_BackendApi.Models.OrderDetailsModel", b =>
+                {
+                    b.Navigation("CustomerOrderDetailsModels");
+                });
+
+            modelBuilder.Entity("Project_BackendApi.Models.ProductModel", b =>
+                {
+                    b.Navigation("OrderDetailsModels");
+
+                    b.Navigation("ProductCustomerModels");
+                });
+
+            modelBuilder.Entity("Project_BackendApi.Models.ReportModel", b =>
+                {
+                    b.Navigation("AdminModels");
+
+                    b.Navigation("CuStomerReportModels");
+                });
+
+            modelBuilder.Entity("Project_BackendApi.Models.SellerModel", b =>
+                {
+                    b.Navigation("ProductModels");
+
+                    b.Navigation("SellerCustomerModels");
                 });
 #pragma warning restore 612, 618
         }

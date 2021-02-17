@@ -11,7 +11,7 @@ namespace Project_BackendApi.Models
     public class AdminModel
     {
         [Key]
-        public int ID { get; set; }
+        public int AdminId { get; set; }
 
         [Required(ErrorMessage = "Please Enter Name")]
         public string Name { get; set; }
@@ -36,9 +36,9 @@ namespace Project_BackendApi.Models
         [DataType(DataType.Password)]
         public string ReTypePassword { get; set; }
 
-
-
-        public ICollection<ReportModel> ReportModels { get; set; }
         
+        public int ReportAdminId { get; set; }
+        public ReportModel ReportModel { get; set; }
+
     }
 }

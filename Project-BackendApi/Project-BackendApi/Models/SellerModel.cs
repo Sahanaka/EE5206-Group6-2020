@@ -9,7 +9,9 @@ namespace Project_BackendApi.Models
     public class SellerModel 
     {
         [Key]
-        public int ID { get; set; }
+  
+
+        public int SellerId { get; set; }
 
         [Required(ErrorMessage = "Please Enter Name")]
         public string Name { get; set; }
@@ -41,9 +43,10 @@ namespace Project_BackendApi.Models
 
         public string UserRole = "Seller";
 
-        public ProductModel ProductModel { get; set; }
+        
+        public ICollection<ProductModel> ProductModels { get; set; }
 
-        public ICollection<CustomerModel> CustomerModels { get; set; }
+        public IList<SellerCustomerModel> SellerCustomerModels { get; set; }
 
     }
 }

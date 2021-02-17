@@ -8,7 +8,7 @@ namespace Project_BackendApi.Models
 {
     public class Policies
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public const string Admin = "Admin";
 
         public const string Customer = "Customer";

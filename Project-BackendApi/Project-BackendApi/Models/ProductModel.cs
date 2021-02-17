@@ -10,7 +10,9 @@ namespace Project_BackendApi.Models
     {
 
         [Key]
-        public int ID { get; set; }
+       
+
+        public int ProductId { get; set; }
 
         [Required(ErrorMessage = "Please Enter Title")]
         public string Title { get; set; }
@@ -32,10 +34,16 @@ namespace Project_BackendApi.Models
         public int Quantity { get; set; }
 
 
-        public ICollection<SellerModel> SellerModels { get; set; }
-        public ICollection<CategoryModel> CategoryModels { get; set; }
-        public ICollection<CustomerModel> CustomerModels { get; set; }
-        public OrderDetailsModel OrderDetailsModel { get; set; }
+        public int ShopProductId { get; set; }
+
+        public int CategoryProductId { get; set; }
+
+
+        public SellerModel SellerModel { get; set; }
+        public CategoryModel CategoryModel { get; set; }
+        public IList<ProductCustomerModel> ProductCustomerModels { get; set; }
+
+        public ICollection<OrderDetailsModel> OrderDetailsModels { get; set; }
 
 
 
