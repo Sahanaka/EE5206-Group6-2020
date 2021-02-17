@@ -16,11 +16,17 @@ import Register from "./components/auth/Register";
 import OrderAccept from "./components/Seller/OrderAccept";
 import SellerMain from "./components/Seller/SellerMain";
 import OrderList from "./components/Seller/OrderList";
-
+import Table from "./components/Seller/Table";
+import todo from "./components/Seller/todo";
 import Alert from './components/layout/Alert';
+
+ 
 
 function App() {
   return (
+    
+    
+
    <Provider store={store}>
       <Router>
         <Fragment>
@@ -32,14 +38,18 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/store" component={Store} />
             <Route exact path="/Register" component={Register} />
-            <Route exact path="/orderAcccept" component={OrderAccept} /> 
+            <Route exact path="/orderAccept" component={OrderAccept} /> 
            <Route exact path="/sellerMain" component={SellerMain} /> 
            <Route exact path="/OrderList" component={OrderList} />
+           <Route exact path="/Table" component={Table} />
+           <Route exact path="/todo" component={todo} />
           </Switch>
           <Footer />
         </Fragment>
       </Router>
     </Provider>
+   
+    
   );
 }
 

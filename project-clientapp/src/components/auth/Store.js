@@ -186,7 +186,7 @@ function Store() {
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
-                    Wall Market
+                    WAL Mart
                   </Typography>
                   <Typography
                     variant="body2"

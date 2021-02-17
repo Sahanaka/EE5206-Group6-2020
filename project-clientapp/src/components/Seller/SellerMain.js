@@ -1,279 +1,279 @@
-import React, {Component} from 'react'
-import ReactDOM from 'react-dom'
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import Avatar from "@material-ui/core/Avatar";
+import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
+import Pagination from "@material-ui/lab/Pagination";
+import Checkbox from '@material-ui/core/Checkbox';
+import { Line } from 'react-chartjs-2';
+import { BorderColor } from "@material-ui/icons";
+import { Bar } from 'react-chartjs-2';
+import './style1.css'
 
 
 
 
+
+const useStyles = makeStyles((theme) => ({
+  appBar1: {
+    backgroundColor: "#fff",
+  },
+  
+  blogsContainer1: {
+    paddingTop: theme.spacing(3),
+    justifyContent: "center",
+  },
+  blogTitle1: {
+    fontWeight: 800,
+    paddingBottom: theme.spacing(3),
+  },
+  card1: {
+    maxWidth: "100%",
+  },
   
   
-class OrderList extends Component {   
-    render() {
-      return(
-    
+  
+  paginationContainer1: {
+    display: "flex",
+    justifyContent: "center",
+  },
+}));
 
-        <div>
+function SellerMain() {
+  const classes = useStyles();
+  const [checked, setChecked] = React.useState(true);
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
 
-
-         
-        {/* Required meta tags */}
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>RoyalUI Admin</title>
-        {/* plugins:css */}
-        <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css" />
-        <link rel="stylesheet" href="vendors/base/vendor.bundle.base.css" />
-        {/* endinject */}
-
-        {/*navigation bar link*/}
-        <style dangerouslySetInnerHTML={{__html: "\nul {\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n  overflow: hidden;\n  background-color: #333;\n}\n\nli {\n  float: left;\n}\n\nli a {\n  display: block;\n  color: white;\n  text-align: center;\n  padding: 14px 16px;\n  text-decoration: none;\n}\n\nli a:hover:not(.active) {\n  background-color: #111;\n}\n\n.active {\n  background-color: #4CAF50;\n}\n" }} />
-
-
-
-
-        {/* plugin css for this page */}
-        {/* End plugin css for this page */}
-        {/* inject:css */}
-        <link rel="stylesheet" href="css/style.css" />
-        {/* endinject */}
-        <link rel="shortcut icon" href="images/favicon.png" />
-
-        <style dangerouslySetInnerHTML={{__html: "\nbody {\n  background-color: lightgray;\n}\n" }} />
-
-        <div className="container-scroller">
-          {/* partial:partials/_navbar.html */}
-         
-          {/* partial */}
-
-          <div className="sellermain">
-              
-          <div className="container-fluid page-body-wrapper">
-            {/* partial:partials/_sidebar.html */}
-            <nav className="sidebar sidebar-offcanvas" id="sidebar">
-              <ul className="nav">
-                <li className="nav-item">
-                  <a className="nav-link" href="index.html">
-                    <i className="ti-shield menu-icon" />
-                    <span className="menu-title">Dashboard</span>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                    <i className="ti-palette menu-icon" />
-                    <span className="menu-title">My Profile</span>
-                    <i className="menu-arrow" />
-                  </a>
-                  <div className="collapse" id="ui-basic">
-                    <ul className="nav flex-column sub-menu">
-                      <li className="nav-item"> <a className="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                      <li className="nav-item"> <a className="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-                    </ul>
-                  </div>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="pages/forms/basic_elements.html">
-                    <i className="ti-layout-list-post menu-icon" />
-                    <span className="menu-title">Store</span>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="pages/charts/chartjs.html">
-                    <i className="ti-pie-chart menu-icon" />
-                    <span className="menu-title">Order List</span>
-                  </a>
-                </li>
-               
-                
-              </ul>
-            </nav>
-            {/* partial */}
-            <div className="main-panel">
-              <div className="content-wrapper">
-                <div className="row">
-                  <div className="col-md-12 grid-margin">
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div>
-                        <h1 className="font-weight-bold mb-0">LOTTE Market</h1>
-                      </div>
-                      
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-3 grid-margin stretch-card">
-                    <div className="card">
-                      <div className="card-body">
-                        <p className="card-title text-md-center text-xl-left">Total Sales</p>
-                        <div className="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                          <h3 className="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">34040</h3>
-                          <i className="ti-calendar icon-md text-muted mb-0 mb-md-3 mb-xl-0" />
-                        </div>  
-                        <p className="mb-0 mt-2 text-danger"  center >0.12%<span className="text-black ml-1"><small>(30 days)</small></span></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-3 grid-margin stretch-card">
-                    <div className="card">
-                      <div className="card-body">
-                        <p className="card-title text-md-center text-xl-left">No of Orders</p>
-                        <div className="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                          <h3 className="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">47033</h3>
-                          <i className="ti-user icon-md text-muted mb-0 mb-md-3 mb-xl-0" />
-                        </div>  
-                        <p className="mb-0 mt-2 text-danger">0.47% <span className="text-black ml-1"><small>(30 days)</small></span></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-3 grid-margin stretch-card">
-                    <div className="card">
-                      <div className="card-body">
-                        <p className="card-title text-md-center text-xl-left">Earning</p>
-                        <div className="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                          <h3 className="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">40016</h3>
-                          <i className="ti-agenda icon-md text-muted mb-0 mb-md-3 mb-xl-0" />
-                        </div>  
-                        <p className="mb-0 mt-2 text-success">64.00%<span className="text-black ml-1"><small>(30 days)</small></span></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-3 grid-margin stretch-card">
-                    <div className="card">
-                      <div className="card-body">
-                        <p className="card-title text-md-center text-xl-left">Total Profit</p>
-                        <div className="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                          <h3 className="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">61344</h3>
-                          <i className="ti-layers-alt icon-md text-muted mb-0 mb-md-3 mb-xl-0" />
-                        </div>  
-                        <p className="mb-0 mt-2 text-success">23.00%<span className="text-black ml-1"><small>(30 days)</small></span></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-6 grid-margin stretch-card">
-                    <div className="card">
-                      <div className="card-body">
-                        <h5 className="card-title"><b>Sales details</b></h5>
-                        <p className="text-muted font-weight-light">Received overcame oh sensible so at an. Formed do change merely to county it. Am separate contempt domestic to to oh. On relation my so addition branched.
-                        
-                        </p>
-                        <div id="sales-legend" className="chartjs-legend mt-4 mb-2" />
-                        <canvas id="sales-chart" />
-                      </div>
-                      
-                    </div>
-                  </div>
-                  <div className="col-md-6 grid-margin stretch-card">
-                    <div className="card border-bottom-0">
-                      <div className="card-body pb-0">
-                        <h5 className="card-title"><b>Earning Statistics</b></h5>
-                        <p className="text-muted font-weight-light">The argument in favor of using filler text goes something like this: If you use real content in the design process, anytime you reach a review</p>
-                        
-                      </div>
-                      <canvas id="order-chart" className="w-100" />
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-7 grid-margin stretch-card">
-                    <div className="card">
-                      <div className="card-body">
-                        <h3 className="card-title mb-0">Top selling Products</h3>
-                        <div className="table-responsive">
-                          <table className="table table-hover">
-                            <thead>
-                              <tr>
-                                
-                                <th>Product</th>
-                                <th>Sale</th>
-                                <th>Status</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                
-                                <td>Potato</td>
-                                <td className="text-danger"> 28.76% <i className="ti-arrow-down" /></td>
-                                <td><label className="badge badge-danger">Pending</label></td>
-                              </tr>
-                              <tr>
-                              
-                                <td>Fish</td>
-                                <td className="text-danger"> 21.06% <i className="ti-arrow-down" /></td>
-                                <td><label className="badge badge-warning">In progress</label></td>
-                              </tr>
-                              <tr>
-                                
-                                <td>Chiken</td>
-                                <td className="text-danger"> 35.00% <i className="ti-arrow-down" /></td>
-                                <td><label className="badge badge-info">Fixed</label></td>
-                              </tr>
-                              <tr>
-                                
-                                <td>Suger</td>
-                                <td className="text-success"> 82.00% <i className="ti-arrow-up" /></td>
-                                <td><label className="badge badge-success">Completed</label></td>
-                              </tr>
-                              <tr>
-                             
-                                <td>Salt</td>
-                                <td className="text-success"> 98.05% <i className="ti-arrow-up" /></td>
-                                <td><label className="badge badge-warning">In progress</label></td>
-                              </tr>
-                              <tr>
-                                
-                                <td>Snacks</td>
-                                <td className="text-danger"> 21.06% <i className="ti-arrow-down" /></td>
-                                <td><label className="badge badge-info">Fixed</label></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-5 grid-margin stretch-card">
-                    <div className="card">
-                      <div className="card-body">
-                        <h4 className="card-title">To Do Lists</h4>
-                        
-                          
-                            
-                          <p className="text-muted font-weight-light">The argument in favor of using filler text goes something like this: If you use real content in the design process, anytime you reach a review</p>
-                        
-                         
-                        <div className="add-items d-flex mb-0 mt-4">
-                          <input type="text" className="form-control todo-list-input mr-2" placeholder="Add new task" />
-                          <button className="add btn btn-icon text-primary todo-list-add-btn bg-transparent"><i className="ti-location-arrow" /></button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-              </div>
-              {/* content-wrapper ends */}
-              {/* partial:partials/_footer.html */}
-              
-              {/* partial */}
-            </div>
-            {/* main-panel ends */}
-          </div>
-          {/* page-body-wrapper ends */}
-        </div>
-        {/* container-scroller */}
-        {/* plugins:js */}
-        {/* endinject */}
-        {/* Plugin js for this page*/}
-        {/* End plugin js for this page*/}
-        {/* inject:js */}
-        {/* endinject */}
-        {/* Custom js for this page*/}
-        {/* End custom js for this page*/}
-      </div>
-      </div>
-      
-      );
+  const databar = {
+    labels:['Jan', 'Feb', 'Mar', 'Apr', 'May','June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    datasets: [
+      {
+        label:'Sales in 2020 (LKR)',
+        data:[3,2,5,4,6,6,8,9,1,3,4,1],
+        borderColor:['rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)'],
+        backgroundColor:['rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)'],
+        pointBackgroundColor:'rgba(255, 99, 132, 1)',
+        pointBorderColor:'rgba(255, 99, 132, 1)'
+      }
+    ]
+  }
+  const optionsbar = {
+    scales:{
+      yAxes:[
+        {
+          ticks:{
+            min:0,
+            max:10,
+            stepsize:1
+          }
+        }
+      ] 
     }
   }
 
-  export default OrderList;
+  const dataline = {
+    labels:['Jan', 'Feb', 'Mar', 'Apr', 'May','June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    datasets: [
+      {
+        label:'Earning in 2020 (LKR)',
+        data:[3,2,5,4,6,6,8,9,1,3,4,5],
+        borderColor:['rgba(54, 162, 235, 0.5)'],
+        backgroundColor:['rgba(54, 162, 235, 0.5)'],
+        pointBackgroundColor:'rgba(54, 162, 235, 0.5)',
+        pointBorderColor:'rgba(54, 162, 235, 0.5)'
+      }
+    ]
+  }
+  const optionsline = {
+    scales:{
+      yAxes:[
+        {
+          ticks:{
+            min:0,
+            max:10,
+            stepsize:1
+          }
+        }
+      ] 
+    }
+  }
+
+
+      return(
+      <div className="back">
+      
+      <Container maxWidth="lg" className={classes.blogsContainer1}>
+        <Typography variant="h3" className={classes.blogTitle1}>
+        <div className="ABC" >ABC Store</div>
+        </Typography>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6} md={4}>
+            <Card className={classes.card1}>
+              <CardActionArea>
+                
+                <CardContent>
+                  <Typography gutterBottom variant="h6" component="h2">
+                  <div className="centerclass" >Total Sales</div>
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    color="textprimary"
+                    component="p"
+                  >
+                   <div className="centerclass" >400</div>
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p">
+                  <div className="centerclass" >0.12% (30 days)</div>
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              
+            </Card>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <Card className={classes.card1}>
+              <CardActionArea>
+                
+                <CardContent>
+                  <Typography gutterBottom variant="h6" component="h2">
+                  <div className="centerclass" >No of Orders</div>
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    color="textprimary"
+                    component="p"
+                  >
+                   <div className="centerclass" >455</div>
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    <div className="centerclass" >0.42% (30 days)</div>
+                  </Typography>
+                  
+                </CardContent>
+              </CardActionArea>
+              
+            </Card>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <Card className={classes.card1}>
+              <CardActionArea>
+                
+                <CardContent>
+                  <Typography gutterBottom variant="h6" component="h2">
+                    <div className="centerclass" >Earning</div>
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    color="textprimary"
+                    component="p"
+                  >
+                   <div className="centerclass" > 32541</div>
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    <div className="centerclass" >64% (30 days)</div>
+                  </Typography>
+                  
+                </CardContent>
+              </CardActionArea>
+              
+            </Card>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6}>
+            <Card className={classes.card1}>
+              <CardActionArea>
+                
+                <CardContent>
+                  <Typography gutterBottom variant="h6" component="h2">
+                  <div><b>
+                    Sales Details
+                    </b></div>
+                  </Typography>
+                  <Bar data={databar} options={optionsbar} />
+                </CardContent>
+              </CardActionArea>
+              
+            </Card>
+          </Grid>
+          <Grid item xs={15} sm={12} md={6}>
+            <Card className={classes.card1}>
+              <CardActionArea>
+                
+                <CardContent>
+                  <Typography gutterBottom variant="h6" component="h2">
+                  <div><b>
+                    Earning Statistics
+                    </b></div>
+                  </Typography>
+                  <Line data={dataline} options={optionsline} />
+                  
+                </CardContent>
+              </CardActionArea>
+              
+            </Card>
+          </Grid>
+          <Grid item xs={15} sm={12} md={6}>
+            <Card className={classes.card1}>
+              <CardActionArea>
+                
+                <CardContent>
+                  <Typography gutterBottom variant="h6" component="h2">
+                  <div><b>
+                    Top Selling Products
+                    </b></div>
+                  </Typography>
+                 
+                </CardContent>
+              </CardActionArea>
+              
+            </Card>
+          </Grid>
+          <Grid item xs={15} sm={12} md={6}>
+            <Card className={classes.card1}>
+              <CardActionArea>
+                
+                <CardContent>
+                  <Typography gutterBottom variant="h6" component="h2">
+                    <div><b>
+                    TO DO List
+                    </b></div>
+                  </Typography>
+                  <Typography>
+                  
+                  </Typography>
+
+                </CardContent>
+              </CardActionArea>
+              
+            </Card>
+          </Grid>
+        </Grid>
+        
+        
+      </Container>
+    </div>
+      );
+    }
+  
+
+  export default SellerMain;

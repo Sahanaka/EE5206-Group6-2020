@@ -1,85 +1,218 @@
-import React, {Component} from 'react'
-import ReactDOM from 'react-dom'
+import React from "react";
+import ListGroup from "react-bootstrap/ListGroup";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import Avatar from "@material-ui/core/Avatar";
+import './style1.css'
+
+import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
+import Pagination from "@material-ui/lab/Pagination";
+import Image1 from "./images/mkt5.jpeg";
+import Image2 from "./images/map.jpg";
+import Img2 from "./images/psn2.jpg";
+import Button from '@material-ui/core/Button';
 
 
-class OrderAccept extends Component {
 
+const useStyles = makeStyles((theme) => ({
+  appBar2: {
+    backgroundColor: "#fff",
+  },
+ 
+  blogsContainer2: {
+    paddingTop: theme.spacing(3),
+  },
+  blogTitle2: {
+    fontWeight: 800,
+    paddingBottom: theme.spacing(5),
+  },
+  card2: {
+    maxWidth: "100%",
+  },
+  media2: {
+    height: 240,
+  },
+  cardActions2: {
+    display: "flex",
+    margin: "0 10px",
+    justifyContent: "space-between",
+  },
+  author2: {
+    display: "flex",
+  },
+  paginationContainer2: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  root2: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+}));
 
+function OrderAccept() {
+  const classes = useStyles();
 
+  
 
-    
-    render() {
+  
       return(
+    <div className="back1">
       
-        <div>
-        <title>Bootstrap Example</title>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-        <style dangerouslySetInnerHTML={{__html: "\n    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */\n    .row.content {height: 1500px}\n    \n    /* Set gray background color and 100% height */\n    .sidenav {\n      background-color: #f1f1f1;\n      height: 100%;\n    }\n    \n    /* Set black background color, white text and some padding */\n    footer {\n      background-color: #555;\n      color: white;\n      padding: 15px;\n    }\n    \n    /* On small screens, set height to 'auto' for sidenav and grid */\n    @media screen and (max-width: 767px) {\n      .sidenav {\n        height: auto;\n        padding: 15px;\n      }\n      .row.content {height: auto;} \n    }\n  " }} />
-        <div className="container-fluid">
+      <Container maxWidth="lg" className={classes.blogsContainer2}>
+        <Typography variant="h4" className={classes.blogTitle2}>
+        <div className="ABC" >ABC Store</div>
+        </Typography>
+        <Grid container spacing={3}>
+        <Grid item xs={12} sm={6} md={3}>
+            <Card className={classes.card2}>
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media2}
+                  image={Image1}
+                  title="Contemplative Reptile"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    ABC Store
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and scrambled it to make a
+                    type specimen book. It has survived not only five centuries
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions className={classes.cardActions2}>
+                <Box className={classes.author2}>
+                  <Avatar src={Img2.jpg} />
+                  <Box ml={2}>
+                    <Typography variant="subtitle2" component="p">
+                      Guy Clemons
+                    </Typography>
+                    <Typography
+                      variant="subtitle2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      Jan 3, 2021
+                    </Typography>
+                  </Box>
+                </Box>
+                <Box>
+                  <BookmarkBorderIcon />
+                </Box>
+              </CardActions>
+            </Card>
+          </Grid>
+          <Grid item xs={12} sm={6} md={6}>
+            <Card className={classes.card2}>
+              <CardActionArea>
+                
+                <CardContent>
+                  <Typography gutterBottom variant="h4" component="h2">
+                  Order 01 Details
+                  </Typography>
+                 
+                  <Typography>
+                  <ListGroup>
+                     <ListGroup.Item>
+                       <h5>Costomer Name</h5><p>Name</p>
+                     </ListGroup.Item>
+                     <ListGroup.Item>
+                       <h5>Address</h5><p>Addres</p>
+                     </ListGroup.Item>
+                     <ListGroup.Item>
+                       <h5>Order List</h5><p>List</p>
+                     </ListGroup.Item>
+                     <ListGroup.Item>
+                       <h5>Email Address</h5><p>Email</p>
+                     </ListGroup.Item>
+                     <ListGroup.Item>
+                       <h5>Payment Method</h5><p>Payment method</p>
+                     </ListGroup.Item>
+                  </ListGroup>
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <Card className={classes.card2}>
+              <CardActionArea>
+                
+                <CardContent>
+                <Box ml={2}>
+                    <Typography gutterBottom variant="h6" component="h2">
+                      Date
+                    </Typography>
+                    <Typography
+                      variant="subtitle2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      Jan 3, 2021
+                    </Typography>
+                  </Box>
+                  <Box ml={2}>
+                    <Typography gutterBottom variant="h6" component="h2">
+                      Location
+                    </Typography>
+                    <Typography
+                      variant="subtitle2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      <CardMedia
+                  className={classes.media2}
+                  image={Image2}
+                  title="Contemplative Reptile"
+                     />
+                    </Typography>
+                  
+                  <ListGroup>
+                  <ListGroup.Item>
+                    <Button variant="contained" color="primary">
+                      ORDER ACCEPT
+                    </Button>
+                  </ListGroup.Item>
+                  
+                  <ListGroup.Item>
+                    <Button variant="contained" color="primary">
+                      Order CANCEL
+                    </Button>
+                  </ListGroup.Item>
+                  </ListGroup>
+                  </Box>
 
-
-          <style dangerouslySetInnerHTML={{__html: "\nbody {\n  background-color: lightgray;\n}\n" }} />
-          <div className="row content">
-            
-            <div className="col-sm-3 sidenav">
-            <a className="list-group-item">
-              <h4 className="list-group-item-heading">Date</h4>
-              <p className="list-group-item-text">Details</p>
-            </a>
-            <a className="list-group-item">
-              <h4 className="list-group-item-heading">Location</h4> 
-            </a>
-            
-            </div>
-
-            <div className="col-sm-9">
-            <ul className="pager">
-            <li className="previous"><a href="#">Previous</a></li>
-            <li className="next"><a href="#">Next</a></li>
-            </ul>
-
-              
-            <h1 style={{backgroundColor: 'powderblue'}}>Order 01 Details</h1>
-          <div className="list-group">
-           <a  className="list-group-item">
-              <h4 className="list-group-item-heading">Customer Name</h4>
-              <p className="list-group-item-text">Details</p>
-            </a>
-            <a className="list-group-item">
-              <h4 className="list-group-item-heading">Address</h4>
-              <p className="list-group-item-text">Details</p>
-            </a>
-            <a  className="list-group-item">
-              <h4 className="list-group-item-heading">Order List </h4>
-              <p className="list-group-item-text">Details</p>
-            </a>
-            <a  className="list-group-item">
-              <h4 className="list-group-item-heading">Email Address</h4>
-              <p className="list-group-item-text">Details</p>
-            </a>
-            <a className="list-group-item">
-              <h4 className="list-group-item-heading">Payment Method</h4>
-              <p className="list-group-item-text">Details</p>
-            </a>
-            
-            
-          
-          <a href="#" className="btn btn-info" role="button">Order Approved</a>
-          <a href="#" className="btn btn-info" role="button">Order Canceled</a>
-          
-
-          </div>
-        </div>
-        </div>
-        </div>
-        </div>
-          
-      );
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+        </Grid>
+       
+      </Container>
+    </div>
+    );
     }
-  }
+  
 
   export default OrderAccept;
 
+
+         

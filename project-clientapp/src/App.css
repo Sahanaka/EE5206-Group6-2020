@@ -576,14 +576,15 @@ button {
   .post button {
     padding: 0.3rem 0.4rem;
   }
+  /* seller main view*/
+  .App{
+    display: flex;
+    justify-content: center;
+  }
+  .Chart{
+    width: 720px;
+  }
   
-  /* sellermain Page */
-.sellermain {
-  position: relative;
-  background: url("./img/background.jpg") no-repeat center center/cover;
-  height: 100vh;
-}
 
-
-
+ 
 }
