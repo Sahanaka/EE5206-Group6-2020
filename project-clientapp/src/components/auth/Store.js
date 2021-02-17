@@ -1,6 +1,6 @@
 import React, { lazy, Component } from "react";
 // import { data } from "/Projects/New folder (6)/EE5206-Group6-2020/project-clientapp/src/components/data/data";
-
+import Products1 from "./product/products";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
@@ -24,8 +24,6 @@ import ava from "./img/psn1.jpg";
 import Drawer from "./Drawer";
 import FilterCategory from "./category";
 import CardServices from "./CardServices";
-import CardProductGrid from "./product/productgrid";
-import CardProductList from "./product/productlist";
 import Paging from "../../components/paging";
 
 import { getShops } from "../../Actions/customer";
@@ -33,6 +31,7 @@ import { getShops } from "../../Actions/customer";
 import Paper from "@material-ui/core/Paper";
 
 import ButtonBase from "@material-ui/core/ButtonBase";
+
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -127,9 +126,9 @@ class Store extends Component {
     const { shops } = this.state;
 
     return (
+
       <div className="App">
         <Grid>
-          {/* <Drawer /> */}
           <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
             <Avatar className="cent" alt="Remy Sharp" src={ava} />
             <Box>Hi User</Box>
@@ -141,32 +140,17 @@ class Store extends Component {
             <div className="row">
               <div className="col-md-3">
                 <FilterCategory />
-                <CardServices />
+                {/* <CardServices /> */}
               </div>
             </div>
-
             <div className="row g-3">
               <div className="col-md-4">
                 <span className="align-middle "></span>
               </div>
-              {/* <tr>
-                <td>
-                  <div>{name.data}</div>
-                  
-                </td>
-                <hr />
-                <td>
-                  <div>{details.data}</div>
-                </td>
-              </tr> */}
-              {/* <li>
-                <span>Name : {data.name}</span>
-                <hr />
-                <span>details : {data.details}</span>
-              </li> */}
               <div className="card-list">
                 <div className="container">
                   <h1 className="page-title">Shops</h1>
+
                   <div className="row">
                     {shops.map((rental) => {
                       return (
@@ -194,15 +178,18 @@ class Store extends Component {
                       );
                     })}
                   </div>
+
                 </div>
               </div>
-              )
             </div>
+          </div>
+          <div className=" col-mb-20 container">
+            <Products1 />
           </div>
         </Container>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Store;
