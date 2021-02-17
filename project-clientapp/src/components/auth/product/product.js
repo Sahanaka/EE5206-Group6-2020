@@ -9,10 +9,10 @@ import {
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { AddShoppingCart } from "@material-ui/icons";
-import useStyles from "./styles";
+import makeStyles from "./styles";
 
 const product = ({ product }) => {
-  const classes = useStyles();
+  const classes = makeStyles();
 
   return (
     <Card className={classes.root}>
