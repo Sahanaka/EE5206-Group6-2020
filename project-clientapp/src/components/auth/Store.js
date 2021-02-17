@@ -28,6 +28,8 @@ import CardProductGrid from "./product/productgrid";
 import CardProductList from "./product/productlist";
 import Paging from "../../components/paging";
 
+import { getShops } from "../../Actions/customer";
+
 import Paper from "@material-ui/core/Paper";
 
 import ButtonBase from "@material-ui/core/ButtonBase";
@@ -108,81 +110,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 class Store extends Component {
-  //const classes = useStyles();
-
-  // state = {
-  //   currentProducts: [],
-  //   currentPage: null,
-  //   totalPages: null,
-  //   totalItems: 0,
-  //   view: "list",
-  // };
-
   constructor() {
     super();
+
     this.state = {
-      rentals: [
-        {
-          _id: 1,
-          title: "Name_1",
-          city: "Hyderabad",
-          category: "Food",
-          // image: "http://via.placeholder.com/350x250",
-          numOfRooms: 4,
-          shared: true,
-          description: "Very nice apartment in center of the city.",
-          dailyPrice: 43,
-        },
-        {
-          _id: 2,
-          title: "Name_2",
-          city: "Bangalore",
-          category: "Book",
-          // image: "http://via.placeholder.com/350x250",
-          numOfRooms: 1,
-          shared: false,
-          description: "Very nice apartment in center of the city.",
-          dailyPrice: 11,
-        },
-        {
-          _id: 3,
-          title: "Name_3",
-          city: "Patna",
-          category: "Electric",
-          // image: "http://via.placeholder.com/350x250",
-          numOfRooms: 5,
-          shared: true,
-          description: "Very nice apartment in center of the city.",
-          dailyPrice: 23,
-        },
-      ],
+      shops: [],
     };
   }
 
-  onPageChanged = (page) => {
-    let products = this.getProducts();
-    const { currentPage, totalPages, pageLimit } = page;
-    const offset = (currentPage - 1) * pageLimit;
-    const currentProducts = products.slice(offset, offset + pageLimit);
-    this.setState({ currentPage, currentProducts, totalPages });
-  };
-
-  // getProducts = () => {
-  //   //let products = data.products;
-  // },
+  async componentDidMount() {
+    const res = await getShops("retail");
+    this.setState({ shops: res });
+  }
 
   render() {
-    const { rentals } = this.state;
-    // const data = [
-    //   {
-    //     name: "Shop_name1",
-    //     details: " Lorem Ipsum is simply dummy text of the printin",
-    //   },
-    //   { name: "Shop_name2", details: "11" },
-    // ];
-    // const listItems = data.map((d) => <div key={d.name}>{d.name}</div>);
-    // const listItems2 = data.map((d) => <div key={d.details}>{d.details}</div>);
-    // const listItems3 = data.map((d) => <div key={d.src}>{d.src}</div>);
+    const { shops } = this.state;
 
     return (
       <div className="App">
@@ -226,9 +168,9 @@ class Store extends Component {
                 <div className="container">
                   <h1 className="page-title">Shops</h1>
                   <div className="row">
-                    {rentals.map((rental) => {
+                    {shops.map((rental) => {
                       return (
-                        <div key={rental._id} className="col-md-3">
+                        <div key={rental.sellerId} className="col-md-3">
                           <div className="card bwm-card">
                             {/* <img 
                                         className="card-img-top" 
@@ -236,15 +178,15 @@ class Store extends Component {
                                         alt={rental.title} /> */}
                             <div className="card-body">
                               <h6 className="card-subtitle mb-0 text-muted">
-                                {rental.shared}Category: {rental.category} City:
-                                {rental.city}
+                                {rental.shared}Category: {rental.cetogory}
+                                Address:
+                                {rental.address}
                               </h6>
                               <h5 className="card-title big-font">
-                                Name:{rental.title}
+                                Name:{rental.name}
                               </h5>
                               <p className="card-text">
-                                ${rental.dailyPrice} per quntity &#183; Free
-                                Delivery
+                                Contact No: {rental.contatctNo}
                               </p>
                             </div>
                           </div>
