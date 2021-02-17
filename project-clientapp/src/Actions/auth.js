@@ -48,8 +48,8 @@ export const registerCustomer = (name, email, address, Contatct_No, password, Re
 
     } catch (error) {
         const errors = error.response.data.errors;
-        console.log(error);
-        dispatch(setAlert("Something wrong at your end", "danger"));
+        console.log(errors);
+        dispatch(setAlert("Something is wrong at your end", "danger"));
         dispatch({
             type: REGISTER_FAIL
         });

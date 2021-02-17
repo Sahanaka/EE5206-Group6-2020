@@ -38,12 +38,12 @@ namespace Project_BackendApi.Services.JWTService
             if (isSeller != null)
             { 
                 currentUserRole = isSeller.UserRole;
-                currentUserId = isSeller.ID;
+                currentUserId = isSeller.SellerId;
             }
             else
             { 
                 currentUserRole = isCustomer.UserRole;
-                currentUserId = isCustomer.ID;
+                currentUserId = isCustomer.CustomerId;
             }
 
             var claims = new[]
