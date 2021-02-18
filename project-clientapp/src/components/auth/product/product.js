@@ -28,11 +28,14 @@ const product = ({ product }) => {
           </Typography>
           <br />
           <Typography variant="5" gutterBottom>
-            {product.Address}
+            {product.address}
           </Typography>
         </div>
         <Typography variant="h6" color="textSecondary">
-          {product.Category}
+          {product.cetogory}
+        </Typography>
+        <Typography variant="h6" color="textSecondary">
+          {product.contatctNo}
         </Typography>
       </CardContent>
 
