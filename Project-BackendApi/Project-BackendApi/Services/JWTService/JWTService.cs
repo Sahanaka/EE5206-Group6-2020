@@ -33,18 +33,23 @@ namespace Project_BackendApi.Services.JWTService
             var isCustomer = _db.CustomerModels.FirstOrDefault(m => m.Email.ToLower() == user.Email.ToLower());
 
             var currentUserRole = new object();
+            var currentUserId = new object();
 
             if (isSeller != null)
+            { 
                 currentUserRole = isSeller.UserRole;
+                currentUserId = isSeller.SellerId;
+            }
             else
+            { 
                 currentUserRole = isCustomer.UserRole;
+                currentUserId = isCustomer.CustomerId;
+            }
 
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                //new Claim("fullName", userInfo.FullName.ToString()),
-                //new Claim("role", user.UserRole), --> Implement later - Replace with user role
-                
+                new Claim("id", currentUserId.ToString()),
                 new Claim("role", currentUserRole.ToString()),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };

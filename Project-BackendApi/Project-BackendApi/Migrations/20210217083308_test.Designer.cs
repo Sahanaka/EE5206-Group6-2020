@@ -10,7 +10,7 @@ using Project_BackendApi.DATA;
 namespace Project_BackendApi.Migrations
 {
     [DbContext(typeof(MarketplaceDB))]
-    [Migration("20210212063605_test")]
+    [Migration("20210217083308_test")]
     partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
