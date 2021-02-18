@@ -32,7 +32,6 @@ import Paper from "@material-ui/core/Paper";
 
 import ButtonBase from "@material-ui/core/ButtonBase";
 
-
 const useStyles = makeStyles((theme) => ({
   appBar: {
     backgroundColor: "#fff",
@@ -126,7 +125,6 @@ class Store extends Component {
     const { shops } = this.state;
 
     return (
-
       <div className="App">
         <Grid>
           <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
@@ -178,7 +176,6 @@ class Store extends Component {
                       );
                     })}
                   </div>
-
                 </div>
               </div>
             </div>
@@ -188,8 +185,8 @@ class Store extends Component {
           </div>
         </Container>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Store;
