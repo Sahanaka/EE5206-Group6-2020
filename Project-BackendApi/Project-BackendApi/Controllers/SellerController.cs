@@ -25,11 +25,11 @@ namespace Project_BackendApi.Controllers
             _sellerService = sellerService;
         }
 
-        [HttpGet]
-       // [Authorize(Policy = Policies.Seller)] - Uncomment later (Very Important)
-        public List<ProductModel> GetAllProducts()
+        [HttpGet("{id}")]
+        // [Authorize(Policy = Policies.Seller)] - Uncomment later (Very Important)
+        public List<ProductModel> GetAllProducts(int id)
         {
-            return _sellerService.GetAllProducts();
+            return _sellerService.GetAllProducts(id);
         }
 
         [HttpPost]
