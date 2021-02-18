@@ -10,7 +10,7 @@ namespace Project_BackendApi.Models
     public class CustomerModel 
     {
         [Key]
-        public int ID { get; set; }
+        public int CustomerId { get; set; }
 
         [Required(ErrorMessage = "Please Enter Name")]
         public string Name { get; set; }
@@ -37,13 +37,12 @@ namespace Project_BackendApi.Models
         public string ReTypePassword { get; set; }
 
         public string UserRole = "Customer";
+        internal int customerModelId;
 
-
-
-        public ICollection<SellerModel> SellerModels { get; set; }
-        public ICollection<ProductModel> ProductModels { get; set; }
-        public ICollection<OrderDetailsModel> OrderDetailsModels { get; set; }
-        public ICollection<ReportModel> ReportModels { get; set; }
+        public IList<SellerCustomerModel> SellerCustomerModels { get; set; }
+        public IList<ProductCustomerModel> ProductCustomerModels { get; set; }
+        public IList<CustomerOrderDetailsModel> CustomerOrderDetailsModels { get; set; }
+        public IList<CuStomerReportModel> CuStomerReportModels { get; set; }
 
     }
 }

@@ -4,18 +4,27 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import { setAlert } from "../../Actions/alert";
-import { registerCustomer } from "../../Actions/auth";
+import { registerSeller } from "../../Actions/auth";
 
-const Register = ({ setAlert, registerCustomer }) => {
+const Register = ({ setAlert, registerSeller }) => {
   const [formData, setFromData] = useState({
     name: "",
     email: "",
     contactNo: "",
     password: "",
     rePassword: "",
+    category: "",
   });
 
-  const { name, address, contactNo, email, password, rePassword } = formData;
+  const {
+    name,
+    address,
+    contactNo,
+    email,
+    password,
+    rePassword,
+    category,
+  } = formData;
 
   const onChange = (e) =>
     setFromData({ ...formData, [e.target.name]: e.target.value });
@@ -25,7 +34,15 @@ const Register = ({ setAlert, registerCustomer }) => {
 
     if (password !== rePassword) setAlert("Passwords do not match", "danger");
     else
-      registerCustomer(name, email, address, contactNo, password, rePassword);
+      registerCustomer(
+        name,
+        email,
+        address,
+        contactNo,
+        password,
+        rePassword,
+        category
+      );
   };
 
   return (
@@ -99,6 +116,18 @@ const Register = ({ setAlert, registerCustomer }) => {
             />
           </div>
 
+          <div className="form-group">
+            <small className="form-text"> Category</small>
+            <input
+              type="email"
+              placeholder="Email Address"
+              name="email"
+              value={email}
+              onChange={(e) => onChange(e)}
+            />
+            <small className="form-text"></small>
+          </div>
+
           <input type="submit" className="btn btn-primary" value="Register" />
         </form>
         <p className="my-1">
@@ -111,7 +140,7 @@ const Register = ({ setAlert, registerCustomer }) => {
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
-  registerCustomer: PropTypes.func.isRequired,
+  registerSeller: PropTypes.func.isRequired,
   //isAuthenticated: PropTypes.bool
 };
 
@@ -119,4 +148,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(null, { setAlert, registerCustomer })(Register);
+export default connect(null, { setAlert, registerSeller })(Register);

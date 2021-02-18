@@ -9,7 +9,7 @@ namespace Project_BackendApi.Models
     public class CategoryModel
     {
         [Key]
-        public int ID { get; set; }
+        public int CategoryId { get; set; }
 
         [Required(ErrorMessage = "Please Enter Title")]
         public string Title { get; set; }
@@ -18,7 +18,8 @@ namespace Project_BackendApi.Models
         public string SubCategory { get; set; }
 
         
-        public ProductModel ProductModel { get; set; }
+        
+        public ICollection<ProductModel> ProductModels { get; set; }
 
     }
 }
