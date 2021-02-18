@@ -68,7 +68,7 @@ class todo extends Component {
               {this.state.list.map(item => {
                 return(
                   <li className="input1" key={item.id}>
-                    {item.value}
+                    {item.value}  
                     <button className="button1" onClick={() => this.deleteItem(item.id)}>
                        X
                     </button>
