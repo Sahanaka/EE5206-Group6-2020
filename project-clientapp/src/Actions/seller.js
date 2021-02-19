@@ -1,10 +1,11 @@
 import axios from 'axios';
 
-export const getAllProducts = () => async dispatch => {
+export const getAllProducts = sellerId => async dispatch => {
     try {
-        await axios.get('"https://localhost:5001/api/seller');
+        const res = await axios.get(`https://localhost:5001/api/seller/${sellerId}`);
 
         dispatch(setAlert("Successfully loaded products", "success"));
+        return res.data;
         
 
     } catch (error) {
