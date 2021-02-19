@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, Redirect } from "react-router-dom";
 import {
   Card,
   CardMedia,
@@ -40,7 +41,7 @@ const product = ({ product }) => {
       </CardContent>
 
       <Button className="container" color="secondary">
-        Select
+        <Link to="/Items">Select</Link>
       </Button>
 
       {/* <CardActions disableSpacing className={classes.CardActions}>
