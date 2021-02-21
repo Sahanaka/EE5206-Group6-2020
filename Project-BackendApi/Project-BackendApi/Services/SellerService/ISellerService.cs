@@ -9,7 +9,7 @@ namespace Project_BackendApi.Services.SellerService
 {
     public interface ISellerService
     {
-        public List<ProductModel> GetAllProducts(); // List out all the products
+        public List<ProductModel> GetAllProducts(int id); // List out all the products
 
         public Task<ProductModel> AddProducts(ProductModel newProduct); // Add new products to store
 

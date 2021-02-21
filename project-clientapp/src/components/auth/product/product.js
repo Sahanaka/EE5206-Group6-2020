@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, Redirect } from "react-router-dom";
 import {
   Card,
   CardMedia,
@@ -9,10 +10,10 @@ import {
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { AddShoppingCart } from "@material-ui/icons";
-import useStyles from "./styles";
+import myStyles from "./styles";
 
 const product = ({ product }) => {
-  const classes = useStyles();
+  const classes = myStyles();
 
   return (
     <Card className={classes.root}>
@@ -28,16 +29,19 @@ const product = ({ product }) => {
           </Typography>
           <br />
           <Typography variant="5" gutterBottom>
-            {product.Address}
+            {product.address}
           </Typography>
         </div>
         <Typography variant="h6" color="textSecondary">
-          {product.Category}
+          {product.cetogory}
+        </Typography>
+        <Typography variant="h6" color="textSecondary">
+          {product.contatctNo}
         </Typography>
       </CardContent>
 
       <Button className="container" color="secondary">
-        Select
+        <Link to="/Items">Select</Link>
       </Button>
 
       {/* <CardActions disableSpacing className={classes.CardActions}>

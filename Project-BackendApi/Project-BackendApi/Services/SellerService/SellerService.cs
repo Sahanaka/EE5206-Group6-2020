@@ -17,9 +17,9 @@ namespace Project_BackendApi.Services.SellerService
             _db = db;
         }
 
-        public List<ProductModel> GetAllProducts()
+        public List<ProductModel> GetAllProducts(int id)
         {
-            return _db.ProductModels.ToList();
+            return _db.ProductModels.Where(product => product.ShopProductId == id).ToList();
         }
 
         public async Task<ProductModel> AddProducts(ProductModel newProduct)
