@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Project_BackendApi.Models
 {
@@ -36,6 +38,12 @@ namespace Project_BackendApi.Models
         [Compare("Password", ErrorMessage = "Both Password fields must match.")]
         [DataType(DataType.Password)]
         public string ReTypePassword { get; set; }
+
+        [NotMapped]
+        public IFormFile ImageData { get; set; } 
+
+        [NotMapped]
+        public String ImageSource { get; set; } 
 
         [Required(ErrorMessage = "Please Enter at least one Cetogory")]
         public string Cetogory { get; set; }
