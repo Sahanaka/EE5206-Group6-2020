@@ -34,7 +34,8 @@ function App() {
             <Route exact path="/Register" component={Register} />
             <Route exact path="/orderAcccept" component={OrderAccept} /> 
            <Route exact path="/sellerMain" component={SellerMain} /> 
-           <Route exact path="/OrderList" component={OrderList} />
+           <Route exact path="/OrderList" component={OrderList} /> {/* still not complete*/}
+           
           </Switch>
           <Footer />
         </Fragment>
