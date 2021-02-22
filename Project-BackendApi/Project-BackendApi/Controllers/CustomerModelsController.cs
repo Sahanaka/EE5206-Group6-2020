@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Project_BackendApi.DATA;
 using Project_BackendApi.Models;
+using Project_BackendApi.Services.CustomerService;
+using Project_BackendApi.Services.ImageService;
 
 namespace Project_BackendApi.Controllers
 {
@@ -14,41 +18,62 @@ namespace Project_BackendApi.Controllers
     [ApiController]
     public class CustomerModelsController : ControllerBase
     {
-        private readonly MarketplaceDB _context;
+        
 
-        public CustomerModelsController(MarketplaceDB context)
+        private ICustomerService _customerService;
+        private readonly MarketplaceDB _context;
+        private IImageService _iimageService;
+
+
+        public CustomerModelsController(ICustomerService customerService, MarketplaceDB context, IImageService imageService )
         {
             _context = context;
+            _customerService = customerService;
+            _iimageService = imageService;
         }
 
+        //all products
         // GET: api/CustomerModels
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<CustomerModel>>> GetCustomerModels()
+        [HttpGet("products")]
+        public List<ProductModel> GetAllProducts()
         {
-            return await _context.CustomerModels.ToListAsync();
-        }
-
-        [Route("category/{Cetogory}")]
-        [HttpGet()]
-        public async Task<ActionResult<IEnumerable<SellerModel>>> GetSellerModels(string Cetogory)
-        
-        {
-
-            if (Cetogory == null)
-            {
-                return await _context.SellerModels.ToListAsync();
-            }
-
-            else
-            {
-                return _context.SellerModels.Where(m => m.Cetogory.ToLower() == Cetogory.ToLower()).ToList();
-            }
             
+            return _customerService.GetAllProducts();
+        }
+
+        //all shops
+        [HttpGet("shops")]
+        public List<SellerModel> GetAllShpos()
+        {
+
+            return _customerService.GetAllShpos();
+        }
+
+        //shops filter by category
+        [Route("category/{category}")]
+        [HttpGet()]
+        public List<SellerModel>  GetSellerModels(string category)
+        {
+            try
+            { return _customerService.GetByCetogory(category);}
+
+            catch (Exception error) {throw error;}
+        }
+
+        [HttpPost("Order")]
+        public ActionResult Calculation([FromBody] ProductModel OrderProduct)
+        {
+            var price = OrderProduct.Price;
+            var quntity = OrderProduct.Quantity;
+            var dicount = OrderProduct.Discount;
+            var subTotal =  _customerService.Calculate(price, quntity, dicount);
+            return Ok("YOur Total amount is =  "+subTotal+ " LKR ");
         }
 
 
+        [HttpPost("UploadFile")]
 
-
+        
         // GET: api/CustomerModels/5
         [HttpGet("{id}")]
         public async Task<ActionResult<CustomerModel>> GetCustomerModel(int id)
@@ -74,6 +99,11 @@ namespace Project_BackendApi.Controllers
                 return BadRequest();
             }
 
+            if(customerModel.ImageData != null)
+            {
+                _iimageService.DeleteImage(customerModel.CustomerImage);
+                customerModel.CustomerImage = await _iimageService.SaveImage(customerModel.ImageData);
+            }
             _context.Entry(customerModel).State = EntityState.Modified;
 
             try
@@ -99,12 +129,12 @@ namespace Project_BackendApi.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<CustomerModel>> PostCustomerModel(CustomerModel customerModel)
+        public async Task<ActionResult<CustomerModel>> PostCustomerModel([FromForm] CustomerModel customerModel)
         {
+            customerModel.CustomerImage = await _iimageService.SaveImage(customerModel.ImageData);
             _context.CustomerModels.Add(customerModel);
             await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetCustomerModel", new { id = customerModel.CustomerId }, customerModel);
+            return StatusCode(201);
         }
 
         // DELETE: api/CustomerModels/5
@@ -116,7 +146,7 @@ namespace Project_BackendApi.Controllers
             {
                 return NotFound();
             }
-
+            _iimageService.DeleteImage(customerModel.CustomerImage);
             _context.CustomerModels.Remove(customerModel);
             await _context.SaveChangesAsync();
 
@@ -127,5 +157,6 @@ namespace Project_BackendApi.Controllers
         {
             return _context.CustomerModels.Any(e => e.CustomerId == id);
         }
+
     }
 }

@@ -19,5 +19,9 @@
     <PackageReference Include="SendGrid" Version="9.22.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+
 
 </Project>

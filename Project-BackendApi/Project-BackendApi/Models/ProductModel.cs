@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 namespace Project_BackendApi.Models
 {
@@ -34,6 +36,11 @@ namespace Project_BackendApi.Models
         public int Quantity { get; set; }
 
 
+        [NotMapped]
+        public IFormFile ImageData { get; set; }
+
+        [NotMapped]
+        public String ImageSource { get; set; }
         public int ShopProductId { get; set; }
 
         public int CategoryProductId { get; set; }
