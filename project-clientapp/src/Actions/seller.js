@@ -6,9 +6,9 @@ import {
     PRODUCTS_ERROR
   } from "./types";
 
-export const getAllProducts = sellerId => async dispatch => {
+export const getAllProducts = () => async dispatch => {
     try {
-        const res = await axios.get(`https://localhost:5001/api/seller/${sellerId}`);
+        const res = await axios.get(`https://localhost:5001/api/seller/`);
 
         dispatch({
             type: GET_PRODUCTS,
