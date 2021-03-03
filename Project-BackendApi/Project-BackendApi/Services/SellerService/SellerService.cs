@@ -89,7 +89,7 @@ namespace Project_BackendApi.Services.SellerService
             }
             catch (Exception ex) { throw ex; }
         }
-
+       
         public async Task ProcessOrder(OrderDetailsModel order)
         {
             // This method process the order and accepts it or declines it. Also special discounts and other rates are processed here

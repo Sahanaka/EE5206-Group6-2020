@@ -1,32 +1,34 @@
 import React, { Fragment, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import "./style/Button.css";
-import { login } from '../../Actions/auth';
+import { login } from "../../Actions/auth";
 
-const Login = ({ login, isAuthenticated }) => {
-  const [formData, setFromData] = useState(
-      {
-          email: '',
-          password: '',
-      }
-  );
+const Login = ({ login, isAuthenticated, user }) => {
+  const [formData, setFromData] = useState({
+    email: "",
+    password: "",
+  });
 
   const { email, password } = formData;
 
-  const onChange = e => setFromData({ ...formData, [e.target.name]: e.target.value })
+  const onChange = (e) =>
+    setFromData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
-    login(email, password)
-    
-};
+    login(email, password);
+  };
 
-if (isAuthenticated)
-        return <Redirect to='/store' />
+  if (isAuthenticated) {
+    if (user.role === "Customer")
+      return <Redirect to="/store" />;
+    else
+      console.log(user.role);
+  }
 
   return (
     <Fragment>
@@ -35,7 +37,7 @@ if (isAuthenticated)
         <p className="lead">
           <i className="fas fa-user" /> Sign Into Your Account
         </p>
-        <form className="form"  onSubmit={e => onSubmit(e)}>
+        <form className="form" onSubmit={(e) => onSubmit(e)}>
           <div className="form-group">
             <div className="form-group">
               <small className="form-text"> Name or Email</small>
@@ -44,7 +46,7 @@ if (isAuthenticated)
                 placeholder="Email"
                 name="email"
                 value={email}
-                onChange={e => onChange(e)}
+                onChange={(e) => onChange(e)}
               />
             </div>
           </div>
@@ -55,7 +57,7 @@ if (isAuthenticated)
               placeholder="Password"
               name="password"
               value={password}
-              onChange={e => onChange(e)}
+              onChange={(e) => onChange(e)}
               minLength="6"
             />
           </div>
@@ -71,11 +73,13 @@ if (isAuthenticated)
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user,
 });
 
 export default connect(mapStateToProps, { login })(Login);

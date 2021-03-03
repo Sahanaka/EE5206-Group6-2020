@@ -21,7 +21,7 @@ import Alert from './components/layout/Alert';
 
 function App() {
   return (
-   <Provider store={store}>
+    <Provider store={store}>
       <Router>
         <Fragment>
           <Navbar />
