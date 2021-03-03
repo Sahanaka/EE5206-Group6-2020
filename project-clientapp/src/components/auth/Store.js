@@ -107,86 +107,41 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-class Store extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      shops: [],
-    };
-  }
-
-  async componentDidMount() {
-    const res = await getShops("retail");
-    this.setState({ shops: res });
-  }
-
-  render() {
-    const { shops } = this.state;
-
-    return (
-      <div className="App">
-        <Grid>
-          <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
-            <Avatar className="cent" alt="Remy Sharp" src={ava} />
-            <Box>Hi User</Box>
-          </Box>
-        </Grid>
-        <Container maxWidth="lg">
-          <Typography variant="h4">Store</Typography>
-          <div className="container-fluid mb-3">
-            <div className="row">
-              <div className="col-md-3">
-                <FilterCategory />
-                {/* <CardServices /> */}
-              </div>
+const Store = () => {
+  return (
+    <div className="App">
+      <Grid>
+        <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
+          <Avatar className="cent" alt="Remy Sharp" src={ava} />
+          <Box>Hi User</Box>
+        </Box>
+      </Grid>
+      <Container maxWidth="lg">
+        <Typography variant="h4">Store</Typography>
+        <div className="container-fluid mb-3">
+          <div className="row">
+            <div className="col-md-3">
+              <FilterCategory />
+              {/* <CardServices /> */}
             </div>
-            <div className="row g-3">
-              <div className="col-md-4">
-                <span className="align-middle "></span>
-              </div>
-              <div className="card-list">
-                <div className="container">
-                  <h1 className="page-title">Shops</h1>
-
-                  <div className="row">
-                    {shops.map((rental) => {
-                      return (
-                        <div key={rental.sellerId} className="col-md-3">
-                          <div className="card bwm-card">
-                            {/* <img 
-                                        className="card-img-top" 
-                                        src={rental.image}
-                                        alt={rental.title} /> */}
-                            <div className="card-body">
-                              <h6 className="card-subtitle mb-0 text-muted">
-                                {rental.shared}Category: {rental.cetogory}
-                                Address:
-                                {rental.address}
-                              </h6>
-                              <h5 className="card-title big-font">
-                                Name:{rental.name}
-                              </h5>
-                              <p className="card-text">
-                                Contact No: {rental.contatctNo}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
+          </div>
+          <div className="row g-3">
+            <div className="col-md-4">
+              <span className="align-middle "></span>
+            </div>
+            <div className="card-list">
+              <div className="container">
+                <h1 className="page-title">Shops</h1>
               </div>
             </div>
           </div>
-          <div className=" col-mb-20 container">
-            <Products1 />
-          </div>
-        </Container>
-      </div>
-    );
-  }
+        </div>
+        <div className=" col-mb-20 container">
+          <Products1 />
+        </div>
+      </Container>
+    </div>
+  );
 }
 
 export default Store;

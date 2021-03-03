@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
@@ -9,12 +9,12 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import useStyles from "./style";
+import myStyles from "./style";
 
-const item = ({ item }) => {
-  const classes = useStyles();
+const Item = ({ item }) => {
+  const classes = myStyles();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -31,7 +31,7 @@ const item = ({ item }) => {
           <Avatar src={item.image} />
         </ListItemAvatar>
         <ListItemText
-          primary={item.name}
+          primary={item.title}
           secondary={
             <React.Fragment>
               <Typography
@@ -41,12 +41,12 @@ const item = ({ item }) => {
                 color="textPrimary"
               >
                 AvailabeAmount:
-                {item.AvailabeAmount}
+                {item.availabeAmount}
               </Typography>
               <br />
-              Price:{item.Price}
+              Price:{item.price}
               <br />
-              Discount:{item.Discount}
+              Discount:{item.discount}
               <div>
                 <Button
                   aria-controls="simple-menu"
@@ -75,4 +75,4 @@ const item = ({ item }) => {
   );
 };
 
-export default item;
+export default Item;

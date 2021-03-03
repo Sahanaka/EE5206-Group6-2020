@@ -1,14 +1,28 @@
 import axios from 'axios';
 
+import { setAlert } from './alert';
+import {
+    GET_PRODUCTS,
+    PRODUCTS_ERROR
+  } from "./types";
+
 export const getAllProducts = () => async dispatch => {
     try {
-        await axios.get('"https://localhost:5001/api/seller');
+        const res = await axios.get(`https://localhost:5001/api/seller/`);
 
-        dispatch(setAlert("Successfully loaded products", "success"));
+        dispatch({
+            type: GET_PRODUCTS,
+            payload: res.data
+        });
+        return res.data;
         
 
     } catch (error) {
-        dispatch(setAlert("You don't have any products to sell!", "danger"));
+        setAlert("No products to sell", "warning");
+        dispatch({
+            type: PRODUCTS_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        });
         
     }
 };
@@ -17,7 +31,7 @@ export const addNewProduct = () => async dispatch => {
     try {
         const res = await axios.post('"https://localhost:5001/api/seller');
     } catch (error) {
-        dispatch(setAlert("Something went wrong!", "danger"));
+       // dispatch(setAlert("Something went wrong!", "danger"));
     }
 };
 
