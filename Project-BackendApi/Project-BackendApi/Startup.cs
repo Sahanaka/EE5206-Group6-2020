@@ -21,6 +21,10 @@ using Project_BackendApi.DATA;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Project_BackendApi.Services.SellerService;
+using Project_BackendApi.Services.CustomerService;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Project_BackendApi.Services.ImageService;
 
 namespace Project_BackendApi
 {
@@ -36,6 +40,7 @@ namespace Project_BackendApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddControllers();
 
             services.AddScoped<IJWTService, JWTService>();
@@ -80,7 +85,11 @@ namespace Project_BackendApi
             services.AddTransient<IMailService, MailService>();
 
             services.AddScoped<ISellerService, SellerService>();
-                
+            
+            services.AddScoped<ICustomerService, CustomerService>();
+
+            services.AddScoped<IImageService, ImageService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -90,6 +99,14 @@ namespace Project_BackendApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Images")),
+                RequestPath = "/Images"
+            });
 
             app.UseCors(Options =>
             Options.WithOrigins("http://localhost:3000")

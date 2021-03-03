@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Project_BackendApi.DATA;
 using Project_BackendApi.Models;
+using Project_BackendApi.Services.ImageService;
 using Project_BackendApi.Services.JWTService;
 using Project_BackendApi.Services.MailService;
 
@@ -23,14 +24,17 @@ namespace Project_BackendApi.Controllers
         private readonly IConfiguration _config; // To read from the config file
         private IJWTService _jwtService;
         private IMailService _mailService;
-        
+        private IImageService _iimageService;
 
-        public LogSignUpController(IConfiguration config, IJWTService jwtservice, MarketplaceDB db, IMailService mailService)
+
+        public LogSignUpController(IConfiguration config, IJWTService jwtservice, MarketplaceDB db, IMailService mailService, IImageService imageService)
         {
             _config = config;
             _jwtService = jwtservice;
             _db = db;
             _mailService = mailService;
+            _iimageService = imageService;
+
         }
 
         [HttpGet]
@@ -42,7 +46,7 @@ namespace Project_BackendApi.Controllers
 
         // POST api/<LogSignUpController>
         [HttpPost("signup/customer")]
-        public async Task<IActionResult> CustomerPost(CustomerModel newcustomer)
+        public async Task<IActionResult> CustomerPost([FromForm] CustomerModel newcustomer)
         {
             // CustomerModelDB.Add(newcustomer);
             var customerWithSameEmail = _db.CustomerModels.FirstOrDefault(m => m.Email.ToLower() == newcustomer.Email.ToLower()); //check email already exit or not
@@ -50,6 +54,7 @@ namespace Project_BackendApi.Controllers
 
             if (customerWithSameEmail == null)
             {
+                newcustomer.CustomerImage = await _iimageService.SaveImage(newcustomer.ImageData);
                 _db.CustomerModels.Add(newcustomer);
                 _db.SaveChanges();
 
@@ -81,7 +86,7 @@ namespace Project_BackendApi.Controllers
 
 
         [HttpPost("signup/seller")]
-        public async Task<IActionResult> SellersPost(SellerModel newseller)
+        public async Task<IActionResult> SellersPost([FromForm] SellerModel newseller)
         {
             // CustomerModelDB.Add(newcustomer);
             var SellerWithSameEmail = _db.SellerModels.FirstOrDefault(m => m.Email.ToLower() == newseller.Email.ToLower()); //check email already exit or not
@@ -89,6 +94,7 @@ namespace Project_BackendApi.Controllers
 
             if (SellerWithSameEmail == null)
             {
+                newseller.ShopImage = await _iimageService.SaveImage(newseller.ImageData);
                 _db.SellerModels.Add(newseller);
                 _db.SaveChanges();
 

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-
+using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Project_BackendApi.Models
 {
@@ -25,7 +26,13 @@ namespace Project_BackendApi.Models
         [Required(ErrorMessage = "Please Enter Contact Number")]
         public string Contatct_No { get; set; }
 
-        public string CustomerImage { get; set; }
+        public string CustomerImage { get; set; } 
+
+        [NotMapped]
+        public IFormFile ImageData { get; set; } 
+
+        [NotMapped]
+        public String ImageSource { get; set; } 
 
         [Required(ErrorMessage = "Please Enter password")]
         [DataType(DataType.Password)]
