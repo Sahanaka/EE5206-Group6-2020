@@ -148,40 +148,12 @@ class Store extends Component {
               <div className="card-list">
                 <div className="container">
                   <h1 className="page-title">Shops</h1>
-
-                  <div className="row">
-                    {shops.map((rental) => {
-                      return (
-                        <div key={rental.sellerId} className="col-md-3">
-                          <div className="card bwm-card">
-                            {/* <img 
-                                        className="card-img-top" 
-                                        src={rental.image}
-                                        alt={rental.title} /> */}
-                            <div className="card-body">
-                              <h6 className="card-subtitle mb-0 text-muted">
-                                {rental.shared}Category: {rental.cetogory}
-                                Address:
-                                {rental.address}
-                              </h6>
-                              <h5 className="card-title big-font">
-                                Name:{rental.name}
-                              </h5>
-                              <p className="card-text">
-                                Contact No: {rental.contatctNo}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div className=" col-mb-20 container">
-            <Products1 />
+            {/* <Products1 /> */}
           </div>
         </Container>
       </div>

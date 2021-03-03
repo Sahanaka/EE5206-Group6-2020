@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Grid } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Product from "./product";
@@ -22,13 +24,14 @@ const products = [
   },
 ];
 
-const Products = () => {
-  const [shops, setShops] = useState();
+const Products = ({ getShops, shops: { shops, loading } }) => {
+  //const [shops, setShops] = useState();
   useEffect(async () => {
-    const res = await getShops("retail");
-    setShops(res);
-  }, []);
-  console.log('shops', shops);
+    getShops("oto");
+    //setShops(res);
+  }, [getShops]);
+  //console.log('shops', shops);
+  //const { dispShops } = shops;
   return (
     <main>
       <br />
@@ -44,4 +47,13 @@ const Products = () => {
   );
 };
 
-export default Products;
+Products.propTypes = {
+  getShops: PropTypes.func.isRequired,
+  shops: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+  shops: state.shops
+});
+
+export default connect(mapStateToProps, { getShops })(Products);
