@@ -9,9 +9,13 @@ namespace Project_BackendApi.Services.SellerService
 {
     public interface ISellerService
     {
-        public List<ProductModel> GetAllProducts(); // List out all the products
+        // service widiyta plwn nam hadanna. man nikanma controller eke method tikata call kare.
 
-        public Task<ProductModel> AddProducts(ProductModel newProduct); // Add new products to store
+
+
+        //public ActionResult<IEnumerable<ProductModel>> GetAllProducts(); // List out all the products
+
+        public Task<ActionResult<ProductModel>> AddProducts([FromBody] ProductModel newProduct); // Add new products to store
 
         public Task<ProductModel> UpdateProduts(ProductModel updatedProduct); // Update existing products : price changes, quantity changes etc
 

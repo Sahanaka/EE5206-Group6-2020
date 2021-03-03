@@ -1,39 +1,70 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Project_BackendApi.DATA;
 using Project_BackendApi.Models;
+using Project_BackendApi.Services.ImageService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Ubiety.Dns.Core;
+
+
+
+
 
 namespace Project_BackendApi.Services.SellerService
 {
     public class SellerService : ISellerService
     {
         private readonly MarketplaceDB _db;
+        private IImageService _iimageService;
 
-        public SellerService(MarketplaceDB db)
+        public SellerService(MarketplaceDB db, IImageService imageService)
         {
             _db = db;
+            _iimageService = imageService;
         }
 
-        public List<ProductModel> GetAllProducts()
-        {
-            return _db.ProductModels.ToList();
-        }
+        //ActionResult<IEnumerable<ProductModel>> GetAllProducts()
+        //{
+        //    return _db.ProductModels
+        //        .Select(x=>new ProductModel() {
+        //            ProductId = x.ProductId,
+        //            Title = x.Title,
+        //            Price = x.Price,
+        //            AvailabeAmount = x.AvailabeAmount,
+        //            Image = x.Image,
+        //            Discount = x.Discount,
+        //            Size = x.Size,
+        //            Quantity = x.Quantity,
+        //            ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.Image),
 
-        public async Task<ProductModel> AddProducts(ProductModel newProduct)
+
+        //        })
+        //        .ToList();
+        //}
+
+
+
+        public async Task<ActionResult<ProductModel>> AddProducts([FromBody] ProductModel newProduct)
         {
             try
             {
+                Console.WriteLine("dddddddddddddddddddd");
+                newProduct.Image = await _iimageService.SaveImage(newProduct.ImageData);
                 _db.ProductModels.Add(newProduct);
                 await _db.SaveChangesAsync();
                 return newProduct;
             }
-            catch (Exception ex) { throw ex;  }
+            catch (Exception ex) {
+                Console.WriteLine("dddddddddddddddddddd");
+
+                throw ex;  
+            }
         }
 
-        public async Task<ProductModel> UpdateProduts(ProductModel updatedproduct)
+        public async Task<ProductModel> UpdateProduts( ProductModel updatedproduct)
         {
             try
             {
@@ -75,5 +106,7 @@ namespace Project_BackendApi.Services.SellerService
             // Has to be researched and then implement
 
         }
+
+        
     }
 }

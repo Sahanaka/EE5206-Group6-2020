@@ -29,7 +29,7 @@ namespace Project_BackendApi.Controllers
         {
             _context = context;
             _customerService = customerService;
-            _iimageService = imageService;
+           _iimageService = imageService; 
         }
 
         //all products

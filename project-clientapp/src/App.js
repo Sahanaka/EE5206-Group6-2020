@@ -16,7 +16,7 @@ import Register from "./components/auth/Register";
 import OrderAccept from "./components/Seller/OrderAccept";
 import SellerMain from "./components/Seller/SellerMain";
 import OrderList from "./components/Seller/OrderList";
-
+import ProductList from "./components/Seller/ProductList";
 import Alert from './components/layout/Alert';
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
             <Route exact path="/orderAcccept" component={OrderAccept} /> 
            <Route exact path="/sellerMain" component={SellerMain} /> 
            <Route exact path="/OrderList" component={OrderList} /> {/* still not complete*/}
-           
+           <Route exact path="/ProductList" component={ProductList} />
           </Switch>
           <Footer />
         </Fragment>
