@@ -35,8 +35,7 @@ function App() {
             <Route exact path="/Register" component={Register} />
             <Route exact path="/orderAcccept" component={OrderAccept} />
             <Route exact path="/sellerMain" component={SellerMain} />
-            <Route exact path="/OrderList" component={OrderList} />{" "}
-            {/* still not complete*/}
+            <Route exact path="/OrderList" component={OrderList} /> {/* still not complete*/}
             <Route exact path="/ProductList" component={ProductList} />
             <Route exact path="/Items" component={Items} />
           </Switch>

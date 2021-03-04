@@ -26,6 +26,8 @@ const Login = ({ login, isAuthenticated, user }) => {
   if (isAuthenticated) {
     if (user.role === "Customer")
       return <Redirect to="/store" />;
+    else if (user.role == "Seller")
+      return <Redirect to="/sellerMain" />
     else
       console.log(user.role);
   }

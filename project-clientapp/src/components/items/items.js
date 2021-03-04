@@ -40,12 +40,9 @@ const item = [
 
 const Items = ({ getAllProducts, products: { products, loading } }) => {
   const classes = useStyles();
-  //const [products, setProducts] = useState();
   useEffect(async () => {
     getAllProducts(1);
-    //setProducts(res);
   }, [getAllProducts]);
-  console.log("pro", products.map(item => console.log(item)))
   return (
     <main>
       <h2 className="">Shop_name</h2>
