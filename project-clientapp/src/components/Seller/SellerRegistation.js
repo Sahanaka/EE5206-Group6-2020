@@ -34,7 +34,7 @@ const Register = ({ setAlert, registerSeller }) => {
 
     if (password !== rePassword) setAlert("Passwords do not match", "danger");
     else
-      registerCustomer(
+      registerSeller(
         name,
         email,
         address,
