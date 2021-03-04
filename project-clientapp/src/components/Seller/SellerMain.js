@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const OrderList = () => {
+const SellerMain = () => {
   return (
     <div>
       {/* Required meta tags */}
@@ -377,4 +377,4 @@ const OrderList = () => {
   );
 };
 
-export default OrderList;
+export default SellerMain;
