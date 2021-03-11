@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import Item from "./itemGrid";
 import { Grid } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
-import { getAllProducts } from '../../Actions/seller';
+import { getAllProducts } from "../../Actions/seller";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,7 +51,7 @@ const Items = ({ getAllProducts, products: { products, loading } }) => {
       </form>
       <br />
       <Card spacing={10}>
-        {products.map((item) => (
+        {Items.map((item) => (
           <Card item key={item.productId} md={20}>
             <Item item={item} />
             <br />
@@ -67,8 +67,8 @@ Items.propTypes = {
   products: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  products: state.products
+const mapStateToProps = (state) => ({
+  products: state.products,
 });
 
 export default connect(mapStateToProps, { getAllProducts })(Items);
