@@ -41,7 +41,12 @@ const product = ({ product }) => {
       </CardContent>
 
       <Button className="container" color="secondary">
-        <Link to="/Items">Select</Link>
+        <Link to={{
+          pathname: "/Items",
+          state: {
+            name: "Hello world"
+          }
+        }}>Select</Link>
       </Button>
 
       {/* <CardActions disableSpacing className={classes.CardActions}>
