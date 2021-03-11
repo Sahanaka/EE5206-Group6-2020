@@ -19,6 +19,7 @@ import OrderList from "./components/Seller/OrderList";
 import ProductList from "./components/Seller/ProductList";
 import Alert from "./components/layout/Alert";
 import Items from "./components/items/items";
+import itemlist from "./components/buyercart/itemlist";
 
 function App() {
   return (
@@ -35,9 +36,11 @@ function App() {
             <Route exact path="/Register" component={Register} />
             <Route exact path="/orderAcccept" component={OrderAccept} />
             <Route exact path="/sellerMain" component={SellerMain} />
-            <Route exact path="/OrderList" component={OrderList} /> {/* still not complete*/}
+            <Route exact path="/OrderList" component={OrderList} />{" "}
+            {/* still not complete*/}
             <Route exact path="/ProductList" component={ProductList} />
             <Route exact path="/Items" component={Items} />
+            <Route exact path="/itemlist" component={itemlist} />
           </Switch>
           <Footer />
         </Fragment>
