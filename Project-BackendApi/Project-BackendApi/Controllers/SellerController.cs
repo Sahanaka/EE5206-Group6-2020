@@ -31,7 +31,7 @@ namespace Project_BackendApi.Controllers
         }
 
         [HttpGet]
-        // [Authorize(Policy = Policies.Seller)] - Uncomment later (Very Important)
+        //[Authorize] //- Uncomment later (Very Important)
         public async Task<ActionResult<IEnumerable<ProductModel>>> GetAllProducts()
         {
             return await _db.ProductModels
@@ -51,7 +51,7 @@ namespace Project_BackendApi.Controllers
         }
 
         [HttpPost]
-       // [Authorize(Policy = Policies.Seller)]
+        //[Authorize(Policy = Policies.Seller)]
         public async Task<ActionResult> AddNewProduct([FromForm] ProductModel newProduct)
         {
            

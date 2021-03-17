@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -19,26 +19,57 @@ const useStyles = makeStyles({
 
 export default function Product(props) {
   const classes = useStyles();
-  const { product, onAdd } = props;
+  const { onAdd } = props;
+  const [product, setProduct] = useState([]);
+
+  const productArray = [];
+  useEffect(() => {
+    setProduct(props.product)
+    productArray.push(props)
+  });
+  
+
+  const showRecordDetails = (data) => {
+   // setRecordForEdit(data);
+   console.log("products")
+  };
+ 
+  const imageCard = (data) => (
+    <div
+      className="card"
+      onClick={() => {
+        showRecordDetails(data);
+      }}
+    >
+      <img src={data.imageSource} className="card-img-top rounded-circle" />
+      <div className="card-body">
+        <h5 style={{ fontWeight: "bold" }}>{data.title}</h5>
+        <span>LKR : {data.price}.00/=</span> <br />
+        <span>Quantity : {data.quantity} </span> <br />
+        <span>Availabe Amount : {data.availabeAmount}</span> <br />
+        <span>Size : {data.size}</span> <br />
+        <span>Discount : {data.discount}</span> <br />
+        <button
+          className="btn btn-light delete-button"
+          onClick={console.log("clicked")}
+        >
+          <i className="far fa-trash-alt"></i>
+        </button>
+      </div>
+    </div>
+  );
+    console.log("prodcuts to dis", productArray.length)
   return (
-    // <div>
-    //   <img className="Avatar " src={product.image} alt={product.name} />
-    //   <h3>{product.name}</h3>
-    //   <div>${product.price}</div>
-    //   <div>
-    //     <button onClick={() => onAdd(product)}>Add To Cart</button>
-    //   </div>
-    // </div>
-    <Card className={classes.root}>
+   <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
           image={product.image}
-          title={product.name}
+          title={product.title}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {product.name}
+            {product.title}
             <br />
             Rs:{product.price}
           </Typography>
