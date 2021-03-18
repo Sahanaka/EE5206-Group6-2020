@@ -38,11 +38,12 @@ const item = [
   },
 ];
 
-const Items = ({ getAllProducts, products: { products, loading } }) => {
+const Items = ({ getAllProducts, products: { products, loading }, passed }) => {
   const classes = useStyles();
   useEffect(async () => {
     getAllProducts(1);
   }, [getAllProducts]);
+  console.log("padd", passed)
   return (
     <main>
       <h2 className="">Shop_name</h2>
@@ -51,7 +52,7 @@ const Items = ({ getAllProducts, products: { products, loading } }) => {
       </form>
       <br />
       <Card spacing={10}>
-        {Items.map((item) => (
+        {products.map((item) => (
           <Card item key={item.productId} md={20}>
             <Item item={item} />
             <br />
@@ -65,10 +66,12 @@ const Items = ({ getAllProducts, products: { products, loading } }) => {
 Items.propTypes = {
   getAllProducts: PropTypes.func.isRequired,
   products: PropTypes.object.isRequired,
+  passed: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
   products: state.products,
+  passed: ownProps.location.state
 });
 
 export default connect(mapStateToProps, { getAllProducts })(Items);

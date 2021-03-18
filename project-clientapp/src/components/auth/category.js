@@ -14,10 +14,10 @@ const FilterCategory = (props) => {
           </Link> */}
         </li>
         <li className="list-group-item">
-          {/* <Link to="/" className="text-decoration-none stretched-link">
+          <Link to="/sellerMain" className="text-decoration-none stretched-link">
             Leather Bag
-          </Link> */}
-          Food Shops
+          </Link>
+          
         </li>
         <li className="list-group-item">
           {/* <Link to="/" className="text-decoration-none stretched-link">

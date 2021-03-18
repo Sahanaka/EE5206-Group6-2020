@@ -43,6 +43,13 @@ namespace Project_BackendApi
             
             services.AddControllers();
 
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequiredLength = 5;
+            }).AddEntityFrameworkStores<MarketplaceDB>();
+
             services.AddScoped<IJWTService, JWTService>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -75,12 +82,7 @@ namespace Project_BackendApi
                 options => options.UseSqlServer(Configuration.GetConnectionString("MarketPlaceDatabase"))
             );
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
-            {
-                options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = true;
-                options.Password.RequiredLength = 5;
-            }).AddEntityFrameworkStores<MarketplaceDB>();
+           
 
             services.AddTransient<IMailService, MailService>();
 
@@ -116,6 +118,8 @@ namespace Project_BackendApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
