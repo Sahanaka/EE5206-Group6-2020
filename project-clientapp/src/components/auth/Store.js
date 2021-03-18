@@ -142,6 +142,6 @@ const Store = () => {
       </Container>
     </div>
   );
-}
+};
 
 export default Store;

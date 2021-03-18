@@ -2,9 +2,11 @@ import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import "./style/Register.css";
 
 import { setAlert } from "../../Actions/alert";
 import { registerCustomer } from "../../Actions/auth";
+import "w3-css/w3.css";
 
 const Register = ({ setAlert, registerCustomer }) => {
   const [formData, setFromData] = useState({
@@ -29,83 +31,86 @@ const Register = ({ setAlert, registerCustomer }) => {
   };
 
   return (
-    <Fragment>
-      <section className="container">
-        <h1 className="large text-primary">Sign Up</h1>
-        <p className="lead">
-          <i className="fas fa-user" /> Create Your Account
-        </p>
-        <form className="form" onSubmit={(e) => onSubmit(e)}>
-          <div className="form-group">
-            <small className="form-text"> Name</small>
-            <input
-              type="text"
-              placeholder="Name"
-              name="name"
-              value={name}
-              onChange={(e) => onChange(e)}
-            />
-          </div>
-          <div className="form-group">
-            <small className="form-text"> Address</small>
-            <input
-              type="text"
-              placeholder="Address"
-              name="address"
-              value={address}
-              onChange={(e) => onChange(e)}
-            />
-            <small className="form-text"></small>
-          </div>
-          <div className="form-group">
-            <small className="form-text"> Email</small>
-            <input
-              type="email"
-              placeholder="Email Address"
-              name="email"
-              value={email}
-              onChange={(e) => onChange(e)}
-            />
-            <small className="form-text"></small>
-          </div>
-          <div className="form-group">
-            <small className="form-text">Password</small>
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={password}
-              onChange={(e) => onChange(e)}
-            />
-          </div>
-          <div className="form-group">
-            <small className="form-text">Password</small>
-            <input
-              type="password"
-              placeholder="ReEnter Password"
-              name="rePassword"
-              value={rePassword}
-              onChange={(e) => onChange(e)}
-            />
-          </div>
-          <div className="form-group">
-            <small className="form-text"> Contact Number</small>
-            <input
-              type="number"
-              placeholder="Contact Number"
-              name="contactNo"
-              value={contactNo}
-              onChange={(e) => onChange(e)}
-            />
-          </div>
+    <div className="background">
+      <div className="text">
+        <div className="float">
+          <h1>Sign Up</h1>
+          <p>
+            <i /> Create Your Account
+          </p>
+          <p className="my-1 w3-animate-right">
+            Already have an account? <Link to="/login">Sign In</Link>
+          </p>
+        </div>
+      </div>
 
-          <input type="submit" className="btn btn-primary" value="Register" />
+      <div className="box">
+        <form className="w3-container squre " onSubmit={(e) => onSubmit(e)}>
+          {/* <small> Name</small> */}
+          <input
+            type="text"
+            className="fullname hight"
+            placeholder="Name"
+            name="name"
+            value={name}
+            onChange={(e) => onChange(e)}
+          />
+
+          {/* <small className="form-text"> Address</small> */}
+          <input
+            type="text"
+            placeholder="Address "
+            className="fullname hight"
+            name="address"
+            value={address}
+            onChange={(e) => onChange(e)}
+          />
+
+          {/* <small> Email</small> */}
+          <input
+            type="email"
+            placeholder="Email Address"
+            className="fullname hight"
+            name="email"
+            value={email}
+            onChange={(e) => onChange(e)}
+          />
+          {/* <small className="form-text"></small>
+
+          <small>Password</small> */}
+          <input
+            type="password"
+            placeholder="Password"
+            className="password"
+            name="password"
+            value={password}
+            onChange={(e) => onChange(e)}
+          />
+
+          {/* <small>Password</small> */}
+          <input
+            type="password"
+            placeholder="ReEnter Password"
+            className="password"
+            name="rePassword"
+            value={rePassword}
+            onChange={(e) => onChange(e)}
+          />
+
+          {/* <small> Contact Number</small> */}
+          <input
+            type="number"
+            placeholder="Contact Number"
+            name="contactNo"
+            value={contactNo}
+            onChange={(e) => onChange(e)}
+          />
+          <div className="btt">
+            <input type="submit" className="button" value="Register" />
+          </div>
         </form>
-        <p className="my-1">
-          Already have an account? <Link to="/login">Sign In</Link>
-        </p>
-      </section>
-    </Fragment>
+      </div>
+    </div>
   );
 };
 
