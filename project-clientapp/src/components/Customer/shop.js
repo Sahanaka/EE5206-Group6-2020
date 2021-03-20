@@ -1,9 +1,10 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { getShopById, getShopProducts } from "../../Actions/customer";
 import Spinner from "../layout/Spinner";
+import Basket from "../buyercart/Basket";
 
 const Shop = ({
   getShopById,
@@ -30,14 +31,47 @@ const Shop = ({
         <span>Size : {data.size}</span> <br />
         <span>Discount : {data.discount}</span> <br />
         <button
-          className="btn btn-light add-to-cart"
-          onClick={(e) => console.log("pressed")}
+          className="btn btn-light"
+          Add
+          to
+          Cart
+          onClick={() => onAdd(data)}
         >
-          <i className="far fa-trash-alt"></i>
+          <i className="fas fa-shopping-cart"></i>
         </button>
       </div>
     </div>
   );
+
+  const [cartItems, setCartItems] = useState([]);
+  const onAdd = (product) => {
+    const exist = cartItems.find((x) => x.productId === product.productId);
+    if (exist) {
+      setCartItems(
+        cartItems.map((x) =>
+          x.productId === product.productId
+            ? { ...exist, qty: exist.qty + 1 }
+            : x
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, qty: 1 }]);
+    }
+  };
+  const onRemove = (product) => {
+    const exist = cartItems.find((x) => x.productId === product.productId);
+    if (exist.qty === 1) {
+      setCartItems(cartItems.filter((x) => x.productId !== product.productId));
+    } else {
+      setCartItems(
+        cartItems.map((x) =>
+          x.productId === product.productId
+            ? { ...exist, qty: exist.qty - 1 }
+            : x
+        )
+      );
+    }
+  };
 
   return (
     <Fragment>
@@ -82,6 +116,13 @@ const Shop = ({
                 </tbody>
               </table>
             </div>
+          </div>
+          <div className="card">
+            <Basket
+              cartItems={cartItems}
+              onAdd={onAdd}
+              onRemove={onRemove}
+            ></Basket>
           </div>
         </Fragment>
       )}
