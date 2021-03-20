@@ -20,6 +20,8 @@ import ProductList from "./components/Seller/ProductList";
 import Alert from "./components/layout/Alert";
 import Items from "./components/items/items";
 import itemlist from "./components/buyercart/itemlist";
+import Shops from './components/Customer/Shops';
+import Shop from './components/Customer/shop';
 
 function App() {
   return (
@@ -41,6 +43,8 @@ function App() {
             <Route exact path="/ProductList" component={ProductList} />
             <Route exact path="/Items" component={Items} />
             <Route exact path="/itemlist" component={itemlist} />
+            <Route exact path="/shops" component={Shops} />
+            <Route exact path="/shop/:id" component={Shop} />
           </Switch>
           <Footer />
         </Fragment>

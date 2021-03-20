@@ -11,3 +11,5 @@ export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const PRODUCTS_ERROR = 'PRODUCTS_ERROR';
 export const GET_SELLERS = 'GET_SELLERS';
 export const SELLERS_ERROR = 'SELLERS_ERROR';
+export const GET_SELLER = 'GET_SELLER';
+export const CLEAR_SELLER = 'CLEAR_SELLER';

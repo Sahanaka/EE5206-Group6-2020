@@ -1,8 +1,8 @@
-import { GET_PRODUCTS, PRODUCTS_ERROR } from "../Actions/types";
+import { GET_SELLER, CLEAR_SELLER } from "../Actions/types";
 
 const initialState = {
-  products: [],
-  productLoading: true,
+  shop: null,
+  shopLoading: true,
   error: {},
 };
 
@@ -10,17 +10,17 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case GET_PRODUCTS:
+    case GET_SELLER:
       return {
         ...state,
-        products: payload,
-        productLoading: false,
+        shop: payload,
+        shopLoading: false,
       };
-    case PRODUCTS_ERROR:
+    case CLEAR_SELLER:
       return {
         ...state,
         error: payload,
-        productLoading: false,
+        shopLoading: false,
       };
     default:
       return state;
