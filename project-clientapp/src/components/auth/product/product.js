@@ -27,6 +27,9 @@ const product = ({ product }) => {
           <Typography variant="h3" gutterBottom>
             {product.name}
           </Typography>
+          {/* <Typography variant="h3" gutterBottom>
+            {product.sellerId}
+          </Typography> */}
           <br />
           <Typography variant="5" gutterBottom>
             {product.address}
@@ -40,17 +43,16 @@ const product = ({ product }) => {
         </Typography>
       </CardContent>
 
-      <Button color="secondary">
-        <Link
-          to={{
-            pathname: "/Items",
-            state: {
-              name: "Hello world",
-            },
-          }}
-        >
-          Select
-        </Link>
+      {/* <Button className="container" color="secondary">
+        <Link to={{
+          pathname: "/Items",
+          state: {
+            name: "Hello world"
+          }
+        }}>Select</Link>
+      </Button> */}
+      <Button className="container" color="secondary">
+        <Link to={`shop/${product.sellerId}`}>Select</Link>
       </Button>
 
       {/* <CardActions disableSpacing className={classes.CardActions}>

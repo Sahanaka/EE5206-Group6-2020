@@ -7,6 +7,7 @@ import "./style/product.css";
 import Product from "./product";
 
 import { getShops } from "../../../Actions/customer";
+import Spinner from "../../layout/Spinner";
 
 const Products = ({ getShops, shops: { shops, loading } }) => {
   useEffect(async () => {
@@ -16,9 +17,9 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
   return (
     <Fragment>
       {loading ? (
-        <div></div>
+        <Spinner />
       ) : (
-        <div>
+        <Fragment>
           <br />
           <Grid className="grid-container">
             {shops.map((product) => (
@@ -28,7 +29,7 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
               </Grid>
             ))}
           </Grid>
-        </div>
+        </Fragment>
       )}
     </Fragment>
   );
