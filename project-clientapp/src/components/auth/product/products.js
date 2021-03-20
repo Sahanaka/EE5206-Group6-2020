@@ -23,7 +23,7 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
           <br />
           <Grid className="grid-container">
             {shops.map((product) => (
-              <Grid item key={product.id} md={15}>
+              <Grid item key={product.id} md={13}>
                 <Product product={product} />
                 <br />
               </Grid>

@@ -51,7 +51,7 @@ const product = ({ product }) => {
           }
         }}>Select</Link>
       </Button> */}
-      <Button className="container" color="secondary">
+      <Button color="secondary">
         <Link to={`shop/${product.sellerId}`}>Select</Link>
       </Button>
 

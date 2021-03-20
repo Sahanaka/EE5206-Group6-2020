@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import { getShopById, getShopProducts } from "../../Actions/customer";
 import Spinner from "../layout/Spinner";
+import "./style/shop.css";
 
 const Shop = ({
   getShopById,
@@ -45,43 +46,36 @@ const Shop = ({
         <Spinner />
       ) : (
         <Fragment>
-          <div className="row">
-            <div className="col-md-12">
-              <div className="jumbotron jumbotron-fluid py-4">
-                <div className="container text-center">
-                  <h1 className="display-4">{shop.name}</h1>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-8">
-              <table>
-                <tbody>
-                  {
-                    //tr > 4 td
-                    [...Array(Math.ceil(products.length / 4))].map((e, i) => (
-                      <tr key={i}>
-                        <td>{imageCard(products[4 * i])}</td>
-                        <td>
-                          {products[4 * i + 1]
-                            ? imageCard(products[4 * i + 1])
-                            : null}
-                        </td>
-                        <td>
-                          {products[4 * i + 2]
-                            ? imageCard(products[4 * i + 2])
-                            : null}
-                        </td>
-                        <td>
-                          {products[4 * i + 3]
-                            ? imageCard(products[4 * i + 3])
-                            : null}
-                        </td>
-                      </tr>
-                    ))
-                  }
-                </tbody>
-              </table>
-            </div>
+          <h1 className="display-4">{shop.name}</h1>
+
+          <div className="col-md-8">
+            <table>
+              <tbody>
+                {
+                  //tr > 4 td
+                  [...Array(Math.ceil(products.length / 4))].map((e, i) => (
+                    <tr key={i}>
+                      <td>{imageCard(products[4 * i])}</td>
+                      <td>
+                        {products[4 * i + 1]
+                          ? imageCard(products[4 * i + 1])
+                          : null}
+                      </td>
+                      <td>
+                        {products[4 * i + 2]
+                          ? imageCard(products[4 * i + 2])
+                          : null}
+                      </td>
+                      <td>
+                        {products[4 * i + 3]
+                          ? imageCard(products[4 * i + 3])
+                          : null}
+                      </td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
           </div>
         </Fragment>
       )}

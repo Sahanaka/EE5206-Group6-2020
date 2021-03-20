@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+.background {
+  /* background: url(2.JPG) no-repeat; */
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+}

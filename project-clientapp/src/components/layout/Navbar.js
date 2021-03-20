@@ -22,7 +22,7 @@ const Navbar = () => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to="/register">Register</Link>
+        <Link to="/Mainregistation">Register</Link>
       </li>
       <li>
         <Link to="/login">Login</Link>
@@ -41,10 +41,10 @@ const Navbar = () => {
       <Fragment>
         <ul>
           <li>
-            <Link to="/store">Store</Link>
+            <Link to="/shops">Store</Link>
           </li>
           <li>
-            <Link to="/register">Register</Link>
+            <Link to="/Mainregistation">Register</Link>
           </li>
           <li>
             <Link to="/login">Login</Link>
