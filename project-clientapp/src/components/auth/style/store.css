@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.background {
+  background: url(2.JPG) no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+}
+.float-left {
+  float: left;
+  width: 150px;
+  background: transparent;
+  margin-top: 50px;
+  margin-left: 20px;
+  padding: 0px;
+}
+
+.float-right {
+  float: right;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+  padding: 10px;
+}
