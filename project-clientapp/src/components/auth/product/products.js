@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import Product from "./product";
 
 import { getShops } from "../../../Actions/customer";
+import Spinner from '../../layout/Spinner';
 
 const Products = ({ getShops, shops: { shops, loading } }) => {
   useEffect(async () => {
@@ -15,9 +16,9 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
   return (
     <Fragment>
       {loading ? (
-        <div>Loading Please wait!</div>
+       <Spinner />
       ) : (
-        <div>
+        <Fragment>
           <br />
           <Grid conrtainer justify="center" spacing={4}>
             {shops.map((product) => (
@@ -27,7 +28,7 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
               </Grid>
             ))}
           </Grid>
-        </div>
+        </Fragment>
       )}
     </Fragment>
   );
