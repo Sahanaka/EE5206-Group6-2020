@@ -32,7 +32,7 @@ Shop.propTypes = {
 
 const mapStateToProps = (state) => ({
   shop: state.customer,
-  products: state.customer
+  products: state.products
 });
 
 export default connect(mapStateToProps, { getShopById, getShopProducts })(Shop);
