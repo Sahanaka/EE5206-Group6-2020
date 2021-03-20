@@ -14,15 +14,19 @@ import Footer from "./components/layout/Footer";
 import Store from "./components/auth/Store";
 import Register from "./components/auth/Register";
 import OrderAccept from "./components/Seller/OrderAccept";
-import SellerMain from "./components/Seller/SellerMain";
+import SellerMain from "./components/auth/SellerRegistation";
 import OrderList from "./components/Seller/OrderList";
 import ProductList from "./components/Seller/ProductList";
 import Alert from "./components/layout/Alert";
 import Items from "./components/items/items";
 import itemlist from "./components/buyercart/itemlist";
+<<<<<<< HEAD
+import Mainregistation from "./components/auth/Mainregistation";
+=======
 import Shops from './components/Customer/Shops';
 import Shop from './components/Customer/shop';
 
+>>>>>>> master
 function App() {
   return (
     <Provider store={store}>
@@ -39,6 +43,7 @@ function App() {
             <Route exact path="/orderAcccept" component={OrderAccept} />
             <Route exact path="/sellerMain" component={SellerMain} />
             <Route exact path="/OrderList" component={OrderList} />{" "}
+            <Route exact path="/Mainregistation" component={Mainregistation} />
             {/* still not complete*/}
             <Route exact path="/ProductList" component={ProductList} />
             <Route exact path="/Items" component={Items} />

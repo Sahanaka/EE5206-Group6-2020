@@ -34,6 +34,10 @@ ul {
 img {
   width: 100%;
 }
+.register {
+  margin: auto;
+  max-width: 500px;
+}
 
 /* Utilities */
 .container {
