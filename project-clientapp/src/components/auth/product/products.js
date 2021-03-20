@@ -15,7 +15,7 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
   return (
     <Fragment>
       {loading ? (
-        <div>Hello</div>
+        <div>Loading Please wait!</div>
       ) : (
         <div>
           <br />

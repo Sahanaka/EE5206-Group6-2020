@@ -60,6 +60,31 @@ namespace Project_BackendApi.Controllers
             catch (Exception error) {throw error;}
         }
 
+        // Get Sellers by Id
+        [HttpGet("shops/{id}")]
+        public async Task<ActionResult<SellerModel>> GetSellerById(int id)
+        {
+            var seller = await _context.SellerModels.FindAsync(id);
+
+            if (seller == null)
+            {
+                return NotFound();
+            }
+
+            return seller;
+        }
+
+        // Get seller's product
+        [HttpGet("shops/products/{sellerId}")]
+        public List<ProductModel> GetProductsOfSeller(int sellerId)
+        {
+            try
+            {
+                return _customerService.GetSellerProducts(sellerId);
+            }
+            catch (Exception ex) { throw ex;}
+        }
+
         [HttpPost("Order")]
         public ActionResult Calculation([FromBody] ProductModel OrderProduct)
         {
