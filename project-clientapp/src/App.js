@@ -20,13 +20,10 @@ import ProductList from "./components/Seller/ProductList";
 import Alert from "./components/layout/Alert";
 import Items from "./components/items/items";
 import itemlist from "./components/buyercart/itemlist";
-<<<<<<< HEAD
 import Mainregistation from "./components/auth/Mainregistation";
-=======
-import Shops from './components/Customer/Shops';
-import Shop from './components/Customer/shop';
+import Shops from "./components/Customer/Shops";
+import Shop from "./components/Customer/shop";
 
->>>>>>> master
 function App() {
   return (
     <Provider store={store}>
