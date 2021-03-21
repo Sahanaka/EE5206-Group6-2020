@@ -7,9 +7,9 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 
-import ava from "../auth/img/psn1.jpg";
-import FilterCategory from "../auth/category";
-import Sellers from '../auth/product/products';
+import ava from "../../img/psn1.jpg";
+import FilterCategory from "./category";
+import ShopItems from './shopItems';
 
 const Shops = () => {
     return (
@@ -79,7 +79,7 @@ const Shops = () => {
               <div className="row">
                 <div className="col-md-3">
                   <FilterCategory />
-                  {/* <CardServices /> */}
+                  {/* <CardServices123 /> */}
                 </div>
               </div>
               <div className="row g-3">
@@ -94,7 +94,7 @@ const Shops = () => {
               </div>
             </div>
             <div className=" col-mb-20 container">
-              <Sellers />
+              <ShopItems />
             </div>
           </Container>
         </div>

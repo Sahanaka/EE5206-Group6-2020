@@ -11,17 +11,15 @@ import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Login from "./components/auth/Login";
 import Footer from "./components/layout/Footer";
-import Store from "./components/auth/Store";
 import Register from "./components/auth/Register";
 import OrderAccept from "./components/Seller/OrderAccept";
 import SellerMain from "./components/auth/SellerRegistation";
 import OrderList from "./components/Seller/OrderList";
 import ProductList from "./components/Seller/ProductList";
 import Alert from "./components/layout/Alert";
-import Items from "./components/items/items";
-import itemlist from "./components/buyercart/itemlist";
 import PrivateRoute from './components/routing/PrivateRoute';
 import Mainregistation from "./components/auth/Mainregistation";
+import SellerRegistration from './components/auth/SellerRegistation';
 import Shops from "./components/Customer/Shops";
 import Shop from "./components/Customer/shop";
 
@@ -36,16 +34,13 @@ function App() {
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/store" component={Store} />
             <Route exact path="/Register" component={Register} />
             <PrivateRoute exact path="/orderAcccept" component={OrderAccept} />
             <Route exact path="/sellerMain" component={SellerMain} />
             <Route exact path="/OrderList" component={OrderList} />{" "}
-            <Route exact path="/Mainregistation" component={Mainregistation} />
-            {/* still not complete*/}
+            <Route exact path="/Mainregistration" component={Mainregistation} />
+            <Route exact path="/selleRegistation" component={SellerRegistration} />
             <Route exact path="/ProductList" component={ProductList} />
-            <Route exact path="/Items" component={Items} />
-            <Route exact path="/itemlist" component={itemlist} />
             <Route exact path="/shops" component={Shops} />
             <Route exact path="/shop/:id" component={Shop} />
           </Switch>

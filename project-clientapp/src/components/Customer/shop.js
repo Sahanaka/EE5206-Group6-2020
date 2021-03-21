@@ -16,7 +16,7 @@ const Shop = ({
   useEffect(async () => {
     getShopById(match.params.id);
     getShopProducts(match.params.id);
-  }, [getShopById, getShopProducts, match.params.id]);
+  }, [match.params.id]);
   console.log("cus", shop);
   console.log("pro", products);
 
@@ -83,7 +83,7 @@ const Shop = ({
             <div className="col-md-12">
               <div className="jumbotron jumbotron-fluid py-4">
                 <div className="container text-center">
-                  <h1 className="display-4">{shop.name}</h1>
+                  {/* <h1 className="display-4">{shop.sellerId}</h1> */}
                 </div>
               </div>
             </div>

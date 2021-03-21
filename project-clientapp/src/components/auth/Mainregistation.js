@@ -71,8 +71,12 @@ const Mainregistation = () => {
               Buyer
             </button>
 
-            <button type="submit" class="btn btn-primary btn-block btn-large">
-              Seller
+            <button onClick=
+              {() => {
+                history.push("/Register");
+              }}
+              type="submit" class="btn btn-primary btn-block btn-large" 
+              > Seller
             </button>
 
             {/* <div>
