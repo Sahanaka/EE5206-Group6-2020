@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import "./style/basket.css";
 
 export default function Basket(props) {
   const { cartItems, onAdd, onRemove } = props;
@@ -9,52 +10,61 @@ export default function Basket(props) {
   const totalPrice = itemsPrice + taxPrice + shippingPrice;
   return (
     <aside className="block ">
-      <h2>Cart Items</h2>
+      <h2 className="text-center ">My Cart</h2>
       <div>
         {cartItems.length === 0 && <div>Cart is empty</div>}
         {cartItems.map((item) => (
-          <div key={item.id} className="row">
-            <div className="col-2">{item.title}</div>
-            <div className="col-2">
-              <hr />
-              <Button onClick={() => onRemove(item)}>Remove</Button>
-              <Button onClick={() => onAdd(item)}>Add</Button>
-            </div>
+          <div key={item.id} className="">
+            <div className="text-left">{item.title}</div>
 
-            <div className="col-2 text-right">
+            <div className="text-right">
               {item.qty} x Rs{item.price.toFixed(2)}
             </div>
+            <div className="center">
+              <Button
+                className="button add myButton"
+                onClick={() => onRemove(item)}
+              >
+                <i class="fas fa-trash"></i>
+              </Button>
+              <Button
+                className="button remove myButton"
+                onClick={() => onAdd(item)}
+              >
+                <i class="fas fa-cart-plus"></i>
+              </Button>
+            </div>
+            <hr />
           </div>
         ))}
 
         {cartItems.length !== 0 && (
           <>
             <hr></hr>
-            <div className="row">
-              <div className="col-2">Items Price</div>
-              <div className="col-1 text-right">${itemsPrice.toFixed(2)}</div>
+            <div className="">
+              <div className="text-left">Items Price</div>
+              <div className="text-right">${itemsPrice.toFixed(2)}</div>
             </div>
-            <div className="row">
-              <div className="col-2">Tax Price</div>
-              <div className="col-1 text-right">${taxPrice.toFixed(2)}</div>
+            <div className="">
+              <div className="text-left">Tax Price</div>
+              <div className=" text-right">${taxPrice.toFixed(2)}</div>
             </div>
-            <div className="row">
-              <div className="col-2">Shipping Price</div>
-              <div className="col-1 text-right">
-                ${shippingPrice.toFixed(2)}
-              </div>
+            <div className="">
+              <div className="text-left">Shipping Price</div>
+              <div className=" text-right">${shippingPrice.toFixed(2)}</div>
             </div>
 
-            <div className="row">
-              <div className="col-2">
+            <div className="">
+              <hr />
+              <div className="text-left">
                 <strong>Total Price</strong>
               </div>
-              <div className="col-1 text-right">
+              <div className=" text-right">
                 <strong>${totalPrice.toFixed(2)}</strong>
               </div>
             </div>
             <hr />
-            <div className="row">
+            <div className="">
               <button onClick={() => alert("Implement Checkout!")}>
                 Checkout
               </button>

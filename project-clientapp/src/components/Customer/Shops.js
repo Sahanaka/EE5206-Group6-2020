@@ -10,7 +10,7 @@ import Divider from "@material-ui/core/Divider";
 import Container from "@material-ui/core/Container";
 
 import "./style/shops.css";
-import FilterCategory from "../auth/category";
+// import FilterCategory from "../auth/category";
 import Sellers from "../auth/product/products";
 
 const useStyles = makeStyles((theme) => ({
@@ -167,36 +167,30 @@ const Shops = () => {
         </ul>
       </nav> */}
 
-      <div className="background">
-        <div className="float-left">
-          <List
-            component="nav"
-            className={classes.root}
-            aria-label="mailbox folders"
-          >
-            <ListItem button>
-              <ListItemText primary="Inbox" />
-            </ListItem>
-            <Divider />
-            <ListItem button divider>
-              <ListItemText primary="Drafts" />
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Trash" />
-            </ListItem>
-            <Divider light />
-            <ListItem button>
-              <ListItemText primary="Spam" />
-            </ListItem>
-          </List>
-        </div>
+      <Sellers />
 
-        <div className="float-right">
-          <div className="grid-container">
-            <Sellers />
-          </div>
-        </div>
-      </div>
+      {/* <div className="">
+            <List
+              component="nav"
+              className={classes.root}
+              aria-label="mailbox folders"
+            >
+              <ListItem button>
+                <ListItemText primary="Inbox" />
+              </ListItem>
+              <Divider />
+              <ListItem button divider>
+                <ListItemText primary="Drafts" />
+              </ListItem>
+              <ListItem button>
+                <ListItemText primary="Trash" />
+              </ListItem>
+              <Divider light />
+              <ListItem button>
+                <ListItemText primary="Spam" />
+              </ListItem>
+            </List>
+          </div> */}
     </div>
   );
 };

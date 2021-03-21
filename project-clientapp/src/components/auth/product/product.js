@@ -31,7 +31,7 @@ const product = ({ product }) => {
             {product.sellerId}
           </Typography> */}
           <br />
-          <Typography variant="5" gutterBottom>
+          <Typography variant="h5" gutterBottom>
             {product.address}
           </Typography>
         </div>

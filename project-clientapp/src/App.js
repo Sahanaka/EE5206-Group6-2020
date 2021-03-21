@@ -20,6 +20,7 @@ import ProductList from "./components/Seller/ProductList";
 import Alert from "./components/layout/Alert";
 import Items from "./components/items/items";
 import itemlist from "./components/buyercart/itemlist";
+import PrivateRoute from './components/routing/PrivateRoute';
 import Mainregistation from "./components/auth/Mainregistation";
 import Shops from "./components/Customer/Shops";
 import Shop from "./components/Customer/shop";
@@ -37,7 +38,7 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/store" component={Store} />
             <Route exact path="/Register" component={Register} />
-            <Route exact path="/orderAcccept" component={OrderAccept} />
+            <PrivateRoute exact path="/orderAcccept" component={OrderAccept} />
             <Route exact path="/sellerMain" component={SellerMain} />
             <Route exact path="/OrderList" component={OrderList} />{" "}
             <Route exact path="/Mainregistation" component={Mainregistation} />

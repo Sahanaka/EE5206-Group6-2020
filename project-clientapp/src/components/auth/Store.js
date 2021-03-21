@@ -11,7 +11,7 @@ import Divider from "@material-ui/core/Divider";
 
 import Container from "@material-ui/core/Container";
 import "./style/store.css";
-import FilterCategory from "./category";
+//import FilterCategory from "./category";
 
 import { getShops } from "../../Actions/customer";
 
