@@ -41,8 +41,8 @@ function App() {
             <Route exact path="/Mainregistration" component={Mainregistation} />
             <Route exact path="/selleRegistation" component={SellerRegistration} />
             <Route exact path="/ProductList" component={ProductList} />
-            <Route exact path="/shops" component={Shops} />
-            <Route exact path="/shop/:id" component={Shop} />
+            <PrivateRoute exact path="/shops" component={Shops} />
+            <PrivateRoute exact path="/shop/:id" component={Shop} />
           </Switch>
           <Footer />
         </Fragment>
