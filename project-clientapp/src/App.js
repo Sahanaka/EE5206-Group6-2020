@@ -13,7 +13,7 @@ import Login from "./components/auth/Login";
 import Footer from "./components/layout/Footer";
 import Register from "./components/auth/Register";
 import OrderAccept from "./components/Seller/OrderAccept";
-import SellerMain from "./components/auth/SellerRegistation";
+import SellerMain from "./components/Seller/SellerMain";
 import OrderList from "./components/Seller/OrderList";
 import ProductList from "./components/Seller/ProductList";
 import Alert from "./components/layout/Alert";
@@ -36,7 +36,7 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/Register" component={Register} />
             <PrivateRoute exact path="/orderAcccept" component={OrderAccept} />
-            <Route exact path="/sellerMain" component={SellerMain} />
+            <PrivateRoute exact path="/sellerMain/:id" component={SellerMain} />
             <Route exact path="/OrderList" component={OrderList} />{" "}
             <Route exact path="/Mainregistration" component={Mainregistation} />
             <Route exact path="/selleRegistation" component={SellerRegistration} />

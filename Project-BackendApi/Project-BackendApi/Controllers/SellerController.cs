@@ -117,7 +117,15 @@ namespace Project_BackendApi.Controllers
         }
 
         // Get the logged in seller - Later implement with the token
-        
+        //[HttpGet("seller/sellerId}")]
+        //public async Task<ActionResult<SellerModel>> FindtheLoggedInSeller(int sellerId)
+        //{
+        //    var currentSeller = await _db.SellerModels.FindAsync(sellerId);
+        //    if (currentSeller == null)
+        //    { return BadRequest(); }
+
+        //    return currentSeller;
+        //}
 
     }
 }
