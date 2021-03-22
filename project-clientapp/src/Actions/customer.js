@@ -21,10 +21,12 @@ export const getShops = () => async dispatch => {
         return res.data;
     } catch (error) {
         setAlert("No products to sell", "warning");
-        dispatch({
-            type: SELLERS_ERROR,
-            payload: { msg: error.response.statusText, status: error.response.status }
-        });
+        console.log(error)
+        // dispatch({
+        //     type: SELLERS_ERROR,
+        //     //payload: { msg: error.response.statusText, status: error.response.status }
+        //     payload: { status: error.response.status }
+        // });
     }
 };
 
@@ -58,9 +60,10 @@ export const getShopProducts = (id) => async dispatch => {
         return res.data;
     } catch (error) {
         setAlert("No products to sell", "warning");
-        dispatch({
-            type: PRODUCTS_ERROR,
-            payload: { msg: error.response.statusText, status: error.response.status }
-        });
+        console.log(error)
+        // dispatch({
+        //     type: PRODUCTS_ERROR,
+        //     payload: { msg: error.response.statusText, status: error.response.status }
+        // });
     }
 };

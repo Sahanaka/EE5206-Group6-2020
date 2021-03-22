@@ -8,6 +8,9 @@ import {
   LOGIN_FAILED,
   LOGIN_SUCCESS,
   LOGOUT,
+  CLEAR_PRODUCTS,
+  CLEAR_SELLER,
+  CLEAR_SELLERS
 } from "./types";
 import { setAlert } from "./alert";
 
@@ -122,4 +125,11 @@ export const registerSeller = (
       type: REGISTER_FAIL,
     });
   }
+};
+
+export const logout = () => dispatch => {
+  dispatch({ type: CLEAR_PRODUCTS });
+  dispatch({ type: CLEAR_SELLER });
+  dispatch({ type: CLEAR_SELLERS });
+  dispatch({ type: LOGOUT });
 };
