@@ -1,4 +1,4 @@
-import { GET_SELLER, CLEAR_SELLER } from "../Actions/types";
+import { GET_SELLER, CLEAR_SELLER, SELLER_ERROR } from "../Actions/types";
 
 const initialState = {
   shop: null,
@@ -16,11 +16,17 @@ export default function (state = initialState, action) {
         shop: payload,
         shopLoading: false,
       };
-    case CLEAR_SELLER:
+    case SELLER_ERROR:
       return {
         ...state,
         error: payload,
         shopLoading: false,
+      };
+    case CLEAR_SELLER:
+      return {
+        ...state,
+        shop: null,
+        shopLoading: true,
       };
     default:
       return state;

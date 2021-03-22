@@ -83,7 +83,7 @@ const Shop = ({
             <div className="col-md-12">
               <div className="jumbotron jumbotron-fluid py-4">
                 <div className="container text-center">
-                  {/* <h1 className="display-4">{shop.sellerId}</h1> */}
+                  <h1 className="display-4">{shop.sellerId}</h1>
                 </div>
               </div>
             </div>
