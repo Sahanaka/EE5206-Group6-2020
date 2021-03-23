@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 
@@ -17,13 +17,24 @@ import SellerMain from "./components/Seller/SellerMain";
 import OrderList from "./components/Seller/OrderList";
 import ProductList from "./components/Seller/ProductList";
 import Alert from "./components/layout/Alert";
-import PrivateRoute from './components/routing/PrivateRoute';
+import PrivateRoute from "./components/routing/PrivateRoute";
 import Mainregistation from "./components/auth/Mainregistation";
-import SellerRegistration from './components/auth/SellerRegistation';
+import SellerRegistration from "./components/auth/SellerRegistation";
 import Shops from "./components/Customer/Shops";
 import Shop from "./components/Customer/shop";
 
+import { loadUser } from "./Actions/auth";
+import { LOGOUT } from "./Actions/types";
+
 function App() {
+  useEffect(() => {
+    if (localStorage.token) store.dispatch(loadUser());
+
+    // log user out from all tabs if they log out in one tab
+    window.addEventListener("storage", () => {
+      if (!localStorage.token) store.dispatch({ type: LOGOUT });
+    });
+  }, []);
   return (
     <Provider store={store}>
       <Router>
@@ -39,8 +50,12 @@ function App() {
             <PrivateRoute exact path="/sellerMain/:id" component={SellerMain} />
             <Route exact path="/OrderList" component={OrderList} />{" "}
             <Route exact path="/Mainregistration" component={Mainregistation} />
-            <Route exact path="/selleRegistation" component={SellerRegistration} />
-            <Route exact path="/ProductList" component={ProductList} />
+            <Route
+              exact
+              path="/selleRegistation"
+              component={SellerRegistration}
+            />
+            <PrivateRoute exact path="/ProductList" component={ProductList} />
             <PrivateRoute exact path="/shops" component={Shops} />
             <PrivateRoute exact path="/shop/:id" component={Shop} />
           </Switch>

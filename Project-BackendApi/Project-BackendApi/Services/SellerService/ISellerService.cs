@@ -13,7 +13,7 @@ namespace Project_BackendApi.Services.SellerService
 
 
 
-        //public ActionResult<IEnumerable<ProductModel>> GetAllProducts(); // List out all the products
+        //public Task<ActionResult<IEnumerable<ProductModel>>> GetAllProducts(int sellerId); // List out all the products
 
         public Task<ActionResult<ProductModel>> AddProducts([FromBody] ProductModel newProduct); // Add new products to store
 

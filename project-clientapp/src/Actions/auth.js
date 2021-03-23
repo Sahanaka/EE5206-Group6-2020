@@ -10,9 +10,10 @@ import {
   LOGOUT,
   CLEAR_PRODUCTS,
   CLEAR_SELLER,
-  CLEAR_SELLERS
+  CLEAR_SELLERS,
 } from "./types";
 import { setAlert } from "./alert";
+import axios from "axios";
 
 export const login = (email, password) => async (dispatch) => {
   const config = {
@@ -127,7 +128,42 @@ export const registerSeller = (
   }
 };
 
-export const logout = () => dispatch => {
+export const loadUser = () => async (dispatch) => {
+  if (localStorage.token) {
+    const user = JSON.parse(atob(localStorage.token.split(".")[1]));
+
+    if (user.role === "Customer") {
+      try {
+        const res = await axios.get(
+          `https://localhost:5001/api/CustomerModels/${user.id}`
+        );
+        dispatch({
+          type: USER_LOADED,
+          payload: res.data,
+        });
+      } catch (error) {
+        console.error(error);
+        dispatch({ type: AUTH_ERROR });
+      }
+    }
+    else if (user.role === "Seller") {
+      try {
+        const res = await axios.get(
+          `https://localhost:5001/api/Seller/${user.id}`
+        );
+        dispatch({
+          type: USER_LOADED,
+          payload: res.data,
+        });
+      } catch (error) {
+        console.error(error);
+        dispatch({ type: AUTH_ERROR });
+      }
+    }
+  }
+};
+
+export const logout = () => (dispatch) => {
   dispatch({ type: CLEAR_PRODUCTS });
   dispatch({ type: CLEAR_SELLER });
   dispatch({ type: CLEAR_SELLERS });

@@ -23,7 +23,7 @@ const Login = ({ login, isAuthenticated, user }) => {
     login(email, password);
   };
 
-  if (isAuthenticated) {
+  if (isAuthenticated && user) {
     if (user.role === "Customer")
       return <Redirect to="/shops" />;
     else if (user.role == "Seller") 

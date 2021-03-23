@@ -30,24 +30,24 @@ namespace Project_BackendApi.Controllers
 
         }
 
-        [HttpGet]
+        [HttpGet("sellers/products/{sellerId}")]
         //[Authorize] //- Uncomment later (Very Important)
-        public async Task<ActionResult<IEnumerable<ProductModel>>> GetAllProducts()
+        public async Task<ActionResult<IEnumerable<ProductModel>>> GetAllProducts(int sellerId)
         {
-            return await _db.ProductModels
-               .Select(x => new ProductModel()
-               {
-                   ProductId = x.ProductId,
-                   Title = x.Title,
-                   Price = x.Price,
-                   AvailabeAmount = x.AvailabeAmount,
-                   Image = x.Image,
-                   Discount = x.Discount,
-                   Size = x.Size,
-                   Quantity = x.Quantity,
-                   ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.Image)
-               })
-              .ToListAsync();
+            return await _db.ProductModels.Where(x => x.ShopProductId == sellerId).Select(x => new ProductModel()
+            {
+                ProductId = x.ProductId,
+                Title = x.Title,
+                Price = x.Price,
+                AvailabeAmount = x.AvailabeAmount,
+                Image = x.Image,
+                Discount = x.Discount,
+                Size = x.Size,
+                Quantity = x.Quantity,
+                ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.Image),
+                ShopProductId = x.ShopProductId
+            })
+              .ToListAsync(); ;
         }
 
         [HttpPost]
@@ -116,16 +116,18 @@ namespace Project_BackendApi.Controllers
             return DeleteProduct;
         }
 
-        // Get the logged in seller - Later implement with the token
-        //[HttpGet("seller/sellerId}")]
-        //public async Task<ActionResult<SellerModel>> FindtheLoggedInSeller(int sellerId)
-        //{
-        //    var currentSeller = await _db.SellerModels.FindAsync(sellerId);
-        //    if (currentSeller == null)
-        //    { return BadRequest(); }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<SellerModel>> GetSeller(int id)
+        {
+            var customerModel = await _db.SellerModels.FindAsync(id);
 
-        //    return currentSeller;
-        //}
+            if (customerModel == null)
+            {
+                return NotFound();
+            }
+
+            return customerModel;
+        }
 
     }
 }

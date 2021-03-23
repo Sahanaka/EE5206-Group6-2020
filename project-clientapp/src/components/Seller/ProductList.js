@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import ShopCategoryList from "./ShopCategoryList";
 import axios from "axios";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-export default function ProductList() {
+const ProductList = ( { user } ) => {
   const [productList, setProductList] = useState([]);
   const [recordForEdit, setRecordForEdit] = useState(null);
-
+  console.log(user)
   useEffect(() => {
     refreshProductList();
   }, []);
 
   const productAPI = (url = "https://localhost:5001/api/Seller/") => {
     return {
-      fetchAll: () => axios.get(url),
+      fetchAll: () => axios.get(url + `sellers/products/${1}`),
       create: (newRecord) => axios.post(url, newRecord),
       update: (id, updatedRecord) => axios.put(url + id, updatedRecord),
       delete: (id) => axios.delete(url + id),
@@ -131,3 +133,13 @@ export default function ProductList() {
     </div>
   );
 }
+
+ProductList.propTypes = {
+  user: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  user: state.auth.user
+});
+
+export default connect(mapStateToProps)(ProductList);
