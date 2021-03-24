@@ -116,5 +116,8 @@ namespace Project_BackendApi.Controllers
             return DeleteProduct;
         }
 
+        // Get the logged in seller - Later implement with the token
+        
+
     }
 }
