@@ -18,7 +18,7 @@ const Shop = ({
     getShopProducts(match.params.id);
   }, [match.params.id]);
   console.log("cus", shop);
-  console.log("pro", products);
+ // console.log("pro", products);
 
   const imageCard = (data) => (
     <div>
@@ -75,15 +75,15 @@ const Shop = ({
 
   return (
     <Fragment>
-      {shopLoading && productLoading ? (
+      {shopLoading ? (
         <Spinner />
-      ) : (
+      ) : ( 
         <Fragment>
           <div className="row">
             <div className="col-md-12">
               <div className="jumbotron jumbotron-fluid py-4">
                 <div className="container text-center">
-                  {/* <h1 className="display-4">{shop.sellerId}</h1> */}
+                  <h1 className="display-4">{shop.name}</h1>
                 </div>
               </div>
             </div>

@@ -13,7 +13,8 @@ const initialState = {
     token: localStorage.getItem('token'),
     isAuthenticated: null,
     loading: true,
-    user: null
+    user: null,
+    role: null
 };
 
 export default function(state = initialState, action) {
@@ -34,8 +35,8 @@ export default function(state = initialState, action) {
                 ...state,
                 ...payload,
                 isAuthenticated: true,
-                user: JSON.parse(atob(payload.token.split('.')[1])),
-                loading: false
+                loading: false,
+                role: JSON.parse(atob(payload.token.split('.')[1])),
             };
         case REGISTER_FAIL:
         case AUTH_ERROR:

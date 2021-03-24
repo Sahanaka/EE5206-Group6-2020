@@ -26,9 +26,9 @@ import Shop from "./components/Customer/shop";
 import { loadUser } from "./Actions/auth";
 import { LOGOUT } from "./Actions/types";
 
-function App() {
+const App = () => {
   useEffect(() => {
-    if (localStorage.token) store.dispatch(loadUser());
+    store.dispatch(loadUser());
 
     // log user out from all tabs if they log out in one tab
     window.addEventListener("storage", () => {
@@ -64,6 +64,6 @@ function App() {
       </Router>
     </Provider>
   );
-}
+};
 
 export default App;

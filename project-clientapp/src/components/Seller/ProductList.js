@@ -7,14 +7,13 @@ import { connect } from "react-redux";
 const ProductList = ( { user } ) => {
   const [productList, setProductList] = useState([]);
   const [recordForEdit, setRecordForEdit] = useState(null);
-  console.log(user)
   useEffect(() => {
     refreshProductList();
-  }, []);
+  }, [refreshProductList]);
 
   const productAPI = (url = "https://localhost:5001/api/Seller/") => {
     return {
-      fetchAll: () => axios.get(url + `sellers/products/${1}`),
+      fetchAll: () => axios.get(url + `sellers/products/${user.sellerId}`),
       create: (newRecord) => axios.post(url, newRecord),
       update: (id, updatedRecord) => axios.put(url + id, updatedRecord),
       delete: (id) => axios.delete(url + id),
@@ -98,7 +97,7 @@ const ProductList = ( { user } ) => {
         </div>
       </div>
       <div className="col-md-4">
-        <ShopCategoryList addOrEdit={addOrEdit} recordForEdit={recordForEdit} />
+        <ShopCategoryList addOrEdit={addOrEdit} recordForEdit={recordForEdit} sellerId={user.sellerId}/>
       </div>
 
       <div className="col-md-8">
