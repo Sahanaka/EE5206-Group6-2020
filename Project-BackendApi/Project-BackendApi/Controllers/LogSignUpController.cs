@@ -147,7 +147,7 @@ namespace Project_BackendApi.Controllers
 
                 else
                 {
-                    await _mailService.SendEmailAsync(login.Email, "New login", "<h1>Hey!, Did you login to your account</h1><p>New login to your account at " + DateTime.Now + "</p>");
+                    // await _mailService.SendEmailAsync(login.Email, "New login", "<h1>Hey!, Did you login to your account</h1><p>New login to your account at " + DateTime.Now + "</p>");
                     
                     // Return token
                     var tokenString = _jwtService.GenerateJWTtoken(login);

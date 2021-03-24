@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SellerMain = () => {
+const SellerMain = ({ match }) => {
+  console.log(match.params.id)
   return (
     <div>
       {/* Required meta tags */}

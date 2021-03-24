@@ -23,11 +23,11 @@ const Login = ({ login, isAuthenticated, user }) => {
     login(email, password);
   };
 
-  if (isAuthenticated) {
+  if (isAuthenticated && user) {
     if (user.role === "Customer")
       return <Redirect to="/shops" />;
-    else if (user.role == "Seller")
-      return <Redirect to="/sellerMain" />
+    else if (user.role == "Seller") 
+      return <Redirect to={`/sellerMain/${user.id}`} />
     else
       console.log(user.role);
   }
@@ -81,7 +81,7 @@ Login.propTypes = {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
-  user: state.auth.user,
+  user: state.auth.role,
 });
 
 export default connect(mapStateToProps, { login })(Login);

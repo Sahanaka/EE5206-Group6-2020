@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import ShopCategoryList from "./ShopCategoryList";
 import axios from "axios";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-export default function ProductList() {
+const ProductList = ( { user } ) => {
   const [productList, setProductList] = useState([]);
   const [recordForEdit, setRecordForEdit] = useState(null);
-
   useEffect(() => {
     refreshProductList();
-  }, []);
+  }, [refreshProductList]);
 
   const productAPI = (url = "https://localhost:5001/api/Seller/") => {
     return {
-      fetchAll: () => axios.get(url),
+      fetchAll: () => axios.get(url + `sellers/products/${user.sellerId}`),
       create: (newRecord) => axios.post(url, newRecord),
       update: (id, updatedRecord) => axios.put(url + id, updatedRecord),
       delete: (id) => axios.delete(url + id),
@@ -96,7 +97,7 @@ export default function ProductList() {
         </div>
       </div>
       <div className="col-md-4">
-        <ShopCategoryList addOrEdit={addOrEdit} recordForEdit={recordForEdit} />
+        <ShopCategoryList addOrEdit={addOrEdit} recordForEdit={recordForEdit} sellerId={user.sellerId}/>
       </div>
 
       <div className="col-md-8">
@@ -131,3 +132,13 @@ export default function ProductList() {
     </div>
   );
 }
+
+ProductList.propTypes = {
+  user: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  user: state.auth.user
+});
+
+export default connect(mapStateToProps)(ProductList);

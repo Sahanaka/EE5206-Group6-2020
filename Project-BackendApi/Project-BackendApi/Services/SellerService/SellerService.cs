@@ -1,17 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Project_BackendApi.DATA;
-using Project_BackendApi.Models;
-using Project_BackendApi.Services.ImageService;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Ubiety.Dns.Core;
-
-
-
-
+using Microsoft.AspNetCore.Mvc;
+using Project_BackendApi.DATA;
+using Project_BackendApi.Models;
+using Microsoft.EntityFrameworkCore;
+using Project_BackendApi.Services.ImageService;
 
 namespace Project_BackendApi.Services.SellerService
 {
@@ -25,26 +20,6 @@ namespace Project_BackendApi.Services.SellerService
             _db = db;
             _iimageService = imageService;
         }
-
-        //ActionResult<IEnumerable<ProductModel>> GetAllProducts()
-        //{
-        //    return _db.ProductModels
-        //        .Select(x=>new ProductModel() {
-        //            ProductId = x.ProductId,
-        //            Title = x.Title,
-        //            Price = x.Price,
-        //            AvailabeAmount = x.AvailabeAmount,
-        //            Image = x.Image,
-        //            Discount = x.Discount,
-        //            Size = x.Size,
-        //            Quantity = x.Quantity,
-        //            ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.Image),
-
-
-        //        })
-        //        .ToList();
-        //}
-
 
 
         public async Task<ActionResult<ProductModel>> AddProducts([FromBody] ProductModel newProduct)
