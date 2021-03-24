@@ -25,7 +25,7 @@ const Login = ({ login, isAuthenticated, user }) => {
 
   if (isAuthenticated) {
     if (user.role === "Customer")
-      return <Redirect to="/store" />;
+      return <Redirect to="/shops" />;
     else if (user.role == "Seller")
       return <Redirect to="/sellerMain" />
     else
@@ -66,7 +66,7 @@ const Login = ({ login, isAuthenticated, user }) => {
           <input type="submit" className="btn" value="Login" />
         </form>
         <p className="my-1">
-          Don't have an account? <Link to="/register">Sign Up</Link>
+          Don't have an account? <Link to="/Mainregistration">Sign Up</Link>
         </p>
       </section>
     </Fragment>

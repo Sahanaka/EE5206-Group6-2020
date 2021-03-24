@@ -17,7 +17,7 @@ const Shop = ({
   useEffect(async () => {
     getShopById(match.params.id);
     getShopProducts(match.params.id);
-  }, [getShopById, getShopProducts, match.params.id]);
+  }, [match.params.id]);
   console.log("cus", shop);
   console.log("pro", products);
 
@@ -79,9 +79,16 @@ const Shop = ({
       {shopLoading && productLoading ? (
         <Spinner />
       ) : (
-        <div className="background grid-container">
-          <div className="content">
-            <div className="main colm-2 cart card-body ">
+        <Fragment>
+          <div className="row">
+            <div className="col-md-12">
+              <div className="jumbotron jumbotron-fluid py-4">
+                <div className="container text-center">
+                  {/* <h1 className="display-4">{shop.sellerId}</h1> */}
+                </div>
+              </div>
+            </div>
+            <div className="col-md-8">
               <table>
                 <tbody className="block1">
                   {
@@ -121,7 +128,7 @@ const Shop = ({
           </div>
 
           {/* <h1 className="display-4">{shop.name}</h1> */}
-        </div>
+        </Fragment>
       )}
     </Fragment>
   );

@@ -4,8 +4,10 @@
   box-sizing: border-box;
   text-decoration: none;
 } */
-
-/* .background {
+* {
+  box-sizing: border-box;
+}
+.background {
   background: url(2.JPG) no-repeat;
   background-size: cover;
   height: 100vh;
@@ -22,7 +24,8 @@
 
 .float-right {
   float: right;
-} */
+}
+*/
 /* * .background {
   background: url(2.JPG) no-repeat;
   background-size: cover;
@@ -32,16 +35,17 @@
 }
 .back {
   background-color: white;
+  opacity: 0.89;
 }
 .bucket {
   float: right;
   margin-right: 20px;
 }
-/* .cart {
+.cart {
   opacity: 0.9;
   float: left;
   padding: 0;
-} */
+}
 .row1 {
   display: flex;
   justify-content: space-between;
@@ -104,4 +108,72 @@ body,
 
 .sidebar2 {
   flex: 1 20rem;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+.right {
+  margin-left: 800px;
+  background-color: white;
+  opacity: 0.9;
+}
+.left1 {
+  margin-right: 20%;
+}
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+form.example input[type="text"] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196f3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.box2 {
+  background-color: lightgrey;
+
+  padding: 10px;
+  margin: 20px;
 }

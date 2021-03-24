@@ -41,10 +41,10 @@ const Navbar = () => {
       <Fragment>
         <ul>
           <li>
-            <Link to="/shops">Store</Link>
+            <Link to="/shops">Shops</Link>
           </li>
           <li>
-            <Link to="/Mainregistation">Register</Link>
+            <Link to="/Mainregistration">Register</Link>
           </li>
           <li>
             <Link to="/login">Login</Link>

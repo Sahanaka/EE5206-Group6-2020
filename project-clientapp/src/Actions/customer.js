@@ -13,7 +13,7 @@ import {
 export const getShops = () => async dispatch => {
     try {
         const res = await axios.get(`https://localhost:5001/api/CustomerModels/category/retail`);
-        //console.log('res', res.data)
+        console.log('all shops', res.data)
         dispatch({
           type: GET_SELLERS,
           payload: res.data,
