@@ -20,15 +20,10 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
         <span>Contact : {data.contatctNo} </span> <br />
         <span>Category : {data.cetogory}</span> <br />
         <Link to={`shop/${data.sellerId}`}>
-        <button
-          className="btn btn-light"
-          Add
-          to
-          Cart
-          
-        >
-         <i class="fas fa-store"></i>
-        </button></Link>
+          <button className="btn btn-light" Add to Cart>
+            <i class="fas fa-store"></i>
+          </button>
+        </Link>
       </div>
     </div>
   );
@@ -39,9 +34,9 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
         <Spinner />
       ) : (
         <Fragment>
-         <div className="row">
+          <div className="row">
             <div className="col-md-12">
-              <div className="jumbotron jumbotron-fluid py-4">
+              <div className=" jumbotron-fluid py-4">
                 <div className="container text-center">
                   <h1 className="display-4">{shops.sellerId}</h1>
                 </div>

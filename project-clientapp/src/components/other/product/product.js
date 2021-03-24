@@ -31,7 +31,7 @@ const product = ({ product }) => {
             {product.sellerId}
           </Typography> */}
           <br />
-          <Typography variant="5" gutterBottom>
+          <Typography variant="h5" gutterBottom>
             {product.address}
           </Typography>
         </div>
@@ -51,7 +51,7 @@ const product = ({ product }) => {
           }
         }}>Select</Link>
       </Button> */}
-      <Button className="container" color="secondary">
+      <Button color="secondary">
         <Link to={`shop/${product.sellerId}`}>Select</Link>
       </Button>
 

@@ -46,8 +46,8 @@ const Mainregistation = () => {
         <div class="sp-container ">
           <div class="sp-content">
             <div class="sp-globe"></div>
-            <h2 class="frame-1">You can Register as</h2>
-            <h2 class="frame-2">Buyer or seller</h2>
+            {/* <h2 class="frame-1">You can Register as</h2>
+            <h2 class="frame-2">Buyer or seller</h2> */}
             {/* <h2 class="frame-3">REGISTERS</h2>
             <h2 class="frame-4">AS</h2> */}
             {/* <h2 class="frame-5">

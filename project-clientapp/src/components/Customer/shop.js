@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { getShopById, getShopProducts } from "../../Actions/customer";
 import Spinner from "../layout/Spinner";
 import Basket from "../buyercart/Basket";
+import "./style/shop.css";
 
 const Shop = ({
   getShopById,
@@ -89,7 +90,7 @@ const Shop = ({
             </div>
             <div className="col-md-8">
               <table>
-                <tbody>
+                <tbody className="block1">
                   {
                     //tr > 4 td
                     [...Array(Math.ceil(products.length / 4))].map((e, i) => (
@@ -116,14 +117,17 @@ const Shop = ({
                 </tbody>
               </table>
             </div>
+
+            <div className=" sidebar colm-1 withe">
+              <Basket
+                cartItems={cartItems}
+                onAdd={onAdd}
+                onRemove={onRemove}
+              ></Basket>
+            </div>
           </div>
-          <div className="card">
-            <Basket
-              cartItems={cartItems}
-              onAdd={onAdd}
-              onRemove={onRemove}
-            ></Basket>
-          </div>
+
+          {/* <h1 className="display-4">{shop.name}</h1> */}
         </Fragment>
       )}
     </Fragment>
