@@ -181,6 +181,7 @@ const Shops = () => {
                   input: classes.inputInput,
                 }}
                 inputProps={{ "aria-label": "search" }}
+                onSubmit={console.log("sub")}
               />
             </div>
           </Toolbar>

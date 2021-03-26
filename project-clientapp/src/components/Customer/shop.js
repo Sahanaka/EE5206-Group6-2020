@@ -19,7 +19,7 @@ const Shop = ({
     getShopProducts(match.params.id);
   }, [match.params.id]);
   console.log("cus", shop);
- // console.log("pro", products);
+  // console.log("pro", products);
 
   const imageCard = (data) => (
     <div>
@@ -78,7 +78,7 @@ const Shop = ({
     <Fragment>
       {shopLoading ? (
         <Spinner />
-      ) : ( 
+      ) : (
         <Fragment>
           <div className="row">
             <div className="col-md-12">
@@ -126,8 +126,6 @@ const Shop = ({
               ></Basket>
             </div>
           </div>
-
-          {/* <h1 className="display-4">{shop.name}</h1> */}
         </Fragment>
       )}
     </Fragment>
