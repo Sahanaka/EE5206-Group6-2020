@@ -2,7 +2,8 @@ import React, { Fragment, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-
+import "w3-css/w3.css";
+import "./style/login.css";
 import "./style/Button.css";
 import { login } from "../../Actions/auth";
 
@@ -24,40 +25,42 @@ const Login = ({ login, isAuthenticated, user }) => {
   };
 
   if (isAuthenticated) {
-    if (user.role === "Customer")
-      return <Redirect to="/shops" />;
-    else if (user.role == "Seller")
-      return <Redirect to="/sellerMain" />
-    else
-      console.log(user.role);
+    if (user.role === "Customer") return <Redirect to="/shops" />;
+    else if (user.role == "Seller") return <Redirect to="/sellerMain" />;
+    else console.log(user.role);
   }
 
   return (
-    <Fragment>
-      <section className="container">
-        <h1 className="large text-primary">Sign In</h1>
-        <p className="lead">
-          <i className="fas fa-user" /> Sign Into Your Account
+    <div className="background">
+      <h1 className="text textloging ">
+        Don't have an account? <Link to="/Mainregistration">Sign Up</Link>
+      </h1>
+      <div className="box w3-container squre">
+        <h1 className="large text-primary textalighn1">Sign In</h1>
+        <p className="textcolor1 ">
+          <i className="fas fa-user " /> Sign Into Your Account
         </p>
         <form className="form" onSubmit={(e) => onSubmit(e)}>
-          <div className="form-group">
-            <div className="form-group">
-              <small className="form-text"> Name or Email</small>
+          <div className="">
+            <div className="form-group ">
+              <small className="textcolor1  "> Name or Email</small>
               <input
                 type="text"
                 placeholder="Email"
                 name="email"
+                className="fullname hight"
                 value={email}
                 onChange={(e) => onChange(e)}
               />
             </div>
           </div>
           <div className="form-group">
-            <small className="form-text"> Password</small>
+            <small className="textcolor1"> Password</small>
             <input
               type="password"
               placeholder="Password"
               name="password"
+              className="password"
               value={password}
               onChange={(e) => onChange(e)}
               minLength="6"
@@ -65,11 +68,8 @@ const Login = ({ login, isAuthenticated, user }) => {
           </div>
           <input type="submit" className="btn" value="Login" />
         </form>
-        <p className="my-1">
-          Don't have an account? <Link to="/Mainregistration">Sign Up</Link>
-        </p>
-      </section>
-    </Fragment>
+      </div>
+    </div>
   );
 };
 

@@ -8,6 +8,7 @@
   background-image: url(2.JPG);
   animation: form 2s ease-in-out;
   font-family: "Raleway", sans-serif;
+  background: #000;
 }
 
 .btt {
@@ -42,8 +43,8 @@
   line-height: 1px;
 }
 .squre {
-  height: 570px;
-  width: 340px;
+  height: 510px;
+  width: 300px;
   background-color: #555;
   opacity: 0.7;
   border-radius: 20px;

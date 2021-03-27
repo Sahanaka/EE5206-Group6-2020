@@ -31,7 +31,7 @@ const Register = ({ setAlert, registerCustomer }) => {
   };
 
   return (
-    <div className="background">
+    <div className="background12">
       <div className="text">
         <div className="float">
           <h1>Sign Up</h1>
@@ -44,12 +44,12 @@ const Register = ({ setAlert, registerCustomer }) => {
         </div>
       </div>
 
-      <div className="box">
+      <div className="box ">
         <form className="w3-container squre " onSubmit={(e) => onSubmit(e)}>
           {/* <small> Name</small> */}
           <input
             type="text"
-            className="fullname hight"
+            className="fullname "
             placeholder="Name"
             name="name"
             value={name}
@@ -60,7 +60,7 @@ const Register = ({ setAlert, registerCustomer }) => {
           <input
             type="text"
             placeholder="Address "
-            className="fullname hight"
+            className="fullname "
             name="address"
             value={address}
             onChange={(e) => onChange(e)}
@@ -70,7 +70,7 @@ const Register = ({ setAlert, registerCustomer }) => {
           <input
             type="email"
             placeholder="Email Address"
-            className="fullname hight"
+            className="fullname "
             name="email"
             value={email}
             onChange={(e) => onChange(e)}
@@ -99,14 +99,15 @@ const Register = ({ setAlert, registerCustomer }) => {
 
           {/* <small> Contact Number</small> */}
           <input
-            type="number"
+            type="text"
             placeholder="Contact Number"
             name="contactNo"
+            className="fullname "
             value={contactNo}
             onChange={(e) => onChange(e)}
           />
           <div className="btt">
-            <input type="submit" className="button" value="Register" />
+            <input type="submit" className="button " value="Register" />
           </div>
         </form>
       </div>

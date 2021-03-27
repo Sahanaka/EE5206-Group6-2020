@@ -23,6 +23,7 @@ const Mainregistation = () => {
 
   const redirect = () => {
     history.push("/Register");
+    history.push("/SellerRegistration");
   };
   return (
     // <div className="box-a">
@@ -71,12 +72,15 @@ const Mainregistation = () => {
               Buyer
             </button>
 
-            <button onClick=
-              {() => {
-                history.push("/Register");
+            <button
+              onClick={() => {
+                history.push("/SellerRegistration");
               }}
-              type="submit" class="btn btn-primary btn-block btn-large" 
-              > Seller
+              type="submit"
+              class="btn btn-primary btn-block btn-large"
+            >
+              {" "}
+              Seller
             </button>
 
             {/* <div>

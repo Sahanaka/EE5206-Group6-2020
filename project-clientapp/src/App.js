@@ -17,9 +17,9 @@ import SellerMain from "./components/auth/SellerRegistation";
 import OrderList from "./components/Seller/OrderList";
 import ProductList from "./components/Seller/ProductList";
 import Alert from "./components/layout/Alert";
-import PrivateRoute from './components/routing/PrivateRoute';
+import PrivateRoute from "./components/routing/PrivateRoute";
 import Mainregistation from "./components/auth/Mainregistation";
-import SellerRegistration from './components/auth/SellerRegistation';
+import SellerRegistration from "./components/auth/SellerRegistation";
 import Shops from "./components/Customer/Shops";
 import Shop from "./components/Customer/shop";
 
@@ -39,7 +39,11 @@ function App() {
             <Route exact path="/sellerMain" component={SellerMain} />
             <Route exact path="/OrderList" component={OrderList} />{" "}
             <Route exact path="/Mainregistration" component={Mainregistation} />
-            <Route exact path="/selleRegistation" component={SellerRegistration} />
+            <Route
+              exact
+              path="/SellerRegistration"
+              component={SellerRegistration}
+            />
             <Route exact path="/ProductList" component={ProductList} />
             <Route exact path="/shops" component={Shops} />
             <Route exact path="/shop/:id" component={Shop} />

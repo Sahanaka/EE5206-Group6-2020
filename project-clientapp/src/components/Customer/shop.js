@@ -76,7 +76,7 @@ const Shop = ({
 
   return (
     <Fragment>
-      {shopLoading && productLoading ? (
+      {shopLoading ? (
         <Spinner />
       ) : (
         <Fragment>
