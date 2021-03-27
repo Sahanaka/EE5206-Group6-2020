@@ -229,5 +229,35 @@ namespace Project_BackendApi.Controllers
             return _context.cartModels.ToList();
         }
 
+        [HttpPut("cart/{id}")]
+        public async Task<IActionResult> PutDepartment(int id, [FromBody] cartModel department)
+        {
+            if (id != department.CartyId)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(department).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (id != department.CartyId)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+
     }
 }
