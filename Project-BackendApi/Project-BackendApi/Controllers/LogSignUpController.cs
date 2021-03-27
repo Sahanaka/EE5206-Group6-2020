@@ -106,8 +106,8 @@ namespace Project_BackendApi.Controllers
 
                 string url = $"{_config["AppUrl"]}/api/auth/confirmemail?useremail={newseller.Email}&token={tokenString}";
 
-                await _mailService.SendEmailAsync(newseller.Email, "Confirm your email", $"<h1>Welcome to Auth Demo</h1>" +
-                    $"<p>Please confirm your email by <a href='{url}'>Clicking here</a></p>");
+                //await _mailService.SendEmailAsync(newseller.Email, "Confirm your email", $"<h1>Welcome to Auth Demo</h1>" +
+                //    $"<p>Please confirm your email by <a href='{url}'>Clicking here</a></p>");
 
                 return Ok(new
                 {
