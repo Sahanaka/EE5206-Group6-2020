@@ -12,13 +12,10 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import MenuIcon from "@material-ui/icons/Menu";
 import Drawer from "@material-ui/core/Drawer";
-
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
-
 import ListItemText from "@material-ui/core/ListItemText";
-
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
@@ -142,7 +139,6 @@ const Shops = () => {
 
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -171,7 +167,7 @@ const Shops = () => {
               variant="h6"
               noWrap
             ></Typography>
-            <div className={classes.search}>
+            {/* <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
@@ -184,7 +180,7 @@ const Shops = () => {
                 inputProps={{ "aria-label": "search" }}
                 onSubmit={console.log("sub")}
               />
-            </div>
+            </div> */}
           </Toolbar>
         </AppBar>
         <Drawer

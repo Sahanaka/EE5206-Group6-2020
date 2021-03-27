@@ -40,16 +40,10 @@ export default function Basket(props) {
               {item.qty} x Rs{item.price.toFixed(2)}
             </div>
             <div className="center">
-              <Button
-                className="button add myButton"
-                onClick={() => onRemove(item)}
-              >
+              <Button className="but123 add" onClick={() => onRemove(item)}>
                 <i class="fas fa-trash"></i>
               </Button>
-              <Button
-                className="button remove myButton"
-                onClick={() => onAdd(item)}
-              >
+              <Button className="but123 remove" onClick={() => onAdd(item)}>
                 <i class="fas fa-cart-plus"></i>
               </Button>
             </div>
