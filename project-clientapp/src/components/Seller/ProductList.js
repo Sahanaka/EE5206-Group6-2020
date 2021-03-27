@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
-import ShopCategoryList from "./ShopCategoryList";
+import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-const ProductList = ( { user } ) => {
+import ShopCategoryList from "./ShopCategoryList";
+import Spinner from "../layout/Spinner";
+
+const ProductList = ({ auth: { user, loading } }) => {
   const [productList, setProductList] = useState([]);
   const [recordForEdit, setRecordForEdit] = useState(null);
   useEffect(() => {
     refreshProductList();
-  }, [refreshProductList]);
+  }, []);
 
   const productAPI = (url = "https://localhost:5001/api/Seller/") => {
     return {
@@ -25,7 +27,7 @@ const ProductList = ( { user } ) => {
       .fetchAll()
 
       .then((res) => {
-        console.log(res.data);
+        console.log('seller store', res.data);
         setProductList(res.data);
       })
       .catch((err) => console.log(err));
@@ -88,57 +90,72 @@ const ProductList = ( { user } ) => {
   );
 
   return (
-    <div className="row">
-      <div className="col-md-12">
-        <div className="jumbotron jumbotron-fluid py-4">
-          <div className="container text-center">
-            <h1 className="display-4">Catogory XXXXX</h1>
-          </div>
-        </div>
-      </div>
-      <div className="col-md-4">
-        <ShopCategoryList addOrEdit={addOrEdit} recordForEdit={recordForEdit} sellerId={user.sellerId}/>
-      </div>
+    <Fragment>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <Fragment>
+          <div className="row">
+            <div className="col-md-12">
+              <div className="jumbotron jumbotron-fluid py-4">
+                <div className="container text-center">
+                  <h1 className="display-4">Catogory XXXXX</h1>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <ShopCategoryList
+                addOrEdit={addOrEdit}
+                recordForEdit={recordForEdit}
+                sellerId={user.sellerId}
+              />
+            </div>
 
-      <div className="col-md-8">
-        <table>
-          <tbody>
-            {
-              //tr > 4 td
-              [...Array(Math.ceil(productList.length / 4))].map((e, i) => (
-                <tr key={i}>
-                  <td>{imageCard(productList[4 * i])}</td>
-                  <td>
-                    {productList[4 * i + 1]
-                      ? imageCard(productList[4 * i + 1])
-                      : null}
-                  </td>
-                  <td>
-                    {productList[4 * i + 2]
-                      ? imageCard(productList[4 * i + 2])
-                      : null}
-                  </td>
-                  <td>
-                    {productList[4 * i + 3]
-                      ? imageCard(productList[4 * i + 3])
-                      : null}
-                  </td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
-      </div>
-    </div>
+            <div className="col-md-8">
+              <table>
+                <tbody>
+                  {
+                    //tr > 4 td
+                    [...Array(Math.ceil(productList.length / 4))].map(
+                      (e, i) => (
+                        <tr key={i}>
+                          <td>{imageCard(productList[4 * i])}</td>
+                          <td>
+                            {productList[4 * i + 1]
+                              ? imageCard(productList[4 * i + 1])
+                              : null}
+                          </td>
+                          <td>
+                            {productList[4 * i + 2]
+                              ? imageCard(productList[4 * i + 2])
+                              : null}
+                          </td>
+                          <td>
+                            {productList[4 * i + 3]
+                              ? imageCard(productList[4 * i + 3])
+                              : null}
+                          </td>
+                        </tr>
+                      )
+                    )
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+          );
+        </Fragment>
+      )}
+    </Fragment>
   );
-}
+};
 
 ProductList.propTypes = {
   user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  user: state.auth.user
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps)(ProductList);

@@ -30,10 +30,12 @@ const Register = ({ setAlert, registerCustomer, isAuthenticated }) => {
       registerCustomer(name, email, address, contact_No, password, rePassword);
   };
 
-  if (isAuthenticated) { return <Redirect to="/shops" />; }
+  if (isAuthenticated) {
+    return <Redirect to="/shops" />;
+  }
 
   return (
-    <div className="background">
+    <div className="background12">
       <div className="text">
         <div className="float">
           <h1>Sign Up</h1>
@@ -46,12 +48,12 @@ const Register = ({ setAlert, registerCustomer, isAuthenticated }) => {
         </div>
       </div>
 
-      <div className="box">
+      <div className="box ">
         <form className="w3-container squre " onSubmit={(e) => onSubmit(e)}>
           {/* <small> Name</small> */}
           <input
             type="text"
-            className="fullname hight"
+            className="fullname "
             placeholder="Name"
             name="name"
             value={name}
@@ -62,7 +64,7 @@ const Register = ({ setAlert, registerCustomer, isAuthenticated }) => {
           <input
             type="text"
             placeholder="Address "
-            className="fullname hight"
+            className="fullname "
             name="address"
             value={address}
             onChange={(e) => onChange(e)}
@@ -72,7 +74,7 @@ const Register = ({ setAlert, registerCustomer, isAuthenticated }) => {
           <input
             type="email"
             placeholder="Email Address"
-            className="fullname hight"
+            className="fullname "
             name="email"
             value={email}
             onChange={(e) => onChange(e)}
@@ -101,14 +103,14 @@ const Register = ({ setAlert, registerCustomer, isAuthenticated }) => {
 
           {/* <small> Contact Number</small> */}
           <input
-            type="number"
+            type="text"
             placeholder="Contact Number"
             name="contact_No"
             value={contact_No}
             onChange={(e) => onChange(e)}
           />
           <div className="btt">
-            <input type="submit" className="button" value="Register" />
+            <input type="submit" className="button " value="Register" />
           </div>
         </form>
       </div>
@@ -119,11 +121,13 @@ const Register = ({ setAlert, registerCustomer, isAuthenticated }) => {
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   registerCustomer: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { setAlert, registerCustomer })(Register);
+export default connect(mapStateToProps, { setAlert, registerCustomer })(
+  Register
+);

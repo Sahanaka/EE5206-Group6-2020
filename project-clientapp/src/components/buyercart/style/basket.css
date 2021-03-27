@@ -55,7 +55,7 @@ a {
 img.small {
   max-height: 8rem;
 }
-button {
+.but123 {
   font-size: 0.8rem;
   padding: 0.2rem;
   margin: 0.1rem;
@@ -65,15 +65,16 @@ button {
   width: 100%;
   cursor: pointer;
 }
-button.add {
-  background-color: #40c0f0;
+.butn123.add {
+  background-color: #d6aa00;
+
   width: 1.5rem;
 }
-button.remove {
-  background-color: #f04040;
+.but123.remove {
+  background-color: #d6aa00;
   width: 1.5rem;
 }
-button.badge {
+.but.badge {
   background-color: #f04040;
   border: none;
   color: #ffffff;

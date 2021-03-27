@@ -1,4 +1,4 @@
-Global Styles :root {
+.Global Styles :root {
   --primary-color: #c4d107;
   --dark-color: #343a40;
   --light-color: #f4f4f4;
@@ -151,15 +151,15 @@ img {
   color: #333;
 }
 
-.alert {
+/* .alert {
   padding: 0.8rem;
   margin: 1rem 0;
   opacity: 0.9;
   background: var(--light-color);
   color: #333;
-}
+} */
 
-.btn-primary,
+/* .btn-primary,
 .bg-primary,
 .badge-primary,
 .alert-primary {
@@ -206,7 +206,7 @@ img {
   background: #fff;
   color: #333;
   border: #ccc solid 1px;
-}
+} */
 
 .btn:hover {
   opacity: 0.8;
@@ -427,6 +427,11 @@ button.badge {
   text-align: center;
 }
 
+.widthofbutton {
+  width: 200px;
+  height: 200px;
+  align-items: center;
+}
 /* Profiles Page */
 .profile {
   display: grid;

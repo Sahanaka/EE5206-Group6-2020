@@ -1,4 +1,4 @@
-.text {
+.textnew {
   animation: textanimation 2s ease-in-out;
 }
 
@@ -9,4 +9,9 @@
   100% {
     opacity: 1;
   }
+}
+.text5 {
+  text-shadow: 3px 3px 0 rgb(61, 61, 61), -1px -1px 0 rgb(83, 83, 83),
+    1px -1px 0 rgb(78, 78, 78), -1px 1px 0 rgb(61, 61, 61),
+    2px 2px 0 rgb(97, 97, 97);
 }
