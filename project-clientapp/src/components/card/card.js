@@ -12,11 +12,22 @@ const Card=(props)=>{
       <span>total Price : {props.totalPrice}</span> <br />
       <button
         className="btn btn-light delete-button"
-        onClick={console.log("clicked")}
+        
       >
         <i className="far fa-trash-alt"></i>
       </button>
-      <button>accept</button>
+      {props.isAccepted?( <button disabled={props.isCustomer}>accept</button>): 
+      <button disabled={props.isCustomer} 
+      onClick={()=>props.acceptCastamer(
+                                       props.title,
+                                       props.cartyId,
+                                       props.itemsPrice,
+                                       props.taxPrice,
+                                       props.shippingPrice,
+                                       props.totalPrice
+                                       )}
+                                       >not accept</button>}
+     
     </div>
   </div>
 };

@@ -6,7 +6,7 @@ import "./App.css";
 import Background from "./img/mainimg.JPG";
 
 import store from "./store";
-
+import CustomerItems from './components/Customer/customerItems';
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Login from "./components/auth/Login";
@@ -59,6 +59,7 @@ const App = () => {
             <PrivateRoute exact path="/ProductList" component={ProductList} />
             <PrivateRoute exact path="/shops" component={Shops} />
             <PrivateRoute exact path="/shop/:id" component={Shop} />
+            <PrivateRoute exact path="/CustomerItems" component={CustomerItems} />
           </Switch>
           <Footer />
         </Fragment>

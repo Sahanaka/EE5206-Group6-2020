@@ -9,9 +9,10 @@ import Basket from "../buyercart/Basket";
 import "../Customer/style/shop.css";
 import Card from '../card/card';
 import DBApi from '../../Api/DBApi'
+import { TruckFlatbed } from "react-bootstrap-icons";
 
 
-const ShopItemsSeller = ({
+const CustomerItems = ({
     getShopById,
     shop: { shop, shopLoading },
     getShopProducts,
@@ -90,62 +91,31 @@ const ShopItemsSeller = ({
         );
       }
     };
-  const acceptCastamer=async(cartItems,cartyId,itemsPrice,taxPrice,shippingPrice,totalPrice)=>{
-    console.log(cartItems)
-    console.log("ssss")
-    try{
-      const isAccepted = await true
-      getShopProducts(match.params.id);
-      const responses = await DBApi.put(`/cart/${cartyId}`,{cartyId,cartItems,itemsPrice,taxPrice,shippingPrice,totalPrice,isAccepted})
-      console.log(responses)
-    if(responses.status==200){
-    console.log(responses)
-    setResponse(responses)
-    }else{
-      throw Error(responses.status);
-    }
-    }catch(e){
-      console.log("error")
-    }
-  }
   const addCardItems= ()=>{
     return response.map((r)=>{
       console.log(r)
      return <Card 
+     isAccepted={r.isAccepted}
      title={r.cartItems}
      cartyId={r.cartyId}
      itemsPrice={r.itemsPrice}
      taxPrice = {r.taxPrice}
      shippingPrice={r.shippingPrice}
      totalPrice = {r.totalPrice}
-     isAccepted={r.isAccepted}
-     isCustomer = {false}
-     acceptCastamer = {acceptCastamer}
+     isCustomer = {true}
      />
      })
   }
-
-
     return (
       <Fragment>
-        {shopLoading ? (
-          <Spinner />
-        ) : ( 
-          <Fragment>
-            <div className="row">
               <div>
-                {response?(addCardItems()):<div>ss</div>}
+                {response?(addCardItems()):<div>loading ....</div>}
               </div>
-            </div>
-  
-            {/* <h1 className="display-4">{shop.name}</h1> */}
-          </Fragment>
-        )}
       </Fragment>
     );
   };
   
-  ShopItemsSeller.propTypes = {
+  CustomerItems.propTypes = {
     getShopById: PropTypes.func.isRequired,
     getShopProducts: PropTypes.func.isRequired,
     shop: PropTypes.object.isRequired,
@@ -157,5 +127,5 @@ const ShopItemsSeller = ({
     products: state.products,
   });
   
-  export default connect(mapStateToProps, { getShopById, getShopProducts })(ShopItemsSeller);
+  export default connect(mapStateToProps, { getShopById, getShopProducts })(CustomerItems);
   
