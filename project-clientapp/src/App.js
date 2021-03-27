@@ -22,7 +22,7 @@ import Mainregistation from "./components/auth/Mainregistation";
 import SellerRegistration from "./components/auth/SellerRegistation";
 import Shops from "./components/Customer/Shops";
 import Shop from "./components/Customer/shop";
-
+import ShopItemsSeller from "./components/Seller/shopItemsSeller";
 import { loadUser } from "./Actions/auth";
 import { LOGOUT } from "./Actions/types";
 
@@ -48,6 +48,7 @@ const App = () => {
             <Route exact path="/Register" component={Register} />
             <PrivateRoute exact path="/orderAcccept" component={OrderAccept} />
             <PrivateRoute exact path="/sellerMain/:id" component={SellerMain} />
+            <PrivateRoute exact path="/ShopItemsSeller/:id" component={ShopItemsSeller} />
             <Route exact path="/OrderList" component={OrderList} />{" "}
             <Route exact path="/Mainregistration" component={Mainregistation} />
             <Route

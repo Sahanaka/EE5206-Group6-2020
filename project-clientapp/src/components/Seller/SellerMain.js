@@ -97,6 +97,10 @@ const SellerMain = ({ match }) => {
                     <i className="ti-layout-list-post menu-icon" />
                     <Link to="/ProductList">Products</Link>
                 </li>
+                <li className="nav-item">
+                    <i className="ti-layout-list-post menu-icon" />
+                    <Link to={`/ShopItemsSeller/${1}`}>Shop Items</Link>
+                </li>
               </ul>
             </nav>
             {/* partial */}
