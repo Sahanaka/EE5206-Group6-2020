@@ -73,7 +73,7 @@ const Mainregistation = () => {
 
             <button onClick=
               {() => {
-                history.push("/Register");
+                history.push("/selleRegistation");
               }}
               type="submit" class="btn btn-primary btn-block btn-large" 
               > Seller

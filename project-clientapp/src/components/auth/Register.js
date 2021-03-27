@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import "./style/Register.css";
@@ -8,16 +8,16 @@ import { setAlert } from "../../Actions/alert";
 import { registerCustomer } from "../../Actions/auth";
 import "w3-css/w3.css";
 
-const Register = ({ setAlert, registerCustomer }) => {
+const Register = ({ setAlert, registerCustomer, isAuthenticated }) => {
   const [formData, setFromData] = useState({
     name: "",
     email: "",
-    contactNo: "",
+    contact_No: "",
     password: "",
     rePassword: "",
   });
 
-  const { name, address, contactNo, email, password, rePassword } = formData;
+  const { name, address, contact_No, email, password, rePassword } = formData;
 
   const onChange = (e) =>
     setFromData({ ...formData, [e.target.name]: e.target.value });
@@ -27,8 +27,10 @@ const Register = ({ setAlert, registerCustomer }) => {
 
     if (password !== rePassword) setAlert("Passwords do not match", "danger");
     else
-      registerCustomer(name, email, address, contactNo, password, rePassword);
+      registerCustomer(name, email, address, contact_No, password, rePassword);
   };
+
+  if (isAuthenticated) { return <Redirect to="/shops" />; }
 
   return (
     <div className="background">
@@ -101,8 +103,8 @@ const Register = ({ setAlert, registerCustomer }) => {
           <input
             type="number"
             placeholder="Contact Number"
-            name="contactNo"
-            value={contactNo}
+            name="contact_No"
+            value={contact_No}
             onChange={(e) => onChange(e)}
           />
           <div className="btt">
@@ -117,11 +119,11 @@ const Register = ({ setAlert, registerCustomer }) => {
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   registerCustomer: PropTypes.func.isRequired,
-  //isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(null, { setAlert, registerCustomer })(Register);
+export default connect(mapStateToProps, { setAlert, registerCustomer })(Register);

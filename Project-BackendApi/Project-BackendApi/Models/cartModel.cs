@@ -16,5 +16,8 @@ namespace Project_BackendApi.Models
         public string taxPrice { get; set; }
         public string shippingPrice { get; set; }
         public string totalPrice { get; set; }
+        public Boolean IsAccepted { get; set; }
+
+
     }
 }
