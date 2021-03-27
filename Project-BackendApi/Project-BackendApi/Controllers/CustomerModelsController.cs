@@ -183,5 +183,33 @@ namespace Project_BackendApi.Controllers
             return _context.CustomerModels.Any(e => e.CustomerId == id);
         }
 
+
+
+        [HttpPost("cart")]
+        
+        public async Task<ActionResult> AddNewCart([FromBody] cartModel newCart)
+        {
+
+            if (newCart == null)
+
+                return BadRequest();
+
+            try
+            {
+               _context.cartModels.Add(newCart);
+                await _context.SaveChangesAsync();
+                return Ok($"Added cart {newCart.itemsPrice} to the database");
+            }
+
+            catch (Exception ex) { throw ex; }
+        }
+
+        [HttpGet("cart")]
+        public List<cartModel> GetAllCarts()
+        {
+
+            return _context.cartModels.ToList();
+        }
+
     }
 }

@@ -27,6 +27,7 @@ namespace Project_BackendApi.DATA
         public DbSet<SellerCustomerModel> ProductCustomerModels { get; set; }
         public DbSet<SellerCustomerModel> CuStomerReportModels { get; set; }
         public DbSet<SellerCustomerModel> CustomerOrderDetailsModels { get; set; }
+        public DbSet<cartModel> cartModels { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
