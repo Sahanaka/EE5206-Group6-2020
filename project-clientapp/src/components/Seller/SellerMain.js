@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SellerMain = () => {
+const SellerMain = ({ match }) => {
+  console.log(match.params.id)
   return (
     <div>
       {/* Required meta tags */}
@@ -95,6 +96,10 @@ const SellerMain = () => {
                 <li className="nav-item">
                     <i className="ti-layout-list-post menu-icon" />
                     <Link to="/ProductList">Products</Link>
+                </li>
+                <li className="nav-item">
+                    <i className="ti-layout-list-post menu-icon" />
+                    <Link to={`/ShopItemsSeller/${1}`}>Shop Items</Link>
                 </li>
               </ul>
             </nav>

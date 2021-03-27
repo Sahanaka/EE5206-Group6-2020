@@ -506,6 +506,33 @@ namespace Project_BackendApi.Migrations
                     b.ToTable("SellerModels");
                 });
 
+            modelBuilder.Entity("Project_BackendApi.Models.cartModel", b =>
+                {
+                    b.Property<int>("CartyId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("cartItems")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("itemsPrice")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("shippingPrice")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("taxPrice")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("totalPrice")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CartyId");
+
+                    b.ToTable("cartModels");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)

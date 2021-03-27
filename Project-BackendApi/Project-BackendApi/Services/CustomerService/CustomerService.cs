@@ -24,12 +24,12 @@ namespace Project_BackendApi.Services.CustomerService
             return _db.ProductModels.ToList();
         }
 
-        public List<ProductModel> GetSellerProducts(int sellerId)
-        {
-            try
-            { return _db.ProductModels.Where(x => x.ShopProductId == sellerId).ToList(); }
-            catch (Exception ex) { throw ex; }
-        }
+        //public List<ProductModel> GetSellerProducts(int sellerId)
+        //{
+        //    try
+        //    { return _db.ProductModels.Where(x => x.ShopProductId == sellerId).ToList(); }
+        //    catch (Exception ex) { throw ex; }
+        //}
 
         public List<SellerModel> GetAllShpos() // show list of shops *
         {

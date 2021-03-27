@@ -1,4 +1,4 @@
-import axois from "axios";
+import axios from "axios";
 
 import {
   REGISTER_FAIL,
@@ -10,9 +10,10 @@ import {
   LOGOUT,
   CLEAR_PRODUCTS,
   CLEAR_SELLER,
-  CLEAR_SELLERS
+  CLEAR_SELLERS,
 } from "./types";
 import { setAlert } from "./alert";
+
 
 export const login = (email, password) => async (dispatch) => {
   const config = {
@@ -22,7 +23,7 @@ export const login = (email, password) => async (dispatch) => {
   const body = JSON.stringify({ email, password });
 
   try {
-    const res = await axois.post(
+    const res = await axios.post(
       "https://localhost:5001/api/LogSignUp/login",
       body,
       config
@@ -33,6 +34,7 @@ export const login = (email, password) => async (dispatch) => {
       type: LOGIN_SUCCESS,
       payload: res.data,
     });
+    dispatch(loadUser());
   } catch (error) {
     dispatch(setAlert("Invalid email or password", "danger"));
     dispatch({
@@ -63,7 +65,7 @@ export const registerCustomer = (
   });
 
   try {
-    const res = await axois.post(
+    const res = await axios.post(
       "https://localhost:5001/api/LogSignUp/signup/customer",
       body,
       config
@@ -107,7 +109,7 @@ export const registerSeller = (
   });
 
   try {
-    const res = await axois.post(
+    const res = await axios.post(
       "https://localhost:5001/api/LogSignUp/signup/seller",
       body,
       config
@@ -127,7 +129,44 @@ export const registerSeller = (
   }
 };
 
-export const logout = () => dispatch => {
+export const loadUser = () => async (dispatch) => {
+  if (localStorage.token) { 
+    const user = JSON.parse(atob(localStorage.token.split(".")[1])); 
+    if (user.role === "Customer") {
+      try {
+        const res = await axios.get(
+          `https://localhost:5001/api/CustomerModels/${user.id}`
+        );
+        dispatch({
+          type: USER_LOADED,
+          payload: res.data,
+        });
+      } catch (error) {
+        console.error(error);
+        dispatch({ type: AUTH_ERROR });
+      }
+    }
+    else if (user.role === "Seller") {
+      try {
+        const res = await axios.get(
+          `https://localhost:5001/api/Seller/${user.id}`
+        );
+        dispatch({
+          type: USER_LOADED,
+          payload: res.data,
+        });
+      } catch (error) {
+        console.error(error);
+        dispatch({ type: AUTH_ERROR });
+      }
+    }
+  }
+  else {
+    dispatch({ type: AUTH_ERROR })
+  }
+};
+
+export const logout = () => (dispatch) => {
   dispatch({ type: CLEAR_PRODUCTS });
   dispatch({ type: CLEAR_SELLER });
   dispatch({ type: CLEAR_SELLERS });

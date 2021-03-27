@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import clsx from "clsx";
+import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import { fade, makeStyles, useTheme } from "@material-ui/core/styles";
 
@@ -136,7 +138,7 @@ const Shops = () => {
   const classes = useStyles();
 
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -165,7 +167,7 @@ const Shops = () => {
               variant="h6"
               noWrap
             ></Typography>
-            <div className={classes.search}>
+            {/* <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
@@ -176,8 +178,9 @@ const Shops = () => {
                   input: classes.inputInput,
                 }}
                 inputProps={{ "aria-label": "search" }}
+                onSubmit={console.log("sub")}
               />
-            </div>
+            </div> */}
           </Toolbar>
         </AppBar>
         <Drawer

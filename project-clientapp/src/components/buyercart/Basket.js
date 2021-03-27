@@ -1,13 +1,32 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import DBApi from '../../Api/DBApi';
 import "./style/basket.css";
 
 export default function Basket(props) {
-  const { cartItems, onAdd, onRemove } = props;
-  const itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
-  const taxPrice = itemsPrice * 0.14;
-  const shippingPrice = itemsPrice > 2000 ? 0 : 20;
-  const totalPrice = itemsPrice + taxPrice + shippingPrice;
+  var { cartItems, onAdd, onRemove } = props;
+  var itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
+  var taxPrice = itemsPrice * 0.14;
+  var shippingPrice = itemsPrice > 2000 ? 0 : 20;
+  var totalPrice = itemsPrice + taxPrice + shippingPrice;
+  var  addShopItem= async ()=>{
+    try{
+      cartItems =await cartItems[0].title.toString();
+      itemsPrice = await itemsPrice.toString();
+      taxPrice = await taxPrice.toString();
+      shippingPrice = await shippingPrice.toString();
+      totalPrice =await totalPrice.toString();
+    const response = await DBApi.post("/cart",{cartItems,itemsPrice,taxPrice,shippingPrice,totalPrice})
+    if(response.status==200){
+    console.log(response.data)
+    }else{
+      throw Error(response.status);
+    }
+    }catch(e){
+      console.log("error")
+    }
+  
+  }
   return (
     <aside className="block ">
       <h2 className="text-center ">My Cart</h2>
@@ -59,7 +78,7 @@ export default function Basket(props) {
             </div>
             <hr />
             <div className="">
-              <button onClick={() => alert("Implement Checkout!")}>
+              <button onClick={()=>addShopItem()}>
                 Checkout
               </button>
             </div>

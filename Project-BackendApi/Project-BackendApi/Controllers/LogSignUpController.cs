@@ -46,7 +46,7 @@ namespace Project_BackendApi.Controllers
 
         // POST api/<LogSignUpController>
         [HttpPost("signup/customer")]
-        public async Task<IActionResult> CustomerPost([FromForm] CustomerModel newcustomer)
+        public async Task<IActionResult> CustomerPost([FromBody] CustomerModel newcustomer)
         {
             // CustomerModelDB.Add(newcustomer);
             var customerWithSameEmail = _db.CustomerModels.FirstOrDefault(m => m.Email.ToLower() == newcustomer.Email.ToLower()); //check email already exit or not
@@ -54,7 +54,7 @@ namespace Project_BackendApi.Controllers
 
             if (customerWithSameEmail == null)
             {
-                newcustomer.CustomerImage = await _iimageService.SaveImage(newcustomer.ImageData);
+                //newcustomer.CustomerImage = await _iimageService.SaveImage(newcustomer.ImageData);
                 _db.CustomerModels.Add(newcustomer);
                 _db.SaveChanges();
 
@@ -66,8 +66,8 @@ namespace Project_BackendApi.Controllers
 
                 string url = $"{_config["AppUrl"]}/api/auth/confirmemail?useremail={newcustomer.Email}&token={tokenString}";
 
-                await _mailService.SendEmailAsync(newcustomer.Email, "Confirm your email", $"<h1>Thank You for registering in S&D com</h1>" +
-                    $"<p>Please confirm your email by <a href='{url}'>Clicking here</a></p>");
+                //await _mailService.SendEmailAsync(newcustomer.Email, "Confirm your email", $"<h1>Thank You for registering in S&D com</h1>" +
+                //    $"<p>Please confirm your email by <a href='{url}'>Clicking here</a></p>");
 
                 return Ok(new
                 {
@@ -106,8 +106,8 @@ namespace Project_BackendApi.Controllers
 
                 string url = $"{_config["AppUrl"]}/api/auth/confirmemail?useremail={newseller.Email}&token={tokenString}";
 
-                await _mailService.SendEmailAsync(newseller.Email, "Confirm your email", $"<h1>Welcome to Auth Demo</h1>" +
-                    $"<p>Please confirm your email by <a href='{url}'>Clicking here</a></p>");
+                //await _mailService.SendEmailAsync(newseller.Email, "Confirm your email", $"<h1>Welcome to Auth Demo</h1>" +
+                //    $"<p>Please confirm your email by <a href='{url}'>Clicking here</a></p>");
 
                 return Ok(new
                 {
@@ -147,7 +147,7 @@ namespace Project_BackendApi.Controllers
 
                 else
                 {
-                    await _mailService.SendEmailAsync(login.Email, "New login", "<h1>Hey!, Did you login to your account</h1><p>New login to your account at " + DateTime.Now + "</p>");
+                    // await _mailService.SendEmailAsync(login.Email, "New login", "<h1>Hey!, Did you login to your account</h1><p>New login to your account at " + DateTime.Now + "</p>");
                     
                     // Return token
                     var tokenString = _jwtService.GenerateJWTtoken(login);

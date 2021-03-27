@@ -7,7 +7,7 @@ import "./style/login.css";
 import "./style/Button.css";
 import { login } from "../../Actions/auth";
 
-const Login = ({ login, isAuthenticated, user }) => {
+const Login = ({ login, isAuthenticated, role, user }) => {
   const [formData, setFromData] = useState({
     email: "",
     password: "",
@@ -24,10 +24,11 @@ const Login = ({ login, isAuthenticated, user }) => {
     login(email, password);
   };
 
-  if (isAuthenticated) {
-    if (user.role === "Customer") return <Redirect to="/shops" />;
-    else if (user.role == "Seller") return <Redirect to="/sellerMain" />;
-    else console.log(user.role);
+  if (isAuthenticated && role) {
+    if (role.role === "Customer") return <Redirect to="/shops" />;
+    else if (role.role == "Seller")
+      return <Redirect to={`/sellerMain/${role.id}`} />;
+    else console.log(role.role);
   }
 
   return (
@@ -76,11 +77,13 @@ const Login = ({ login, isAuthenticated, user }) => {
 Login.propTypes = {
   login: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
+  role: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  role: state.auth.role,
   user: state.auth.user,
 });
 

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 
@@ -13,7 +13,7 @@ import Login from "./components/auth/Login";
 import Footer from "./components/layout/Footer";
 import Register from "./components/auth/Register";
 import OrderAccept from "./components/Seller/OrderAccept";
-import SellerMain from "./components/auth/SellerRegistation";
+import SellerMain from "./components/Seller/SellerMain";
 import OrderList from "./components/Seller/OrderList";
 import ProductList from "./components/Seller/ProductList";
 import Alert from "./components/layout/Alert";
@@ -22,8 +22,19 @@ import Mainregistation from "./components/auth/Mainregistation";
 import SellerRegistration from "./components/auth/SellerRegistation";
 import Shops from "./components/Customer/Shops";
 import Shop from "./components/Customer/shop";
+import ShopItemsSeller from "./components/Seller/shopItemsSeller";
+import { loadUser } from "./Actions/auth";
+import { LOGOUT } from "./Actions/types";
 
-function App() {
+const App = () => {
+  useEffect(() => {
+    store.dispatch(loadUser());
+
+    // log user out from all tabs if they log out in one tab
+    window.addEventListener("storage", () => {
+      if (!localStorage.token) store.dispatch({ type: LOGOUT });
+    });
+  }, []);
   return (
     <Provider store={store}>
       <Router>
@@ -36,23 +47,28 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/Register" component={Register} />
             <PrivateRoute exact path="/orderAcccept" component={OrderAccept} />
-            <Route exact path="/sellerMain" component={SellerMain} />
+            <PrivateRoute exact path="/sellerMain/:id" component={SellerMain} />
+            <PrivateRoute
+              exact
+              path="/ShopItemsSeller/:id"
+              component={ShopItemsSeller}
+            />
             <Route exact path="/OrderList" component={OrderList} />{" "}
             <Route exact path="/Mainregistration" component={Mainregistation} />
             <Route
               exact
-              path="/SellerRegistration"
+              path="/selleRegistation"
               component={SellerRegistration}
             />
-            <Route exact path="/ProductList" component={ProductList} />
-            <Route exact path="/shops" component={Shops} />
-            <Route exact path="/shop/:id" component={Shop} />
+            <PrivateRoute exact path="/ProductList" component={ProductList} />
+            <PrivateRoute exact path="/shops" component={Shops} />
+            <PrivateRoute exact path="/shop/:id" component={Shop} />
           </Switch>
           <Footer />
         </Fragment>
       </Router>
     </Provider>
   );
-}
+};
 
 export default App;

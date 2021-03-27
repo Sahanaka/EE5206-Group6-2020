@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from "react";
+import React, { useEffect, Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -10,6 +10,10 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
   useEffect(async () => {
     getShops();
   }, [getShops]);
+
+  const [searchName, setSearchName] = useState('');
+  
+  const nameFilter = (event) => setSearchName(event.target.value.toLowerCase());
 
   const imageCard = (data) => (
     <div>
@@ -36,40 +40,40 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
         <Fragment>
           <div className="row">
             <div className="col-md-12">
+              <div className="col-md-2 searchcard">
+                <input
+                  type="search"
+                  className="form-control"
+                  placeholder={"Filter by shop category"}
+                  onChange={nameFilter}
+                />
+              </div>
               <div className=" jumbotron-fluid py-4">
                 <div className="container text-center">
-                  {/* <h1 className="display-4">{shop.sellerId}</h1> */}
+                  <h1 className="display-4">{shops.sellerId}</h1>
                 </div>
               </div>
             </div>
             <div className="col-md-8">
-              <table>
-                <tbody>
-                  {
-                    //tr > 4 td
-                    [...Array(Math.ceil(shops.length / 4))].map((e, i) => (
-                      <tr key={i}>
-                        <td>{imageCard(shops[4 * i])}</td>
-                        <td>
-                          {shops[4 * i + 1]
-                            ? imageCard(shops[4 * i + 1])
-                            : null}
-                        </td>
-                        <td>
-                          {shops[4 * i + 2]
-                            ? imageCard(shops[4 * i + 2])
-                            : null}
-                        </td>
-                        <td>
-                          {shops[4 * i + 3]
-                            ? imageCard(shops[4 * i + 3])
-                            : null}
-                        </td>
-                      </tr>
-                    ))
-                  }
-                </tbody>
-              </table>
+              <div id="product">
+                {shops
+                  .filter((productList) => {
+                    if (searchName === "") {
+                      return productList;
+                    } else if (
+                      productList.cetogory
+                        .toLocaleLowerCase()
+                        .includes(searchName)
+                    ) {
+                      return productList;
+                    }
+                  })
+                  .map((productList) => (
+                    <tc>
+                      <td>{imageCard(productList)}</td>
+                    </tc>
+                  ))}
+              </div>
             </div>
           </div>
         </Fragment>

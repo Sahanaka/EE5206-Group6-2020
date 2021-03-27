@@ -75,14 +75,32 @@ namespace Project_BackendApi.Controllers
         }
 
         // Get seller's product
+        //[HttpGet("shops/products/{sellerId}")]
+        //public List<ProductModel> GetProductsOfSeller(int sellerId)
+        //{
+        //    try
+        //    {
+        //        return _customerService.GetSellerProducts(sellerId);
+        //    }
+        //    catch (Exception ex) { throw ex;}
+        //}
         [HttpGet("shops/products/{sellerId}")]
-        public List<ProductModel> GetProductsOfSeller(int sellerId)
+        public async Task<ActionResult<IEnumerable<ProductModel>>> GetProductsOfSeller(int sellerId)
         {
-            try
+            return await _context.ProductModels.Where(x => x.ShopProductId == sellerId).Select(x => new ProductModel()
             {
-                return _customerService.GetSellerProducts(sellerId);
-            }
-            catch (Exception ex) { throw ex;}
+                ProductId = x.ProductId,
+                Title = x.Title,
+                Price = x.Price,
+                AvailabeAmount = x.AvailabeAmount,
+                Image = x.Image,
+                Discount = x.Discount,
+                Size = x.Size,
+                Quantity = x.Quantity,
+                ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.Image),
+                ShopProductId = x.ShopProductId
+            })
+              .ToListAsync(); ;
         }
 
         [HttpPost("Order")]
@@ -181,6 +199,34 @@ namespace Project_BackendApi.Controllers
         private bool CustomerModelExists(int id)
         {
             return _context.CustomerModels.Any(e => e.CustomerId == id);
+        }
+
+
+
+        [HttpPost("cart")]
+        
+        public async Task<ActionResult> AddNewCart([FromBody] cartModel newCart)
+        {
+
+            if (newCart == null)
+
+                return BadRequest();
+
+            try
+            {
+               _context.cartModels.Add(newCart);
+                await _context.SaveChangesAsync();
+                return Ok($"Added cart {newCart.itemsPrice} to the database");
+            }
+
+            catch (Exception ex) { throw ex; }
+        }
+
+        [HttpGet("cart")]
+        public List<cartModel> GetAllCarts()
+        {
+
+            return _context.cartModels.ToList();
         }
 
     }
