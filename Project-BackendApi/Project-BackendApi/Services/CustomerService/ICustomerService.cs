@@ -13,7 +13,7 @@ namespace Project_BackendApi.Services.CustomerService
 
         public List<ProductModel> GetAllProducts();
 
-        public List<ProductModel> GetSellerProducts(int sellerId);
+        ///public List<ProductModel> GetSellerProducts(int sellerId);
 
         public List<SellerModel> GetByCetogory(string category);
 

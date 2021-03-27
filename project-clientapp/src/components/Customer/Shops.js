@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
@@ -141,7 +141,8 @@ const Shops = () => {
   const classes = useStyles();
 
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  
 
   const handleDrawerOpen = () => {
     setOpen(true);

@@ -12,7 +12,7 @@ import {
 
 export const getShops = () => async dispatch => {
     try {
-        const res = await axios.get(`https://localhost:5001/api/CustomerModels/category/retail`);
+        const res = await axios.get(`https://localhost:5001/api/CustomerModels/shops`);
         console.log('all shops', res.data)
         dispatch({
           type: GET_SELLERS,
@@ -22,11 +22,10 @@ export const getShops = () => async dispatch => {
     } catch (error) {
         setAlert("No products to sell", "warning");
         console.log(error)
-        // dispatch({
-        //     type: SELLERS_ERROR,
-        //     //payload: { msg: error.response.statusText, status: error.response.status }
-        //     payload: { status: error.response.status }
-        // });
+        dispatch({
+            type: SELLERS_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        });
     }
 };
 
@@ -45,6 +44,10 @@ export const getShopById = (id) => async dispatch => {
         return res.data
     } catch (error) {
         setAlert("Something wrong", "danger");
+        dispatch({
+            type: CLEAR_SELLER,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        });
     }
 }
 
@@ -61,9 +64,9 @@ export const getShopProducts = (id) => async dispatch => {
     } catch (error) {
         setAlert("No products to sell", "warning");
         console.log(error)
-        // dispatch({
-        //     type: PRODUCTS_ERROR,
-        //     payload: { msg: error.response.statusText, status: error.response.status }
-        // });
+        dispatch({
+            type: PRODUCTS_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        });
     }
 };
