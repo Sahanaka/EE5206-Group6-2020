@@ -12,14 +12,14 @@ namespace Project_BackendApi.Models
         
 
         public int OrderDetailsId { get; set; }
+       
+        public string ProductName { get; set; }
+        public string ProductPrice { get; set; }
 
-        [Required(ErrorMessage = "Please Enter Description")]
-        public string Description { get; set; }
+        public int Quantity { get; set; }
+        public string OrderNumber { get; set; }
 
-        public int ProductOrderId { get; set; }
 
-        public ProductModel ProductModel { get; set; }
-        public IList<CustomerOrderDetailsModel> CustomerOrderDetailsModels { get; set; }
 
     }
 }
