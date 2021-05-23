@@ -178,6 +178,7 @@ namespace Project_BackendApi.Controllers
                 else if ((_db.SellerModels.SingleOrDefault(x => x.Email.ToLower() == login.Email.ToLower()))!=null)
                 {
                     var seller = _db.SellerModels.SingleOrDefault(x => x.Email.ToLower() == login.Email.ToLower());
+                    var decriptPwd = _encryptService.Decryptword(seller.Password);
                     if (seller.Password == login.Password)
                     {
                         var tokenString = _jwtService.GenerateJWTtoken(login);
