@@ -25,6 +25,7 @@ using Project_BackendApi.Services.CustomerService;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Project_BackendApi.Services.ImageService;
+using Project_BackendApi.Services.EncrytService;
 
 namespace Project_BackendApi
 {
@@ -42,6 +43,7 @@ namespace Project_BackendApi
         {
             
             services.AddControllers();
+            services.AddMvc().AddNewtonsoftJson();
 
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
@@ -91,6 +93,7 @@ namespace Project_BackendApi
             services.AddScoped<ICustomerService, CustomerService>();
 
             services.AddScoped<IImageService, ImageService>();
+            services.AddScoped<IEncryptService, EncryptService>();
 
         }
 

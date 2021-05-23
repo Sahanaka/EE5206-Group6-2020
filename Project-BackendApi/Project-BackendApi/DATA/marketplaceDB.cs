@@ -28,6 +28,7 @@ namespace Project_BackendApi.DATA
         public DbSet<SellerCustomerModel> CuStomerReportModels { get; set; }
         public DbSet<SellerCustomerModel> CustomerOrderDetailsModels { get; set; }
         public DbSet<cartModel> cartModels { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -51,10 +52,7 @@ namespace Project_BackendApi.DATA
            .HasForeignKey(c => c.CategoryProductId);
 
 
-            modelBuilder.Entity<OrderDetailsModel>()
-           .HasOne<ProductModel>(p => p.ProductModel)
-           .WithMany(o => o.OrderDetailsModels)
-           .HasForeignKey(p => p.ProductOrderId);
+           
 
 
             modelBuilder.Entity<AdminModel>()
@@ -73,10 +71,7 @@ namespace Project_BackendApi.DATA
                 .HasForeignKey(co => co.CustomerId);
 
 
-            modelBuilder.Entity<CustomerOrderDetailsModel>()
-                .HasOne<OrderDetailsModel>(co => co.OrderDetailsModel)
-                .WithMany(s => s.CustomerOrderDetailsModels)
-                .HasForeignKey(co => co.OrderDetailsId);
+          
 
 
 

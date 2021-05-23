@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project_BackendApi.Models
 {
+
     public class cartModel
     {
         [Key]
@@ -17,7 +18,8 @@ namespace Project_BackendApi.Models
         public string shippingPrice { get; set; }
         public string totalPrice { get; set; }
         public bool IsAccepted { get; set; }
-
+        public string CustomerEmail { get; set; }
 
     }
+    
 }

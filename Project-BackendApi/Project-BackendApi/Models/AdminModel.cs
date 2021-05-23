@@ -36,7 +36,6 @@ namespace Project_BackendApi.Models
         [DataType(DataType.Password)]
         public string ReTypePassword { get; set; }
 
-        
         public int ReportAdminId { get; set; }
         public ReportModel ReportModel { get; set; }
 
