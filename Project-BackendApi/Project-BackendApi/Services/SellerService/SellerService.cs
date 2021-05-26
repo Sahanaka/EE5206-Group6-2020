@@ -7,11 +7,14 @@ using Project_BackendApi.DATA;
 using Project_BackendApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Project_BackendApi.Services.ImageService;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Project_BackendApi.Services.SellerService
 {
     public class SellerService : ISellerService
     {
+       
         private readonly MarketplaceDB _db;
         private IImageService _iimageService;
 
@@ -83,5 +86,6 @@ namespace Project_BackendApi.Services.SellerService
         }
 
         
+
     }
 }

@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Project_BackendApi.DATA;
 using Project_BackendApi.Models;
+using Project_BackendApi.Services.CustomerService;
+using Project_BackendApi.Services.EncrytService;
 using Project_BackendApi.Services.ImageService;
 using Project_BackendApi.Services.JWTService;
 using Project_BackendApi.Services.MailService;
+using Project_BackendApi.Services.SellerService;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,22 +23,30 @@ namespace Project_BackendApi.Controllers
     [ApiController]
     public class LogSignUpController : ControllerBase
     {
-
+        
         public readonly MarketplaceDB _db;
 
         private readonly IConfiguration _config; // To read from the config file
         private IJWTService _jwtService;
         private IMailService _mailService;
         private IImageService _iimageService;
+        private ISellerService _sellerService;
+        private IEncryptService _encryptService;
 
 
-        public LogSignUpController(IConfiguration config, IJWTService jwtservice, MarketplaceDB db, IMailService mailService, IImageService imageService)
+
+
+
+
+        public LogSignUpController(ISellerService sellerService, IEncryptService encryptService, IConfiguration config, IJWTService jwtservice, MarketplaceDB db, IMailService mailService, IImageService imageService)
         {
             _config = config;
             _jwtService = jwtservice;
             _db = db;
             _mailService = mailService;
             _iimageService = imageService;
+            _sellerService = sellerService;
+            _encryptService = encryptService;
 
         }
 
@@ -55,6 +68,14 @@ namespace Project_BackendApi.Controllers
             if (customerWithSameEmail == null)
             {
                 //newcustomer.CustomerImage = await _iimageService.SaveImage(newcustomer.ImageData);
+
+                
+                var encryPassword = _encryptService.Encryptword(newcustomer.Password);
+                var encryReTypePassword = _encryptService.Encryptword(newcustomer.ReTypePassword);
+
+
+                newcustomer.Password = encryPassword;
+                newcustomer.ReTypePassword = encryReTypePassword;
                 _db.CustomerModels.Add(newcustomer);
                 _db.SaveChanges();
 
@@ -94,6 +115,12 @@ namespace Project_BackendApi.Controllers
 
             if (SellerWithSameEmail == null)
             {
+                var encryPassword = _encryptService.Encryptword(newseller.Password);
+                var encryReTypePassword = _encryptService.Encryptword(newseller.ReTypePassword);
+
+
+                newseller.Password = encryPassword;
+                newseller.ReTypePassword = encryReTypePassword;
                 newseller.ShopImage = await _iimageService.SaveImage(newseller.ImageData);
                 _db.SellerModels.Add(newseller);
                 _db.SaveChanges();
@@ -129,36 +156,44 @@ namespace Project_BackendApi.Controllers
         public async Task<IActionResult> Login(LoginModel login)
         {
             try
-            {            // CustomerModelDB.Add(newcustomer);
-                var CheckEmailSeller = _db.SellerModels.FirstOrDefault(m => m.Email.ToLower() == login.Email.ToLower()); //check email already exit or not
-                var CheckPasswerdSeller = _db.SellerModels.FirstOrDefault(m => m.Password == login.Password);
-
-                var CheckEmailCustomer  = _db.CustomerModels.FirstOrDefault(m => m.Email.ToLower() == login.Email.ToLower()); //check email already exit or not
-                var CheckPasswerdCustomer = _db.CustomerModels.FirstOrDefault(m => m.Password == login.Password);
+            {
 
 
-                
-                if ((CheckEmailSeller == null || CheckPasswerdSeller == null)&& (CheckEmailCustomer == null || CheckPasswerdCustomer == null))
+                if ((_db.CustomerModels.SingleOrDefault(x => x.Email.ToLower() == login.Email.ToLower())!=null))
+                {
+                    var customer = _db.CustomerModels.SingleOrDefault(x => x.Email.ToLower() == login.Email.ToLower());
+
+                   var  decriptPwd = _encryptService.Decryptword(customer.Password);
+                    if (decriptPwd == login.Password)
+                    {
+                        var tokenString = _jwtService.GenerateJWTtoken(login);
+                        return Ok(new
+                        {
+                            token = tokenString
+                        });
+                    }
+                    return BadRequest(); //New page
+
+                }
+                else if ((_db.SellerModels.SingleOrDefault(x => x.Email.ToLower() == login.Email.ToLower()))!=null)
+                {
+                    var seller = _db.SellerModels.SingleOrDefault(x => x.Email.ToLower() == login.Email.ToLower());
+                    var decriptPwd = _encryptService.Decryptword(seller.Password);
+                    if (seller.Password == login.Password)
+                    {
+                        var tokenString = _jwtService.GenerateJWTtoken(login);
+                        return Ok(new
+                        {
+                            token = tokenString
+                        });
+                    }
+                    return BadRequest(); //New page
+
+                }
+                else
                 {
                     return BadRequest(); //New page
                 }
-
-
-
-                else
-                {
-                    // await _mailService.SendEmailAsync(login.Email, "New login", "<h1>Hey!, Did you login to your account</h1><p>New login to your account at " + DateTime.Now + "</p>");
-                    
-                    // Return token
-                    var tokenString = _jwtService.GenerateJWTtoken(login);
-                    return Ok(new
-                    {
-                        token = tokenString
-                    });
-                }
-
-
-
             }
             catch (Exception ex)
             {
@@ -166,7 +201,7 @@ namespace Project_BackendApi.Controllers
             }
 
         }
-
+       
 
     }
 

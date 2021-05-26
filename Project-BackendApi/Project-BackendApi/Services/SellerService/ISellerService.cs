@@ -23,7 +23,8 @@ namespace Project_BackendApi.Services.SellerService
 
         public Task ProcessOrder(OrderDetailsModel order); // Accept or decline an order
 
-        public Task PayService(); 
+        public Task PayService();
 
+       
     }
 }

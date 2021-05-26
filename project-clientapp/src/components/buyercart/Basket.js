@@ -2,30 +2,49 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import DBApi from '../../Api/DBApi';
 import "./style/basket.css";
+import { connect } from 'react-redux';
 
-export default function Basket(props) {
+function Basket(props) {
   var { cartItems, onAdd, onRemove } = props;
   var itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
   var taxPrice = itemsPrice * 0.14;
   var shippingPrice = itemsPrice > 2000 ? 0 : 20;
   var totalPrice = itemsPrice + taxPrice + shippingPrice;
+  var  orderDetails
+  var title
+  var price
+  var quantity
+  var customerEmail
+  var isAccepted = false;
   var  addShopItem= async ()=>{
+    
     try{
+      orderDetails = cartItems.map((item)=>(
+        { productName:item.title,
+          quantity:item.quantity,
+          productPrice:item.price,
+        }
+      ))
       cartItems =await cartItems[0].title.toString();
       itemsPrice = await itemsPrice.toString();
       taxPrice = await taxPrice.toString();
       shippingPrice = await shippingPrice.toString();
       totalPrice =await totalPrice.toString();
-    const response = await DBApi.post("/cart",{cartItems,itemsPrice,taxPrice,shippingPrice,totalPrice})
-    if(response.status==200){
-    console.log(response.data)
+      console.log(orderDetails);
+      isAccepted= true;
+
+      customerEmail= props.state.email;
+   const response = await DBApi.post("/cart",{cartModel:{cartItems,itemsPrice,taxPrice,shippingPrice,totalPrice, isAccepted,customerEmail},orderDetails})
+if(response.status==200){
+    console.log(response.state);
+    console.log("Succ");
     }else{
       throw Error(response.status);
     }
     }catch(e){
-      console.log("error")
+      console.log(e)
     }
-  
+
   }
   return (
     <aside className="block ">
@@ -88,3 +107,10 @@ export default function Basket(props) {
     </aside>
   );
 }
+
+
+const mapStateToProps = initialState =>{
+  return {state:initialState.auth.user}
+}
+
+ export default connect(mapStateToProps)(Basket);

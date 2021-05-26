@@ -7,10 +7,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.SharePoint.Client;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Project_BackendApi.DATA;
 using Project_BackendApi.Models;
 using Project_BackendApi.Services.CustomerService;
 using Project_BackendApi.Services.ImageService;
+
 
 namespace Project_BackendApi.Controllers
 {
@@ -205,22 +209,34 @@ namespace Project_BackendApi.Controllers
 
         [HttpPost("cart")]
         
-        public async Task<ActionResult> AddNewCart([FromBody] cartModel newCart)
+        public IActionResult Post(JObject objData)
         {
+            List<OrderDetailsModel> lstItemDetails = new List<OrderDetailsModel>();
 
-            if (newCart == null)
+            dynamic jsonData = objData;
+            JObject orderJson = jsonData.cartModel;
+            JArray itemDetailsJson = jsonData.orderDetails;
+            var Order = orderJson.ToObject<cartModel>();
 
-                return BadRequest();
-
-            try
+            foreach (var item in itemDetailsJson)
             {
-               _context.cartModels.Add(newCart);
-                await _context.SaveChangesAsync();
-                return Ok($"Added cart {newCart.itemsPrice} to the database");
-            }
 
-            catch (Exception ex) { throw ex; }
+                lstItemDetails.Add(item.ToObject<OrderDetailsModel>());
+            }
+            _context.cartModels.Add(Order);
+
+            foreach (OrderDetailsModel itemDetail in lstItemDetails)
+            {
+                OrderDetailsModel cartname = new OrderDetailsModel();
+                itemDetail.OrderNumber = Order.cartItems;
+                _context.OrderDetailsModels.Add(itemDetail);
+            }
+            _context.SaveChanges();
+            return Ok();
         }
+
+        
+
 
         [HttpGet("cart")]
         public List<cartModel> GetAllCarts()

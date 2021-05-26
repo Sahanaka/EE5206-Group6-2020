@@ -50,7 +50,7 @@ namespace Project_BackendApi.Models
         public CategoryModel CategoryModel { get; set; }
         public IList<ProductCustomerModel> ProductCustomerModels { get; set; }
 
-        public ICollection<OrderDetailsModel> OrderDetailsModels { get; set; }
+       
 
 
 
