@@ -303,7 +303,7 @@ button {
 
 /* Navbar */
 .navbar {
-  background-color: #263238;
+  background-color: #FFFFFF;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -314,6 +314,9 @@ button {
   top: 0;
   border-bottom: solid 1px #ffffff;
   opacity: 0.9;
+}
+.navbar_title{
+  color: #343a40;
 }
 
 .navbar ul {
@@ -394,7 +397,7 @@ button.badge {
 /*--------------------*/
 
 .navbar a {
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   padding: 0.45rem;
   margin: 0 0.25rem;
 }
@@ -404,6 +407,14 @@ button.badge {
   color: rgb(221, 221, 221);
 }
 
+.navbar_ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
 .navbar .welcome span {
   margin-right: 0.6rem;
 }
@@ -411,7 +422,8 @@ button.badge {
 /* Landing Page */
 .landing {
   position: relative;
-  background: url("./img/mainimg.JPG") no-repeat center center/cover;
+  /* background: url("./img/mainimg.JPG") no-repeat center center/cover; */
+  background-color: #E5E4E2;
   height: 100vh;
 }
 
