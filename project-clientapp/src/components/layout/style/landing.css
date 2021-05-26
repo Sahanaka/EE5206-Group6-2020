@@ -15,3 +15,43 @@
     1px -1px 0 rgb(78, 78, 78), -1px 1px 0 rgb(61, 61, 61),
     2px 2px 0 rgb(97, 97, 97);
 }
+
+ul_land {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li_land {
+  float: left;
+}
+
+li a_land {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a_land:hover {
+  background-color: #111;
+}
+.cartfuntion{
+  float: right;
+}
+.cartitem{
+  text-align: center;
+  
+}
+
+.cartview{
+  display: flex;
+  margin: 1%;
+
+}
+.cartview2{
+  margin: 1%;
+}
