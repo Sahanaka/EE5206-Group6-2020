@@ -25,6 +25,8 @@ import Shop from "./components/Customer/shop";
 import ShopItemsSeller from "./components/Seller/shopItemsSeller";
 import { loadUser } from "./Actions/auth";
 import { LOGOUT } from "./Actions/types";
+import Buy from "./components/buy/buy";
+
 
 const App = () => {
   useEffect(() => {
@@ -53,6 +55,7 @@ const App = () => {
               path="/ShopItemsSeller/:id"
               component={ShopItemsSeller}
             />
+            <Route exact path ="/Buy" component={Buy} />
             <Route exact path="/OrderList" component={OrderList} />{" "}
             <Route exact path="/Mainregistration" component={Mainregistation} />
             <Route
