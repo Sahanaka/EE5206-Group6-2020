@@ -76,6 +76,7 @@ namespace Project_BackendApi.Controllers
 
                 newcustomer.Password = encryPassword;
                 newcustomer.ReTypePassword = encryReTypePassword;
+                newcustomer.UserRole = "Customer";
                 _db.CustomerModels.Add(newcustomer);
                 _db.SaveChanges();
 

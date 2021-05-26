@@ -43,7 +43,7 @@ namespace Project_BackendApi.Models
         [DataType(DataType.Password)]
         public string ReTypePassword { get; set; }
 
-        public string UserRole = "Customer";
+        public string UserRole { get; set; }
         internal int customerModelId;
 
         public IList<SellerCustomerModel> SellerCustomerModels { get; set; }
