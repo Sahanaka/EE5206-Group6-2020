@@ -127,7 +127,15 @@ li {
   opacity: 0.9;
 }
 .left1 {
-  margin-right: 20%;
+  /* margin-right: 20%; */
+}
+
+.row_shops{
+  margin: auto;
+  margin-bottom: 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 50px;
 }
 li a {
   display: block;

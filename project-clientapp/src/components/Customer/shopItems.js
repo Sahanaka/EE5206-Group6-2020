@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 import { getShops } from "../../Actions/customer";
 import Spinner from "../layout/Spinner";
-
+import "./style/shopitems.css"
 const Products = ({ getShops, shops: { shops, loading } }) => {
   useEffect(async () => {
     getShops();
@@ -38,7 +38,7 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
         <Spinner />
       ) : (
         <Fragment>
-          <div className="row">
+          <div className="row_shopsitem">
             <div className="col-md-12">
               <div className="col-md-2 searchcard">
                 <input
