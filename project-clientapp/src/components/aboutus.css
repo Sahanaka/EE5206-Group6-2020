@@ -1,0 +1,39 @@
+.itemccenter12 {
+    margin-left: 20%;
+  }
+  .box78 {
+    margin-top: 50px;
+    flex: 1;
+    float: right;
+    font-size: 15px;
+    line-height: 15px;
+  }
+  .squre78 {
+    height: auto;
+    width: 600px;
+    background-color: rgb(230, 227, 227);
+    border-radius: 20px;
+    opacity: 0.8;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .itemcenter78 {
+    margin-left: 25px;
+  }
+  .color78 {
+    color: rgb(255, 255, 255);
+  }
+  .textcenter78 {
+    text-align: center;
+  }
+  
+  .text_aboutus{
+      text-align: center;
+      font-size: 55px;
+  }
+  .text_para{
+      text-align:justify;
+  }
+  

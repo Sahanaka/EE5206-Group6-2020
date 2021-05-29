@@ -66,7 +66,7 @@ const Landing = () => {
       
     
       <section className="landing">
-        <div>
+        {/* <div>
     <ul>
   <li><a class="active" href="#home">Home</a></li>
   <li><a href="#news">News</a></li>
@@ -85,7 +85,7 @@ const Landing = () => {
 
 
 
-    </div>
+    </div> */}
 
     <Carousel>
   <Carousel.Item interval={1000}>

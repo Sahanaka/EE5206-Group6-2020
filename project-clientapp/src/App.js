@@ -26,6 +26,7 @@ import ShopItemsSeller from "./components/Seller/shopItemsSeller";
 import { loadUser } from "./Actions/auth";
 import { LOGOUT } from "./Actions/types";
 import Buy from "./components/buy/buy";
+import Aboutus from "./components/aboutus";
 
 
 const App = () => {
@@ -56,6 +57,7 @@ const App = () => {
               component={ShopItemsSeller}
             />
             <Route exact path ="/Buy" component={Buy} />
+            <Route exact path ="/Aboutus" component={Aboutus}/>
             <Route exact path="/OrderList" component={OrderList} />{" "}
             <Route exact path="/Mainregistration" component={Mainregistation} />
             <Route
