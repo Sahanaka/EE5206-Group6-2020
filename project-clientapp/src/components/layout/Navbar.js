@@ -104,7 +104,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
           {/* <i className="navbar_title" > S&D.COM</i> */}
         </Link>
       
-      <div className={classes.search}>
+      {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -116,7 +116,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
               }}
               inputProps={{ 'aria-label': 'search' }}
             />
-          </div>
+          </div> */}
       <Fragment>
       <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
       </Fragment>

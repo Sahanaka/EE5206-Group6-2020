@@ -3,6 +3,8 @@ import clsx from "clsx";
 import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import { fade, makeStyles, useTheme } from "@material-ui/core/styles";
+import Navbar from 'react-bootstrap/Navbar'
+import * as ReactBoostStrap from "react-bootstrap";
 
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
@@ -153,12 +155,45 @@ const Shops = () => {
  }
   return (
     <div>
-    <ul>
+       <ReactBoostStrap.Navbar bg="primary" expand="sm">
+  {/* <ReactBoostStrap.Navbar.Brand href="#home">React-Bootstrap</ReactBoostStrap.Navbar.Brand> */}
+  <ReactBoostStrap.Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <ReactBoostStrap.Navbar.Collapse id="basic-navbar-nav">
+    <ReactBoostStrap.Nav className="mr-auto">
+      <ReactBoostStrap.Nav.Link href="#home">Profile</ReactBoostStrap.Nav.Link>
+      <ReactBoostStrap.Nav.Link href="#link">About us</ReactBoostStrap.Nav.Link>
+      <ReactBoostStrap.NavDropdown title="Category" id="basic-nav-dropdown">
+        <ReactBoostStrap.NavDropdown.Item href="#action/3.1">Groceries</ReactBoostStrap.NavDropdown.Item>
+        <ReactBoostStrap.NavDropdown.Item href="#action/3.2">Electronic Devices</ReactBoostStrap.NavDropdown.Item>
+        <ReactBoostStrap.NavDropdown.Item href="#action/3.3">Health & Beauty</ReactBoostStrap.NavDropdown.Item>
+        <ReactBoostStrap.NavDropdown.Divider />
+        <ReactBoostStrap.NavDropdown.Item href="#action/3.4">Babies & Toys</ReactBoostStrap.NavDropdown.Item>
+      </ReactBoostStrap.NavDropdown>
+      
+    </ReactBoostStrap.Nav>
+   
+  </ReactBoostStrap.Navbar.Collapse>
+
+  <ReactBoostStrap.Form className="d-flex">
+      <ReactBoostStrap.FormControl
+        type="search"
+        placeholder="Search"
+        className="mr-3"
+        aria-label="Search"
+      />
+      <ReactBoostStrap.Button variant="outline-success">Search</ReactBoostStrap.Button>
+    </ReactBoostStrap.Form>
+  
+</ReactBoostStrap.Navbar> 
+
+
+
+    {/* <ul>
       <li><Link to ="/CustomerItems" >ShopItems</Link></li>
       <li><a href="#news">News</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="#about">About</a></li>
-    </ul>
+    </ul> */}
       {/* <div>
         <ul>
           <li>
