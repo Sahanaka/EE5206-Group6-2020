@@ -47,7 +47,7 @@ const Register = ({ setAlert, registerSeller }) => {
 
   return (
     <div className="background12 ">
-      <div className=" w3-container bo78   squre78">
+      <div className=" w3-container bo78   squreSeller">
         <h1 className="large text-primary textcenter78">Sign Up</h1>
         <div className="itemcenter78">
           {/* <p className="">

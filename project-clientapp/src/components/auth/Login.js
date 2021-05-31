@@ -36,12 +36,12 @@ const Login = ({ login, isAuthenticated, role, user }) => {
       <h1 className="text textloging ">
         Don't have an account? <Link to="/Mainregistration">Sign Up</Link>
       </h1>
-      <div className="box w3-container squre">
+      <div className="box_login w3-container squre_login">
         <h1 className="large text-primary textalighn1">Sign In</h1>
         <p className="textcolor1 ">
           <i className="fas fa-user " /> Sign Into Your Account
         </p>
-        <form className="form" onSubmit={(e) => onSubmit(e)}>
+        <form className="form_login" onSubmit={(e) => onSubmit(e)}>
           <div className="">
             <div className="form-group ">
               <small className="textcolor1  "> Name or Email</small>
@@ -67,7 +67,7 @@ const Login = ({ login, isAuthenticated, role, user }) => {
               minLength="6"
             />
           </div>
-          <input type="submit" className="btn" value="Login" />
+          <input type="submit" className="button " value="Login" />
         </form>
       </div>
     </div>

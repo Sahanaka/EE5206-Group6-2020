@@ -27,7 +27,7 @@ import { loadUser } from "./Actions/auth";
 import { LOGOUT } from "./Actions/types";
 import Buy from "./components/buy/buy";
 import Aboutus from "./components/aboutus";
-
+import Profile from "./components/Customer/Profile";
 
 const App = () => {
   useEffect(() => {
@@ -58,6 +58,7 @@ const App = () => {
             />
             <Route exact path ="/Buy" component={Buy} />
             <Route exact path ="/Aboutus" component={Aboutus}/>
+            <Route exact path ="/Profile" component={Profile}/>
             <Route exact path="/OrderList" component={OrderList} />{" "}
             <Route exact path="/Mainregistration" component={Mainregistation} />
             <Route

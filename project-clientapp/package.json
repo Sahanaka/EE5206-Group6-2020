@@ -31,6 +31,7 @@
     "uuid": "^8.3.2",
     "w3-css": "^4.1.0",
     "web-vitals": "^0.2.4"
+    
   },
   "scripts": {
     "start": "react-scripts start",
