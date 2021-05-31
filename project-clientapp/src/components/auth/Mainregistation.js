@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import React, { Component } from "react";
-import "./Mainregister.css";
+import "./style/Mainregister.css";
 import { makeStyles } from "@material-ui/core/styles";
 // import Button from "@material-ui/core/Button";
 import Register from "./Register";
@@ -42,8 +42,8 @@ const Mainregistation = () => {
     //     </div>
     //   </div>
     // </div>
-    <div className="body">
-      <div className="txt">
+    <div className="body_mainregister">
+      <div className="txt_mainregister">
         <div class="sp-container ">
           <div class="sp-content">
             <div class="sp-globe"></div>
@@ -58,10 +58,11 @@ const Mainregistation = () => {
         </div>
       </div>
       <div className="container">
-        <div className=" box-a ">
-          <h1 className="Main ">REGISTERS</h1>
+        <div className=" box-a_main ">
+          <hr/>
+          <h1 className="Main textalign">REGISTERS</h1>
 
-          <div className="row">
+          <div className="row_main">
             <button
               onClick={() => {
                 history.push("/Register");
