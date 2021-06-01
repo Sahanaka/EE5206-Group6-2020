@@ -4,5 +4,9 @@ project-clientapp/package-lock.json
 Project-BackendApi/.vs/
 Project-BackendApi/Project-BackendApi/bin/
 Project-BackendApi/Project-BackendApi/obj/
-
-
+Project-BackendApi/Project-BackendApi/.config/
+Project-BackendApi/Project-BackendApi/Properties/PublishProfiles/
+Project-BackendApi/Project-BackendApi/Properties/ServiceDependencies/
+Project-BackendApi/Project-BackendApi/Properties/serviceDependencies.Project-BackendApi20210527160130 - Web Deploy.json
+Project-BackendApi/Project-BackendApi/Properties/serviceDependencies.Project-BackendApi20210527160130 - Web Deploy.json.user
+Project-BackendApi/Project-BackendApi/Properties/serviceDependencies.json

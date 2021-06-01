@@ -105,7 +105,7 @@ namespace Project_BackendApi
                 app.UseDeveloperExceptionPage();
             }
 
-            
+
 
             app.UseStaticFiles(new StaticFileOptions
             {

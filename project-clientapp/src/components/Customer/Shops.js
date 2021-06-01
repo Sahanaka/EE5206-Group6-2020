@@ -4,22 +4,9 @@ import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import { fade, makeStyles, useTheme } from "@material-ui/core/styles";
 import Navbar from 'react-bootstrap/Navbar'
-import * as ReactBoostStrap from "react-bootstrap";
+import { Nav, NavDropdown, Form, FormControl, Button} from "react-bootstrap";
 
-import IconButton from "@material-ui/core/IconButton";
-import SearchIcon from "@material-ui/icons/Search";
-import InputBase from "@material-ui/core/InputBase";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import MenuIcon from "@material-ui/icons/Menu";
-import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+
 
 import ShopItems from "./shopItems";
 import "./style/shops.css";
@@ -140,7 +127,13 @@ const Shops = () => {
   const classes = useStyles();
 
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
+  const [key, setKey] = useState('');
+
+  const handleSelect = (k) => {
+    setKey(k);
+    console.log(`${key}`);
+  }
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -155,36 +148,37 @@ const Shops = () => {
  }
   return (
     <div>
-       <ReactBoostStrap.Navbar bg="primary" expand="sm">
-  {/* <ReactBoostStrap.Navbar.Brand href="#home">React-Bootstrap</ReactBoostStrap.Navbar.Brand> */}
-  <ReactBoostStrap.Navbar.Toggle aria-controls="basic-navbar-nav" />
-  <ReactBoostStrap.Navbar.Collapse id="basic-navbar-nav">
-    <ReactBoostStrap.Nav className="mr-auto">
-      <ReactBoostStrap.Nav.Link href="#home">Profile</ReactBoostStrap.Nav.Link>
-      <ReactBoostStrap.Nav.Link href="#link">About us</ReactBoostStrap.Nav.Link>
-      <ReactBoostStrap.NavDropdown title="Category" id="basic-nav-dropdown">
-        <ReactBoostStrap.NavDropdown.Item href="#action/3.1">Groceries</ReactBoostStrap.NavDropdown.Item>
-        <ReactBoostStrap.NavDropdown.Item href="#action/3.2">Electronic Devices</ReactBoostStrap.NavDropdown.Item>
-        <ReactBoostStrap.NavDropdown.Item href="#action/3.3">Health & Beauty</ReactBoostStrap.NavDropdown.Item>
-        <ReactBoostStrap.NavDropdown.Divider />
-        <ReactBoostStrap.NavDropdown.Item href="#action/3.4">Babies & Toys</ReactBoostStrap.NavDropdown.Item>
-      </ReactBoostStrap.NavDropdown>
+       <Navbar bg="primary" expand="sm">
+  {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="mr-auto" onSelect={handleSelect}>
+      <Nav.Link href="profile">Profile</Nav.Link>
+      <Nav.Link href="Aboutus">About us</Nav.Link>
+      <NavDropdown title="Category" id="basic-nav-dropdown">
+        <NavDropdown.Item><Nav.Link href="#action/3.1">Groceries</Nav.Link></NavDropdown.Item>
+        
+        <NavDropdown.Item href="#action/3.2">Electronic Devices</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">Health & Beauty</NavDropdown.Item>
+        <NavDropdown.Divider />
+        <NavDropdown.Item href="#action/3.4">Babies & Toys</NavDropdown.Item>
+      </NavDropdown>
       
-    </ReactBoostStrap.Nav>
+    </Nav>
    
-  </ReactBoostStrap.Navbar.Collapse>
+  </Navbar.Collapse>
 
-  <ReactBoostStrap.Form className="d-flex">
-      <ReactBoostStrap.FormControl
+  <Form className="d-flex">
+      <FormControl
         type="search"
         placeholder="Search"
         className="mr-3"
         aria-label="Search"
       />
-      <ReactBoostStrap.Button variant="outline-success">Search</ReactBoostStrap.Button>
-    </ReactBoostStrap.Form>
+      <Button variant="outline-success">Search</Button>
+    </Form>
   
-</ReactBoostStrap.Navbar> 
+</Navbar> 
 
 
 

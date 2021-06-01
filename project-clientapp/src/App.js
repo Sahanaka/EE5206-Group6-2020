@@ -58,7 +58,7 @@ const App = () => {
             />
             <Route exact path ="/Buy" component={Buy} />
             <Route exact path ="/Aboutus" component={Aboutus}/>
-            <Route exact path ="/Profile" component={Profile}/>
+            <PrivateRoute exact path ="/Profile" component={Profile}/>
             <Route exact path="/OrderList" component={OrderList} />{" "}
             <Route exact path="/Mainregistration" component={Mainregistation} />
             <Route

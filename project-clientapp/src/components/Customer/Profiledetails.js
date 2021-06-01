@@ -65,10 +65,10 @@ class MaintenanceForm extends Component {
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Email</label>
+          <label className="col-sm-2 col-form-label">Address</label>
           <div className="col-sm-10">
-            <label type="text" name="brand_name" className="form-control">
-              {this?.props?.fields?.email}
+            <label type="text" name="device_type" className="form-control">
+              {this?.props?.fields?.address}
             </label>
           </div>
         </div>
@@ -106,6 +106,17 @@ class MaintenanceForm extends Component {
               name="email"
               className="form-control"
               placeholder="Email"
+            />
+          </div>
+        </div>
+        <div className="form-group row">
+          <label className="col-sm-2 col-form-label">Address</label>
+          <div className="col-sm-10">
+            <Field
+              type="text"
+              name="mobile_no"
+              className="form-control"
+              placeholder="Address"
             />
           </div>
         </div>
@@ -155,7 +166,8 @@ const ProfileDetails = withFormik({
     return {
       name: props.fields.name,
       email: props.fields.email,
-      mobile_no: props.fields.mobile_no
+      mobile_no: props.fields.mobile_no,
+      address: props.fields.address
     };
   },
   enableReinitialize: true,
@@ -168,3 +180,4 @@ const ProfileDetails = withFormik({
 })(MaintenanceForm);
 
 export default ProfileDetails;
+
