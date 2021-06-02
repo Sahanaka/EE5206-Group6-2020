@@ -8,6 +8,9 @@
 .back {
   background-color: white;
 }
+.backgroundcolorinshop{
+  background-color: rgb(235, 235, 235);
+}
 .bucket {
   float: right;
   margin-right: 20px;
