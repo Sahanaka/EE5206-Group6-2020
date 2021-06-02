@@ -70,3 +70,28 @@ export const getShopProducts = (id) => async dispatch => {
         });
     }
 };
+
+export const updateProfile = async (
+    id,
+    customerName,
+    customerAddress,
+    MobileNo
+) => {
+    const config = {
+        headers: { "Content-Type": "application/json" },
+      };
+    const body = JSON.stringify({
+        customerName,
+        customerAddress,
+        MobileNo
+      });
+      console.log(customerName)
+      try {
+          await axios.put(`https://localhost:5001/api/CustomerModels/updateprofile/${id}`, body, config);
+          setAlert("Profile update successful", "success");
+      } catch (error) {
+          console.log("Error", error)
+      }
+    
+    
+}

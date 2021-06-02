@@ -274,6 +274,31 @@ namespace Project_BackendApi.Controllers
             return NoContent();
         }
 
+        [HttpPut("updateprofile/{id}")]
+        public async Task<IActionResult> UpdateProfile(int id, [FromBody] UpdateCustomerModel customerModel)
+        {
+            var currentCustomer = await _context.CustomerModels.FindAsync(id);
+
+            if (currentCustomer == null)
+            {
+                return NotFound();
+            }
+
+            currentCustomer.Name = customerModel.CustomerName;
+            currentCustomer.Address = customerModel.CustomerAddress;
+            currentCustomer.Contatct_No = customerModel.MobileNo;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
+
+            return NoContent();
+        }
 
     }
 }

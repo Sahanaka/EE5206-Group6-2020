@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { withFormik, Form, Field } from "formik";
 
+import { updateProfile } from '../../Actions/customer';
+
 const form_id = "form_id";
 class MaintenanceForm extends Component {
   editOnClick = event => {
@@ -19,6 +21,10 @@ class MaintenanceForm extends Component {
     });
   };
 
+  onUpdate() {
+    updateProfile(9, this?.props?.fields?.name, "Lahore", "0112445")
+  }
+
   _renderAction() {
     return (
       <React.Fragment>
@@ -29,6 +35,7 @@ class MaintenanceForm extends Component {
                 className="btn btn-primary btn-sm"
                 type="submit"
                 form={form_id}
+                onClick={this.onUpdate}
               >
                 Save
               </button>

@@ -16,7 +16,6 @@ function Profile({ auth: { user } }) {
       address: 'user.address'
     });
     for (const key in user) {
-      console.log(`${key}: ${user[key]}`);
       if (key == 'name'){
         fields.name = user[key]
       }
