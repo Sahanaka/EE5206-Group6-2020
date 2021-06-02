@@ -230,9 +230,9 @@ const Shops = () => {
         </ul>
       </div> */}
 
-      <div className="background">
+      <div className="backgroundcolorinshop">
         <Container>
-          <div className="back left1">
+          <div className="">
             <ShopItems />
           </div>
         </Container>
