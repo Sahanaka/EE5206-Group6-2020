@@ -28,7 +28,7 @@ import { LOGOUT } from "./Actions/types";
 import Buy from "./components/buy/buy";
 import Aboutus from "./components/aboutus";
 import Profile from "./components/Customer/Profile";
-
+import Popup from "./components/Customer/popup";
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
@@ -57,6 +57,7 @@ const App = () => {
               component={ShopItemsSeller}
             />
             <Route exact path ="/Buy" component={Buy} />
+            <Route exact path ="/Popup" component={Popup} />
             <Route exact path ="/Aboutus" component={Aboutus}/>
             <PrivateRoute exact path ="/Profile" component={Profile}/>
             <Route exact path="/OrderList" component={OrderList} />{" "}

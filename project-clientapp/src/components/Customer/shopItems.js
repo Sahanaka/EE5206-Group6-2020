@@ -38,6 +38,7 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
         <Spinner />
       ) : (
         <Fragment>
+          <br/>
           <div className="row_shopsitem">
             <div className="col-md-12">
               <div className="col-md-2 searchcard">
@@ -54,7 +55,7 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
                 </div>
               </div>
             </div>
-            <div className="col-md-8">
+            <div className="col-md-12">
               <div id="product">
                 {shops
                   .filter((productList) => {

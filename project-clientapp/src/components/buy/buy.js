@@ -124,7 +124,7 @@ const Buy =() =>{
   
   return (
     <div className="backgroundbuy ">
-      <div className=" w3-container bo78   squre78">
+      <div className=" w3-container bo78   squrebuy">
         <h1 className="large text-primary textcenter78">Payment Methods</h1>
         <div className="itemcenter78">
           {/* <p className="">
