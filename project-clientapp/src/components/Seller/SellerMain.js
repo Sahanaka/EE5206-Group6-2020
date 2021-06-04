@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const SellerMain = ({ match }) => {
   console.log(match.params.id)
+  const [sellerId, setSellerId] = useState(match.params.id)
+  console.log(sellerId)
   return (
     <div>
       {/* Required meta tags */}
@@ -99,7 +101,7 @@ const SellerMain = ({ match }) => {
                 </li>
                 <li className="nav-item">
                     <i className="ti-layout-list-post menu-icon" />
-                    <Link to={`/ShopItemsSeller/${1}`}>Shop Items</Link>
+                    <Link to={`/ShopItemsSeller/${sellerId}`}>Shop Items</Link>
                 </li>
               </ul>
             </nav>

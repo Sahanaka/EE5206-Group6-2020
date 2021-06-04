@@ -9,13 +9,16 @@ import Spinner from "../layout/Spinner";
 const ProductList = ({ auth: { user, loading } }) => {
   const [productList, setProductList] = useState([]);
   const [recordForEdit, setRecordForEdit] = useState(null);
+  const [sId, setsId] = useState(JSON.parse(atob(localStorage.token.split('.')[1])))
+  
+  console.log("sid", parseInt(sId.id))
   useEffect(() => {
     refreshProductList();
   }, []);
 
   const productAPI = (url = "https://localhost:5001/api/Seller/") => {
     return {
-      fetchAll: () => axios.get(url + `sellers/products/${user.sellerId}`),
+      fetchAll: () => axios.get(url + `sellers/products/${parseInt(sId.id)}`),
       create: (newRecord) => axios.post(url, newRecord),
       update: (id, updatedRecord) => axios.put(url + id, updatedRecord),
       delete: (id) => axios.delete(url + id),
