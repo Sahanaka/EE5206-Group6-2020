@@ -1,12 +1,239 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
+import { Container, Nav } from "./SellerMainitems/styled-components";
 import { Link } from "react-router-dom";
+import "./Style/SellerMainstyle.css"
 
-const SellerMain = ({ match }) => {
-  console.log(match.params.id)
-  const [sellerId, setSellerId] = useState(match.params.id)
-  console.log(sellerId)
-  return (
-    <div>
+
+
+
+
+
+
+import FusionCharts from "fusioncharts";
+import Charts from "fusioncharts/fusioncharts.charts";
+import Maps from "fusioncharts/fusioncharts.maps";
+import USARegion from "fusionmaps/maps/es/fusioncharts.usaregion";
+import ReactFC from "react-fusioncharts";
+import "./SellerMainitems/charts-theme";
+
+import config from "./SellerMainitems/config";
+import Dropdown from "react-dropdown";
+import formatNum from "./SellerMainitems/format-number";
+
+// import UserImg from "../assets/images/user-img-placeholder.jpeg";
+
+ReactFC.fcRoot(FusionCharts, Charts, Maps, USARegion);
+
+const url = `https://sheets.googleapis.com/v4/spreadsheets/${
+  config.spreadsheetId
+}/values:batchGet?ranges=Sheet1&majorDimension=ROWS&key=${config.apiKey}`;
+
+
+
+
+
+
+//const SellerMain = ({ match }) => {
+
+  
+
+
+  class SellerMain extends Component {
+    constructor() {
+      super();
+      this.state = {
+        items: [],
+        dropdownOptions: [],
+        selectedValue: null,
+        amRevenue: null,
+        ebRevenue: null,
+        etRevenue: null,
+        totalRevenue: null,
+        productViews: null,
+        purchaseRate: " ",
+        checkoutRate: " ",
+        abandonedRate: " ",
+        ordersTrendStore: [],
+        total: null,
+      };
+    }
+  
+    getData = arg => {
+      // google sheets data
+      const arr = this.state.items;
+      const arrLen = arr.length;
+
+
+      
+  
+      // kpi's
+      // amazon revenue
+      let amRevenue = 0;
+      //ebay revenue
+      let ebRevenue = 0;
+      // etsy revenue
+      let etRevenue = 0;
+      // total revenue
+      let totalRevenue = 0;
+      // product views
+      let productViews = 0;
+      // purchase rate
+      let purchaseRate = 0;
+      // checkout rate
+      let checkoutRate = 0;
+      // abandoned rate
+      let abandonedRate = 0;
+      // order trend by brand
+      let ordersTrendStore = [];
+      // order trend by region
+      let ordersTrendRegion = [];
+      let orderesTrendnw = 0;
+      let orderesTrendsw = 0;
+      let orderesTrendc = 0;
+      let orderesTrendne = 0;
+      let orderesTrendse = 0;
+  
+      let selectedValue = null;
+  
+      for (let i = 0; i < arrLen; i++) {
+        if (arg === arr[i]["month"]) {
+          if (arr[i]["source"] === "AM") {
+            amRevenue += parseInt(arr[i].revenue);
+            ordersTrendStore.push({
+              label: "Amazon",
+              value: arr[i].orders,
+              displayValue: `${arr[i].orders} orders`
+            });
+          } else if (arr[i]["source"] === "EB") {
+            ebRevenue += parseInt(arr[i].revenue);
+            ordersTrendStore.push({
+              label: "Ebay",
+              value: arr[i].orders,
+              displayValue: `${arr[i].orders} orders`
+            });
+          } else if (arr[i]["source"] === "ET") {
+            etRevenue += parseInt(arr[i].revenue);
+            ordersTrendStore.push({
+              label: "Etsy",
+              value: arr[i].orders,
+              displayValue: `${arr[i].orders} orders`
+            });
+          }
+          productViews += parseInt(arr[i].product_views);
+          purchaseRate += parseInt(arr[i].purchase_rate / 3);
+          checkoutRate += parseInt(arr[i].checkout_rate / 3);
+          abandonedRate += parseInt(arr[i].abandoned_rate / 3);
+          orderesTrendnw += parseInt(arr[i].orders_nw);
+          orderesTrendsw += parseInt(arr[i].orders_sw);
+          orderesTrendc += parseInt(arr[i].orders_c);
+          orderesTrendne += parseInt(arr[i].orders_ne);
+          orderesTrendse += parseInt(arr[i].orders_se);
+        }
+      }
+  
+      totalRevenue = amRevenue + ebRevenue + etRevenue;
+      
+      this.state.totalRevenue = 100000
+
+      ordersTrendRegion.push({
+        id: "01",
+        value: orderesTrendne
+      }, {
+        id: "02",
+        value: orderesTrendnw
+      }, {
+        id: "03",
+        value: orderesTrendse
+      }, {
+        id: "04",
+        value: orderesTrendsw
+      }, {
+        id: "05",
+        value: orderesTrendc
+      });
+  
+      selectedValue = arg;
+  
+      // setting state
+      this.setState({
+        
+        amRevenue: formatNum(amRevenue),
+        ebRevenue: formatNum(ebRevenue),
+        etRevenue: formatNum(etRevenue),
+        totalRevenue: formatNum(totalRevenue),
+        productViews: formatNum(productViews),
+        purchaseRate: purchaseRate,
+        checkoutRate: checkoutRate,
+        abandonedRate: abandonedRate,
+        ordersTrendStore: ordersTrendStore,
+        ordersTrendRegion: ordersTrendRegion,
+        selectedValue: selectedValue,
+        total: 1000
+      });
+    };
+  
+    updateDashboard = event => {
+      this.getData(event.value);
+      this.setState({ selectedValue: event.value });
+    };
+  
+    // componentDidMount() {
+    //   fetch(url)
+    //     .then(response => response.json())
+    //     .then(data => {
+    //       let batchRowValues = data.valueRanges[0].values;
+  
+    //       const rows = [];
+    //       for (let i = 1; i < batchRowValues.length; i++) {
+    //         let rowObject = {};
+    //         for (let j = 0; j < batchRowValues[i].length; j++) {
+    //           rowObject[batchRowValues[0][j]] = batchRowValues[i][j];
+    //         }
+    //         rows.push(rowObject);
+    //       }
+  
+    //       // dropdown options
+    //       let dropdownOptions = [];
+  
+    //       for (let i = 0; i < rows.length; i++) {
+    //         dropdownOptions.push(rows[i].month);
+    //       }
+  
+    //       dropdownOptions = Array.from(new Set(dropdownOptions)).reverse();
+  
+    //       this.setState(
+    //         {
+    //           items: rows,
+    //           dropdownOptions: dropdownOptions,
+    //           selectedValue: "Jan 2019"
+    //         },
+    //         () => this.getData("Jan 2019")
+    //       );
+    //     });
+    // }
+
+    
+  
+    render() {
+
+      console.log(this.props.match.params.id)
+      
+      return (
+
+          
+
+
+
+
+
+
+
+
+
+        <Container>
+
+
+<div>
       {/* Required meta tags */}
       <meta charSet="utf-8" />
       <meta
@@ -101,287 +328,336 @@ const SellerMain = ({ match }) => {
                 </li>
                 <li className="nav-item">
                     <i className="ti-layout-list-post menu-icon" />
-                    <Link to={`/ShopItemsSeller/${sellerId}`}>Shop Items</Link>
+                    <Link to={`/ShopItemsSeller/${1}`}>Shop Items</Link>
                 </li>
               </ul>
             </nav>
-            {/* partial */}
-            <div className="main-panel">
-              <div className="content-wrapper">
-                <div className="row">
-                  <div className="col-md-12 grid-margin">
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div>
-                        <h1 className="font-weight-bold mb-0">LOTTE Market</h1>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-3 grid-margin stretch-card">
-                    <div className="card">
-                      <div className="card-body">
-                        <p className="card-title text-md-center text-xl-left">
-                          Total Sales
-                        </p>
-                        <div className="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                          <h3 className="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">
-                            34040
-                          </h3>
-                          <i className="ti-calendar icon-md text-muted mb-0 mb-md-3 mb-xl-0" />
-                        </div>
-                        <p className="mb-0 mt-2 text-danger" center>
-                          0.12%
-                          <span className="text-black ml-1">
-                            <small>(30 days)</small>
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-3 grid-margin stretch-card">
-                    <div className="card">
-                      <div className="card-body">
-                        <p className="card-title text-md-center text-xl-left">
-                          No of Orders
-                        </p>
-                        <div className="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                          <h3 className="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">
-                            47033
-                          </h3>
-                          <i className="ti-user icon-md text-muted mb-0 mb-md-3 mb-xl-0" />
-                        </div>
-                        <p className="mb-0 mt-2 text-danger">
-                          0.47%{" "}
-                          <span className="text-black ml-1">
-                            <small>(30 days)</small>
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-3 grid-margin stretch-card">
-                    <div className="card">
-                      <div className="card-body">
-                        <p className="card-title text-md-center text-xl-left">
-                          Earning
-                        </p>
-                        <div className="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                          <h3 className="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">
-                            40016
-                          </h3>
-                          <i className="ti-agenda icon-md text-muted mb-0 mb-md-3 mb-xl-0" />
-                        </div>
-                        <p className="mb-0 mt-2 text-success">
-                          64.00%
-                          <span className="text-black ml-1">
-                            <small>(30 days)</small>
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-3 grid-margin stretch-card">
-                    <div className="card">
-                      <div className="card-body">
-                        <p className="card-title text-md-center text-xl-left">
-                          Total Profit
-                        </p>
-                        <div className="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                          <h3 className="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">
-                            61344
-                          </h3>
-                          <i className="ti-layers-alt icon-md text-muted mb-0 mb-md-3 mb-xl-0" />
-                        </div>
-                        <p className="mb-0 mt-2 text-success">
-                          23.00%
-                          <span className="text-black ml-1">
-                            <small>(30 days)</small>
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-6 grid-margin stretch-card">
-                    <div className="card">
-                      <div className="card-body">
-                        <h5 className="card-title">
-                          <b>Sales details</b>
-                        </h5>
-                        <p className="text-muted font-weight-light">
-                          Received overcame oh sensible so at an. Formed do
-                          change merely to county it. Am separate contempt
-                          domestic to to oh. On relation my so addition
-                          branched.
-                        </p>
-                        <div
-                          id="sales-legend"
-                          className="chartjs-legend mt-4 mb-2"
-                        />
-                        <canvas id="sales-chart" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-6 grid-margin stretch-card">
-                    <div className="card border-bottom-0">
-                      <div className="card-body pb-0">
-                        <h5 className="card-title">
-                          <b>Earning Statistics</b>
-                        </h5>
-                        <p className="text-muted font-weight-light">
-                          The argument in favor of using filler text goes
-                          something like this: If you use real content in the
-                          design process, anytime you reach a review
-                        </p>
-                      </div>
-                      <canvas id="order-chart" className="w-100" />
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-7 grid-margin stretch-card">
-                    <div className="card">
-                      <div className="card-body">
-                        <h3 className="card-title mb-0">
-                          Top selling Products
-                        </h3>
-                        <div className="table-responsive">
-                          <table className="table table-hover">
-                            <thead>
-                              <tr>
-                                <th>Product</th>
-                                <th>Sale</th>
-                                <th>Status</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>Potato</td>
-                                <td className="text-danger">
-                                  {" "}
-                                  28.76% <i className="ti-arrow-down" />
-                                </td>
-                                <td>
-                                  <label className="badge badge-danger">
-                                    Pending
-                                  </label>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>Fish</td>
-                                <td className="text-danger">
-                                  {" "}
-                                  21.06% <i className="ti-arrow-down" />
-                                </td>
-                                <td>
-                                  <label className="badge badge-warning">
-                                    In progress
-                                  </label>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>Chiken</td>
-                                <td className="text-danger">
-                                  {" "}
-                                  35.00% <i className="ti-arrow-down" />
-                                </td>
-                                <td>
-                                  <label className="badge badge-info">
-                                    Fixed
-                                  </label>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>Suger</td>
-                                <td className="text-success">
-                                  {" "}
-                                  82.00% <i className="ti-arrow-up" />
-                                </td>
-                                <td>
-                                  <label className="badge badge-success">
-                                    Completed
-                                  </label>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>Salt</td>
-                                <td className="text-success">
-                                  {" "}
-                                  98.05% <i className="ti-arrow-up" />
-                                </td>
-                                <td>
-                                  <label className="badge badge-warning">
-                                    In progress
-                                  </label>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>Snacks</td>
-                                <td className="text-danger">
-                                  {" "}
-                                  21.06% <i className="ti-arrow-down" />
-                                </td>
-                                <td>
-                                  <label className="badge badge-info">
-                                    Fixed
-                                  </label>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-5 grid-margin stretch-card">
-                    <div className="card">
-                      <div className="card-body">
-                        <h4 className="card-title">To Do Lists</h4>
-
-                        <p className="text-muted font-weight-light">
-                          The argument in favor of using filler text goes
-                          something like this: If you use real content in the
-                          design process, anytime you reach a review
-                        </p>
-
-                        <div className="add-items d-flex mb-0 mt-4">
-                          <input
-                            type="text"
-                            className="form-control todo-list-input mr-2"
-                            placeholder="Add new task"
-                          />
-                          <button className="add btn btn-icon text-primary todo-list-add-btn bg-transparent">
-                            <i className="ti-location-arrow" />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* content-wrapper ends */}
-              {/* partial:partials/_footer.html */}
-
-              {/* partial */}
-            </div>
-            {/* main-panel ends */}
           </div>
-          {/* page-body-wrapper ends */}
+          
         </div>
-        {/* container-scroller */}
-        {/* plugins:js */}
-        {/* endinject */}
-        {/* Plugin js for this page*/}
-        {/* End plugin js for this page*/}
-        {/* inject:js */}
-        {/* endinject */}
-        {/* Custom js for this page*/}
-        {/* End custom js for this page*/}
+       
       </div>
     </div>
-  );
-};
+          {/* static navbar - top */}
+          {/* <Nav className="navbar navbar-expand-lg fixed-top is-white is-dark-text">
+            <Container className="navbar-brand h1 mb-0 text-large font-medium">
+              Seller Dashboard
+            </Container>
+            <Container className="navbar-nav ml-auto">
+              <Container className="user-detail-section">
+                <span className="pr-2">Hi, Sean</span>
+                <span className="img-container">
+                  <img src={} className="rounded-circle" alt="user" /> 
+                </span>
+              </Container>
+            </Container>
+          </Nav> */}
+  
+          {/* static navbar - bottom */}
+          {/* <Nav className="navbar fixed-top nav-secondary is-dark is-light-text">
+            <Container className="text-medium">Summary</Container>
+            <Container className="navbar-nav ml-auto">
+              <Dropdown
+                className="pr-2 custom-dropdown"
+                options={this.state.dropdownOptions}
+                onChange={this.updateDashboard}
+                value={this.state.selectedValue}
+                placeholder="Select an option"
+              />
+            </Container>
+          </Nav> */}
+  
+          {/* content area start */}
+          <Container className="container-fluid pr-5 pl-5 pt-5 pb-5">
+            {/* row 1 - revenue */}
+            <Container className="row">
+              <Container className="col-lg-3 col-sm-6 is-light-text mb-4">
+                <Container className="card grid-card is-card-dark">
+                  <Container className="card-heading">
+                    <Container className="is-dark-text-light letter-spacing text-small">
+                      Total Revenue
+                    </Container>
+                  </Container>
+  
+                  <Container className="card-value pt-4 text-x-large">
+                    <span className="text-large pr-1">Rs</span>
+                  {this.total}
+                  </Container>
+                </Container>
+              </Container>
+  
+              <Container className="col-lg-3 col-sm-6 is-light-text mb-4">
+                <Container className="card grid-card is-card-dark">
+                  <Container className="card-heading">
+                    <Container className="is-dark-text-light letter-spacing text-small">
+                      Total Orders
+                    </Container>
+                    <Container className="card-heading-brand">
+                      {/* <i className="fab fa-amazon text-large" /> */}
+                    </Container>
+                  </Container>
+  
+                  <Container className="card-value pt-4 text-x-large">
+                    <span className="text-large pr-1"></span>
+                    {this.state.amRevenue}
+                  </Container>
+                </Container>
+              </Container>
+  
+              <Container className="col-lg-3 col-sm-6 is-light-text mb-4">
+                <Container className="card grid-card is-card-dark">
+                  <Container className="card-heading">
+                    <Container className="is-dark-text-light letter-spacing text-small">
+                      Complete Orders
+                    </Container>
+                    <Container className="card-heading-brand">
+                      {/* <i className="fab fa-ebay text-x-large logo-adjust" /> */}
+                    </Container>
+                  </Container>
+  
+                  <Container className="card-value pt-4 text-x-large">
+                    <span className="text-large pr-1"></span>
+                    {this.state.ebRevenue}
+                  </Container>
+                </Container>
+              </Container>
+  
+              <Container className="col-lg-3 col-sm-6 is-light-text mb-4">
+                <Container className="card grid-card is-card-dark">
+                  <Container className="card-heading">
+                    <Container className="is-dark-text-light letter-spacing text-small">
+                      Pending Orders
+                    </Container>
+                    <Container className="card-heading-brand">
+                      {/* <i className="fab fa-etsy text-medium" /> */}
+                    </Container>
+                  </Container>
+  
+                  <Container className="card-value pt-4 text-x-large">
+                    <span className="text-large pr-1"></span>
+                    {this.state.etRevenue}
+                  </Container>
+                </Container>
+              </Container>
+            </Container>
+  
+            {/* row 2 - conversion */}
+            <Container className="row">
+              <Container className="col-md-4 col-lg-3 is-light-text mb-4">
+                <Container className="card grid-card is-card-dark">
+                  <Container className="card-heading mb-3">
+                    <Container className="is-dark-text-light letter-spacing text-small">
+                      Deliver Cost
+                    </Container>
+                  </Container>
+                  <Container className="card-value pt-4 text-x-large">
+                    {this.state.productViews}
+                    <span className="text-medium pl-2 is-dark-text-light">
+                      views
+                    </span>
+                  </Container>
+                </Container>
+              </Container>
+  
+              <Container className="col-md-8 col-lg-9 is-light-text mb-4">
+                <Container className="card is-card-dark chart-card">
+                  <Container className="row full-height">
+                    <Container className="col-sm-4 full height">
+                      <Container className="chart-container full-height">
+                        <ReactFC
+                          {...{
+                            type: "doughnut2d",
+                            width: "100%",
+                            height: "100%",
+                            dataFormat: "json",
+                            containerBackgroundOpacity: "0",
+                            dataSource: {
+                              chart: {
+                                caption: "Purchase Rate",
+                                theme: "ecommerce",
+                                defaultCenterLabel: `${this.state.purchaseRate}%`,
+                                paletteColors: "#3B70C4, #000000"
+                              },
+                              data: [
+                                {
+                                  label: "active",
+                                  value: `${this.state.purchaseRate}`
+                                },
+                                {
+                                  label: "inactive",
+                                  alpha: 5,
+                                  value: `${100 - this.state.purchaseRate}`
+                                }
+                              ]
+                            }
+                          }}
+                        />
+                      </Container>
+                    </Container>
+                    <Container className="col-sm-4 full-height border-left border-right">
+                      <Container className="chart-container full-height">
+                        <ReactFC
+                          {...{
+                            type: "doughnut2d",
+                            width: "100%",
+                            height: "100%",
+                            dataFormat: "json",
+                            containerBackgroundOpacity: "0",
+                            dataSource: {
+                              chart: {
+                                caption: "Checkout Rate",
+                                theme: "ecommerce",
+                                defaultCenterLabel: `${this.state.checkoutRate}%`,
+                                paletteColors: "#41B6C4, #000000"
+                              },
+                              data: [
+                                {
+                                  label: "active",
+                                  value: `${this.state.checkoutRate}`
+                                },
+                                {
+                                  label: "inactive",
+                                  alpha: 5,
+                                  value: `${100 - this.state.checkoutRate}`
+                                }
+                              ]
+                            }
+                          }}
+                        />
+                      </Container>
+                    </Container>
+                    <Container className="col-sm-4 full-height">
+                      <Container className="chart-container full-height">
+                        <ReactFC
+                          {...{
+                            type: "doughnut2d",
+                            width: "100%",
+                            height: "100%",
+                            dataFormat: "json",
+                            containerBackgroundOpacity: "0",
+                            dataSource: {
+                              chart: {
+                                caption: "Abandoned Cart Rate",
+                                theme: "ecommerce",
+                                defaultCenterLabel: `${
+                                  this.state.abandonedRate
+                                }%`,
+                                paletteColors: "#EDF8B1, #000000"
+                              },
+                              data: [
+                                {
+                                  label: "active",
+                                  value: `${this.state.abandonedRate}`
+                                },
+                                {
+                                  label: "inactive",
+                                  alpha: 5,
+                                  value: `${100 - this.state.abandonedRate}`
+                                }
+                              ]
+                            }
+                          }}
+                        />
+                      </Container>
+                    </Container>
+                  </Container>
+                </Container>
+              </Container>
+            </Container>
+  
+            {/* row 3 - orders trend */}
+            {/* <Container className="row" style={{ minHeight: "400px" }}>
+              <Container className="col-md-6 mb-4">
+                <Container className="card is-card-dark chart-card">
+                  <Container className="chart-container large full-height">
+                    <ReactFC
+                      {...{
+                        type: "bar2d",
+                        width: "100%",
+                        height: "100%",
+                        dataFormat: "json",
+                        containerBackgroundOpacity: "0",
+                        dataEmptyMessage: "Loading Data...",
+                        dataSource: {
+                          chart: {
+                            theme: "ecommerce",
+                            caption: "Orders Trend",
+                            subCaption: "By Stores"
+                          },
+                          data: this.state.ordersTrendStore
+                        }
+                      }}
+                    />
+                  </Container>
+                </Container>
+              </Container>
+  
+              <Container className="col-md-6 mb-4">
+                <Container className="card is-card-dark chart-card">
+                  <Container className="chart-container large full-height">
+                    <ReactFC
+                      {...{
+                        type: "usaregion",
+                        width: "100%",
+                        height: "100%",
+                        dataFormat: "json",
+                        containerBackgroundOpacity: "0",
+                        dataEmptyMessage: "Loading Data...",
+                        dataSource: {
+                          chart: {
+                            theme: "ecommerce",
+                            caption: "Orders Trend",
+                            subCaption: "By Region"
+                          },
+                          colorrange: {
+                            code: "#F64F4B",
+                            minvalue: "0",
+                            gradient: "1",
+                            color: [
+                              {
+                                minValue: "10",
+                                maxvalue: "25",
+                                code: "#EDF8B1"
+                              },
+                              {
+                                minvalue: "25",
+                                maxvalue: "50",
+                                code: "#18D380"
+                              }
+                            ]
+                          },
+                          data: this.state.ordersTrendRegion
+                        }
+                      }}
+                    />
+                  </Container>
+                </Container>
+              </Container>
+            </Container> */}
+          </Container>
+          {/* content area end */}
+        </Container>
+      );
+    }
+  }  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
 
 export default SellerMain;
