@@ -110,7 +110,7 @@ const ProductList = ({ auth: { user, loading } }) => {
               <ShopCategoryList
                 addOrEdit={addOrEdit}
                 recordForEdit={recordForEdit}
-                sellerId={user.sellerId}
+                sellerId={sId}
               />
             </div>
 
