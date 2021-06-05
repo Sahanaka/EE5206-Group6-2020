@@ -14,7 +14,7 @@ import {
 } from "./types";
 import { setAlert } from "./alert";
 
-
+const defaultImageSource = "/img/images.png";
 export const login = (email, password) => async (dispatch) => {
   const config = {
     headers: { "Content-Type": "application/json" },
@@ -64,6 +64,8 @@ export const registerCustomer = (
     ReTypePassword,
   });
 
+
+
   try {
     const res = await axios.post(
       "https://localhost:5001/api/LogSignUp/signup/customer",
@@ -86,13 +88,15 @@ export const registerCustomer = (
 };
 
 export const registerSeller = (
+  ImageData,
+  defaultImageSource,
   name,
   email,
   address,
-  contactNo,
+  ContatctNo,
   password,
-  rePassword,
-  category
+  ReTypePassword,
+  Cetogory
 ) => async (dispatch) => {
   const config = {
     headers: { "Content-Type": "application/json" },
@@ -102,19 +106,33 @@ export const registerSeller = (
     name,
     email,
     address,
-    contactNo,
+    ContatctNo,
     password,
-    rePassword,
-    category,
+    ReTypePassword,
+    Cetogory,
   });
+
+  var formData = new FormData();
+
+  formData.append("Name",name);
+  formData.append("Address",address);
+  formData.append("ContatctNo",ContatctNo);
+  formData.append("Email",email);
+  formData.append("ImageData",defaultImageSource);
+  formData.append("ImageData", ImageData);
+  formData.append("Password",password);
+  formData.append("ReTypePassword",ReTypePassword);
+  formData.append("Cetogory",Cetogory);
+  
+
 
   try {
     const res = await axios.post(
       "https://localhost:5001/api/LogSignUp/signup/seller",
-      body,
-      config
+       formData,
+       { "Content-Type": "multipart/form-data" },
     );
-    console.log("Success");
+    console.log("SuccessForm Data");
     dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data,
