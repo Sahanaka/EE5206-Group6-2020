@@ -29,6 +29,9 @@ import Buy from "./components/buy/buy";
 import Aboutus from "./components/aboutus";
 import Profile from "./components/Customer/Profile";
 import Popup from "./components/Customer/popup";
+import Sellerlist from "./components/admin/Sellerlist";
+import AdminPannel from "./components/admin/admin";
+import Customerlist from "./components/admin/Custormerlsit";
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
@@ -57,6 +60,9 @@ const App = () => {
               component={ShopItemsSeller}
             />
             <Route exact path ="/Buy" component={Buy} />
+            <Route exact path ="/Sellerlist" component={Sellerlist} />
+            <Route exact path ="/AdminPannel" component={AdminPannel} />
+            <Route exact path ="/Customerlist" component={Customerlist} />
             <Route exact path ="/Popup" component={Popup} />
             <Route exact path ="/Aboutus" component={Aboutus}/>
             <Route exact path ="/Profile" component={Profile}/>
@@ -67,6 +73,7 @@ const App = () => {
               path="/selleRegistation"
               component={SellerRegistration}
             />
+            
             <PrivateRoute exact path="/ProductList" component={ProductList} />
             <PrivateRoute exact path="/shops" component={Shops} />
             <PrivateRoute exact path="/shop/:id" component={Shop} />
