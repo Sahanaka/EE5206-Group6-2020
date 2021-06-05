@@ -164,7 +164,7 @@ namespace Project_BackendApi.Controllers
                     var customer = _db.CustomerModels.SingleOrDefault(x => x.Email.ToLower() == login.Email.ToLower());
 
                    var  decriptPwd = _encryptService.Decryptword(customer.Password);
-                    if (decriptPwd == login.Password)
+                    if (seller.Password == login.Password)
                     {
                         var tokenString = _jwtService.GenerateJWTtoken(login);
                         return Ok(new
