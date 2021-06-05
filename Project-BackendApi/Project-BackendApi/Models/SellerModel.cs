@@ -28,7 +28,16 @@ namespace Project_BackendApi.Models
         [Required]
         [EmailAddress(ErrorMessage = "Invalid Email")]
         public string Email { get; set; }
-        public string ShopImage { get; set; }
+
+
+        public string ShopImage { get; set; }///
+
+        [NotMapped]
+        public IFormFile ImageData { get; set; }
+
+        [NotMapped]
+        public String ImageSource { get; set; }
+
 
         [Required(ErrorMessage = "Please Enter passerd")]
         [DataType(DataType.Password)]
@@ -39,11 +48,7 @@ namespace Project_BackendApi.Models
         [DataType(DataType.Password)]
         public string ReTypePassword { get; set; }
 
-        [NotMapped]
-        public IFormFile ImageData { get; set; } 
-
-        [NotMapped]
-        public String ImageSource { get; set; } 
+        
 
         [Required(ErrorMessage = "Please Enter at least one Cetogory")]
         public string Cetogory { get; set; }

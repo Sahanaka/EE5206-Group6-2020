@@ -129,5 +129,18 @@ namespace Project_BackendApi.Controllers
             return customerModel;
         }
 
+        [HttpGet("cartItems")]
+        public List<cartModel> GetAllCart() // show all products *
+        {
+            return _db.cartModels.ToList();
+        }
+        [HttpGet("cartItems/items")]
+
+        public List<OrderDetailsModel> GetAllOrderList() // show all products *
+        {
+            return _db.OrderDetailsModels.ToList();
+        }
+
+
     }
 }

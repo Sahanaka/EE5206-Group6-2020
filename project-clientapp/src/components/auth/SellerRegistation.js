@@ -6,24 +6,34 @@ import "./style/sellerregister.css";
 import { setAlert } from "../../Actions/alert";
 import { registerSeller } from "../../Actions/auth";
 import "w3-css/w3.css";
+import ReactRoundedImage from 'react-rounded-image';
+
+
+
+const defaultImageSource = "/img/images.png";
+
 const Register = ({ setAlert, registerSeller }) => {
   const [formData, setFromData] = useState({
     name: "",
     email: "",
-    contactNo: "",
+    ContatctNo: "",
     password: "",
-    rePassword: "",
-    category: "",
+    ReTypePassword: "",
+    Cetogory: "",
+    ImageData:null,
+    ImageSource:defaultImageSource,
   });
 
   const {
     name,
     address,
-    contactNo,
+    ContatctNo,
     email,
     password,
-    rePassword,
-    category,
+    ReTypePassword,
+    Cetogory,
+    ImageData,
+    ImageSource
   } = formData;
 
   const onChange = (e) =>
@@ -32,18 +42,58 @@ const Register = ({ setAlert, registerSeller }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    if (password !== rePassword) setAlert("Passwords do not match", "danger");
+    if (password !== ReTypePassword) setAlert("Passwords do not match", "danger");
     else
       registerSeller(
+        ImageData,
+        ImageSource,
         name,
         email,
         address,
-        contactNo,
+        ContatctNo,
         password,
-        rePassword,
-        category
+        ReTypePassword,
+        Cetogory
       );
   };
+
+
+  const showPreview = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      let ImageData = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (x) => {
+        setFromData({
+          ...formData,
+          ImageData,
+          ImageSource: x.target.result,
+        });
+      };
+      reader.readAsDataURL(ImageData);
+    } else {
+      setFromData({
+        ...formData,
+        ImageData: null,
+        ImageSource: defaultImageSource,
+      });
+    }
+  };
+
+  const initialFieldValues = {
+    ProductId: 0,
+    Title: "",
+    Price: "",
+    AvailabeAmount: "",
+    Discount: "",
+    Size: "",
+    Quantity: "",
+    
+    ShopProductId: 1,
+    CategoryProductId: 1,
+  };
+
+
+
 
   return (
     <div className="background12 ">
@@ -54,8 +104,21 @@ const Register = ({ setAlert, registerSeller }) => {
           <i className="fas fa-user" /> Create Your Account
         </p> */}
           <form className="form " onSubmit={(e) => onSubmit(e)}>
+
+          
             <div className="">
               {/* <small className=""> Name</small> */}
+ 
+              
+              <img src={ImageSource} className="card-img-top" style={{width:"40%",height:"40%",borderRadius:"50%",marginLeft:"30"}}/>
+              <input
+                type="file"
+                required
+                accept="image/*"
+                onChange={showPreview}
+                id="image-uploader"
+              />
+
               <input
                 type="text"
                 placeholder="Name"
@@ -101,8 +164,8 @@ const Register = ({ setAlert, registerSeller }) => {
               <input
                 type="password"
                 placeholder="ReEnter Password"
-                name="rePassword"
-                value={rePassword}
+                name="ReTypePassword"
+                value={ReTypePassword}
                 onChange={(e) => onChange(e)}
               />
             </div>
@@ -111,8 +174,8 @@ const Register = ({ setAlert, registerSeller }) => {
               <input
                 type="text"
                 placeholder="Contact Number"
-                name="contactNo"
-                value={contactNo}
+                name="ContatctNo"
+                value={ContatctNo}
                 onChange={(e) => onChange(e)}
               />
             </div>
@@ -120,10 +183,10 @@ const Register = ({ setAlert, registerSeller }) => {
             <div className="">
               {/* <small className=""> Category</small> */}
               <input
-                type="email"
-                placeholder="Email Address"
-                name="email"
-                value={email}
+                type="text"
+                placeholder="Cetogory"
+                name="Cetogory"
+                value={Cetogory}
                 onChange={(e) => onChange(e)}
               />
               <small className=""></small>
