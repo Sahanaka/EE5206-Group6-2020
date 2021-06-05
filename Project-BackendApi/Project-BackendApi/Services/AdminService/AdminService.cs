@@ -14,17 +14,34 @@ namespace Project_BackendApi.Services.AdminService
         {
             _db = db;
         }
-        public List<string> GetData() 
+        public List<int> GetData() 
         {
             // All the data needded to be displayed in the dashboard. (No users, NO cus, No sellers)
-            // public List<string> DataList = new List<string>();
+            int[] data = new int[3];
+            data.Append(_db.CustomerModels.ToList().Count());
+            data.Append(_db.SellerModels.ToList().Count());
 
+            var list = new List<int>(data);
 
-            // _db.
-            return null;
+            return list;
               
         }
 
-        public Task DeleteUser(int UserId, string UserRole) { return null; }
+        public async Task DeleteUser(int UserId, string UserRole) 
+        {
+            // Deletes user from the database;
+            if (UserRole == "Customer")
+            {
+                var customerModel = await _db.CustomerModels.FindAsync(UserId);
+                _db.CustomerModels.Remove(customerModel);
+                await _db.SaveChangesAsync();
+            }
+            else if (UserRole == "Seller")
+            {
+                var sellerModel = await _db.SellerModels.FindAsync(UserId);
+                _db.SellerModels.Remove(sellerModel);
+                await _db.SaveChangesAsync();
+            }
+        }
     }
 }

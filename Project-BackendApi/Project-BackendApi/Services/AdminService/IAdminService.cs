@@ -7,7 +7,7 @@ namespace Project_BackendApi.Services.AdminService
 {
     public interface IAdminService
     {
-        public List<string> GetData();
+        public List<int> GetData();
 
         public Task DeleteUser(int UserId, string UserRole);
     }
