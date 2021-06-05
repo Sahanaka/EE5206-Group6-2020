@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Container, Nav } from "./SellerMainitems/styled-components";
+import { Container, Nav } from "./styled-components";
 import { Link } from "react-router-dom";
-import "./Style/SellerMainstyle.css"
+import "./Style/adminstyle.css"
 
 
 
-
+import SellerList from "./Sellerlist";
 
 
 
@@ -14,11 +14,11 @@ import Charts from "fusioncharts/fusioncharts.charts";
 import Maps from "fusioncharts/fusioncharts.maps";
 import USARegion from "fusionmaps/maps/es/fusioncharts.usaregion";
 import ReactFC from "react-fusioncharts";
-import "./SellerMainitems/charts-theme";
+import "./charts-theme";
 
-import config from "./SellerMainitems/config";
+import config from "./config";
 import Dropdown from "react-dropdown";
-import formatNum from "./SellerMainitems/format-number";
+import formatNum from "./format-number";
 
 // import UserImg from "../assets/images/user-img-placeholder.jpeg";
 
@@ -278,24 +278,31 @@ const url = `https://sheets.googleapis.com/v4/spreadsheets/${
             <nav className="sidebar sidebar-offcanvas" id="sidebar">
               <ul className="nav">
                 <li className="nav-item">
-                  <a className="nav-link" href="index.html">
+                  <a className="nav-link" href="./Sellerlist">
                     <i className="ti-shield menu-icon" />
-                    <span className="menu-title">Dashboard</span>
+                    <span className="menu-title">Sellers</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="./Sellerlist">
+                    <i className="ti-shield menu-icon" />
+                    <span className="menu-title">Store</span>
                   </a>
                 </li>
                 <li className="nav-item">
                   <a
                     className="nav-link"
                     data-toggle="collapse"
-                    href="#ui-basic"
+                    href="./Customerlist"
                     aria-expanded="false"
                     aria-controls="ui-basic"
                   >
                     <i className="ti-palette menu-icon" />
-                    <span className="menu-title">My Profile</span>
+                    <span className="menu-title">Customer</span>
                     <i className="menu-arrow" />
                   </a>
-                  <div className="collapse" id="ui-basic">
+                  
+                  {/* <div className="collapse" id="ui-basic">
                     <ul className="nav flex-column sub-menu">
                       <li className="nav-item">
                         {" "}
@@ -316,20 +323,20 @@ const url = `https://sheets.googleapis.com/v4/spreadsheets/${
                         </a>
                       </li>
                     </ul>
-                  </div>
+                  </div> */}
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                     <i className="ti-layout-list-post menu-icon" />
                     <Link to="/store">Store</Link>
-                </li>
-                <li className="nav-item">
+                </li> */}
+                {/* <li className="nav-item">
                     <i className="ti-layout-list-post menu-icon" />
                     <Link to="/ProductList">Products</Link>
                 </li>
                 <li className="nav-item">
                     <i className="ti-layout-list-post menu-icon" />
                     <Link to={`/ShopItemsSeller/${1}`}>Shop Items</Link>
-                </li>
+                </li> */}
               </ul>
             </nav>
           </div>
@@ -375,12 +382,12 @@ const url = `https://sheets.googleapis.com/v4/spreadsheets/${
                 <Container className="card grid-card is-card-dark">
                   <Container className="card-heading">
                     <Container className="is-dark-text-light letter-spacing text-small">
-                      Total Revenue
+                      Total Buyers
                     </Container>
                   </Container>
   
                   <Container className="card-value pt-4 text-x-large">
-                    <span className="text-large pr-1">Rs</span>
+                    <span className="text-large pr-1"></span>
                   {this.total}
                   </Container>
                 </Container>
@@ -390,7 +397,7 @@ const url = `https://sheets.googleapis.com/v4/spreadsheets/${
                 <Container className="card grid-card is-card-dark">
                   <Container className="card-heading">
                     <Container className="is-dark-text-light letter-spacing text-small">
-                      Total Orders
+                      Total Sellers
                     </Container>
                     <Container className="card-heading-brand">
                       {/* <i className="fab fa-amazon text-large" /> */}
@@ -408,7 +415,7 @@ const url = `https://sheets.googleapis.com/v4/spreadsheets/${
                 <Container className="card grid-card is-card-dark">
                   <Container className="card-heading">
                     <Container className="is-dark-text-light letter-spacing text-small">
-                      Complete Orders
+                      Total Orders
                     </Container>
                     <Container className="card-heading-brand">
                       {/* <i className="fab fa-ebay text-x-large logo-adjust" /> */}
@@ -440,8 +447,89 @@ const url = `https://sheets.googleapis.com/v4/spreadsheets/${
                 </Container>
               </Container>
             </Container>
+
+            <Container className="row">
+              <Container className="col-lg-3 col-sm-6 is-light-text mb-4">
+                <Container className="card grid-card is-card-dark">
+                  <Container className="card-heading">
+                    <Container className="is-dark-text-light letter-spacing text-small">
+                      Total Stores
+                    </Container>
+                  </Container>
   
-            {/* row 2 - conversion */}
+                  <Container className="card-value pt-4 text-x-large">
+                    <span className="text-large pr-1"></span>
+                  {this.total}
+                  </Container>
+                </Container>
+              </Container>
+  
+              <Container className="col-lg-3 col-sm-6 is-light-text mb-4">
+                <Container className="card grid-card is-card-dark">
+                  <Container className="card-heading">
+                    <Container className="is-dark-text-light letter-spacing text-small">
+                      Total Products
+                    </Container>
+                    <Container className="card-heading-brand">
+                      {/* <i className="fab fa-amazon text-large" /> */}
+                    </Container>
+                  </Container>
+  
+                  <Container className="card-value pt-4 text-x-large">
+                    <span className="text-large pr-1"></span>
+                    {this.state.amRevenue}
+                  </Container>
+                </Container>
+              </Container>
+  
+              <Container className="col-lg-3 col-sm-6 is-light-text mb-4">
+                <Container className="card grid-card is-card-dark">
+                  <Container className="card-heading">
+                    <Container className="is-dark-text-light letter-spacing text-small">
+                      Monthly Total Orders
+                    </Container>
+                    <Container className="card-heading-brand">
+                      {/* <i className="fab fa-ebay text-x-large logo-adjust" /> */}
+                    </Container>
+                  </Container>
+  
+                  <Container className="card-value pt-4 text-x-large">
+                    <span className="text-large pr-1"></span>
+                    {this.state.ebRevenue}
+                  </Container>
+                </Container>
+              </Container>
+  
+              <Container className="col-lg-3 col-sm-6 is-light-text mb-4">
+                <Container className="card grid-card is-card-dark">
+                  <Container className="card-heading">
+                    <Container className="is-dark-text-light letter-spacing text-small">
+                      Pending Orders
+                    </Container>
+                    <Container className="card-heading-brand">
+                      {/* <i className="fab fa-etsy text-medium" /> */}
+                    </Container>
+                  </Container>
+  
+                  <Container className="card-value pt-4 text-x-large">
+                    <span className="text-large pr-1"></span>
+                    {this.state.etRevenue}
+                  </Container>
+                </Container>
+              </Container>
+            </Container>
+
+
+
+
+
+
+
+
+
+
+  
+            {/* row 2 - conversion
             <Container className="row">
               <Container className="col-md-4 col-lg-3 is-light-text mb-4">
                 <Container className="card grid-card is-card-dark">
@@ -563,7 +651,7 @@ const url = `https://sheets.googleapis.com/v4/spreadsheets/${
                   </Container>
                 </Container>
               </Container>
-            </Container>
+            </Container> */}
   
             {/* row 3 - orders trend */}
             {/* <Container className="row" style={{ minHeight: "400px" }}>

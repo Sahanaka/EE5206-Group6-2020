@@ -1,14 +1,17 @@
-.body {
-  background-color: gold;
+.body_mainregister {
+  /* background-color: gold; */
 
   background-image: url(2.JPG);
   /* text animation*/
 }
-.txt {
+.txt_mainregister {
   float: left;
   margin-top: 200px;
   margin-left: 150px;
   font-size: 40px;
+}
+.textalign{
+  text-align: center;
 }
 
 a {
@@ -357,7 +360,7 @@ p.demos {
 
 /*///////////////////////////////////*/
 
-.Main {
+.Main_mainreginster {
   margin-top: 100px;
   margin-bottom: 100px;
   text-align: center;
@@ -366,6 +369,7 @@ p.demos {
 .btn {
   margin-left: 10px;
   color: white;
+  margin-bottom: 5px;
 }
 .grid-container {
   display: grid;
@@ -373,12 +377,15 @@ p.demos {
   gap: 50px;
 }
 
-.box-a {
+.box-a_main {
   background-color: white;
-  opacity: 0.8;
-  float: right;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  width: 200px;
+  opacity: 0.6;
+  margin: auto;
+  height: 350px;
+
+  margin-top: 80px;
+  margin-bottom: 80px;
   border-radius: 15px;
 }
 .container {
@@ -386,7 +393,7 @@ p.demos {
   margin: auto;
   margin-right: 550px;
 }
-.row {
+.row_main {
   margin: auto;
   margin-bottom: 10px;
   margin-left: 40px;

@@ -1,0 +1,170 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+  .body {
+    
+    animation: form 2s ease-in-out;
+    font-family: "Raleway", sans-serif;
+  }
+  
+  .btt {
+    margin-left: 100px;
+    margin-top: 20px;
+  }
+  
+  @keyframes form {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  .backgroundbuy {
+    background: url(back.jpg);
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+  }
+  .float {
+    float: left;
+  }
+  
+  .text {
+    margin-top: 45vh;
+    flex: 1;
+  }
+  .hight {
+    line-height: 1px;
+  }
+  .squre {
+    height: 570px;
+    width: 340px;
+    background-color: #555;
+    opacity: 0.7;
+    border-radius: 20px;
+    margin-right: 20px;
+  }
+  
+  .box {
+    margin-top: 50px;
+    flex: 1;
+    float: right;
+    font-size: 15px;
+    line-height: 15px;
+  }
+  
+  .text {
+    margin-left: 10%;
+    font-weight: 300px;
+  }
+  
+  .box {
+    margin-left: 25%;
+  }
+  
+  .text h1 {
+    font-size: 70px;
+    color: #fff;
+    font-weight: 500;
+  }
+  
+  .text p {
+    font-size: 20px;
+    color: #fff;
+    font-weight: 300;
+  }
+  
+  .text p a {
+    color: #fff;
+    font-weight: 700;
+  }
+  
+  .form {
+    background: transparent;
+    /* color: #fff; */
+    /* box-sizing: border-box; */
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+  }
+  
+  input {
+    margin: 20px 0;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-family: "Raleway", sans-serif;
+  }
+  
+  .username,
+  .password,
+  .fullname,
+  .email {
+    border-bottom: 1px solid #fff;
+    margin-left: 20px;
+  }
+  
+  .button {
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 18px;
+  }
+  
+  .button:hover {
+    background: #fff;
+    color: #000;
+  }
+  ::placeholder {
+    color: #fff;
+  }
+  .textcolor1 {
+    color: #fff;
+  }
+  .textalighn1 {
+    margin-left: 50px;
+  }
+  .textloging {
+    font-size: 40px;
+    color: #fff;
+    font-weight: 50px;
+  }
+  
+  .itemccenter12 {
+    margin-left: 20%;
+  }
+  .box78 {
+    margin-top: 50px;
+    flex: 1;
+    float: right;
+    font-size: 15px;
+    line-height: 15px;
+  }
+  .squrebuy {
+    height: 300px;
+    width: 325px;
+    background-color: #555;
+    border-radius: 20px;
+    opacity: 0.9;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .itemcenter78 {
+    margin-left: 25px;
+  }
+  .color78 {
+    color: rgb(255, 255, 255);
+  }
+  .textcenter78 {
+    text-align: center;
+  }
+  
