@@ -12,6 +12,7 @@
 }
 .textalign{
   text-align: center;
+  color: #f5f5f5;
 }
 
 a {
@@ -369,7 +370,7 @@ p.demos {
 .btn {
   margin-left: 10px;
   color: white;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 .grid-container {
   display: grid;
@@ -378,9 +379,9 @@ p.demos {
 }
 
 .box-a_main {
-  background-color: white;
-  width: 200px;
-  opacity: 0.6;
+  background-color: rgb(58, 57, 57);
+  width: 300px;
+  opacity: 0.8;
   margin: auto;
   height: 350px;
 

@@ -1,3 +1,24 @@
 label {
     margin-bottom: 0rem !important;
   }
+.box-a_profile {
+  background-color: rgb(204, 204, 204);
+  width: 500px;
+  opacity: 0.8;
+  margin: auto;
+  height: 350px;
+
+  margin-top: 80px;
+  margin-bottom: 80px;
+  border-radius: 15px;
+  align-items: center;
+}
+.box_b{
+  margin: auto;
+  width: 450px;
+  height: 350px;
+
+}
+.textaligninprofile{
+  text-align: center;
+}
