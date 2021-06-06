@@ -52,6 +52,7 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
               <div className=" jumbotron-fluid py-4">
                 <div className="container text-center">
                   <h1 className="display-4">{shops.sellerId}</h1>
+                  
                 </div>
               </div>
             </div>
