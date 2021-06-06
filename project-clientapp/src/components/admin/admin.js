@@ -37,6 +37,7 @@ class SellerMain extends Component {
 
   async componentDidMount() {
     const res = await getDashboardData();
+    console.log("rerer", res)
     this.setState({
       totalUsers: res[0] + res[1],
       numberofCustomers: res[0],

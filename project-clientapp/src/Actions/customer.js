@@ -2,8 +2,8 @@ import axios from 'axios';
 
 import { setAlert } from './alert';
 import {
-    GET_SELLERS,
-    SELLERS_ERROR,
+    GET_SHOPS,
+    SHOPS_ERROR,
     GET_SELLER,
     CLEAR_SELLER,
     GET_PRODUCTS,
@@ -15,7 +15,7 @@ export const getShops = () => async dispatch => {
         const res = await axios.get(`https://localhost:5001/api/CustomerModels/shops`);
         console.log('all shops', res.data)
         dispatch({
-          type: GET_SELLERS,
+          type: GET_SHOPS,
           payload: res.data,
         });
         return res.data;
@@ -23,7 +23,7 @@ export const getShops = () => async dispatch => {
         setAlert("No products to sell", "warning");
         console.log(error)
         dispatch({
-            type: SELLERS_ERROR,
+            type: SHOPS_ERROR,
             payload: { msg: error.response.statusText, status: error.response.status }
         });
     }
