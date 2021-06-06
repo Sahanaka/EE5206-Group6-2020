@@ -19,7 +19,7 @@ const Register = ({ setAlert, registerSeller }) => {
     ContatctNo: "",
     password: "",
     ReTypePassword: "",
-    Cetogory: "",
+    Category: "",
     ImageData:null,
     ImageSource:defaultImageSource,
   });
@@ -31,7 +31,7 @@ const Register = ({ setAlert, registerSeller }) => {
     email,
     password,
     ReTypePassword,
-    Cetogory,
+    Category,
     ImageData,
     ImageSource
   } = formData;
@@ -53,7 +53,7 @@ const Register = ({ setAlert, registerSeller }) => {
         ContatctNo,
         password,
         ReTypePassword,
-        Cetogory
+        Category
       );
   };
 
@@ -106,11 +106,11 @@ const Register = ({ setAlert, registerSeller }) => {
           <form className="form " onSubmit={(e) => onSubmit(e)}>
 
           
-            <div className="">
+            <div className="sellerregisteritem">
               {/* <small className=""> Name</small> */}
  
               
-              <img src={ImageSource} className="card-img-top" style={{width:"40%",height:"40%",borderRadius:"50%",marginLeft:"30"}}/>
+              <img src={ImageSource} className="card-img-top"  style={{width:"40%",height:"40%",borderRadius:"50%",marginLeft:"30",}}/>
               <input
                 type="file"
                 required
@@ -170,7 +170,7 @@ const Register = ({ setAlert, registerSeller }) => {
               />
             </div>
             <div className="">
-              {/* <small className=""> Contact Number</small> */}
+               {/* <small className=""> Contact Number</small>  */}
               <input
                 type="text"
                 placeholder="Contact Number"
@@ -184,12 +184,12 @@ const Register = ({ setAlert, registerSeller }) => {
               {/* <small className=""> Category</small> */}
               <input
                 type="text"
-                placeholder="Cetogory"
-                name="Cetogory"
-                value={Cetogory}
+                placeholder="Category"
+                name="Category"
+                value={Category}
                 onChange={(e) => onChange(e)}
               />
-              <small className=""></small>
+              {/* <small className=""></small> */}
             </div>
 
             <input type="submit" className="btn btn-primary" value="Register" />

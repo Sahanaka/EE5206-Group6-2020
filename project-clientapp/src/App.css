@@ -256,9 +256,9 @@ img {
 .form textarea {
   display: block;
   width: 100%;
-  padding: 0.4rem;
-  font-size: 1.2rem;
-  border: 1px solid #ccc;
+  /* padding: 0.4rem; */
+  font-size: 1.5rem;
+  /* border: 1px solid #ccc; */
 }
 
 .form input[type="submit"],
@@ -314,6 +314,7 @@ button {
   top: 0;
   border-bottom: solid 1px #ffffff;
   opacity: 0.9;
+  font-size:15px;
 }
 .navbar_title{
   color: #343a40;

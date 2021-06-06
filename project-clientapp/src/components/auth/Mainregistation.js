@@ -60,7 +60,7 @@ const Mainregistation = () => {
       <div className="container">
         <div className=" box-a_main ">
           <hr/>
-          <h1 className="Main textalign">REGISTERS</h1>
+          <h1 className="Main textalign">Choose Who You are</h1>
 
           <div className="row_main">
             <button
