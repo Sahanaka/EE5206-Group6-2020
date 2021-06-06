@@ -45,8 +45,17 @@ const useStyles = makeStyles((theme) => ({
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
+  
   drawerPaper: {
     width: drawerWidth,
+    top:'43px',
+     position:'inherit',
+    height:'595px',
+    
+    backgroundColor:{
+      opacity:'0.1',
+    },
+    
   },
   content: {
     flexGrow: 1,
@@ -84,29 +93,32 @@ const Shops = (props) => {
     console.log(t);
   };
 
-  const drawer = (
-    <div>
-      <div className={classes.toolbar} />
-      <Divider />
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
+ const drawer = (
+  <div>
+     <div className={classes.toolbar} /> 
+     <Divider />
+      <h1 className='sidebartextakign'>Categories</h1>
+    <List component="div" variant="body1">
+      {['Groceries', 'Whole Sale', 'Electronics', 'Bakeries', "Food"].map((text, index) => (
+        <ListItem button key={text}>
+          {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
+          
+          <ListItemText  primary={text} />
+        </ListItem>
+      ))}
+    </List>
+    <Divider />
+    <List component="div" variant="body1">
+      {['All mail', 'Trash', 'Spam'].map((text, index) => (
+        <ListItem button key={text}>
+           <Box color="text.primary"><ListItemText primary={text} /></Box>
+          {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
+          
+        </ListItem>
+      ))}
+    </List>
+  </div>
+);
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
