@@ -1,5 +1,21 @@
 import React, { Component } from "react";
 import { withFormik, Form, Field } from "formik";
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+
+
+
+
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+}));
 
 const form_id = "form_id";
 class MaintenanceForm extends Component {
@@ -22,9 +38,11 @@ class MaintenanceForm extends Component {
   _renderAction() {
     return (
       <React.Fragment>
+        
         <div className="form-statusbar">
           {this?.props?.status?.edit ? (
             <React.Fragment>
+             
               <button
                 className="btn btn-primary btn-sm"
                 type="submit"
@@ -47,6 +65,9 @@ class MaintenanceForm extends Component {
             >
               Edit
             </button>
+            
+
+            
           )}
         </div>
       </React.Fragment>
@@ -87,6 +108,7 @@ class MaintenanceForm extends Component {
   _renderFormInput = () => {
     return (
       <React.Fragment>
+        
         <div className="form-group row">
           <label className="col-sm-2 col-form-label">Name</label>
           <div className="col-sm-10">
@@ -127,13 +149,25 @@ class MaintenanceForm extends Component {
   render() {
     return (
       <React.Fragment>
-        <h2>Profile</h2>
+        <div className="box-a_profile">
+          <div className="box_b">
+            <div className="textaligninprofile">
+            <h2>Profile</h2>
+
+            </div>
+          
         {this._renderAction()}
         <Form id={form_id}>
           {this?.props?.status?.edit
             ? this._renderFormInput()
             : this._renderFormView()}
         </Form>
+
+          </div>
+       
+
+        </div>
+        
         {/* <h4>Current value</h4> */}
         <div>
           {/* <pre>
