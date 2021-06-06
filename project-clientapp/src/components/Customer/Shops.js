@@ -25,7 +25,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
-
+import Box from '@material-ui/core/Box';
 
 
 
@@ -63,8 +63,17 @@ const useStyles = makeStyles((theme) => ({
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
+  
   drawerPaper: {
     width: drawerWidth,
+    top:'43px',
+     position:'inherit',
+    height:'595px',
+    
+    backgroundColor:{
+      opacity:'0.1',
+    },
+    
   },
   content: {
     flexGrow: 1,
@@ -107,21 +116,24 @@ const Shops = (props) => {
  const drawer = (
   <div>
      <div className={classes.toolbar} /> 
-     <Divider /> 
-    <List>
-      {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+     <Divider />
+      <h1 className='sidebartextakign'>Categories</h1>
+    <List component="div" variant="body1">
+      {['Groceries', 'Whole Sale', 'Electronics', 'Bakeries', "Food"].map((text, index) => (
         <ListItem button key={text}>
           {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-          <ListItemText primary={text} />
+          
+          <ListItemText  primary={text} />
         </ListItem>
       ))}
     </List>
     <Divider />
-    <List>
+    <List component="div" variant="body1">
       {['All mail', 'Trash', 'Spam'].map((text, index) => (
         <ListItem button key={text}>
+           <Box color="text.primary"><ListItemText primary={text} /></Box>
           {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-          <ListItemText primary={text} />
+          
         </ListItem>
       ))}
     </List>
