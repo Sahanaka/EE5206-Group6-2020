@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Project_BackendApi.DATA;
+using Project_BackendApi.Models;
 
 namespace Project_BackendApi.Services.AdminService
 {
@@ -18,30 +19,22 @@ namespace Project_BackendApi.Services.AdminService
         {
             // All the data needded to be displayed in the dashboard. (No users, NO cus, No sellers)
             int[] data = new int[3];
-            data.Append(_db.CustomerModels.ToList().Count());
-            data.Append(_db.SellerModels.ToList().Count());
-
+            data[0] = _db.CustomerModels.ToList().Count();
+            data[1] = _db.SellerModels.ToList().Count();
+            
             var list = new List<int>(data);
-
             return list;
               
         }
 
-        public async Task DeleteUser(int UserId, string UserRole) 
+        public List<CustomerModel> GetCustomers()
         {
-            // Deletes user from the database;
-            if (UserRole == "Customer")
-            {
-                var customerModel = await _db.CustomerModels.FindAsync(UserId);
-                _db.CustomerModels.Remove(customerModel);
-                await _db.SaveChangesAsync();
-            }
-            else if (UserRole == "Seller")
-            {
-                var sellerModel = await _db.SellerModels.FindAsync(UserId);
-                _db.SellerModels.Remove(sellerModel);
-                await _db.SaveChangesAsync();
-            }
+            return _db.CustomerModels.ToList();
+        }
+
+        public List<SellerModel> GetSellers()
+        {
+            return _db.SellerModels.ToList();
         }
     }
 }

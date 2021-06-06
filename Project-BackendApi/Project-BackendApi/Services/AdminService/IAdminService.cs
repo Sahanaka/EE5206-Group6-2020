@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_BackendApi.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,6 +10,8 @@ namespace Project_BackendApi.Services.AdminService
     {
         public List<int> GetData();
 
-        public Task DeleteUser(int UserId, string UserRole);
+        public List<CustomerModel> GetCustomers();
+
+        public List<SellerModel> GetSellers();
     }
 }

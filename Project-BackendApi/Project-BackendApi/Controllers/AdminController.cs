@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Project_BackendApi.DATA;
+using Project_BackendApi.Models;
+using Project_BackendApi.Services.AdminService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,81 +10,60 @@ using System.Threading.Tasks;
 
 namespace Project_BackendApi.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class AdminController : Controller
     {
-        // GET: Admin
-        public ActionResult Index()
+        private IAdminService _AdminService;
+        private readonly MarketplaceDB _context;
+        public AdminController(IAdminService AdminService, MarketplaceDB context)
         {
-            return View();
-        }
-
-        // GET: Admin/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
+            _AdminService = AdminService;
+            _context = context;
         }
 
         // GET: Admin/Create
-        public ActionResult Create()
+        [HttpGet("details")]
+        public List<int> GetDetails()
         {
-            return View();
+            return _AdminService.GetData();
         }
 
-        // POST: Admin/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        [HttpGet("details/customers")]
+        public List<CustomerModel> GetCustomers()
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return _AdminService.GetCustomers();
         }
 
-        // GET: Admin/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet("details/sellers")]
+        public List<SellerModel> GetSellers()
         {
-            return View();
-        }
-
-        // POST: Admin/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Admin/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
+            return _AdminService.GetSellers();
         }
 
         // POST: Admin/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        [HttpDelete("cusotmer/{id}")]
+        public async Task<ActionResult<CustomerModel>> DeleteUserCustomer(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+                var customerModel = await _context.CustomerModels.FindAsync(id);
+
+                if (customerModel == null) { return BadRequest(); }
+                _context.CustomerModels.Remove(customerModel);
+                await _context.SaveChangesAsync();
+                return customerModel;
+
+        }
+
+        [HttpDelete("seller/{id}")]
+        public async Task<ActionResult<SellerModel>> DeleteUserSellerr(int id)
+        {
+            var sellerModel = await _context.SellerModels.FindAsync(id);
+
+            if (sellerModel == null) { return BadRequest(); }
+            _context.SellerModels.Remove(sellerModel);
+            await _context.SaveChangesAsync();
+            return sellerModel;
+
         }
     }
 }

@@ -26,6 +26,7 @@ using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Project_BackendApi.Services.ImageService;
 using Project_BackendApi.Services.EncrytService;
+using Project_BackendApi.Services.AdminService;
 
 namespace Project_BackendApi
 {
@@ -91,6 +92,8 @@ namespace Project_BackendApi
             services.AddScoped<ISellerService, SellerService>();
             
             services.AddScoped<ICustomerService, CustomerService>();
+
+            services.AddScoped<IAdminService, AdminService>();
 
             services.AddScoped<IImageService, ImageService>();
             services.AddScoped<IEncryptService, EncryptService>();
