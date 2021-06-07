@@ -211,25 +211,33 @@ namespace Project_BackendApi.Controllers
         
         public IActionResult Post(JObject objData)
         {
-            List<OrderDetailsModel> lstItemDetails = new List<OrderDetailsModel>();
+            
+
+            List<OrderProductsModel> lstItemDetails = new List<OrderProductsModel>();
 
             dynamic jsonData = objData;
             JObject orderJson = jsonData.cartModel;
             JArray itemDetailsJson = jsonData.orderDetails;
             var Order = orderJson.ToObject<cartModel>();
 
+
+
+            
+
+
+
             foreach (var item in itemDetailsJson)
             {
 
-                lstItemDetails.Add(item.ToObject<OrderDetailsModel>());
+                lstItemDetails.Add(item.ToObject<OrderProductsModel>());
             }
             _context.cartModels.Add(Order);
 
-            foreach (OrderDetailsModel itemDetail in lstItemDetails)
+            foreach (OrderProductsModel itemDetail in lstItemDetails)
             {
-                OrderDetailsModel cartname = new OrderDetailsModel();
+                OrderProductsModel cartname = new OrderProductsModel();
                 itemDetail.OrderNumber = Order.cartItems;
-                _context.OrderDetailsModels.Add(itemDetail);
+                _context.OrderProductsModels.Add(itemDetail);
             }
             _context.SaveChanges();
             return Ok();

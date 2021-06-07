@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Project_BackendApi.DATA;
 
 namespace Project_BackendApi.Migrations
 {
     [DbContext(typeof(MarketplaceDB))]
-    partial class MarketplaceDBModelSnapshot : ModelSnapshot
+    [Migration("20210605190015_ca3")]
+    partial class ca3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -345,7 +347,7 @@ namespace Project_BackendApi.Migrations
                     b.ToTable("CustomerOrderDetailsModel");
                 });
 
-            modelBuilder.Entity("Project_BackendApi.Models.OrderDetailsModel2", b =>
+            modelBuilder.Entity("Project_BackendApi.Models.OrderDetailsModel", b =>
                 {
                     b.Property<int>("OrderDetailsId")
                         .ValueGeneratedOnAdd()
@@ -372,35 +374,6 @@ namespace Project_BackendApi.Migrations
                     b.HasIndex("cartModelsCartyId");
 
                     b.ToTable("OrderDetailsModels");
-                });
-
-            modelBuilder.Entity("Project_BackendApi.Models.OrderProductsModel", b =>
-                {
-                    b.Property<int>("OrderDetailsId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("OrderNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductPrice")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("cartModelsCartyId")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrderDetailsId");
-
-                    b.HasIndex("cartModelsCartyId");
-
-                    b.ToTable("OrderProductsModels");
                 });
 
             modelBuilder.Entity("Project_BackendApi.Models.ProductCustomerModel", b =>
@@ -477,9 +450,6 @@ namespace Project_BackendApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PeportCustomer")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("ReportId");
 
                     b.ToTable("ReportModels");
@@ -540,12 +510,6 @@ namespace Project_BackendApi.Migrations
 
                     b.Property<string>("ShopImage")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TotalOrders")
-                        .HasColumnType("int");
-
-                    b.Property<float>("TotalReveniue")
-                        .HasColumnType("real");
 
                     b.HasKey("SellerId");
 
@@ -677,7 +641,7 @@ namespace Project_BackendApi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Project_BackendApi.Models.OrderDetailsModel2", "OrderDetailsModel")
+                    b.HasOne("Project_BackendApi.Models.OrderDetailsModel", "OrderDetailsModel")
                         .WithMany()
                         .HasForeignKey("OrderDetailsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -688,19 +652,10 @@ namespace Project_BackendApi.Migrations
                     b.Navigation("OrderDetailsModel");
                 });
 
-            modelBuilder.Entity("Project_BackendApi.Models.OrderDetailsModel2", b =>
+            modelBuilder.Entity("Project_BackendApi.Models.OrderDetailsModel", b =>
                 {
                     b.HasOne("Project_BackendApi.Models.cartModel", "cartModels")
                         .WithMany("OrderDetailsModels")
-                        .HasForeignKey("cartModelsCartyId");
-
-                    b.Navigation("cartModels");
-                });
-
-            modelBuilder.Entity("Project_BackendApi.Models.OrderProductsModel", b =>
-                {
-                    b.HasOne("Project_BackendApi.Models.cartModel", "cartModels")
-                        .WithMany()
                         .HasForeignKey("cartModelsCartyId");
 
                     b.Navigation("cartModels");

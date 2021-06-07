@@ -18,7 +18,7 @@ namespace Project_BackendApi.DATA
         public DbSet<AdminModel> AdminModels { get; set; }
         public DbSet<CategoryModel> CategoryModels { get; set; }
         public DbSet<CustomerModel> CustomerModels { get; set; }
-        public DbSet<OrderDetailsModel> OrderDetailsModels { get; set; }
+       
         public DbSet<ProductModel> ProductModels { get; set; }
         public DbSet<ReportModel> ReportModels { get; set; }
 
@@ -28,7 +28,7 @@ namespace Project_BackendApi.DATA
         public DbSet<SellerCustomerModel> CuStomerReportModels { get; set; }
         public DbSet<SellerCustomerModel> CustomerOrderDetailsModels { get; set; }
         public DbSet<cartModel> cartModels { get; set; }
-        
+        public DbSet<OrderProductsModel> OrderProductsModels { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

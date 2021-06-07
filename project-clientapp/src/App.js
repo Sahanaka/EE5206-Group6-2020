@@ -32,6 +32,7 @@ import Popup from "./components/Customer/popup";
 import Sellerlist from "./components/admin/Sellerlist";
 import AdminPannel from "./components/admin/admin";
 import Customerlist from "./components/admin/Custormerlsit";
+
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
@@ -66,7 +67,7 @@ const App = () => {
             <Route exact path ="/Popup" component={Popup} />
             <Route exact path ="/Aboutus" component={Aboutus}/>
             <Route exact path ="/Profile" component={Profile}/>
-            <Route exact path="/OrderList" component={OrderList} />{" "}
+            <Route exact path="/OrderList/:id" component={OrderList} />{" "}
             <Route exact path="/Mainregistration" component={Mainregistation} />
             <Route
               exact
