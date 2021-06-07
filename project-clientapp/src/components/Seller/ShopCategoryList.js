@@ -95,6 +95,8 @@ const ShopCategoryList = (props) => {
       formData.append("ShopProductId", ShopProductId);
       formData.append("CategoryProductId", CategoryProductId);
 
+      console.log('rtrt', formData)
+
       addOrEdit(formData, resetForm);
     }
   };
