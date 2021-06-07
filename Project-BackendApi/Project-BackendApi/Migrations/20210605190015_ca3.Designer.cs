@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Project_BackendApi.DATA;
 
 namespace Project_BackendApi.Migrations
 {
     [DbContext(typeof(MarketplaceDB))]
-    partial class MarketplaceDBModelSnapshot : ModelSnapshot
+    [Migration("20210605190015_ca3")]
+    partial class ca3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -508,12 +510,6 @@ namespace Project_BackendApi.Migrations
 
                     b.Property<string>("ShopImage")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TotalOrders")
-                        .HasColumnType("int");
-
-                    b.Property<float>("TotalReveniue")
-                        .HasColumnType("real");
 
                     b.HasKey("SellerId");
 

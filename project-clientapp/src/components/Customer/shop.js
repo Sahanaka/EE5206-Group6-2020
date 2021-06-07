@@ -19,7 +19,7 @@ const Shop = ({
     getShopProducts(match.params.id);
   }, [match.params.id]);
   //console.log("cus", shop);
-  console.log("pro", products);
+  //console.log("pro", products);
 
   const imageCard = (data) => (
     <div>

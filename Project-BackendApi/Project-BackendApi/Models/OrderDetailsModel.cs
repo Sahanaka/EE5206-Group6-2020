@@ -19,7 +19,7 @@ namespace Project_BackendApi.Models
         public int Quantity { get; set; }
         public string OrderNumber { get; set; }
 
-
+        public cartModel cartModels { get; set; }
 
     }
 }
