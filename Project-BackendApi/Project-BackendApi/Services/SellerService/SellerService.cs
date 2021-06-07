@@ -68,13 +68,13 @@ namespace Project_BackendApi.Services.SellerService
             catch (Exception ex) { throw ex; }
         }
        
-        public async Task ProcessOrder(OrderDetailsModel order)
+        public async Task ProcessOrder(OrderProductsModel order)
         {
             // This method process the order and accepts it or declines it. Also special discounts and other rates are processed here
             // If a order is accepted then it is saved in the db
 
             // Replace with correct logic later
-            _db.OrderDetailsModels.Add(order);
+            _db.OrderProductsModels.Add(order);
             await _db.SaveChangesAsync();
         }
 

@@ -136,9 +136,9 @@ namespace Project_BackendApi.Controllers
         }
         [HttpGet("cartItems/items")]
 
-        public List<OrderDetailsModel> GetAllOrderList() // show all products *
+        public List<OrderProductsModel> GetAllOrderList() // show all products *
         {
-            return _db.OrderDetailsModels.ToList();
+            return _db.OrderProductsModels.ToList();
         }
 
 
