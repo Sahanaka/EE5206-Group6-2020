@@ -33,9 +33,6 @@ const Products = ({ getShops, shops: { shops, loading }, ...props }) => {
     </div>
   );
 
-  console.log("Cat", props.filterCategory)
-  console.log("name", searchName)
-
   return (
     <Fragment>
       {loading ? (

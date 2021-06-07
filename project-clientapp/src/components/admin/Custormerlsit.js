@@ -79,7 +79,6 @@ const AdminCustomersList = ({
                           <TableCell>Address</TableCell>
                           <TableCell>Contact Number</TableCell>
                           <TableCell>Email</TableCell>
-                          <TableCell></TableCell>
                         </TableRow>
                       </TableHead>
                       <TableBody>

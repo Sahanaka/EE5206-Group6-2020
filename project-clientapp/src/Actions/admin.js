@@ -6,11 +6,12 @@ import {
     GET_CUSTOMERS,
     CUSTOMERS_ERROR
   } from "./types";
-// const baseURL = process.env.SERVER_DEV_URL + '/admin';
+ const baseURL = process.env.REACT_APP_API_URL + '/admin';
 
 
 
 export const getDashboardData = async () => {
+    console.log(baseURL)
     try {
         const res = await axios.get('https://localhost:5001/api/admin/details');
         return res.data;

@@ -37,7 +37,7 @@ const styles = (theme) => ({
   },
 })
 
-const AdminSellersList = ({ classes, sellers: { sellers, sellesloading } }) => {
+const AdminSellersList = ({ classes, sellers: { sellers, sellersloading } }) => {
 //   const { addToast } = useToasts()
   const history = useHistory()
   const adminId = history.location.state

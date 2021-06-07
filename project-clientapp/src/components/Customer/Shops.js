@@ -163,8 +163,6 @@ const Shops = (props) => {
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
-  console.log("type", selectedCategory);
-
   return (
     <div>
       <div>
@@ -210,22 +208,6 @@ const Shops = (props) => {
               <Nav className="mr-auto" onSelect={handleSelect}>
                 <Nav.Link href="profile">Profile</Nav.Link>
                 <Nav.Link href="Aboutus">About us</Nav.Link>
-                <NavDropdown title="Category" id="basic-nav-dropdown">
-                  <NavDropdown.Item>
-                    <Nav.Link href="#action/3.1">Groceries</Nav.Link>
-                  </NavDropdown.Item>
-
-                  <NavDropdown.Item href="#action/3.2">
-                    Electronic Devices
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    Health & Beauty
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Babies & Toys
-                  </NavDropdown.Item>
-                </NavDropdown>
               </Nav>
             </Navbar.Collapse>
             <Form className="d-flex">
