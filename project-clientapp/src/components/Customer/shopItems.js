@@ -6,10 +6,11 @@ import { connect } from "react-redux";
 import { getShops } from "../../Actions/customer";
 import Spinner from "../layout/Spinner";
 import "./style/shopitems.css"
-const Products = ({ getShops, shops: { shops, loading } }) => {
+const Products = ({ getShops, shops: { shops, loading }, ...props }) => {
   useEffect(async () => {
     getShops();
-  }, [getShops]);
+    setSearchName(props.filterCategory);
+  }, [getShops, props.filterCategory]);
 
   const [searchName, setSearchName] = useState('');
   
@@ -31,6 +32,9 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
       </div>
     </div>
   );
+
+  console.log("Cat", props.filterCategory)
+  console.log("name", searchName)
 
   return (
     <Fragment>
@@ -65,7 +69,7 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
                     } else if (
                       productList.cetogory
                         .toLocaleLowerCase()
-                        .includes(searchName)
+                        .includes(searchName.toLocaleLowerCase())
                     ) {
                       return productList;
                     }
@@ -89,7 +93,7 @@ Products.propTypes = {
   shops: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, props) => ({
   shops: state.seller,
 });
 
