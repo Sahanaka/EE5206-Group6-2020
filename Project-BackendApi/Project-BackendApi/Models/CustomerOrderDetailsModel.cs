@@ -10,7 +10,7 @@ namespace Project_BackendApi.Models
     {
         
         public int OrderDetailsId { get; set; }
-        public OrderDetailsModel OrderDetailsModel { get; set; }
+        public OrderProductsModel OrderProductsModel { get; set; }
       
         public int CustomerId { get; set; }
         public CustomerModel CustomerModel { get; set; }

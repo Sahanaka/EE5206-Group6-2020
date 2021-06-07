@@ -22,7 +22,7 @@ namespace Project_BackendApi.Models
 
         public string CustomerAddress { get; set; }
 
-        public ICollection<OrderDetailsModel> OrderDetailsModels { get; set; }
+        public ICollection<OrderProductsModel> OrderProductsModel { get; set; }
 
        
     }
