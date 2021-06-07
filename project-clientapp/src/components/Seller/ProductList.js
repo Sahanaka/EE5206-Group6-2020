@@ -45,7 +45,7 @@ const ProductList = ({ auth: { user, loading } }) => {
           onSuccess();
           refreshProductList();
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log('ere', err));
     else
       productAPI()
         .update(formData.get("ProductId"), formData)
@@ -102,7 +102,7 @@ const ProductList = ({ auth: { user, loading } }) => {
             <div className="col-md-12">
               <div className="jumbotron jumbotron-fluid py-4">
                 <div className="container text-center">
-                  <h1 className="display-4">Catogory XXXXX</h1>
+                  <h1 className="display-4">ADD PRODUCTS TO YOUR ONLINE STORE</h1>
                 </div>
               </div>
             </div>

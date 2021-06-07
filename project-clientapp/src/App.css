@@ -300,6 +300,9 @@ button {
 .table th {
   background: var(--light-color);
 }
+.navbarbuttonstyle{
+  border: rgb(240, 206, 15);
+}
 
 /* Navbar */
 .navbar {
@@ -308,13 +311,14 @@ button {
   justify-content: space-between;
   align-items: center;
   padding: 0.7rem 2rem;
-  /* position: fixed; */
+  /* b */
   z-index: 1;
   width: 100%;
   top: 0;
   border-bottom: solid 1px #ffffff;
   opacity: 0.9;
   font-size:15px;
+  height: 60px;
 }
 .navbar_title{
   color: #343a40;

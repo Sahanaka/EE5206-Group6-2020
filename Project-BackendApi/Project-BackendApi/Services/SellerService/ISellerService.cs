@@ -21,7 +21,7 @@ namespace Project_BackendApi.Services.SellerService
 
         public Task<ProductModel> RemoveProducts(int Id); 
 
-        public Task ProcessOrder(OrderDetailsModel order); // Accept or decline an order
+        public Task ProcessOrder(OrderProductsModel order); // Accept or decline an order
 
         public Task PayService();
 

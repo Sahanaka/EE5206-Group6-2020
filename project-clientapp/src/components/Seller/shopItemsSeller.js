@@ -108,9 +108,11 @@ const ShopItemsSeller = ({
       console.log("error")
     }
   }
+
+  
   const addCardItems= ()=>{
     return response.map((r)=>{
-      console.log(r)
+      
      return <Card 
      title={r.cartItems}
      cartyId={r.cartyId}

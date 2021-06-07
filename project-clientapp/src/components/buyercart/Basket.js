@@ -21,13 +21,15 @@ function Basket(props) {
   const handleClose = (value) => {
     setOpen(false);
     setSelectedValue(value);
-    if (selectedValue == "Direct") {
-      //addShopItem();
-      console.log(selectedValue)
-    }
-    else {
-      history.push({pathname: '/Buy'});
-    }
+    // console.log('ewe', selectedValue)
+    // if (selectedValue == "Direct") {
+    //   addShopItem();
+    //   console.log(selectedValue)
+    // }
+    // else {
+    //   history.push({pathname: '/Buy'});
+    // }
+    addShopItem();
   };
 
   var { cartItems, onAdd, onRemove } = props;
@@ -40,6 +42,8 @@ function Basket(props) {
   var price
   var quantity
   var customerEmail
+  var customername
+  var CustomerAddress
   var isAccepted = false;
   var  addShopItem= async ()=>{
     
@@ -48,20 +52,27 @@ function Basket(props) {
         { productName:item.title,
           quantity:item.quantity,
           productPrice:item.price,
+          
         }
       ))
-      cartItems =await cartItems[0].title.toString();
+      
       itemsPrice = await itemsPrice.toString();
       taxPrice = await taxPrice.toString();
       shippingPrice = await shippingPrice.toString();
       totalPrice =await totalPrice.toString();
-      console.log(orderDetails);
+      
       isAccepted= true;
-
+     
       customerEmail= props.state.email;
-   const response = await DBApi.post("/cart",{cartModel:{cartItems,itemsPrice,taxPrice,shippingPrice,totalPrice, isAccepted,customerEmail},orderDetails})
+      cartItems = props.state.name;
+      CustomerAddress = props.state.address;
+      console.log(customername)
+      
+   const response = await DBApi.post("/cart",{cartModel:{cartItems,itemsPrice,taxPrice,shippingPrice,totalPrice, isAccepted,customerEmail,CustomerAddress},orderDetails})
 if(response.status==200){
-    console.log(response.state);
+  
+    alert("Order Placed. Thank You")
+   
     console.log("Succ");
     }else{
       throw Error(response.status);

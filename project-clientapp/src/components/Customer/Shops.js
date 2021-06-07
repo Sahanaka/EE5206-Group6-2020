@@ -84,9 +84,9 @@ const Shops = (props) => {
     console.log(`${key}`);
   };
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+//   const handleDrawerOpen = () => {
+//     setOpen(true);
+//   };
 
   const handleDrawerClose = () => {
     setOpen(false);
