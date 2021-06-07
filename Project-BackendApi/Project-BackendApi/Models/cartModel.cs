@@ -20,6 +20,11 @@ namespace Project_BackendApi.Models
         public bool IsAccepted { get; set; }
         public string CustomerEmail { get; set; }
 
+        public string CustomerAddress { get; set; }
+
+        public ICollection<OrderDetailsModel> OrderDetailsModels { get; set; }
+
+       
     }
     
 }
