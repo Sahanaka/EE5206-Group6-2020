@@ -19,6 +19,7 @@ namespace Project_BackendApi.Models
         [Required(ErrorMessage = "Please Enter Category")]
         public string Category { get; set; }
 
+        public string PeportCustomer { get; set; }
 
         public IList<CuStomerReportModel> CuStomerReportModels { get; set; }
 
