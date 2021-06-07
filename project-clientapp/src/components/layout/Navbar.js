@@ -10,6 +10,7 @@ import { logout } from "../../Actions/auth";
 import logo1 from "../../img/new.png";
 import Logo from "../../img/Logo.png";
 import logo2 from "../../img/logo2.png";
+import Button from 'react-bootstrap/Button'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -83,7 +84,8 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
   const guestLinks = (
     
     <ul className="navbar_ul">
-      <li>
+      {/* <Button href="/shops" variant="outline-warning">Warning</Button> */}
+      <li >
         <Link to="/shops">Shops</Link>
       </li>
       <li>
@@ -100,7 +102,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
     <nav className="navbar">
       
         <Link to="/">
-          <img src={logo2} style={{ width: 50, height: 20 }} alt="logo1.png" />
+          <img src={logo2} style={{ width: 60, height: 30 }} alt="logo1.png" />
           {/* <i className="navbar_title" > S&D.COM</i> */}
         </Link>
       

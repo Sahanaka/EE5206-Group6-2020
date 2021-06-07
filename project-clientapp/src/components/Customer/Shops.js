@@ -101,17 +101,17 @@ const Shops = (props) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+//   const handleDrawerOpen = () => {
+//     setOpen(true);
+//   };
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
- const handleClick =(t)=>{
-      console.log(t)
+//   const handleDrawerClose = () => {
+//     setOpen(false);
+//   };
+//  const handleClick =(t)=>{
+//       console.log(t)
 
- }
+//  }
 
  const drawer = (
   <div>

@@ -1,5 +1,7 @@
 .footer-container {
-  background-color: #263238;
+  background-color: #263238; 
+  height: 250px;
+  
   padding: 4rem 0 2rem 0;
   display: flex;
   flex-direction: column;
@@ -25,6 +27,7 @@
 }
 
 .footer-subscription-heading {
+  margin-top: 30px;
   margin-bottom: 24px;
   font-size: 24px;
 }
@@ -97,6 +100,7 @@
 .social-icon-link {
   color: #fff;
   font-size: 24px;
+  
 }
 
 .social-media {
@@ -130,6 +134,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 16px;
+  
 }
 
 .website-rights {
