@@ -63,14 +63,14 @@ export function SimpleDialog(props) {
           </ListItem>
         ))}
 
-        <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
+        {/* <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
           <ListItemAvatar>
             <Avatar>
               <AddIcon />
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary="Add New Address" />
-        </ListItem>
+        </ListItem> */}
       </List>
     </Dialog>
   );
