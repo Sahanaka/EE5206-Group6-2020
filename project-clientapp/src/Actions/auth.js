@@ -14,6 +14,9 @@ import {
 } from "./types";
 import { setAlert } from "./alert";
 
+// const dep_URL = 'https://project-backendapi20210527160130.azurewebsites.net/api/logsignup/signup'
+const BASE_URL = process.env.REACT_APP_DEV_API_URL;
+
 const defaultImageSource = "/img/images.png";
 export const login = (email, password) => async (dispatch) => {
   const config = {
@@ -24,7 +27,7 @@ export const login = (email, password) => async (dispatch) => {
 
   try {
     const res = await axios.post(
-      "https://localhost:5001/api/LogSignUp/login",
+      BASE_URL + '/LogSignUp/login',
       body,
       config
     );
@@ -70,7 +73,7 @@ export const registerCustomer = (
 
   try {
     const res = await axios.post(
-      "https://localhost:5001/api/LogSignUp/signup/customer",
+      BASE_URL + '/LogSignUp/signup/customer',
       body,
       config
     );
@@ -130,7 +133,7 @@ export const registerSeller = (
 
   try {
     const res = await axios.post(
-      "https://localhost:5001/api/LogSignUp/signup/seller",
+      BASE_URL + '/LogSignUp/signup/seller',
        formData,
        { "Content-Type": "multipart/form-data" },
     );
@@ -140,8 +143,8 @@ export const registerSeller = (
       payload: res.data,
     });
   } catch (error) {
-    const errors = error.response.data.errors;
-    console.log(errors);
+    //const errors = error.response.data.errors;
+    //console.log(errors);
     dispatch(setAlert("Something is wrong at your end", "danger"));
     dispatch({
       type: REGISTER_FAIL,
@@ -155,7 +158,8 @@ export const loadUser = () => async (dispatch) => {
     if (user.role === "Customer") {
       try {
         const res = await axios.get(
-          `https://localhost:5001/api/CustomerModels/${user.id}`
+         // `https://localhost:5001/api/CustomerModels/${user.id}`,
+          BASE_URL + `/CustomerModels/${user.id}`
         );
         dispatch({
           type: USER_LOADED,
@@ -169,7 +173,8 @@ export const loadUser = () => async (dispatch) => {
     else if (user.role === "Seller") {
       try {
         const res = await axios.get(
-          `https://localhost:5001/api/Seller/${user.id}`
+         // `https://localhost:5001/api/Seller/${user.id}`,
+          BASE_URL + `/Seller/${user.id}`
         );
         dispatch({
           type: USER_LOADED,

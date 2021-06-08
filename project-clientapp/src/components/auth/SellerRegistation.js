@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import "./style/sellerregister.css";
@@ -12,7 +12,7 @@ import ReactRoundedImage from 'react-rounded-image';
 
 const defaultImageSource = "/img/images.png";
 
-const Register = ({ setAlert, registerSeller }) => {
+const Register = ({ setAlert, registerSeller, isAuthenticated, role }) => {
   const [formData, setFromData] = useState({
     name: "",
     email: "",
@@ -92,7 +92,10 @@ const Register = ({ setAlert, registerSeller }) => {
     CategoryProductId: 1,
   };
 
-
+  if (isAuthenticated) {
+    return <Redirect to={`/sellerMain/${role.id}`} />;
+  }
+  
 
 
   return (
@@ -206,11 +209,13 @@ const Register = ({ setAlert, registerSeller }) => {
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   registerSeller: PropTypes.func.isRequired,
-  //isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
+  role: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  role: state.auth.role
 });
 
-export default connect(null, { setAlert, registerSeller })(Register);
+export default connect(mapStateToProps, { setAlert, registerSeller })(Register);

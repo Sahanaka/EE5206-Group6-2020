@@ -6,9 +6,11 @@ import {
     PRODUCTS_ERROR
   } from "./types";
 
+const BASE_URL = process.env.REACT_APP_DEV_API_URL + 'seller';
+
 export const getAllProducts = () => async dispatch => {
     try {
-        const res = await axios.get(`https://localhost:5001/api/seller/`);
+        const res = await axios.get(BASE_URL);
 
         dispatch({
             type: GET_PRODUCTS,
@@ -21,7 +23,7 @@ export const getAllProducts = () => async dispatch => {
         setAlert("No products to sell", "warning");
         dispatch({
             type: PRODUCTS_ERROR,
-            payload: { msg: error.response.statusText, status: error.response.status }
+            payload: { msg: error }
         });
         
     }
@@ -29,7 +31,7 @@ export const getAllProducts = () => async dispatch => {
 
 export const addNewProduct = () => async dispatch => {
     try {
-        const res = await axios.post('"https://localhost:5001/api/seller');
+        const res = await axios.post(BASE_URL);
     } catch (error) {
        // dispatch(setAlert("Something went wrong!", "danger"));
     }

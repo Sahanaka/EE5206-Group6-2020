@@ -8,11 +8,12 @@ import Spinner from "../layout/Spinner";
 import "./style/shopitems.css"
 
 import Paper from '@material-ui/core/Paper';
-const Products = ({ getShops, shops: { shops, loading } }) => {
+const Products = ({ getShops, shops: { shops, loading }, ...props }) => {
  
   useEffect(async () => {
     getShops();
-  }, [getShops]);
+    setSearchName(props.filterCategory);
+  }, [getShops, props.filterCategory]);
 
   const [searchName, setSearchName] = useState('');
   
@@ -77,7 +78,7 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
                     } else if (
                       productList.cetogory
                         .toLocaleLowerCase()
-                        .includes(searchName)
+                        .includes(searchName.toLocaleLowerCase())
                     ) {
                       return productList;
                     }
@@ -102,7 +103,7 @@ Products.propTypes = {
   shops: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, props) => ({
   shops: state.seller,
 });
 

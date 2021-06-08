@@ -1,10 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import DBApi from '../../Api/DBApi';
 import "./style/basket.css";
 import { connect } from 'react-redux';
+import { Link, Redirect } from "react-router-dom";
+import { SimpleDialog } from '../buy/buy';
+import { useHistory } from 'react-router-dom'
+
+const paymentOptions = ['Direct', 'Card'];
 
 function Basket(props) {
+  const [open, setOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState('');
+  let history = useHistory()
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (value) => {
+    setOpen(false);
+    setSelectedValue(value);
+    // console.log('ewe', selectedValue)
+    // if (selectedValue == "Direct") {
+    //   addShopItem();
+    //   console.log(selectedValue)
+    // }
+    // else {
+    //   history.push({pathname: '/Buy'});
+    // }
+    addShopItem();
+  };
+
   var { cartItems, onAdd, onRemove } = props;
   var itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
   var taxPrice = itemsPrice * 0.14;
@@ -39,7 +66,7 @@ function Basket(props) {
       customerEmail= props.state.email;
       cartItems = props.state.name;
       CustomerAddress = props.state.address;
-      console.log(customername)
+      console.log("Customer Name",props.state.name)
       
    const response = await DBApi.post("/cart",{cartModel:{cartItems,itemsPrice,taxPrice,shippingPrice,totalPrice, isAccepted,customerEmail,CustomerAddress},orderDetails})
 if(response.status==200){
@@ -106,13 +133,14 @@ if(response.status==200){
             </div>
             <hr />
             <div className="">
-              <button onClick={()=>addShopItem()}>
+              <button onClick={()=>handleClickOpen()}>
                 Checkout
               </button>
             </div>
           </>
         )}
       </div>
+      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
     </aside>
   );
 }

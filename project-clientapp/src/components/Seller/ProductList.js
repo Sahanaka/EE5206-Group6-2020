@@ -10,13 +10,16 @@ import Spinner from "../layout/Spinner";
 const ProductList = ({ auth: { user, loading } }) => {
   const [productList, setProductList] = useState([]);
   const [recordForEdit, setRecordForEdit] = useState(null);
+  const [sId, setsId] = useState(JSON.parse(atob(localStorage.token.split('.')[1])))
+  
+  console.log("sid", parseInt(sId.id))
   useEffect(() => {
     refreshProductList();
   }, []);
 
-  const productAPI = (url = "https://localhost:5001/api/Seller/") => {
+  const productAPI = (url = process.env.REACT_APP_DEV_API_URL + "/Seller/") => {
     return {
-      fetchAll: () => axios.get(url + `sellers/products/${user.sellerId}`),
+      fetchAll: () => axios.get(url + `sellers/products/${parseInt(sId.id)}`),
       create: (newRecord) => axios.post(url, newRecord),
       update: (id, updatedRecord) => axios.put(url + id, updatedRecord),
       delete: (id) => axios.delete(url + id),
@@ -43,7 +46,7 @@ const ProductList = ({ auth: { user, loading } }) => {
           onSuccess();
           refreshProductList();
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log('ere', err));
     else
       productAPI()
         .update(formData.get("ProductId"), formData)
@@ -100,7 +103,7 @@ const ProductList = ({ auth: { user, loading } }) => {
             <div className="col-md-12">
               <div className="jumbotron jumbotron-fluid py-4">
                 <div className="container text-center">
-                  <h1 className="display-4">Catogory XXXXX</h1>
+                  <h1 className="display-4">ADD PRODUCTS TO YOUR ONLINE STORE</h1>
                 </div>
               </div>
             </div>
@@ -108,7 +111,7 @@ const ProductList = ({ auth: { user, loading } }) => {
               <ShopCategoryList
                 addOrEdit={addOrEdit}
                 recordForEdit={recordForEdit}
-                sellerId={user.sellerId}
+                sellerId={sId}
               />
             </div>
             

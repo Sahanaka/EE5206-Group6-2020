@@ -76,6 +76,7 @@ namespace Project_BackendApi.Controllers
 
                 newcustomer.Password = encryPassword;
                 newcustomer.ReTypePassword = encryReTypePassword;
+                newcustomer.UserRole = "Customer";
                 _db.CustomerModels.Add(newcustomer);
                 _db.SaveChanges();
 
@@ -167,6 +168,7 @@ namespace Project_BackendApi.Controllers
                     if (decriptPwd == login.Password)
                     {
                         var tokenString = _jwtService.GenerateJWTtoken(login);
+
                         return Ok(new
                         {
                             token = tokenString

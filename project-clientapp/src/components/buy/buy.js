@@ -36,7 +36,7 @@ const useStyles = makeStyles({
 });
 
 
-function SimpleDialog(props) {
+export function SimpleDialog(props) {
   const classes = useStyles();
   const { onClose, selectedValue, open } = props;
 
@@ -82,31 +82,6 @@ SimpleDialog.propTypes = {
   selectedValue: PropTypes.string.isRequired,
 };
 
-// const Register = ({ setAlert, registerCustomer, isAuthenticated }) => {
-//   const [formData, setFromData] = useState({
-//     name: "",
-//     email: "",
-//     contact_No: "",
-//     password: "",
-//     rePassword: "",
-//   });
-
-//   const { name, address, contact_No, email, password, rePassword } = formData;
-
-//   const onChange = (e) =>
-//     setFromData({ ...formData, [e.target.name]: e.target.value });
-
-//   const onSubmit = async (e) => {
-//     e.preventDefault();
-
-//     if (password !== rePassword) setAlert("Passwords do not match", "danger");
-//     else
-//       registerCustomer(name, email, address, contact_No, password, rePassword);
-//   };
-
-//   if (isAuthenticated) {
-//     return <Redirect to="/shops" />;
-//   }
 
 const Buy =() =>{
 
@@ -216,24 +191,5 @@ const Buy =() =>{
     </div>
   );
 };
-
-
-
- 
-
-
-// Register.propTypes = {
-//   setAlert: PropTypes.func.isRequired,
-//   registerCustomer: PropTypes.func.isRequired,
-//   isAuthenticated: PropTypes.bool,
-// };
-
-// const mapStateToProps = (state) => ({
-//   isAuthenticated: state.auth.isAuthenticated,
-// });
-
-// export default connect(mapStateToProps, { setAlert, registerCustomer })(
-//   Register
-// );
 
 export default Buy;

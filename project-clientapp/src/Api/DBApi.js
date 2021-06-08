@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export default axios.create({
-  baseURL:'https://localhost:5001/api/CustomerModels/'
+  baseURL: process.env.REACT_APP_DEV_API_URL + '/CustomerModels/'
 });

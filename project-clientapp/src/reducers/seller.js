@@ -1,4 +1,4 @@
-import { GET_SELLERS, SELLERS_ERROR } from "../Actions/types";
+import { GET_SHOPS, SHOPS_ERROR } from "../Actions/types";
 
 const initialState = {
   shops: [],
@@ -10,13 +10,13 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case GET_SELLERS:
+    case GET_SHOPS:
       return {
         ...state,
         shops: payload,
         loading: false,
       };
-    case SELLERS_ERROR:
+    case SHOPS_ERROR:
       return {
         ...state,
         error: payload,
