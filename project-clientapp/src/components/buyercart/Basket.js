@@ -39,7 +39,7 @@ function Basket(props) {
       customerEmail= props.state.email;
       cartItems = props.state.name;
       CustomerAddress = props.state.address;
-      console.log(customername)
+      console.log("Customer Name",props.state.name)
       
    const response = await DBApi.post("/cart",{cartModel:{cartItems,itemsPrice,taxPrice,shippingPrice,totalPrice, isAccepted,customerEmail,CustomerAddress},orderDetails})
 if(response.status==200){
