@@ -132,6 +132,7 @@ const ShopItemsSeller = ({
      customerAddress={r.customerAddress}
      isCustomer = {false}
      acceptCastamer = {acceptCastamer}
+     customerEmail  = {r.customerEmail}
      />
      })
   }
