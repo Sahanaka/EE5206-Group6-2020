@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Nav } from "./SellerMainitems/styled-components";
 import { Link } from "react-router-dom";
-
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import "./Style/SellerMainstyle.css";
 import FusionCharts from "fusioncharts";
 import Charts from "fusioncharts/fusioncharts.charts";
@@ -15,26 +16,16 @@ import "./SellerMainitems/charts-theme";
 ReactFC.fcRoot(FusionCharts, Charts, Maps, USARegion);
 
 //const SellerMain = ({ match }) => {
-class SellerMain extends Component {
-  constructor() {
-    super();
-    this.state = {
-      
-      totalRevenue: null,
-      totalOrders: null,
-      pendingOrders: null,
-      compeletedOrders: null
-    };
-  }
+const SellerMain = ({ user: { user }}) => {
+ 
+  const [totalRevenue, setTotalRevenue] = useState();
+  const [totalOrders, setTotalOrders] = useState();
+  console.log('userrrr', user)
 
-  componentDidMount() {
-    this.setState({ totalRevenue: 1000 })
-  }
-
-  render() {
-    console.log(this.props.match.params.id);
-    console.log(this.state.totalRevenue)
-    
+  useEffect(() => {
+    setTotalRevenue(user.totalReveniue)
+    setTotalOrders(user.totalOrders)
+  }, [])
     return (
       <Container>
         <div>
@@ -157,7 +148,7 @@ class SellerMain extends Component {
 
                 <Container className="card-value pt-4 text-x-large">
                   <span className="text-large pr-1">Rs</span>
-                  {this.state.totalRevenue}
+                  {totalRevenue}
                 </Container>
               </Container>
             </Container>
@@ -175,7 +166,7 @@ class SellerMain extends Component {
 
                 <Container className="card-value pt-4 text-x-large">
                   <span className="text-large pr-1"></span>
-                  {this.state.amRevenue}
+                  {/* {this.state.amRevenue} */}{totalOrders}
                 </Container>
               </Container>
             </Container>
@@ -193,7 +184,7 @@ class SellerMain extends Component {
 
                 <Container className="card-value pt-4 text-x-large">
                   <span className="text-large pr-1"></span>
-                  {this.state.ebRevenue}
+                  {/* {this.state.ebRevenue} */}
                 </Container>
               </Container>
             </Container>
@@ -211,7 +202,7 @@ class SellerMain extends Component {
 
                 <Container className="card-value pt-4 text-x-large">
                   <span className="text-large pr-1"></span>
-                  {this.state.etRevenue}
+                  {/* {this.state.etRevenue} */}
                 </Container>
               </Container>
             </Container>
@@ -227,7 +218,7 @@ class SellerMain extends Component {
                   </Container>
                 </Container>
                 <Container className="card-value pt-4 text-x-large">
-                  {this.state.productViews}
+                  {/* {this.state.productViews} */}
                   <span className="text-medium pl-2 is-dark-text-light">
                     views
                   </span>
@@ -251,18 +242,18 @@ class SellerMain extends Component {
                             chart: {
                               caption: "Purchase Rate",
                               theme: "ecommerce",
-                              defaultCenterLabel: `${this.state.purchaseRate}%`,
+                              //defaultCenterLabel: `${this.state.purchaseRate}%`,
                               paletteColors: "#3B70C4, #000000",
                             },
                             data: [
                               {
                                 label: "active",
-                                value: `${this.state.purchaseRate}`,
+                                //value: `${this.state.purchaseRate}`,
                               },
                               {
                                 label: "inactive",
                                 alpha: 5,
-                                value: `${100 - this.state.purchaseRate}`,
+                                //value: `${100 - this.state.purchaseRate}`,
                               },
                             ],
                           },
@@ -283,18 +274,18 @@ class SellerMain extends Component {
                             chart: {
                               caption: "Checkout Rate",
                               theme: "ecommerce",
-                              defaultCenterLabel: `${this.state.checkoutRate}%`,
+                              //defaultCenterLabel: `${this.state.checkoutRate}%`,
                               paletteColors: "#41B6C4, #000000",
                             },
                             data: [
                               {
                                 label: "active",
-                                value: `${this.state.checkoutRate}`,
+                                //value: `${this.state.checkoutRate}`,
                               },
                               {
                                 label: "inactive",
                                 alpha: 5,
-                                value: `${100 - this.state.checkoutRate}`,
+                               // value: `${100 - this.state.checkoutRate}`,
                               },
                             ],
                           },
@@ -315,18 +306,18 @@ class SellerMain extends Component {
                             chart: {
                               caption: "Abandoned Cart Rate",
                               theme: "ecommerce",
-                              defaultCenterLabel: `${this.state.abandonedRate}%`,
+                             // defaultCenterLabel: `${this.state.abandonedRate}%`,
                               paletteColors: "#EDF8B1, #000000",
                             },
                             data: [
                               {
                                 label: "active",
-                                value: `${this.state.abandonedRate}`,
+                               // value: `${this.state.abandonedRate}`,
                               },
                               {
                                 label: "inactive",
                                 alpha: 5,
-                                value: `${100 - this.state.abandonedRate}`,
+                               // value: `${100 - this.state.abandonedRate}`,
                               },
                             ],
                           },
@@ -342,7 +333,16 @@ class SellerMain extends Component {
         {/* content area end */}
       </Container>
     );
-  }
+  
 }
 
-export default SellerMain;
+SellerMain.propTypes = {
+  user: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  user: state.auth,
+});
+
+//export default SellerMain;
+export default connect(mapStateToProps)(SellerMain);
