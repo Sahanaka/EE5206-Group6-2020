@@ -30,7 +30,7 @@ import DeleteIcon from '@material-ui/icons/Delete'
 const styles = (theme) => ({
   root: {
     '& .MuiTableCell-head': {
-      fontSize: '1.25rem',
+      fontSize: '1.5rem',
     },
   },
   paper: {
