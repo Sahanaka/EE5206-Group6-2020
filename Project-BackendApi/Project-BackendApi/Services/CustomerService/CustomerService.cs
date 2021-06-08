@@ -21,6 +21,7 @@ namespace Project_BackendApi.Services.CustomerService
 
         public List<ProductModel> GetAllProducts() // show all products *
         { 
+
             return _db.ProductModels.ToList();
         }
 
@@ -33,6 +34,7 @@ namespace Project_BackendApi.Services.CustomerService
 
         public List<SellerModel> GetAllShpos() // show list of shops *
         {
+            
             return _db.SellerModels.ToList();
         }
 

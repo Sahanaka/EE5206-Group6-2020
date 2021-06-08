@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import ShopCategoryList from "./ShopCategoryList";
 import Spinner from "../layout/Spinner";
 
+
 const ProductList = ({ auth: { user, loading } }) => {
   const [productList, setProductList] = useState([]);
   const [recordForEdit, setRecordForEdit] = useState(null);
@@ -16,7 +17,7 @@ const ProductList = ({ auth: { user, loading } }) => {
     refreshProductList();
   }, []);
 
-  const productAPI = (url = "https://localhost:5001/api/Seller/") => {
+  const productAPI = (url = process.env.REACT_APP_DEV_API_URL + "/Seller/") => {
     return {
       fetchAll: () => axios.get(url + `sellers/products/${parseInt(sId.id)}`),
       create: (newRecord) => axios.post(url, newRecord),
@@ -113,7 +114,7 @@ const ProductList = ({ auth: { user, loading } }) => {
                 sellerId={sId}
               />
             </div>
-
+            
             <div className="col-md-8">
               <table>
                 <tbody>

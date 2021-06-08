@@ -38,6 +38,8 @@ export const login = (email, password) => async (dispatch) => {
       payload: res.data,
     });
     dispatch(loadUser());
+
+    
   } catch (error) {
     dispatch(setAlert("Invalid email or password", "danger"));
     dispatch({

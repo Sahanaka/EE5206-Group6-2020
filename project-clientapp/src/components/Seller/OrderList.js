@@ -2,9 +2,37 @@ import React, { Fragment, useEffect, useState,Component} from "react";
 import axios from "axios";
 import DBApi from '../../Api/DBApi'
 import { render } from "fusioncharts";
-import Paper from '@material-ui/core/Paper';
 
+import {
+  Grid,
+  Paper,
+  TableContainer,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  withStyles,
+  ButtonGroup,
+  Button,
+} from '@material-ui/core'
+import EditIcon from '@material-ui/icons/Edit'
+import DeleteIcon from '@material-ui/icons/Delete'
+
+const styles = (theme) => ({
+  root: {
+    '& .MuiTableCell-head': {
+      fontSize: '1.25rem',
+      
+    },
+  },
+  paper: {
+    margin: theme.spacing(2),
+    padding: theme.spacing(2),
+  },
+})
 class OrderList extends Component{
+  
 
  
   constructor(props) {
@@ -28,30 +56,44 @@ class OrderList extends Component{
   }
   renderItem(){
 
-     return this.state.response.map((r)=>{
-      return <div >
+     return (
+       <div  >
 
-        <Paper   elevation={3}>
-
-
-        </Paper>
-         <table>
-         <tbody>
-         <div className="card-body" >
-         <Paper   elevation={3}>
-                  <h4> Customer Name :  {r.orderNumber}</h4>
-                 <p> product Name : {r.productName}</p>
-                 <p> product Price :  {r.productPrice}.00 LKR</p>
-                 <p> product quantity : {r.quantity}</p>
-                 </Paper>
-         </div>
-          </tbody>
-         </table>
+        <div>
+        <TableContainer>
+                <Table>
+                  <TableHead className={styles.root} >
+                    <TableRow>
+                      <TableCell><h1>Customer Name</h1></TableCell>
+                      <TableCell><h1>Product  Name</h1></TableCell>
+                      <TableCell><h1>Product Price</h1> </TableCell>
+                      <TableCell><h1>Quantity</h1></TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {/* {props.userList.map((record, index) => { */}
+                    { this.state.response.map((record) => {
+                      // if (record.userType === 'Seller') {
+                        return (
+                          <TableRow hover>
+                            <TableCell>{record.orderNumber}</TableCell>
+                            <TableCell>{record.productName}</TableCell>
+                            <TableCell>{record.productPrice}</TableCell>
+                            <TableCell>{record.quantity}</TableCell>
+                          </TableRow>
+                        )
+                      //}
+                    })}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+        </div>
+         
       </div>
-     })
-  }
+     
+     )}
 render(){
-  return( <div className="card">
+  return( <div className="card" >
     
 
          {!this.state.response?<h1>server loding</h1>: 

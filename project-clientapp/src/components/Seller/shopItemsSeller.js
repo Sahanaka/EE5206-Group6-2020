@@ -9,6 +9,7 @@ import Basket from "../buyercart/Basket";
 import "../Customer/style/shop.css";
 import Card from '../card/card';
 import DBApi from '../../Api/DBApi'
+import axios from "axios";
 
 
 const ShopItemsSeller = ({
@@ -17,13 +18,17 @@ const ShopItemsSeller = ({
     getShopProducts,
     products: { products, productLoading },
     match,
+    user,
+    props
   }) => {
     const [response, setResponse] = useState(null);
     useEffect(async () => {
       getShopById(match.params.id);
+      
       try{
         getShopProducts(match.params.id);
-        const responses = await DBApi.get("/cart")
+        console.log("Name ",user.name);
+        const responses = await axios.get(`https://localhost:5001/api/Seller/cartItems/${user.name}`)
       if(responses.status==200){
       console.log(responses.data)
       setResponse(responses.data)
@@ -33,10 +38,13 @@ const ShopItemsSeller = ({
       }catch(e){
         console.log("error")
       }
-    }, [match.params.id]);
-    //console.log("cus", shop);
-   // console.log("pro", products);
-  // console.log(match)
+
+
+    }, [match.params.id, getShopProducts]);
+  console.log("cus", shop);
+    console.log("pro", products);
+   console.log(match)
+  
     const imageCard = (data) => (
  
       <div>
@@ -121,6 +129,7 @@ const ShopItemsSeller = ({
      shippingPrice={r.shippingPrice}
      totalPrice = {r.totalPrice}
      isAccepted={r.isAccepted}
+     customerAddress={r.customerAddress}
      isCustomer = {false}
      acceptCastamer = {acceptCastamer}
      />
@@ -134,7 +143,7 @@ const ShopItemsSeller = ({
           <Spinner />
         ) : ( 
           <Fragment>
-            <div className="row">
+            <div className="column">
               <div>
                 {response?(addCardItems()):<div>ss</div>}
               </div>
@@ -152,11 +161,13 @@ const ShopItemsSeller = ({
     getShopProducts: PropTypes.func.isRequired,
     shop: PropTypes.object.isRequired,
     products: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired
   };
   
   const mapStateToProps = (state) => ({
     shop: state.customer,
     products: state.products,
+    user: state.auth.user
   });
   
   export default connect(mapStateToProps, { getShopById, getShopProducts })(ShopItemsSeller);

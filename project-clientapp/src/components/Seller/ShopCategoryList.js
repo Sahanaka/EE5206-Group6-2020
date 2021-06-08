@@ -2,6 +2,8 @@ import React, { useState, useEffect, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
+import SellerMain from "./SellerMain"
+
 const defaultImageSource = "/img/images.png";
 
 const initialFieldValues = {
@@ -178,7 +180,7 @@ const ShopCategoryList = (props) => {
                 onChange={handleInputChange}
               />
             </div>
-
+         
             <div className="form-group text-center">
               <button type="submit" className="btn btn-light">
                 Add Product
