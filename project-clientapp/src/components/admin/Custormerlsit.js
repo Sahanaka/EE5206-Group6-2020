@@ -27,8 +27,8 @@ import Spinner from "../layout/Spinner";
 
 const styles = (theme) => ({
   root: {
-    "& .MuiTableCell-head": {
-      fontSize: "1.25rem",
+    '& .MuiTableCell-head': {
+      fontSize: '1.5rem',
     },
   },
   paper: {

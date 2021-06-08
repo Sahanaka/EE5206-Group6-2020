@@ -33,6 +33,7 @@ import Popup from "./components/Customer/popup";
 import Sellerlist from "./components/admin/Sellerlist";
 import AdminPannel from "./components/admin/admin";
 import Customerlist from "./components/admin/Custormerlsit";
+import Addcategory from "./components/admin/addcatogery";
 
 require('dotenv').config();
 
@@ -73,6 +74,7 @@ const App = () => {
             <PrivateRoute exact path ="/Profile" component={Profile}/>
             <Route exact path="/OrderList/:id" component={OrderList} />{" "}
             <Route exact path="/Mainregistration" component={Mainregistation} />
+            <Route exact path="/Addcategory" component={Addcategory} />
             <Route
               exact
               path="/selleRegistation"

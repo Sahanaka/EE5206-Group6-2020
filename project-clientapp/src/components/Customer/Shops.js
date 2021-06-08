@@ -165,8 +165,9 @@ const Shops = (props) => {
 
   return (
     <div>
-      <div>
+      <div className={classes.root}>
         <CssBaseline />
+        
 
         <nav className={classes.drawer} aria-label="mailbox folders">
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -197,11 +198,12 @@ const Shops = (props) => {
             >
               {drawer}
             </Drawer>
+            
           </Hidden>
+          
         </nav>
-
         <main className={classes.content}>
-          <Navbar bg="primary" expand="sm">
+        <Navbar bg="primary" expand="sm">
             {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
@@ -211,16 +213,18 @@ const Shops = (props) => {
               </Nav>
             </Navbar.Collapse>
             <Form className="d-flex">
-              <FormControl
+              {/* <FormControl
                 type="search"
                 placeholder="Search"
                 className="mr-3"
                 aria-label="Search"
               />
-              <Button variant="outline-success">Search</Button>
+              <Button variant="outline-success">Search</Button> */}
             </Form>
           </Navbar>
+          
           <div className={classes.toolbar} />
+          
           <div className="backgroundcolorinshop">
             <Container>
               <div className="">
@@ -229,6 +233,8 @@ const Shops = (props) => {
             </Container>
           </div>
         </main>
+
+        
       </div>
     </div>
   );

@@ -15,6 +15,9 @@
   float: right;
   margin-right: 20px;
 }
+.textcolourchange{
+  color: aliceblue;
+}
 /* .cart {
   opacity: 0.9;
   float: left;

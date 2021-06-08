@@ -42,7 +42,7 @@ function Basket(props) {
   var price
   var quantity
   var customerEmail
-  var customername
+  var customerName
   var CustomerAddress
   var isAccepted = false;
   var  addShopItem= async ()=>{
@@ -63,10 +63,11 @@ function Basket(props) {
       
       isAccepted= true;
      
-      customerEmail= props.state.email;
-      cartItems = props.state.name;
+      
+      cartItems = props.seller;
+      customerEmail= props.state.name
       CustomerAddress = props.state.address;
-      console.log("Customer Name",props.state.name)
+     
       
    const response = await DBApi.post("/cart",{cartModel:{cartItems,itemsPrice,taxPrice,shippingPrice,totalPrice, isAccepted,customerEmail,CustomerAddress},orderDetails})
 if(response.status==200){

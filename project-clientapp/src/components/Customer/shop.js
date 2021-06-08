@@ -23,7 +23,7 @@ const Shop = ({
 
   const imageCard = (data) => (
     <div>
-      <img src={data.imageSource} className="card-img-top rounded-circle" />
+      <img src={data.imageSource} style ={{borderRadius:"15px"}} className="card-img-top rounded-circle" />
       <div className="card-body">
         <h5 style={{ fontWeight: "bold" }}>{data.title}</h5>
         <span>LKR : {data.price}.00/=</span> <br />
@@ -72,6 +72,7 @@ const Shop = ({
     }
   };
 
+
   return (
     <Fragment>
       {shopLoading ? (
@@ -79,7 +80,7 @@ const Shop = ({
       ) : (
         <Fragment>
           {products.length == 0 ? (
-            <h1>WE WILL SOON ADD PRODUTS. PLEASE CHECK LATER</h1>
+            <h1 className="textcolourchange">WE WILL SOON ADD PRODUTS. PLEASE CHECK LATER</h1>
           ) : (
             <div className="row">
               <div className="col-md-12">
@@ -126,6 +127,7 @@ const Shop = ({
                   cartItems={cartItems}
                   onAdd={onAdd}
                   onRemove={onRemove}
+                  seller={shop.name}
                 ></Basket>
               </div>
             </div>
