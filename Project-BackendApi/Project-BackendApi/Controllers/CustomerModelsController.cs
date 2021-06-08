@@ -47,10 +47,31 @@ namespace Project_BackendApi.Controllers
 
         //all shops
         [HttpGet("shops")]
-        public List<SellerModel> GetAllShpos()
+        public async Task<ActionResult<IEnumerable<SellerModel>>> GetAllShpos()
         {
 
-            return _customerService.GetAllShpos();
+            // return _customerService.GetAllShpos();
+            return  await _context.SellerModels.Select(x => new SellerModel()
+            {
+                SellerId= x.SellerId,
+                UserRole = x.UserRole,
+                Distric = x.Distric,
+                Address = x.Address,
+                ContatctNo = x.ContatctNo,
+                Email = x.Email,
+                ShopImage = x.ShopImage,
+                ImageData = x.ImageData,
+                Password = x.Password,
+                ReTypePassword = x.ReTypePassword,
+                Cetogory = x.Cetogory,
+                TotalOrders = x.TotalOrders,
+                TotalReveniue = x.TotalReveniue,
+                ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.ShopImage),
+                Name = x.Name,
+                
+
+            })
+              .ToListAsync(); 
         }
 
         //shops filter by category
@@ -204,12 +225,12 @@ namespace Project_BackendApi.Controllers
         {
             return _context.CustomerModels.Any(e => e.CustomerId == id);
         }
-
+        
 
 
         [HttpPost("cart")]
         
-        public IActionResult Post(JObject objData)
+        public  IActionResult Post(JObject objData)
         {
             
 
@@ -220,9 +241,20 @@ namespace Project_BackendApi.Controllers
             JArray itemDetailsJson = jsonData.orderDetails;
             var Order = orderJson.ToObject<cartModel>();
 
-
-
             
+            var seller =  _context.SellerModels.FirstOrDefault(seller => seller.Name == Order.cartItems);
+
+            seller.TotalReveniue = seller.TotalReveniue + float.Parse(Order.totalPrice);
+            seller.TotalOrders = seller.TotalOrders + 1;
+
+            _context.SaveChanges();
+
+
+
+
+
+
+
 
 
 

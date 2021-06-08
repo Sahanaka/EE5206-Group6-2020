@@ -6,7 +6,10 @@ import { connect } from "react-redux";
 import { getShops } from "../../Actions/customer";
 import Spinner from "../layout/Spinner";
 import "./style/shopitems.css"
+
+import Paper from '@material-ui/core/Paper';
 const Products = ({ getShops, shops: { shops, loading } }) => {
+ 
   useEffect(async () => {
     getShops();
   }, [getShops]);
@@ -15,21 +18,29 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
   
   const nameFilter = (event) => setSearchName(event.target.value.toLowerCase());
 
+
+  
   const imageCard = (data) => (
-    <div>
-      <img src={data.imageSource} className="card-img-top rounded-circle" />
-      <div className="card-body">
+    
+    <Paper   elevation={3}>
+    <div style={{ padding:"10px" ,width:"200px"}} className="border border-dark">
+    <div className="card" style={{margin:"15px"}}>
+      <img style={{width: "130px" ,margin: "auto"}} src={data.imageSource} className="card-img-top rounded-circle"  />
+      <div className="card-body" style={{margin:"20px"}}>
         <h5 style={{ fontWeight: "bold" }}>{data.name}</h5>
         <span>Address : {data.address}</span> <br />
         <span>Contact : {data.contatctNo} </span> <br />
         <span>Category : {data.cetogory}</span> <br />
         <Link to={`shop/${data.sellerId}`}>
-          <button className="btn btn-light" Add to Cart>
-            <i class="fas fa-store"></i>
+          <button  style={{margin:"5px",padding:"10px"}} className="btn btn-outline-primary" Add to Cart>view Shop 
+            <li><i class="fas fa-store"></i>
+            </li>
           </button>
         </Link>
       </div>
     </div>
+    </div>
+    </Paper>
   );
 
   return (
@@ -41,7 +52,7 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
           <br/>
           <div className="row_shopsitem">
             <div className="col-md-12">
-              <div className="col-md-2 searchcard">
+              <div className="col-md-4 searchcard">
                 <input
                   type="search"
                   className="form-control"
@@ -56,8 +67,9 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
                 </div>
               </div>
             </div>
-            <div className="col-md-12">
-              <div id="product">
+            <div style={{ padding:"10px"}} className="col-md-12">
+            <tbody>
+              <div  id="product">
                 {shops
                   .filter((productList) => {
                     if (searchName === "") {
@@ -71,11 +83,12 @@ const Products = ({ getShops, shops: { shops, loading } }) => {
                     }
                   })
                   .map((productList) => (
-                    <tc>
-                      <td>{imageCard(productList)}</td>
+                    <tc style={{ padding:"10px"}}>
+                      <td style={{ padding:"10px"}}>{imageCard(productList)}</td>
                     </tc>
                   ))}
               </div>
+              </tbody>
             </div>
           </div>
         </Fragment>
