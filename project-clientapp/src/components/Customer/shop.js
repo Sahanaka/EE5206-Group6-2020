@@ -79,7 +79,7 @@ const Shop = ({
       ) : (
         <Fragment>
           {products.length == 0 ? (
-            <h1>WE WILL SOON ADD PRODUTS. PLEASE CHECK LATER</h1>
+            <h1 className="textcolourchange">WE WILL SOON ADD PRODUTS. PLEASE CHECK LATER</h1>
           ) : (
             <div className="row">
               <div className="col-md-12">

@@ -1,0 +1,6 @@
+.backgroundoderlist {
+    background: url(2.JPG) no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+  }
