@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import ShopCategoryList from "./ShopCategoryList";
 import Spinner from "../layout/Spinner";
 
+
 const ProductList = ({ auth: { user, loading } }) => {
   const [productList, setProductList] = useState([]);
   const [recordForEdit, setRecordForEdit] = useState(null);
@@ -110,7 +111,7 @@ const ProductList = ({ auth: { user, loading } }) => {
                 sellerId={user.sellerId}
               />
             </div>
-
+            
             <div className="col-md-8">
               <table>
                 <tbody>
