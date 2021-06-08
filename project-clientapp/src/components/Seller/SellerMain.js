@@ -39,7 +39,7 @@ const url = `https://sheets.googleapis.com/v4/spreadsheets/${
 
 
   class SellerMain extends Component {
-    constructor() {
+    constructor(props) {
       super();
       this.state = {
         items: [],
@@ -55,6 +55,7 @@ const url = `https://sheets.googleapis.com/v4/spreadsheets/${
         abandonedRate: " ",
         ordersTrendStore: [],
         total: null,
+        auth : null
       };
     }
   
@@ -168,11 +169,13 @@ const url = `https://sheets.googleapis.com/v4/spreadsheets/${
         ordersTrendStore: ordersTrendStore,
         ordersTrendRegion: ordersTrendRegion,
         selectedValue: selectedValue,
-        total: 1000
+        total: 1000,
+        auth : this.auth
       });
     };
-  
+   
     updateDashboard = event => {
+    
       this.getData(event.value);
       this.setState({ selectedValue: event.value });
     };
@@ -216,7 +219,8 @@ const url = `https://sheets.googleapis.com/v4/spreadsheets/${
   
     render() {
 
-      console.log(this.props.match.params.id)
+      
+      
       
       return (
 
