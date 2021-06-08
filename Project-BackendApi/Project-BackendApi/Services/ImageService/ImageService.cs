@@ -23,7 +23,7 @@ namespace Project_BackendApi.Services.ImageService
         {
             string imageName = new string(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(50).ToArray()).Replace(' ', '-');
             imageName = imageName + DateTime.Now.ToString("yymmssff") + Path.GetExtension(imageFile.FileName);
-            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images", imageName);
+            var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "Images", imageName);
             using (var fileStream = new FileStream(imagePath, FileMode.Create))
             {
                 await imageFile.CopyToAsync(fileStream);

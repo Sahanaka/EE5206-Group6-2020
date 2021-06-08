@@ -108,13 +108,17 @@ namespace Project_BackendApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseRouting();
 
+            app.UseDefaultFiles();
 
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Images")),
-                RequestPath = "/Images"
-            });
+            app.UseStaticFiles();
+
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Images")),
+            //    RequestPath = "/Images"
+            //});
 
             app.UseCors(Options =>
             Options.WithOrigins("http://localhost:3000")
@@ -123,7 +127,7 @@ namespace Project_BackendApi
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
+            
 
             app.UseAuthentication();
 
@@ -132,6 +136,7 @@ namespace Project_BackendApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapFallbackToController("Index", "Fallback");
             });
         }
     }
