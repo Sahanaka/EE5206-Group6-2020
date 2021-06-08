@@ -23,7 +23,7 @@ const Shop = ({
 
   const imageCard = (data) => (
     <div>
-      <img src={data.imageSource} className="card-img-top rounded-circle" />
+      <img src={data.imageSource} style ={{borderRadius:"15px"}} className="card-img-top rounded-circle" />
       <div className="card-body">
         <h5 style={{ fontWeight: "bold" }}>{data.title}</h5>
         <span>LKR : {data.price}.00/=</span> <br />
@@ -72,6 +72,7 @@ const Shop = ({
     }
   };
 
+
   return (
     <Fragment>
       {shopLoading ? (
@@ -87,7 +88,7 @@ const Shop = ({
                   <div className="container text-center">
                     <h1 className="display-4">{shop.name}</h1>
                     <h3 className="display-5">{shop.address}</h3>
-                    <h3 className="display-5">{shop.address}</h3>
+                   
                   </div>
                 </div>
               </div>
@@ -126,6 +127,7 @@ const Shop = ({
                   cartItems={cartItems}
                   onAdd={onAdd}
                   onRemove={onRemove}
+                  seller={shop.name}
                 ></Basket>
               </div>
             </div>

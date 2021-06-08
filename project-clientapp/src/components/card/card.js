@@ -17,13 +17,13 @@ const Card=(props)=>{
          }})
   }
 
-console.log("Props New",props)
+console.log("Props New1",props)
     return   <div style={{ margin:"15px", borderTopLeftRadius:"9px", padding:"10px" }} className="card">
       <Container>
     
     <div style={{ margin:"5px", borderTopLeftRadius:"9px", padding:"10px" }} className="card-body">
 
-      <h4 style={{ fontWeight: "bold" }}>{props.title}</h4>
+      <h4 style={{ fontWeight: "bold" }}>{props.customerEmail} </h4>
       <span>Items Price : {props.itemsPrice} </span> <br />
       <span>Tax Price: {props.taxPrice}</span> <br />
       <span>Shipping Price : {props.shippingPrice}</span> <br />
