@@ -3,77 +3,59 @@ import clsx from "clsx";
 import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import { fade, makeStyles, useTheme } from "@material-ui/core/styles";
-import Navbar from 'react-bootstrap/Navbar'
-import * as ReactBoostStrap from "react-bootstrap";
+import Navbar from "react-bootstrap/Navbar";
+import { Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Divider from "@material-ui/core/Divider";
+import Drawer from "@material-ui/core/Drawer";
+import Hidden from "@material-ui/core/Hidden";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 
-
-
-import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
-import MenuIcon from '@material-ui/icons/Menu';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-
-import Box from '@material-ui/core/Box';
-
-
-
-
-
+import Box from "@material-ui/core/Box";
+import { Navigation } from "react-minimal-side-navigation";
+import "react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css";
 
 import ShopItems from "./shopItems";
 import "./style/shops.css";
 
 const drawerWidth = 150;
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: "flex",
   },
   drawer: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
       flexShrink: 0,
-      
     },
   },
   appBar: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
+    [theme.breakpoints.up("sm")]: {
+      display: "none",
     },
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
-  
+
   drawerPaper: {
     width: drawerWidth,
-    top:'43px',
-     position:'inherit',
-    height:'595px',
-    
-    backgroundColor:{
-      opacity:'0.1',
+    top: "43px",
+    position: "inherit",
+    height: "595px",
+
+    backgroundColor: {
+      opacity: "0.1",
     },
-    
   },
   content: {
     flexGrow: 1,
@@ -81,225 +63,173 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
 const Shops = (props) => {
-
   const { window } = props;
   const classes = useStyles();
-  
-  const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  
- 
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [selectedIndex, setSelectedIndex] = React.useState();
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  
 
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
+  const [key, setKey] = useState("");
+
+  const handleSelect = (k) => {
+    setKey(k);
+    console.log(`${key}`);
+  };
 
 //   const handleDrawerOpen = () => {
 //     setOpen(true);
 //   };
 
-//   const handleDrawerClose = () => {
-//     setOpen(false);
-//   };
-//  const handleClick =(t)=>{
-//       console.log(t)
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+  const handleClick = (t) => {
+    console.log(t);
+  };
 
-//  }
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+    //console.log(selectedIndex);
+    if (index === 0) setSelectedCategory("");
+    if (index === 1) setSelectedCategory("Groceries");
+    if (index === 2) setSelectedCategory("WholeSale");
+    if (index === 3) setSelectedCategory("Electronics");
+    if (index === 4) setSelectedCategory("Bakeries");
+    if (index === 5) setSelectedCategory("Vegetable & Fruits");
 
- const drawer = (
-  <div>
-     <div className={classes.toolbar} /> 
-     <Divider />
-      <h1 className='sidebartextakign'>Categories</h1>
-    <List component="div" variant="body1">
-      {['Groceries', 'Whole Sale', 'Electronics', 'Bakeries', "Food"].map((text, index) => (
-        <ListItem button key={text}>
-          {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-          
-          <ListItemText  primary={text} />
+    //console.log(selectedIndex);
+  };
+
+  const drawer = (
+    <div>
+      <div className={classes.toolbar} />
+      <Divider />
+      <h1 className="sidebartextakign">Categories</h1>
+      <List component="div" variant="body1">
+        <ListItem
+          button
+          selected={selectedIndex === 0}
+          onClick={(event) => handleListItemClick(event, 0)}
+        >
+          <ListItemText primary="All" />
         </ListItem>
-      ))}
-    </List>
-    <Divider />
-    <List component="div" variant="body1">
-      {['All mail', 'Trash', 'Spam'].map((text, index) => (
-        <ListItem button key={text}>
-           <Box color="text.primary"><ListItemText primary={text} /></Box>
-          {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-          
+        <ListItem
+          button
+          selected={selectedIndex === 1}
+          onClick={(event) => handleListItemClick(event, 1)}
+        >
+          <ListItemText primary="Groceries" />
         </ListItem>
-      ))}
-    </List>
-  </div>
-);
+        <ListItem
+          button
+          selected={selectedIndex === 2}
+          onClick={(event) => handleListItemClick(event, 2)}
+        >
+          <ListItemText primary="Whole Sale" />
+        </ListItem>
+        <ListItem
+          button
+          selected={selectedIndex === 3}
+          onClick={(event) => handleListItemClick(event, 3)}
+        >
+          <ListItemText primary="Electronics" />
+        </ListItem>
+        <ListItem
+          button
+          selected={selectedIndex === 4}
+          onClick={(event) => handleListItemClick(event, 4)}
+        >
+          <ListItemText primary="Bakeries" />
+        </ListItem>
+        <ListItem
+          button
+          selected={selectedIndex === 5}
+          onClick={(event) => handleListItemClick(event, 5)}
+        >
+          <ListItemText primary="Vegetable & Fruits" />
+        </ListItem>
+      </List>
+    </div>
+  );
 
-const container = window !== undefined ? () => window().document.body : undefined;
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
   return (
     <div>
-       
+      <div>
+        <CssBaseline />
 
+        <nav className={classes.drawer} aria-label="mailbox folders">
+          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+          <Hidden smUp implementation="css">
+            <Drawer
+              container={container}
+              variant="temporary"
+              anchor={theme.direction === "rtl" ? "right" : "left"}
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+              ModalProps={{
+                keepMounted: true, // Better open performance on mobile.
+              }}
+            >
+              {drawer}{" "}
+            </Drawer>
+          </Hidden>
+          <Hidden xsDown implementation="css">
+            <Drawer
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+              variant="permanent"
+              open
+            >
+              {drawer}
+            </Drawer>
+          </Hidden>
+        </nav>
 
-
-
-
-
-
-
-  <div className={classes.root}>
-      <CssBaseline />
-      {/* <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Responsive drawer
-          </Typography>
-        </Toolbar>
-      </AppBar> */}
-      <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation="css">
-          <Drawer
-            container={container}
-            variant="temporary"
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-        <Hidden xsDown implementation="css">
-          <Drawer
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            variant="permanent"
-            open
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-      </nav>
-       
-
-
-      <main className={classes.content}>
-
-
-      <ReactBoostStrap.Navbar bg="primary" expand="sm">
-  {/* <ReactBoostStrap.Navbar.Brand href="#home">React-Bootstrap</ReactBoostStrap.Navbar.Brand> */}
-  <ReactBoostStrap.Navbar.Toggle aria-controls="basic-navbar-nav" />
-  <ReactBoostStrap.Navbar.Collapse id="basic-navbar-nav">
-    <ReactBoostStrap.Nav className="mr-auto">
-      <ReactBoostStrap.Nav.Link href="#home">Profile</ReactBoostStrap.Nav.Link>
-      <ReactBoostStrap.Nav.Link href="#link">About us</ReactBoostStrap.Nav.Link>
-      <ReactBoostStrap.NavDropdown title="Category" id="basic-nav-dropdown">
-        <ReactBoostStrap.NavDropdown.Item href="#action/3.1">Groceries</ReactBoostStrap.NavDropdown.Item>
-        <ReactBoostStrap.NavDropdown.Item href="#action/3.2">Electronic Devices</ReactBoostStrap.NavDropdown.Item>
-        <ReactBoostStrap.NavDropdown.Item href="#action/3.3">Health & Beauty</ReactBoostStrap.NavDropdown.Item>
-        <ReactBoostStrap.NavDropdown.Divider />
-        <ReactBoostStrap.NavDropdown.Item href="#action/3.4">Babies & Toys</ReactBoostStrap.NavDropdown.Item>
-      </ReactBoostStrap.NavDropdown>
-      
-    </ReactBoostStrap.Nav>
-   
-  </ReactBoostStrap.Navbar.Collapse>
-
-  <ReactBoostStrap.Form className="d-flex">
-      <ReactBoostStrap.FormControl
-        type="search"
-        placeholder="Search"
-        className="mr-3"
-        aria-label="Search"
-      />
-      <ReactBoostStrap.Button variant="outline-success">Search</ReactBoostStrap.Button>
-    </ReactBoostStrap.Form>
-  
-</ReactBoostStrap.Navbar>
-
-        <div className={classes.toolbar} />
-
-     
-
-
-
-        <div className="backgroundcolorinshop">
-        <Container>
-          <div className="">
-            <ShopItems />
-          </div>
-        </Container>
-      </div>
-      </main>
-    </div>
-
-
-
-    {/* <ul>
-      <li><Link to ="/CustomerItems" >ShopItems</Link></li>
-      <li><a href="#news">News</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#about">About</a></li>
-    </ul> */}
-      {/* <div>
-        <ul>
-          <li>
-            <a class="active" href="#home">
-              Shops
-            </a>
-          </li>
-          <li>
-            <a href="#news">Dashbord</a>
-          </li>
-          <li>
-            <a href="#contact">Store</a>
-          </li>
-          <li>
-            <a href="#about">Product</a>
-          </li>
-          <li>
-            <div lassName={classes.root}>
-              <div className={classes.search}>
-                <div className={classes.searchIcon}>
-                  <SearchIcon />
-                </div>
-                <InputBase
-                  placeholder="Search…"
-                  classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
-                  }}
-                  inputProps={{ "aria-label": "search" }}
-                />
+        <main className={classes.content}>
+          <Navbar bg="primary" expand="sm">
+            {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto" onSelect={handleSelect}>
+                <Nav.Link href="profile">Profile</Nav.Link>
+                <Nav.Link href="Aboutus">About us</Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+            <Form className="d-flex">
+              <FormControl
+                type="search"
+                placeholder="Search"
+                className="mr-3"
+                aria-label="Search"
+              />
+              <Button variant="outline-success">Search</Button>
+            </Form>
+          </Navbar>
+          <div className={classes.toolbar} />
+          <div className="backgroundcolorinshop">
+            <Container>
+              <div className="">
+                <ShopItems filterCategory={selectedCategory}/>
               </div>
-            </div>
-          </li>
-        </ul>
-      </div> */}
-
-      
+            </Container>
+          </div>
+        </main>
+      </div>
     </div>
   );
 };

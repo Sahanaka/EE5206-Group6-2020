@@ -26,6 +26,7 @@ using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Project_BackendApi.Services.ImageService;
 using Project_BackendApi.Services.EncrytService;
+using Project_BackendApi.Services.AdminService;
 
 namespace Project_BackendApi
 {
@@ -92,6 +93,8 @@ namespace Project_BackendApi
             
             services.AddScoped<ICustomerService, CustomerService>();
 
+            services.AddScoped<IAdminService, AdminService>();
+
             services.AddScoped<IImageService, ImageService>();
             services.AddScoped<IEncryptService, EncryptService>();
 
@@ -105,13 +108,17 @@ namespace Project_BackendApi
                 app.UseDeveloperExceptionPage();
             }
 
-            
+            app.UseRouting();
 
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Images")),
-                RequestPath = "/Images"
-            });
+            app.UseDefaultFiles();
+
+            app.UseStaticFiles();
+
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Images")),
+            //    RequestPath = "/Images"
+            //});
 
             app.UseCors(Options =>
             Options.WithOrigins("http://localhost:3000")
@@ -120,7 +127,7 @@ namespace Project_BackendApi
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
+            
 
             app.UseAuthentication();
 
@@ -129,6 +136,7 @@ namespace Project_BackendApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapFallbackToController("Index", "Fallback");
             });
         }
     }

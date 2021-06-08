@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react'
+import PropTypes from "prop-types";
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import "./Style/liststyle.css"
@@ -19,13 +20,9 @@ import {
 import paper from '@material-ui/core/Paper';
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
-// import { useToasts } from 'react-toast-notifications'
 
-// import SellerForm from '../components/SellerForm'
-// import * as actions from '../actions/users'
-// import Popup from '../components/Popup'
-// import AdminNav from '../components/AdminNav'
-// import Footer from '../components/Footer'
+import { getSellers } from "../../Actions/admin";
+import Spinner from "../layout/Spinner";
 
 const styles = (theme) => ({
   root: {
@@ -40,7 +37,7 @@ const styles = (theme) => ({
   },
 })
 
-const AdminSellersList = ({ classes, ...props }) => {
+const AdminSellersList = ({ classes, sellers: { sellers, sellersloading } }) => {
 //   const { addToast } = useToasts()
   const history = useHistory()
   const adminId = history.location.state
@@ -49,19 +46,12 @@ const AdminSellersList = ({ classes, ...props }) => {
   const [openPopup, setOpenPopup] = useState(false)
 
   const tempSeller = [{firstName: 'sh', lastName: 'sdf', address: '23', category: 're', email: '23gco,'}, {firstName: 'sh', lastName: 'sdf', address: '23', category: 're', email: '23gco,'}]
-//   useEffect(() => {
-//     if (!history.location.state) {
-//       history.push('/login')
-//     }
-//     props.fetchAllUsers()
-//   }, [props, history.location.state])
 
-//   const onDelete = (id) => {
-//     if (window.confirm('Are you sure to delete this record?'))
-//       props.deleteUser(id, () =>
-//         addToast('Deleted successfully', { appearance: 'info' })
-//       )
-//   }
+
+  useEffect(async () => {
+    getSellers();
+    console.log("sere", sellers)
+  }, [getSellers]);
 
   return (
     <div className="listtable">
@@ -85,7 +75,7 @@ const AdminSellersList = ({ classes, ...props }) => {
                   </TableHead>
                   <TableBody>
                     {/* {props.userList.map((record, index) => { */}
-                      {tempSeller.map((record, index) => {
+                      {sellers.map((record, index) => {
                       // if (record.userType === 'Seller') {
                         return (
                           <TableRow key={index} hover>
@@ -140,18 +130,13 @@ const AdminSellersList = ({ classes, ...props }) => {
     
   )
 }
-export default AdminSellersList;
 
-// const mapStateToProps = (state) => ({
-//   userList: state.users.list,
-// })
+AdminSellersList.propTypes = {
+  getSellers: PropTypes.func.isRequired,
+  sellers: PropTypes.object.isRequired,
+};
 
-// const mapActionToProps = {
-//   fetchAllUsers: actions.fetchAll,
-//   deleteUser: actions.Delete,
-// }
-
-// export default connect(
-//   mapStateToProps,
-//   mapActionToProps
-// )(withStyles(styles)(AdminSellersList))
+const mapStateToProps = (state) => ({
+  sellers: state.admin,
+});
+export default connect(mapStateToProps, { getSellers })(AdminSellersList);

@@ -85,9 +85,6 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
     
     <ul className="navbar_ul">
       {/* <Button href="/shops" variant="outline-warning">Warning</Button> */}
-      <li >
-        <Link to="/shops">Shops</Link>
-      </li>
       <li>
         <Link to="/Mainregistration">Register</Link>
       </li>

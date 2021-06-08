@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 
+
 import "./App.css";
 import Background from "./img/mainimg.JPG";
 
@@ -33,6 +34,8 @@ import Sellerlist from "./components/admin/Sellerlist";
 import AdminPannel from "./components/admin/admin";
 import Customerlist from "./components/admin/Custormerlsit";
 
+require('dotenv').config();
+
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
@@ -42,6 +45,7 @@ const App = () => {
       if (!localStorage.token) store.dispatch({ type: LOGOUT });
     });
   }, []);
+  console.log("App", process.env.REACT_APP_DEV_API_URL)
   return (
     <Provider store={store}>
       <Router>
@@ -66,7 +70,7 @@ const App = () => {
             <Route exact path ="/Customerlist" component={Customerlist} />
             <Route exact path ="/Popup" component={Popup} />
             <Route exact path ="/Aboutus" component={Aboutus}/>
-            <Route exact path ="/Profile" component={Profile}/>
+            <PrivateRoute exact path ="/Profile" component={Profile}/>
             <Route exact path="/OrderList/:id" component={OrderList} />{" "}
             <Route exact path="/Mainregistration" component={Mainregistation} />
             <Route

@@ -24,7 +24,7 @@ const initialFieldValues = {
 const ShopCategoryList = (props) => {
   console.log('shopproductlist', props.sellerId)
   const { addOrEdit, recordForEdit, sellerId } = props;
-
+  const [sId, setsId] = useState(JSON.parse(atob(localStorage.token.split('.')[1])))
   const [values, setValues] = useState(initialFieldValues);
   const [errors, setErrors] = useState({});
 
@@ -64,7 +64,7 @@ const ShopCategoryList = (props) => {
       });
     }
   };
-
+  console.log("siidi", sId)
   const validate = () => {
     let temp = {};
     temp.Title = values.Title == "" ? false : true;
@@ -82,7 +82,7 @@ const ShopCategoryList = (props) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      var ShopProductId = sellerId; // need to fetch forenkey ID
+      var ShopProductId = sId.id; // need to fetch forenkey ID
       var CategoryProductId = 1; // need to fetch forenkey ID
       const formData = new FormData();
       formData.append("ProductId", values.ProductId);
@@ -96,6 +96,8 @@ const ShopCategoryList = (props) => {
       formData.append("ImageData", values.ImageData);
       formData.append("ShopProductId", ShopProductId);
       formData.append("CategoryProductId", CategoryProductId);
+
+      console.log('rtrt', formData)
 
       addOrEdit(formData, resetForm);
     }
