@@ -23,7 +23,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import { blue } from '@material-ui/core/colors';
-
+import { useHistory } from 'react-router-dom'
 
 
 const emails = ['Direct', 'Card'];
@@ -63,14 +63,7 @@ export function SimpleDialog(props) {
           </ListItem>
         ))}
 
-        <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
-          <ListItemAvatar>
-            <Avatar>
-              <AddIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Add New Address" />
-        </ListItem>
+        
       </List>
     </Dialog>
   );
@@ -84,12 +77,16 @@ SimpleDialog.propTypes = {
 
 
 const Buy =() =>{
+  let history = useHistory()
 
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
   const handleClickOpen = () => {
-    setOpen(true);
+    alert("Are You Sure ??")
+    history.push({pathname: '/Popup'});
+
+    console.log ("Need to redicrect Success Page")
   };
 
   const handleClose = (value) => {
