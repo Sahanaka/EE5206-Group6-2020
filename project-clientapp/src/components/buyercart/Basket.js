@@ -21,15 +21,19 @@ function Basket(props) {
   const handleClose = (value) => {
     setOpen(false);
     setSelectedValue(value);
-    // console.log('ewe', selectedValue)
-    // if (selectedValue == "Direct") {
-    //   addShopItem();
-    //   console.log(selectedValue)
-    // }
-    // else {
-    //   history.push({pathname: '/Buy'});
-    // }
-    addShopItem();
+     console.log('ewe', selectedValue)
+     if (value == "Direct") {
+      alert("Are You Sure ??")
+       addShopItem();
+       
+       history.push({pathname: '/Popup'});
+       
+     }
+     else {
+       history.push({pathname: '/Buy'});
+       
+    }
+    
   };
 
   var { cartItems, onAdd, onRemove } = props;
@@ -72,7 +76,7 @@ function Basket(props) {
    const response = await DBApi.post("/cart",{cartModel:{cartItems,itemsPrice,taxPrice,shippingPrice,totalPrice, isAccepted,customerEmail,CustomerAddress},orderDetails})
 if(response.status==200){
   
-    alert("Order Placed. Thank You")
+    
    
     console.log("Succ");
     }else{
