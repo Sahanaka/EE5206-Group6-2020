@@ -31,6 +31,7 @@ function Basket(props) {
      }
      else {
        history.push({pathname: '/Buy'});
+       addShopItem();
        
     }
     
