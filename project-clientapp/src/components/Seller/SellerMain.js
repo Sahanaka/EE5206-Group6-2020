@@ -19,19 +19,14 @@ import { loadUser } from '../../Actions/auth';
 ReactFC.fcRoot(FusionCharts, Charts, Maps, USARegion);
 
 //const SellerMain = ({ match }) => {
-const SellerMain = ({ user: { user, loading } }) => {
+const SellerMain = ({ user: { user, userLoading } }) => {
   const [totalRevenue, setTotalRevenue] = useState();
   const [totalOrders, setTotalOrders] = useState();
   console.log("userrrr", user);
 
-  useEffect(() => {
-    //loadUser();
-    setTotalRevenue(100);
-    setTotalOrders(1);
-  }, []);
   return (
     <Fragment>
-      {loading ? (
+      {userLoading ? (
         <Spinner />
       ) : (
         <Fragment>
@@ -159,7 +154,7 @@ const SellerMain = ({ user: { user, loading } }) => {
 
                     <Container className="card-value pt-4 text-x-large">
                       <span className="text-large pr-1">Rs</span>
-                      {totalRevenue}
+                      {user.totalOrders}
                     </Container>
                   </Container>
                 </Container>

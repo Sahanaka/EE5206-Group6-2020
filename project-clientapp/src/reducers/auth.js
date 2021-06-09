@@ -14,6 +14,7 @@ const initialState = {
     isAuthenticated: null,
     loading: true,
     user: null,
+    userLoading: true,
     role: null
 };
 
@@ -26,7 +27,8 @@ export default function(state = initialState, action) {
                 ...state,
                 isAuthenticated: true,
                 loading: false,
-                user: payload
+                user: payload,
+                userLoading: false
             }
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
