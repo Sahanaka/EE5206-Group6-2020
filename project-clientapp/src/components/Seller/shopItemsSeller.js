@@ -11,6 +11,7 @@ import Card from '../card/card';
 import DBApi from '../../Api/DBApi'
 import axios from "axios";
 
+const BASE_URL = process.env.EACT_APP_DEV_API_URL;
 
 const ShopItemsSeller = ({
     getShopById,
@@ -28,7 +29,7 @@ const ShopItemsSeller = ({
       try{
         getShopProducts(match.params.id);
         console.log("Name ",user.name);
-        const responses = await axios.get(`https://localhost:5001/api/Seller/cartItems/${user.name}`)
+        const responses = await axios.get(BASE_URL + `/Seller/cartItems/${user.name}`)
       if(responses.status==200){
       console.log(responses.data)
       setResponse(responses.data)
