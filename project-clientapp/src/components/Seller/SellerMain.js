@@ -21,8 +21,11 @@ ReactFC.fcRoot(FusionCharts, Charts, Maps, USARegion);
 //const SellerMain = ({ match }) => {
 const SellerMain = ({ user: { user, userLoading } }) => {
   const [totalRevenue, setTotalRevenue] = useState();
-  const [totalOrders, setTotalOrders] = useState();
+  // const [totalOrders, setTotalOrders] = useState();
   console.log("userrrr", user);
+
+  const { totalOrders } = user;
+  console.log(totalOrders)
 
   return (
     <Fragment>
@@ -154,7 +157,7 @@ const SellerMain = ({ user: { user, userLoading } }) => {
 
                     <Container className="card-value pt-4 text-x-large">
                       <span className="text-large pr-1">Rs</span>
-                      {user.totalOrders}
+                      {/* {user.totalOrders} */}
                     </Container>
                   </Container>
                 </Container>
