@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
-  // necessary for content to be below app bar
+  
   toolbar: theme.mixins.toolbar,
 
   drawerPaper: {
@@ -84,10 +84,6 @@ const Shops = (props) => {
     console.log(`${key}`);
   };
 
-//   const handleDrawerOpen = () => {
-//     setOpen(true);
-//   };
-
   const handleDrawerClose = () => {
     setOpen(false);
   };
@@ -97,7 +93,7 @@ const Shops = (props) => {
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
-    //console.log(selectedIndex);
+    
     if (index === 0) setSelectedCategory("");
     if (index === 1) setSelectedCategory("Groceries");
     if (index === 2) setSelectedCategory("WholeSale");
@@ -105,7 +101,6 @@ const Shops = (props) => {
     if (index === 4) setSelectedCategory("Bakeries");
     if (index === 5) setSelectedCategory("Vegetable & Fruits");
 
-    //console.log(selectedIndex);
   };
 
   const drawer = (
@@ -170,7 +165,7 @@ const Shops = (props) => {
         
 
         <nav className={classes.drawer} aria-label="mailbox folders">
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+          
           <Hidden smUp implementation="css">
             <Drawer
               container={container}
@@ -182,7 +177,7 @@ const Shops = (props) => {
                 paper: classes.drawerPaper,
               }}
               ModalProps={{
-                keepMounted: true, // Better open performance on mobile.
+                keepMounted: true, 
               }}
             >
               {drawer}{" "}
@@ -204,7 +199,7 @@ const Shops = (props) => {
         </nav>
         <main className={classes.content}>
         <Navbar bg="primary" expand="sm">
-            {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
+            
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto" onSelect={handleSelect}>
@@ -213,13 +208,6 @@ const Shops = (props) => {
               </Nav>
             </Navbar.Collapse>
             <Form className="d-flex">
-              {/* <FormControl
-                type="search"
-                placeholder="Search"
-                className="mr-3"
-                aria-label="Search"
-              />
-              <Button variant="outline-success">Search</Button> */}
             </Form>
           </Navbar>
           
