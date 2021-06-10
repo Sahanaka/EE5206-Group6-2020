@@ -38,7 +38,7 @@ const styles = (theme) => ({
 })
 
 const AdminSellersList = ({ classes, sellers: { sellers, sellersloading } }) => {
-//   const { addToast } = useToasts()
+
   const history = useHistory()
   const adminId = history.location.state
 
@@ -56,7 +56,7 @@ const AdminSellersList = ({ classes, sellers: { sellers, sellersloading } }) => 
   return (
     <div className="listtable">
       <Fragment>
-      {/* <AdminNav {...{ adminId }} /> */}
+      
       <section className='container'>
         <Paper className={styles.paper} elevation={3}>
           <Grid>
@@ -74,9 +74,9 @@ const AdminSellersList = ({ classes, sellers: { sellers, sellersloading } }) => 
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {/* {props.userList.map((record, index) => { */}
+                   
                       {sellers.map((record, index) => {
-                      // if (record.userType === 'Seller') {
+                      
                         return (
                           <TableRow key={index} hover>
                             <TableCell>{record.firstName}</TableCell>
@@ -98,9 +98,7 @@ const AdminSellersList = ({ classes, sellers: { sellers, sellersloading } }) => 
                                 <Button>
                                   <DeleteIcon
                                     color='secondary'
-                                    // onClick={() => {
-                                    //   onDelete(record.userId)
-                                    // }}
+                                    
                                   />
                                 </Button>
                               </ButtonGroup>
@@ -113,17 +111,11 @@ const AdminSellersList = ({ classes, sellers: { sellers, sellersloading } }) => 
                 </Table>
               </TableContainer>
             </Grid>
-            {/* <Popup
-              title='Edit Seller Details'
-              openPopup={openPopup}
-              setOpenPopup={setOpenPopup}
-            >
-              <SellerForm {...{ currentId, setCurrentId, setOpenPopup }} />
-            </Popup> */}
+            
           </Grid>
         </Paper>
       </section>
-      {/* <Footer /> */}
+      
     </Fragment>
 
     </div>
