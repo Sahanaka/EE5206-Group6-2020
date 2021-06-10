@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Project_BackendApi.DATA;
 
 namespace Project_BackendApi.Migrations
 {
     [DbContext(typeof(MarketplaceDB))]
-    partial class MarketplaceDBModelSnapshot : ModelSnapshot
+    [Migration("20210610084738_AdminRole")]
+    partial class AdminRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -246,12 +248,12 @@ namespace Project_BackendApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ReportModelReportId")
+                    b.Property<int>("ReportAdminId")
                         .HasColumnType("int");
 
                     b.HasKey("AdminId");
 
-                    b.HasIndex("ReportModelReportId");
+                    b.HasIndex("ReportAdminId");
 
                     b.ToTable("AdminModels");
                 });
@@ -615,9 +617,13 @@ namespace Project_BackendApi.Migrations
 
             modelBuilder.Entity("Project_BackendApi.Models.AdminModel", b =>
                 {
-                    b.HasOne("Project_BackendApi.Models.ReportModel", null)
+                    b.HasOne("Project_BackendApi.Models.ReportModel", "ReportModel")
                         .WithMany("AdminModels")
-                        .HasForeignKey("ReportModelReportId");
+                        .HasForeignKey("ReportAdminId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ReportModel");
                 });
 
             modelBuilder.Entity("Project_BackendApi.Models.CuStomerReportModel", b =>
