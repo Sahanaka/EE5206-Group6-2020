@@ -28,9 +28,7 @@ export default function Product(props) {
     productArray.push(props)
   });
   
-
-  const showRecordDetails = (data) => {
-   // setRecordForEdit(data);
+  const showRecordDetails = (data) => { 
    console.log("products")
   };
  

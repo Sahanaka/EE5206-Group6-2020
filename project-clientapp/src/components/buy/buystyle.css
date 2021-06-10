@@ -86,8 +86,7 @@
   
   .form {
     background: transparent;
-    /* color: #fff; */
-    /* box-sizing: border-box; */
+    
     display: flex;
     flex-direction: column;
     width: 250px;
