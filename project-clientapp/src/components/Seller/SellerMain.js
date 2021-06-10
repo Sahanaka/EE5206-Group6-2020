@@ -105,57 +105,12 @@ const SellerMain = ({ loadUser, user: { user, userLoading } }) => {
                     <nav className="sidebar sidebar-offcanvas" id="sidebar">
                       <ul className="nav">
                         <li className="nav-item">
-                          <a className="nav-link" href="index.html">
-                            <i className="ti-shield menu-icon" />
-                            <span className="menu-title">Dashboard</span>
-                          </a>
-                        </li>
-                        <li className="nav-item">
-                          <a
-                            className="nav-link"
-                            data-toggle="collapse"
-                            href="#ui-basic"
-                            aria-expanded="false"
-                            aria-controls="ui-basic"
-                          >
-                            <i className="ti-palette menu-icon" />
-                            <span className="menu-title">My Profile</span>
-                            <i className="menu-arrow" />
-                          </a>
-                          <div className="collapse" id="ui-basic">
-                            <ul className="nav flex-column sub-menu">
-                              <li className="nav-item">
-                                {" "}
-                                <a
-                                  className="nav-link"
-                                  href="pages/ui-features/buttons.html"
-                                >
-                                  Buttons
-                                </a>
-                              </li>
-                              <li className="nav-item">
-                                {" "}
-                                <a
-                                  className="nav-link"
-                                  href="pages/ui-features/typography.html"
-                                >
-                                  Typography
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </li>
-                        <li className="nav-item">
-                          <i className="ti-layout-list-post menu-icon" />
-                          <Link to="/store">Store</Link>
-                        </li>
-                        <li className="nav-item">
                           <i className="ti-layout-list-post menu-icon" />
                           <Link to="/ProductList">Products</Link>
                         </li>
                         <li className="nav-item">
                           <i className="ti-layout-list-post menu-icon" />
-                          <Link to={`/ShopItemsSeller/${1}`}>Shop Items</Link>
+                          <Link to={`/ShopItemsSeller/${1}`}>Orders</Link>
                         </li>
                       </ul>
                     </nav>

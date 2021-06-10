@@ -66,9 +66,9 @@ const App = () => {
               component={ShopItemsSeller}
             />
             <Route exact path ="/Buy" component={Buy} />
-            <Route exact path ="/Sellerlist" component={Sellerlist} />
-            <Route exact path ="/AdminPanel" component={AdminPannel} />
-            <Route exact path ="/Customerlist" component={Customerlist} />
+            <PrivateRoute exact path ="/Sellerlist" component={Sellerlist} />
+            <PrivateRoute exact path ="/AdminPanel" component={AdminPannel} />
+            <PrivateRoute exact path ="/Customerlist" component={Customerlist} />
             <Route exact path ="/Popup" component={Popup} />
             <Route exact path ="/Aboutus" component={Aboutus}/>
             <PrivateRoute exact path ="/Profile" component={Profile}/>
