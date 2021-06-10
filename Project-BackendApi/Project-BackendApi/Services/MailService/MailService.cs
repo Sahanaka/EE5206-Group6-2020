@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using SendGrid;
 using SendGrid.Helpers.Mail;
+using System.Net.Http;
+using System.Net.Mail;
 
 namespace Project_BackendApi.Services.MailService
 {
@@ -25,9 +27,9 @@ namespace Project_BackendApi.Services.MailService
             //var subject = "Sending with SendGrid is Fun";
             var to = new EmailAddress(toEmail);
             //var plainTextContent = "and easy to do anywhere, even with C#";
-           // var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
+            // var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, content, content);
-            var response = await client.SendEmailAsync(msg);
+            await client.SendEmailAsync(msg);
         }
     }
 }

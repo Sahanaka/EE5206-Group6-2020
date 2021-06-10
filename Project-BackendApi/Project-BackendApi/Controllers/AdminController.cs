@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Project_BackendApi.DATA;
 using Project_BackendApi.Models;
 using Project_BackendApi.Services.AdminService;
+using Project_BackendApi.Services.MailService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,12 @@ namespace Project_BackendApi.Controllers
     {
         private IAdminService _AdminService;
         private readonly MarketplaceDB _context;
-        public AdminController(IAdminService AdminService, MarketplaceDB context)
+        private IMailService _mailService;
+        public AdminController(IAdminService AdminService, MarketplaceDB context, IMailService mailService)
         {
             _AdminService = AdminService;
             _context = context;
+            _mailService = mailService;
         }
 
         // GET: Admin/Create
@@ -64,6 +67,13 @@ namespace Project_BackendApi.Controllers
             await _context.SaveChangesAsync();
             return sellerModel;
 
+        }
+
+        [HttpPost("test/mail")]
+        public async Task SendMail()
+        {
+            _mailService.SendEmailAsync("mytests97@gmail.com", "Confirm your email", $"<h1>Thank You for registering in S&D com</h1>" +
+                    $"<p>Please confirm your email by Clicking here </p>").Wait();
         }
     }
 }

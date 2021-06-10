@@ -104,12 +104,6 @@ class SellerMain extends Component {
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="./Sellerlist">
-                        <i className="ti-shield menu-icon" />
-                        <span className="menu-title">Store</span>
-                      </a>
-                    </li>
-                    <li className="nav-item">
                       <a
                         className="nav-link"
                         data-toggle="collapse"
@@ -118,81 +112,21 @@ class SellerMain extends Component {
                         aria-controls="ui-basic"
                       >
                         <i className="ti-palette menu-icon" />
-                        <span className="menu-title">Customer</span>
+                        <span className="menu-title">Customers</span>
                         <i className="menu-arrow" />
                       </a>
 
-                      {/* <div className="collapse" id="ui-basic">
-                    <ul className="nav flex-column sub-menu">
-                      <li className="nav-item">
-                        {" "}
-                        <a
-                          className="nav-link"
-                          href="pages/ui-features/buttons.html"
-                        >
-                          Buttons
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        {" "}
-                        <a
-                          className="nav-link"
-                          href="pages/ui-features/typography.html"
-                        >
-                          Typography
-                        </a>
-                      </li>
-                    </ul>
-                  </div> */}
+                      
                     </li>
-                    {/* <li className="nav-item">
-                    <i className="ti-layout-list-post menu-icon" />
-                    <Link to="/store">Store</Link>
-                </li> */}
-                    {/* <li className="nav-item">
-                    <i className="ti-layout-list-post menu-icon" />
-                    <Link to="/ProductList">Products</Link>
-                </li>
-                <li className="nav-item">
-                    <i className="ti-layout-list-post menu-icon" />
-                    <Link to={`/ShopItemsSeller/${1}`}>Shop Items</Link>
-                </li> */}
+                   
                   </ul>
                 </nav>
               </div>
             </div>
           </div>
         </div>
-        {/* static navbar - top */}
-        {/* <Nav className="navbar navbar-expand-lg fixed-top is-white is-dark-text">
-            <Container className="navbar-brand h1 mb-0 text-large font-medium">
-              Seller Dashboard
-            </Container>
-            <Container className="navbar-nav ml-auto">
-              <Container className="user-detail-section">
-                <span className="pr-2">Hi, Sean</span>
-                <span className="img-container">
-                  <img src={} className="rounded-circle" alt="user" /> 
-                </span>
-              </Container>
-            </Container>
-          </Nav> */}
+        
 
-        {/* static navbar - bottom */}
-        {/* <Nav className="navbar fixed-top nav-secondary is-dark is-light-text">
-            <Container className="text-medium">Summary</Container>
-            <Container className="navbar-nav ml-auto">
-              <Dropdown
-                className="pr-2 custom-dropdown"
-                options={this.state.dropdownOptions}
-                onChange={this.updateDashboard}
-                value={this.state.selectedValue}
-                placeholder="Select an option"
-              />
-            </Container>
-          </Nav> */}
-
-        {/* content area start */}
         <Container className="container-fluid pr-5 pl-5 pt-5 pb-5">
           {/* row 1 - revenue */}
           <Container className="row">
