@@ -1,22 +1,19 @@
 @font-face {
     font-family: "basefont-regular";
-    /* src: local("basefont-regular"),
-      url("./assets/fonts/circular/CircularStd-Book.otf") format("opentype"); */
+    
   }
   
   @font-face {
     font-family: "basefont-medium";
-    /* src: local("basefont-medium"),
-      url("./assets/fonts/circular/CircularStd-Medium.otf") format("opentype"); */
+    
   }
   
   @font-face {
     font-family: "basefont-bold";
-    /* src: local("basefont-bold"),
-      url("./assets/fonts/circular/CircularStd-Bold.otf") format("opentype"); */
+    
   }
   
-  /* typography styles */
+  
   .is-dark-text {
     color: rgb(67, 68, 86);
   }
@@ -30,7 +27,7 @@
     color: rgb(255, 255, 255);
   }
   
-  /* font weights */
+  
   
   .font-medium {
     font-family: "basefont-medium";
@@ -40,7 +37,7 @@
     font-family: "basefont-bold";
   }
   
-  /* text sizes */
+  
   .text-x-large {
     font-size: 2rem;
   }
@@ -61,7 +58,7 @@
     font-size: 0.75rem;
   }
   
-  /* letter spacing */
+  
   .letter-spacing {
     letter-spacing: 0.05rem;
   }
@@ -81,7 +78,7 @@
     width: 95% !important;
   }
   
-  /* navbar styles */
+  
   .is-white {
     background: rgb(255, 255, 255);
     height: 65px;
@@ -97,7 +94,7 @@
     box-shadow: 0px 2px 10px #0000006e;
   }
   
-  /* user image style */
+  
   .img-container > img {
     width: 40px;
   }

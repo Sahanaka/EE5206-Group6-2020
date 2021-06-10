@@ -50,7 +50,7 @@ const Register = ({ setAlert, registerCustomer, isAuthenticated }) => {
 
       <div className="box ">
         <form className="w3-container squre " onSubmit={(e) => onSubmit(e)}>
-          {/* <small> Name</small> */}
+          
           <input
             type="text"
             className="fullname "
@@ -60,7 +60,7 @@ const Register = ({ setAlert, registerCustomer, isAuthenticated }) => {
             onChange={(e) => onChange(e)}
           />
 
-          {/* <small className="form-text"> Address</small> */}
+          
           <input
             type="text"
             placeholder="Address "
@@ -70,7 +70,7 @@ const Register = ({ setAlert, registerCustomer, isAuthenticated }) => {
             onChange={(e) => onChange(e)}
           />
 
-          {/* <small> Email</small> */}
+          
           <input
             type="email"
             placeholder="Email Address"
@@ -79,9 +79,7 @@ const Register = ({ setAlert, registerCustomer, isAuthenticated }) => {
             value={email}
             onChange={(e) => onChange(e)}
           />
-          {/* <small className="form-text"></small>
-
-          <small>Password</small> */}
+          
           <input
             type="password"
             placeholder="Password"
@@ -91,7 +89,7 @@ const Register = ({ setAlert, registerCustomer, isAuthenticated }) => {
             onChange={(e) => onChange(e)}
           />
 
-          {/* <small>Password</small> */}
+          
           <input
             type="password"
             placeholder="ReEnter Password"
@@ -101,7 +99,7 @@ const Register = ({ setAlert, registerCustomer, isAuthenticated }) => {
             onChange={(e) => onChange(e)}
           />
 
-          {/* <small> Contact Number</small> */}
+          
           <input
             type="text"
             placeholder="Contact Number"

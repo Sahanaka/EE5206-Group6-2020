@@ -62,8 +62,7 @@ const Mainregistation = () => {
               {" "}
               Seller
             </button>
-
-            
+       
           </div>
         </div>
       </div>
