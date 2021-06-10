@@ -82,8 +82,8 @@ const ShopCategoryList = (props) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      var ShopProductId = sId.id; // need to fetch forenkey ID
-      var CategoryProductId = 1; // need to fetch forenkey ID
+      var ShopProductId = sId.id; 
+      var CategoryProductId = 1; 
       const formData = new FormData();
       formData.append("ProductId", values.ProductId);
       formData.append("Title", values.Title);
@@ -192,13 +192,5 @@ const ShopCategoryList = (props) => {
     </>
   );
 }
-
-// ShopCategoryList.propTypes = {
-//   user: PropTypes.object.isRequired,
-// };
-
-// const mapStateToProps = (state) => ({
-//   user: state.auth.user
-// });
 
 export default ShopCategoryList;
