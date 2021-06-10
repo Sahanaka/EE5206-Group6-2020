@@ -71,9 +71,9 @@ class OrderList extends Component{
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {/* {props.userList.map((record, index) => { */}
+                    
                     { this.state.response.map((record) => {
-                      // if (record.userType === 'Seller') {
+                      
                         return (
                           <TableRow hover>
                             <TableCell>{record.orderNumber}</TableCell>

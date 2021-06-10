@@ -4,9 +4,6 @@ import ReactDOM from 'react-dom'
 
 class OrderAccept extends Component {
 
-
-
-
     
     render() {
       return(
@@ -64,12 +61,10 @@ class OrderAccept extends Component {
               <h4 className="list-group-item-heading">Payment Method</h4>
               <p className="list-group-item-text">Details</p>
             </a>
-            
-            
+                       
           
           <a href="#" className="btn btn-info" role="button">Order Approved</a>
-          <a href="#" className="btn btn-info" role="button">Order Canceled</a>
-          
+          <a href="#" className="btn btn-info" role="button">Order Canceled</a>         
 
           </div>
         </div>
