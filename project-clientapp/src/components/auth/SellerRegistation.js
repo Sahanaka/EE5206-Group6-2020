@@ -103,16 +103,11 @@ const Register = ({ setAlert, registerSeller, isAuthenticated, role }) => {
       <div className=" w3-container bo78   squreSeller">
         <h1 className="large text-primary textcenter78">Sign Up</h1>
         <div className="itemcenter78">
-          {/* <p className="">
-          <i className="fas fa-user" /> Create Your Account
-        </p> */}
+          
           <form className="form " onSubmit={(e) => onSubmit(e)}>
 
-          
             <div className="sellerregisteritem">
-              {/* <small className=""> Name</small> */}
- 
-              
+                          
               <img src={ImageSource} className="card-img-top"  style={{width:"40%",height:"40%",borderRadius:"50%",marginLeft:"30",}}/>
               <input
                 type="file"
@@ -131,7 +126,7 @@ const Register = ({ setAlert, registerSeller, isAuthenticated, role }) => {
               />
             </div>
             <div className="">
-              {/* <small className=""> Address</small> */}
+              
               <input
                 type="text"
                 placeholder="Address"
@@ -142,7 +137,7 @@ const Register = ({ setAlert, registerSeller, isAuthenticated, role }) => {
               <small className=""></small>
             </div>
             <div className="">
-              {/* <small className=""> Email</small> */}
+              
               <input
                 type="email"
                 placeholder="Email Address"
@@ -153,7 +148,7 @@ const Register = ({ setAlert, registerSeller, isAuthenticated, role }) => {
               <small className=""></small>
             </div>
             <div className="">
-              {/* <small className="">Password</small> */}
+              
               <input
                 type="password"
                 placeholder="Password"
@@ -163,7 +158,7 @@ const Register = ({ setAlert, registerSeller, isAuthenticated, role }) => {
               />
             </div>
             <div className="">
-              {/* <small className="">Password</small> */}
+              
               <input
                 type="password"
                 placeholder="ReEnter Password"
@@ -173,7 +168,7 @@ const Register = ({ setAlert, registerSeller, isAuthenticated, role }) => {
               />
             </div>
             <div className="">
-               {/* <small className=""> Contact Number</small>  */}
+               
               <input
                 type="text"
                 placeholder="Contact Number"
@@ -184,7 +179,7 @@ const Register = ({ setAlert, registerSeller, isAuthenticated, role }) => {
             </div>
 
             <div className="">
-              {/* <small className=""> Category</small> */}
+              
               <input
                 type="text"
                 placeholder="Category"
@@ -192,7 +187,7 @@ const Register = ({ setAlert, registerSeller, isAuthenticated, role }) => {
                 value={Category}
                 onChange={(e) => onChange(e)}
               />
-              {/* <small className=""></small> */}
+              
             </div>
 
             <input type="submit" className="btn btn-primary" value="Register" />

@@ -62,8 +62,7 @@ const AdminCustomersList = ({
   return (
     <div className="listtable">
       <Fragment>
-        {/* <AdminNav {...{ adminId }} /> */}
-
+        
         {customersloading ? (
           <Spinner />
         ) : (
@@ -82,9 +81,9 @@ const AdminCustomersList = ({
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {/* {props.userList.map((record, index) => { */}
+                        
                         {customers.map((record, index) => {
-                          // if (record.userType === 'Seller') {
+                          
                           return (
                             <TableRow key={index} hover>
                               <TableCell>{record.name}</TableCell>
@@ -120,19 +119,13 @@ const AdminCustomersList = ({
                     </Table>
                   </TableContainer>
                 </Grid>
-                {/* <Popup
-               title='Edit Seller Details'
-               openPopup={openPopup}
-               setOpenPopup={setOpenPopup}
-             >
-               <SellerForm {...{ currentId, setCurrentId, setOpenPopup }} />
-             </Popup> */}
+                
               </Grid>
             </Paper>
           </section>
         )}
 
-        {/* <Footer /> */}
+        
       </Fragment>
     </div>
   );

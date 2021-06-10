@@ -43,8 +43,7 @@ const Addcategory = () => {
                 type="text"
                 placeholder="Title"
                 name="title"
-                // value={name}
-                // onChange={(e) => onChange(e)}
+               
               />
             </div>
             <div className="">
@@ -53,40 +52,17 @@ const Addcategory = () => {
                 type="text"
                 placeholder="Sub Category"
                 name="subcategory"
-                // value={address}
-                // onChange={(e) => onChange(e)}
+                
+               
               />
               
             </div>
   
             <div className="row_main_category ">
             <input type="submit" className="btn btn-primary" value="Add" />
-              {/* <button
-                onClick={() => {
-                  history.push("/Register");
-                }}
-                type="submit"
-                class="btn btn-primary btn-block btn-large"
-              >
-                Buyer
-              </button>
+             
   
-              <button
-                onClick={() => {
-                  history.push("/selleRegistation");
-                }}
-                type="submit"
-                class="btn btn-primary btn-block btn-large"
-              >
-                {" "}
-                Seller
-              </button> */}
-  
-              {/* <div>
-            <Button href="/Register" variant="contained" color="primary">
-              Seller
-            </Button>
-          </div> */}
+              
             </div>
           </div>
         </div>
