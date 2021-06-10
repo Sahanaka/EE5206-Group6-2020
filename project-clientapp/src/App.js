@@ -72,7 +72,7 @@ const App = () => {
             <Route exact path ="/Popup" component={Popup} />
             <Route exact path ="/Aboutus" component={Aboutus}/>
             <PrivateRoute exact path ="/Profile" component={Profile}/>
-            <Route exact path="/OrderList/:id" component={OrderList} />{" "}
+            <PrivateRoute exact path="/OrderList/:id" component={OrderList} />{" "}
             <Route exact path="/Mainregistration" component={Mainregistation} />
             <Route exact path="/Addcategory" component={Addcategory} />
             <Route
