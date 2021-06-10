@@ -51,18 +51,6 @@ namespace Project_BackendApi.DATA
            .WithMany(p => p.ProductModels)
            .HasForeignKey(c => c.CategoryProductId);
 
-
-           
-
-
-            modelBuilder.Entity<AdminModel>()
-           .HasOne<ReportModel>(r => r.ReportModel)
-           .WithMany(a => a.AdminModels)
-           .HasForeignKey(r => r.ReportAdminId);
-
-
-
-
             modelBuilder.Entity<CustomerOrderDetailsModel>().HasKey(co => new { co.OrderDetailsId, co.CustomerId });
 
             modelBuilder.Entity<CustomerOrderDetailsModel>()

@@ -31,6 +31,7 @@ namespace Project_BackendApi.Services.JWTService
             // Find User role
             var isSeller = _db.SellerModels.FirstOrDefault(m => m.Email.ToLower() == user.Email.ToLower());
             var isCustomer = _db.CustomerModels.FirstOrDefault(m => m.Email.ToLower() == user.Email.ToLower());
+            var isAdmin =    _db.AdminModels.FirstOrDefault(m => m.Email.ToLower() == user.Email.ToLower());
 
             var currentUserRole = new object();
             var currentUserId = new object();
@@ -39,6 +40,12 @@ namespace Project_BackendApi.Services.JWTService
             { 
                 currentUserRole = isSeller.UserRole;
                 currentUserId = isSeller.SellerId;
+            }
+            else if(isAdmin!=null)
+            {
+                currentUserRole = isAdmin.UserRole;
+                currentUserId = isAdmin.AdminId;
+
             }
             else
             { 
