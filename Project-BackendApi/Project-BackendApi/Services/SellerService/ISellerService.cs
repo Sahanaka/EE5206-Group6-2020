@@ -25,6 +25,5 @@ namespace Project_BackendApi.Services.SellerService
 
         public Task PayService();
 
-       
     }
 }

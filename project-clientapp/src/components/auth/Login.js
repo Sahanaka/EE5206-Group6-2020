@@ -28,7 +28,8 @@ const Login = ({ login, isAuthenticated, role, user }) => {
     if (role.role === "Customer") return <Redirect to="/shops" />;
     else if (role.role == "Seller")
       return <Redirect to={`/sellerMain/${role.id}`} />;
-    else console.log(role.role);
+    else
+      return <Redirect to={'/AdminPanel'} />;
   }
 
   return (

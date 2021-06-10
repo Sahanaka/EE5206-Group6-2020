@@ -11,7 +11,7 @@ import Card from '../card/card';
 import DBApi from '../../Api/DBApi'
 import axios from "axios";
 
-const BASE_URL = process.env.EACT_APP_DEV_API_URL;
+const BASE_URL = process.env.REACT_APP_DEV_API_URL;
 
 const ShopItemsSeller = ({
     getShopById,

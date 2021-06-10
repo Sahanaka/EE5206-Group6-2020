@@ -1,9 +1,16 @@
-import { GET_SHOPS, SHOPS_ERROR } from "../Actions/types";
+import {
+  GET_SHOPS,
+  SHOPS_ERROR,
+  SELLER_DASHBOARD,
+  SELLER_DASHBOARD_ERROR,
+} from "../Actions/types";
 
 const initialState = {
   shops: [],
   loading: true,
   error: {},
+  details: null,
+  dashboardError: {},
 };
 
 export default function (state = initialState, action) {
@@ -21,6 +28,16 @@ export default function (state = initialState, action) {
         ...state,
         error: payload,
         loading: false,
+      };
+    case SELLER_DASHBOARD:
+      return {
+        ...state,
+        details: payload,
+      };
+    case SELLER_DASHBOARD_ERROR:
+      return {
+        ...state,
+        dashboardError: payload,
       };
     default:
       return state;

@@ -13,19 +13,39 @@ import "./SellerMainitems/charts-theme";
 import Spinner from "../layout/Spinner";
 
 import { loadUser } from '../../Actions/auth';
+import { getDashboardDetails } from "../../Actions/seller";
 
 // import UserImg from "../assets/images/user-img-placeholder.jpeg";
 
 ReactFC.fcRoot(FusionCharts, Charts, Maps, USARegion);
 
 //const SellerMain = ({ match }) => {
-const SellerMain = ({ user: { user, userLoading } }) => {
+const SellerMain = ({ loadUser, user: { user, userLoading } }) => {
   const [totalRevenue, setTotalRevenue] = useState();
-  // const [totalOrders, setTotalOrders] = useState();
-  console.log("userrrr", user);
+  const [totalOrders, setTotalOrders] = useState();
+  const [averageSellingPrice, setAverageSellingPrice] = useState();
+  const [sId, setsId] = useState(JSON.parse(atob(localStorage.token.split('.')[1])))
 
-  const { totalOrders } = user;
+  useEffect(async () => {
+    loadUser();
+    const res = await getDashboardDetails(sId.id)
+    setTotalOrders(res.totalOrders);
+    setTotalRevenue(res.totalReveniue);
+    calculateAverageSellingPrice();
+  }, [loadUser]);
+  //const { totalOrders } = user;
   console.log(totalOrders)
+
+  const calculateAverageSellingPrice = () => {
+    if (totalOrders == 0) setAverageSellingPrice(0);
+    else {
+      const avg = parseFloat(totalRevenue) / parseInt(totalOrders)
+      setAverageSellingPrice(avg);
+    }
+    console.log(averageSellingPrice)
+  }
+
+  
 
   return (
     <Fragment>
@@ -157,7 +177,7 @@ const SellerMain = ({ user: { user, userLoading } }) => {
 
                     <Container className="card-value pt-4 text-x-large">
                       <span className="text-large pr-1">Rs</span>
-                      {/* {user.totalOrders} */}
+                      {totalRevenue}
                     </Container>
                   </Container>
                 </Container>
@@ -185,7 +205,7 @@ const SellerMain = ({ user: { user, userLoading } }) => {
                   <Container className="card grid-card is-card-dark">
                     <Container className="card-heading">
                       <Container className="is-dark-text-light letter-spacing text-small">
-                        Complete Orders
+                        Average Selling Price
                       </Container>
                       <Container className="card-heading-brand">
                         {/* <i className="fab fa-ebay text-x-large logo-adjust" /> */}
@@ -193,8 +213,8 @@ const SellerMain = ({ user: { user, userLoading } }) => {
                     </Container>
 
                     <Container className="card-value pt-4 text-x-large">
-                      <span className="text-large pr-1"></span>
-                      {/* {this.state.ebRevenue} */}
+                      <span className="text-large pr-1">Rs</span>
+                        {averageSellingPrice}
                     </Container>
                   </Container>
                 </Container>
@@ -350,11 +370,15 @@ const SellerMain = ({ user: { user, userLoading } }) => {
 
 SellerMain.propTypes = {
   user: PropTypes.object.isRequired,
+  loadUser: PropTypes.func.isRequired,
+  //seller: PropTypes.object.isRequired,
+  //getDashboardDetails: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth,
+  //seller: state.seller
 });
 
 //export default SellerMain;
-export default connect(mapStateToProps)(SellerMain);
+export default connect(mapStateToProps, { loadUser })(SellerMain);
