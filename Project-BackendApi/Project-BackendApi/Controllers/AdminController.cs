@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Project_BackendApi.DATA;
 using Project_BackendApi.Models;
 using Project_BackendApi.Services.AdminService;
+using Project_BackendApi.Services.MailService;
 using Project_BackendApi.Services.EncrytService;
 using Project_BackendApi.Services.JWTService;
 using System;
@@ -19,17 +20,19 @@ namespace Project_BackendApi.Controllers
     {
         private IAdminService _AdminService;
         private readonly MarketplaceDB _context;
+        private IMailService _mailService;
         private IEncryptService _encryptService;
         private IJWTService _jwtService;
         private readonly IConfiguration _config;
 
-        public AdminController(IAdminService AdminService, MarketplaceDB context, IEncryptService encryptService, IJWTService jwtservice, IConfiguration config)
+        public AdminController(IAdminService AdminService, MarketplaceDB context, IEncryptService encryptService, IJWTService jwtservice, IConfiguration config, IMailService mailService)
         {
             _AdminService = AdminService;
             _context = context;
             _encryptService = encryptService;
             _jwtService = jwtservice;
             _config = config;
+            _mailService = mailService;
         }
 
         // GET: Admin/Create
@@ -55,12 +58,12 @@ namespace Project_BackendApi.Controllers
         [HttpDelete("cusotmer/{id}")]
         public async Task<ActionResult<CustomerModel>> DeleteUserCustomer(int id)
         {
-                var customerModel = await _context.CustomerModels.FindAsync(id);
+            var customerModel = await _context.CustomerModels.FindAsync(id);
 
-                if (customerModel == null) { return BadRequest(); }
-                _context.CustomerModels.Remove(customerModel);
-                await _context.SaveChangesAsync();
-                return customerModel;
+            if (customerModel == null) { return BadRequest(); }
+            _context.CustomerModels.Remove(customerModel);
+            await _context.SaveChangesAsync();
+            return customerModel;
 
         }
 
@@ -75,6 +78,13 @@ namespace Project_BackendApi.Controllers
             return sellerModel;
 
         }
+
+        [HttpPost("test/mail")]
+        public async Task SendMail()
+        {
+            _mailService.SendEmailAsync("mytests97@gmail.com", "Confirm your email", $"<h1>Thank You for registering in S&D com</h1>" +
+                    $"<p>Please confirm your email by Clicking here </p>").Wait();
+        } 
         [HttpPost("signup")]
         public async Task<IActionResult> AdminSignUp([FromBody] AdminModel admin)
         {

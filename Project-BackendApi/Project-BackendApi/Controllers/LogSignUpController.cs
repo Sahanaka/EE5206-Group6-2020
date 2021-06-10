@@ -192,6 +192,21 @@ namespace Project_BackendApi.Controllers
                     return BadRequest(); //New page
 
                 }
+                else if ((_db.AdminModels.SingleOrDefault(x => x.Email.ToLower() == login.Email.ToLower())) != null)
+                {
+                    var admin = _db.AdminModels.SingleOrDefault(x => x.Email.ToLower() == login.Email.ToLower());
+                    var decriptPwd = _encryptService.Decryptword(admin.Password);
+                    if (decriptPwd == login.Password)
+                    {
+                        var tokenString = _jwtService.GenerateJWTtoken(login);
+                        return Ok(new
+                        {
+                            token = tokenString
+                        });
+                    }
+                    return BadRequest(); //New page
+
+                }
                 else
                 {
                     return BadRequest(); //New page

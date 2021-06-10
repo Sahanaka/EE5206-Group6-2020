@@ -142,6 +142,22 @@ namespace Project_BackendApi.Controllers
             return _db.OrderProductsModels.ToList();
         }
 
+        [HttpGet("details/{id}")]
+        public async Task<ActionResult<IEnumerable<SellerModel>>> GetSellerDashboardDetails(int id)
+        {
+            var customerModel = await _db.SellerModels.FindAsync(id);
 
+            if (customerModel == null)
+            {
+                return NotFound();
+            }
+
+            return await _db.SellerModels.Where(x => x.SellerId == id).Select(x => new SellerModel()
+            {
+                TotalOrders = x.TotalOrders,
+                TotalReveniue = x.TotalReveniue,
+            })
+              .ToListAsync();
+        }
     }
 }

@@ -98,12 +98,6 @@ class SellerMain extends Component {
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="./Sellerlist">
-                        <i className="ti-shield menu-icon" />
-                        <span className="menu-title">Store</span>
-                      </a>
-                    </li>
-                    <li className="nav-item">
                       <a
                         className="nav-link"
                         data-toggle="collapse"
@@ -112,13 +106,13 @@ class SellerMain extends Component {
                         aria-controls="ui-basic"
                       >
                         <i className="ti-palette menu-icon" />
-                        <span className="menu-title">Customer</span>
+                        <span className="menu-title">Customers</span>
                         <i className="menu-arrow" />
                       </a>
 
-                  
+                      
                     </li>
-                    
+                   
                   </ul>
                 </nav>
               </div>

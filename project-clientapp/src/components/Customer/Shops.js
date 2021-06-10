@@ -84,6 +84,7 @@ const Shops = (props) => {
     console.log(`${key}`);
   };
 
+  console.log("Customer Loading");
   const handleDrawerClose = () => {
     setOpen(false);
   };

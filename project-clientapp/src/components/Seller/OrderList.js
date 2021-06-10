@@ -33,7 +33,6 @@ const styles = (theme) => ({
 })
 class OrderList extends Component{
   
-
  
   constructor(props) {
     super(props);
@@ -49,10 +48,10 @@ class OrderList extends Component{
   }
 
   async getUser(){
-   const value= await axios.get("https://localhost:5001/api/Seller/cartItems/items");
+   const value= await axios.get(process.env.REACT_APP_DEV_API_URL + "/Seller/cartItems/items");
    const newarray = await value.data.filter(v=>v.orderNumber==this.props.history.location.query.title)
    await this.setState({response:newarray})
-
+    console.log("Testing URL");
   }
   renderItem(){
 

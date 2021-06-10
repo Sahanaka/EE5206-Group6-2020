@@ -21,7 +21,7 @@ import paper from '@material-ui/core/Paper';
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 
-import { getSellers } from "../../Actions/admin";
+import { getSellers, getCustomers } from "../../Actions/admin";
 import Spinner from "../layout/Spinner";
 
 const styles = (theme) => ({
@@ -37,8 +37,8 @@ const styles = (theme) => ({
   },
 })
 
-const AdminSellersList = ({ classes, sellers: { sellers, sellersloading } }) => {
-
+const AdminSellersList = ({ classes, sellers: { customers, sellers, sellersloading } }) => {
+//   const { addToast } = useToasts()
   const history = useHistory()
   const adminId = history.location.state
 
@@ -50,6 +50,7 @@ const AdminSellersList = ({ classes, sellers: { sellers, sellersloading } }) => 
 
   useEffect(async () => {
     getSellers();
+    getCustomers();
     console.log("sere", sellers)
   }, [getSellers]);
 
@@ -74,9 +75,9 @@ const AdminSellersList = ({ classes, sellers: { sellers, sellersloading } }) => 
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                   
-                      {sellers.map((record, index) => {
-                      
+                    {/* {props.userList.map((record, index) => { */}
+                      {customers.map((record, index) => {
+                      // if (record.userType === 'Seller') {
                         return (
                           <TableRow key={index} hover>
                             <TableCell>{record.firstName}</TableCell>

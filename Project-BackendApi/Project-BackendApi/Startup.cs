@@ -120,8 +120,13 @@ namespace Project_BackendApi
             //    RequestPath = "/Images"
             //});
 
+            //app.UseCors(Options =>
+            //Options.WithOrigins("http://localhost:3000")
+            //.AllowAnyMethod()
+            //.AllowAnyHeader());
+
             app.UseCors(Options =>
-            Options.WithOrigins("http://localhost:3000")
+            Options.AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader());
 

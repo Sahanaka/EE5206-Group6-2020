@@ -13,24 +13,43 @@ import "./SellerMainitems/charts-theme";
 import Spinner from "../layout/Spinner";
 
 import { loadUser } from '../../Actions/auth';
+import { getDashboardDetails } from "../../Actions/seller";
 
 
 
 ReactFC.fcRoot(FusionCharts, Charts, Maps, USARegion);
 
-const SellerMain = ({ user: { user, loading } }) => {
+//const SellerMain = ({ match }) => {
+const SellerMain = ({ loadUser, user: { user, userLoading } }) => {
   const [totalRevenue, setTotalRevenue] = useState();
   const [totalOrders, setTotalOrders] = useState();
-  console.log("userrrr", user);
+  const [averageSellingPrice, setAverageSellingPrice] = useState();
+  const [sId, setsId] = useState(JSON.parse(atob(localStorage.token.split('.')[1])))
 
-  useEffect(() => {
-    
-    setTotalRevenue(100);
-    setTotalOrders(1);
-  }, []);
+  useEffect(async () => {
+    loadUser();
+    const res = await getDashboardDetails(sId.id)
+    setTotalOrders(res.totalOrders);
+    setTotalRevenue(res.totalReveniue);
+    calculateAverageSellingPrice();
+  }, [loadUser]);
+  //const { totalOrders } = user;
+  console.log(totalOrders)
+
+  const calculateAverageSellingPrice = () => {
+    if (totalOrders == 0) setAverageSellingPrice(0);
+    else {
+      const avg = parseFloat(totalRevenue) / parseInt(totalOrders)
+      setAverageSellingPrice(avg);
+    }
+    console.log(averageSellingPrice)
+  }
+
+  
+
   return (
     <Fragment>
-      {loading ? (
+      {userLoading ? (
         <Spinner />
       ) : (
         <Fragment>
@@ -79,57 +98,12 @@ const SellerMain = ({ user: { user, loading } }) => {
                     <nav className="sidebar sidebar-offcanvas" id="sidebar">
                       <ul className="nav">
                         <li className="nav-item">
-                          <a className="nav-link" href="index.html">
-                            <i className="ti-shield menu-icon" />
-                            <span className="menu-title">Dashboard</span>
-                          </a>
-                        </li>
-                        <li className="nav-item">
-                          <a
-                            className="nav-link"
-                            data-toggle="collapse"
-                            href="#ui-basic"
-                            aria-expanded="false"
-                            aria-controls="ui-basic"
-                          >
-                            <i className="ti-palette menu-icon" />
-                            <span className="menu-title">My Profile</span>
-                            <i className="menu-arrow" />
-                          </a>
-                          <div className="collapse" id="ui-basic">
-                            <ul className="nav flex-column sub-menu">
-                              <li className="nav-item">
-                                {" "}
-                                <a
-                                  className="nav-link"
-                                  href="pages/ui-features/buttons.html"
-                                >
-                                  Buttons
-                                </a>
-                              </li>
-                              <li className="nav-item">
-                                {" "}
-                                <a
-                                  className="nav-link"
-                                  href="pages/ui-features/typography.html"
-                                >
-                                  Typography
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </li>
-                        <li className="nav-item">
-                          <i className="ti-layout-list-post menu-icon" />
-                          <Link to="/store">Store</Link>
-                        </li>
-                        <li className="nav-item">
                           <i className="ti-layout-list-post menu-icon" />
                           <Link to="/ProductList">Products</Link>
                         </li>
                         <li className="nav-item">
                           <i className="ti-layout-list-post menu-icon" />
-                          <Link to={`/ShopItemsSeller/${1}`}>Shop Items</Link>
+                          <Link to={`/ShopItemsSeller/${1}`}>Orders</Link>
                         </li>
                       </ul>
                     </nav>
@@ -179,7 +153,7 @@ const SellerMain = ({ user: { user, loading } }) => {
                   <Container className="card grid-card is-card-dark">
                     <Container className="card-heading">
                       <Container className="is-dark-text-light letter-spacing text-small">
-                        Complete Orders
+                        Average Selling Price
                       </Container>
                       <Container className="card-heading-brand">
                         
@@ -187,8 +161,8 @@ const SellerMain = ({ user: { user, loading } }) => {
                     </Container>
 
                     <Container className="card-value pt-4 text-x-large">
-                      <span className="text-large pr-1"></span>
-                      
+                      <span className="text-large pr-1">Rs</span>
+                        {averageSellingPrice}
                     </Container>
                   </Container>
                 </Container>
@@ -343,11 +317,15 @@ const SellerMain = ({ user: { user, loading } }) => {
 
 SellerMain.propTypes = {
   user: PropTypes.object.isRequired,
+  loadUser: PropTypes.func.isRequired,
+  //seller: PropTypes.object.isRequired,
+  //getDashboardDetails: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth,
+  //seller: state.seller
 });
 
-
-export default connect(mapStateToProps)(SellerMain);
+//export default SellerMain;
+export default connect(mapStateToProps, { loadUser })(SellerMain);

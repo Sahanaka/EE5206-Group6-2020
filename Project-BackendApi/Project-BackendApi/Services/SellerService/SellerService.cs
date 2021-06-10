@@ -85,7 +85,6 @@ namespace Project_BackendApi.Services.SellerService
 
         }
 
-        
 
     }
 }

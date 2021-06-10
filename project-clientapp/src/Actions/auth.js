@@ -41,6 +41,7 @@ export const login = (email, password) => async (dispatch) => {
 
     
   } catch (error) {
+    console.log(error)
     dispatch(setAlert("Invalid email or password", "danger"));
     dispatch({
       type: LOGIN_FAILED,
