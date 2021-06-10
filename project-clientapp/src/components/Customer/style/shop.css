@@ -1,7 +1,4 @@
-/* * .background {
-  background: url(2.JPG) no-repeat;
-  background-size: cover;
-} */
+
 .bdy {
   margin-top: 20px;
 }
@@ -18,23 +15,12 @@
 .textcolourchange{
   color: aliceblue;
 }
-/* .cart {
-  opacity: 0.9;
-  float: left;
-  padding: 0;
-} */
+
 .row1 {
   display: flex;
   justify-content: space-between;
 }
-/* .colm-1 {
-  flex: 1;
-  margin-left: 200px;
-} */
-/* .colm-2 {
-  flex: 2;
-  width: 600px;
-} */
+
 .row1.center {
   align-items: center;
 }
@@ -42,17 +28,10 @@
   background-color: white;
   opacity: 0.8;
   border-radius: 25px;
-  /* padding: 1rem;
-  margin: 0.5rem; */
+  
 }
 
-/* .withe {
-  width: 500px;
-  float: right;
-  height: 0px;
-} */
 
-/*new css*/
 html {
   font-size: 62.5%;
   box-sizing: border-box;
