@@ -35,9 +35,7 @@ const CustomerItems = ({
         console.log("error")
       }
     }, [match.params.id]);
-    //console.log("cus", shop);
-   // console.log("pro", products);
-  // console.log(match)
+    
     const imageCard = (data) => (
  
       <div>

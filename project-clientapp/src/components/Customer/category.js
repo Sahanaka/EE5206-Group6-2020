@@ -9,9 +9,7 @@ const FilterCategory = (props) => {
       </div>
       <ul className="list-group list-group-flush">
         <li className="list-group-item">
-          {/* <Link to="/" className="text-decoration-none stretched-link">
-            Leather Bag
-          </Link> */}
+          
         </li>
         <li className="list-group-item">
           <Link to="/sellerMain" className="text-decoration-none stretched-link">
@@ -20,27 +18,19 @@ const FilterCategory = (props) => {
           
         </li>
         <li className="list-group-item">
-          {/* <Link to="/" className="text-decoration-none stretched-link">
-            Trausers
-          </Link> */}
+          
           Trausers
         </li>
         <li className="list-group-item">
-          {/* <Link to="/" className="text-decoration-none stretched-link">
-            Sweater & Cardigans
-          </Link> */}
+          
           Sweater & Cardigans
         </li>
         <li className="list-group-item">
-          {/* <Link to="/" className="text-decoration-none stretched-link">
-            High Heels
-          </Link> */}
+          
           High Heels
         </li>
         <li className="list-group-item">
-          {/* <Link to="/" className="text-decoration-none stretched-link">
-            Coats & Jackets
-          </Link> */}
+          
           Coats & Jackets
         </li>
       </ul>

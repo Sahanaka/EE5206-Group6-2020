@@ -62,8 +62,7 @@ export function SimpleDialog(props) {
             <ListItemText color="secondary" primary={email} />
           </ListItem>
         ))}
-
-        
+     
       </List>
     </Dialog>
   );
@@ -74,7 +73,6 @@ SimpleDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   selectedValue: PropTypes.string.isRequired,
 };
-
 
 const Buy =() =>{
   let history = useHistory()
@@ -99,71 +97,63 @@ const Buy =() =>{
       <div className=" w3-container bo78   squrebuy">
         <h1 className="large text-primary textcenter78">Payment Methods</h1>
         <div className="itemcenter78">
-          {/* <p className="">
-          <i className="fas fa-user" /> Create Your Account
-        </p> */}
+          
           <form className="form " >
             <div className="">
-              {/* <small className=""> Name</small> */}
+             
               <input
                 type="text"
                 placeholder="Card Holder"
                 name="Card Holder"
-                // value={name}
-                
+ 
               />
             </div>
             <div className="">
-              {/* <small className=""> Address</small> */}
+             
               <input
                 type="text"
                 placeholder="Card Number"
                 name="Card Number"
-                // value={address}
                 
               />
               <small className=""></small>
             </div>
             <div className="">
-              {/* <small className=""> Email</small> */}
+              
               <input
                 type="text"
                 placeholder="Expires"
                 name="Expires"
-                // value={email}
                 
               />
               <small className=""></small>
             </div>
             
             <div className="">
-              {/* <small className="">Password</small> */}
+              
               <input
                 type="text"
                 placeholder="CVV"
                 name="CVV"
-                // value={rePassword}
-                
+               
               />
             </div>
             <div className="">
-              {/* <small className=""> Contact Number</small> */}
+              
               <input
                 type="text"
                 placeholder="Contact Number"
                 name="contactNo"
-                // value={contactNo}
                 
               />
             </div>
 
             <div className="">
-              {/* <small className=""> Category</small> */}
+              
               <input
                 type="email"
                 placeholder="Email Address"
                 name="email"
-                // value={email}
                 
               />
               <small className=""></small>
@@ -173,16 +163,8 @@ const Buy =() =>{
         Continue
       </Button>
       <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
-
-
             </div>
-
-            {/* <input  type="submit" className="btn btn-primary" value="Continue" /> */}
-            
           </form>
-          {/* <p className="color78">
-            Already have an account? <Link to="/login">Sign In</Link>
-          </p> */}
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
-// import Controls from "./controls/Controls";
+
 import CloseIcon from "@material-ui/icons/Close";
 import Button from "@material-ui/core/Button";
 

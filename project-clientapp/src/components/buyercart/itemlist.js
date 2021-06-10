@@ -39,7 +39,7 @@ function Itemlist({ getAllProducts, products: { products, loading } }) {
   };
   return (
     <div className="App">
-      {/* <Header countCartItems={cartItems.length}></Header> */}
+     
       <div className="card">
         <Main products={products} onAdd={onAdd}></Main>
         <Basket

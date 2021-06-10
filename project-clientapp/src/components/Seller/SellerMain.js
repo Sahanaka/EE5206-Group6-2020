@@ -15,7 +15,7 @@ import Spinner from "../layout/Spinner";
 import { loadUser } from '../../Actions/auth';
 import { getDashboardDetails } from "../../Actions/seller";
 
-// import UserImg from "../assets/images/user-img-placeholder.jpeg";
+
 
 ReactFC.fcRoot(FusionCharts, Charts, Maps, USARegion);
 
@@ -55,14 +55,14 @@ const SellerMain = ({ loadUser, user: { user, userLoading } }) => {
         <Fragment>
           <Container>
             <div>
-              {/* Required meta tags */}
+              
               <meta charSet="utf-8" />
               <meta
                 name="viewport"
                 content="width=device-width, initial-scale=1, shrink-to-fit=no"
               />
               <title>RoyalUI Admin</title>
-              {/* plugins:css */}
+              
               <link
                 rel="stylesheet"
                 href="vendors/ti-icons/css/themify-icons.css"
@@ -71,9 +71,7 @@ const SellerMain = ({ loadUser, user: { user, userLoading } }) => {
                 rel="stylesheet"
                 href="vendors/base/vendor.bundle.base.css"
               />
-              {/* endinject */}
-
-              {/*navigation bar link*/}
+              
               <style
                 dangerouslySetInnerHTML={{
                   __html:
@@ -81,11 +79,8 @@ const SellerMain = ({ loadUser, user: { user, userLoading } }) => {
                 }}
               />
 
-              {/* plugin css for this page */}
-              {/* End plugin css for this page */}
-              {/* inject:css */}
               <link rel="stylesheet" href="css/style.css" />
-              {/* endinject */}
+              
               <link rel="shortcut icon" href="images/favicon.png" />
 
               <style
@@ -95,13 +90,11 @@ const SellerMain = ({ loadUser, user: { user, userLoading } }) => {
               />
 
               <div className="container-scroller">
-                {/* partial:partials/_navbar.html */}
-
-                {/* partial */}
+               
 
                 <div className="sellermain">
                   <div className="container-fluid page-body-wrapper">
-                    {/* partial:partials/_sidebar.html */}
+                    
                     <nav className="sidebar sidebar-offcanvas" id="sidebar">
                       <ul className="nav">
                         <li className="nav-item">
@@ -118,9 +111,9 @@ const SellerMain = ({ loadUser, user: { user, userLoading } }) => {
                 </div>
               </div>
             </div>
-            {/* content area start */}
+            
             <Container className="container-fluid pr-5 pl-5 pt-5 pb-5">
-              {/* row 1 - revenue */}
+              
               <Container className="row">
                 <Container className="col-lg-3 col-sm-6 is-light-text mb-4">
                   <Container className="card grid-card is-card-dark">
@@ -144,13 +137,13 @@ const SellerMain = ({ loadUser, user: { user, userLoading } }) => {
                         Total Orders
                       </Container>
                       <Container className="card-heading-brand">
-                        {/* <i className="fab fa-amazon text-large" /> */}
+                        
                       </Container>
                     </Container>
 
                     <Container className="card-value pt-4 text-x-large">
                       <span className="text-large pr-1"></span>
-                      {/* {this.state.amRevenue} */}
+                      
                       {totalOrders}
                     </Container>
                   </Container>
@@ -163,7 +156,7 @@ const SellerMain = ({ loadUser, user: { user, userLoading } }) => {
                         Average Selling Price
                       </Container>
                       <Container className="card-heading-brand">
-                        {/* <i className="fab fa-ebay text-x-large logo-adjust" /> */}
+                        
                       </Container>
                     </Container>
 
@@ -181,19 +174,19 @@ const SellerMain = ({ loadUser, user: { user, userLoading } }) => {
                         Pending Orders
                       </Container>
                       <Container className="card-heading-brand">
-                        {/* <i className="fab fa-etsy text-medium" /> */}
+                        
                       </Container>
                     </Container>
 
                     <Container className="card-value pt-4 text-x-large">
                       <span className="text-large pr-1"></span>
-                      {/* {this.state.etRevenue} */}
+                      
                     </Container>
                   </Container>
                 </Container>
               </Container>
 
-              {/* row 2 - conversion */}
+              
               <Container className="row">
                 <Container className="col-md-4 col-lg-3 is-light-text mb-4">
                   <Container className="card grid-card is-card-dark">
@@ -203,7 +196,6 @@ const SellerMain = ({ loadUser, user: { user, userLoading } }) => {
                       </Container>
                     </Container>
                     <Container className="card-value pt-4 text-x-large">
-                      {/* {this.state.productViews} */}
                       <span className="text-medium pl-2 is-dark-text-light">
                         views
                       </span>
@@ -227,18 +219,18 @@ const SellerMain = ({ loadUser, user: { user, userLoading } }) => {
                                 chart: {
                                   caption: "Purchase Rate",
                                   theme: "ecommerce",
-                                  //defaultCenterLabel: `${this.state.purchaseRate}%`,
+                                  
                                   paletteColors: "#3B70C4, #000000",
                                 },
                                 data: [
                                   {
                                     label: "active",
-                                    //value: `${this.state.purchaseRate}`,
+                                    
                                   },
                                   {
                                     label: "inactive",
                                     alpha: 5,
-                                    //value: `${100 - this.state.purchaseRate}`,
+                                    
                                   },
                                 ],
                               },
@@ -259,18 +251,18 @@ const SellerMain = ({ loadUser, user: { user, userLoading } }) => {
                                 chart: {
                                   caption: "Checkout Rate",
                                   theme: "ecommerce",
-                                  //defaultCenterLabel: `${this.state.checkoutRate}%`,
+                                  
                                   paletteColors: "#41B6C4, #000000",
                                 },
                                 data: [
                                   {
                                     label: "active",
-                                    //value: `${this.state.checkoutRate}`,
+                                    
                                   },
                                   {
                                     label: "inactive",
                                     alpha: 5,
-                                    // value: `${100 - this.state.checkoutRate}`,
+                                    
                                   },
                                 ],
                               },
@@ -291,18 +283,18 @@ const SellerMain = ({ loadUser, user: { user, userLoading } }) => {
                                 chart: {
                                   caption: "Abandoned Cart Rate",
                                   theme: "ecommerce",
-                                  // defaultCenterLabel: `${this.state.abandonedRate}%`,
+                                  
                                   paletteColors: "#EDF8B1, #000000",
                                 },
                                 data: [
                                   {
                                     label: "active",
-                                    // value: `${this.state.abandonedRate}`,
+                                    
                                   },
                                   {
                                     label: "inactive",
                                     alpha: 5,
-                                    // value: `${100 - this.state.abandonedRate}`,
+                                    
                                   },
                                 ],
                               },
@@ -315,7 +307,7 @@ const SellerMain = ({ loadUser, user: { user, userLoading } }) => {
                 </Container>
               </Container>
             </Container>
-            {/* content area end */}
+            
           </Container>
         </Fragment>
       )}

@@ -21,22 +21,16 @@ function Popup() {
   
   const handleClickOpen = () => {
     
-    
     history.push({pathname: '/shops'});
     
   };
 
- 
-
   return <div>
-      
-   
-   
+
     {<PopupDetails
       content={<>
         <b>Oder Sucsessfull</b>
         
-        {/* <img width="100" height="100" src="https://media.giphy.com/media/fxI0mULY4j8oZ9VK7X/giphy.gif"></img> */}
         <br/>
         <button onClick={handleClickOpen}>Thank You !! Come Again </button>
       </>}

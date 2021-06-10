@@ -57,7 +57,7 @@ const AdminSellersList = ({ classes, sellers: { customers, sellers, sellersloadi
   return (
     <div className="listtable">
       <Fragment>
-      {/* <AdminNav {...{ adminId }} /> */}
+      
       <section className='container'>
         <Paper className={styles.paper} elevation={3}>
           <Grid>
@@ -99,9 +99,7 @@ const AdminSellersList = ({ classes, sellers: { customers, sellers, sellersloadi
                                 <Button>
                                   <DeleteIcon
                                     color='secondary'
-                                    // onClick={() => {
-                                    //   onDelete(record.userId)
-                                    // }}
+                                    
                                   />
                                 </Button>
                               </ButtonGroup>
@@ -114,17 +112,11 @@ const AdminSellersList = ({ classes, sellers: { customers, sellers, sellersloadi
                 </Table>
               </TableContainer>
             </Grid>
-            {/* <Popup
-              title='Edit Seller Details'
-              openPopup={openPopup}
-              setOpenPopup={setOpenPopup}
-            >
-              <SellerForm {...{ currentId, setCurrentId, setOpenPopup }} />
-            </Popup> */}
+            
           </Grid>
         </Paper>
       </section>
-      {/* <Footer /> */}
+      
     </Fragment>
 
     </div>

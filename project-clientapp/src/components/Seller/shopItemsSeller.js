@@ -151,7 +151,6 @@ const ShopItemsSeller = ({
               </div>
             </div>
   
-            {/* <h1 className="display-4">{shop.name}</h1> */}
           </Fragment>
         )}
       </Fragment>

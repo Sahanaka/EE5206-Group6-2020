@@ -119,7 +119,7 @@ const ProductList = ({ auth: { user, loading } }) => {
               <table>
                 <tbody>
                   {
-                    //tr > 4 td
+                    
                     [...Array(Math.ceil(productList.length / 4))].map(
                       (e, i) => (
                         <tr key={i}>
